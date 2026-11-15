@@ -11,7 +11,7 @@ import {
   viewChild,
 } from '@angular/core';
 import { I18nService } from '../../core/i18n/i18n.service';
-import { RecordOutcome } from '../../core/game/records.service';
+import { RecordEntry, RecordOutcome } from '../../core/game/records.service';
 import { GameResult, GameStatus } from '../../core/game/typing-game';
 import { formatClock } from '../../core/labels';
 import { TopBarComponent } from '../top-bar/top-bar.component';
@@ -33,8 +33,16 @@ const ICON = {
   selector: 'app-game-frame',
   imports: [TopBarComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: { '(document:keydown.escape)': 'moreOpen.set(false)' },
   template: `
-    <app-top-bar [time]="time()" [progress]="progress()" [errors]="errors()" (menu)="menu.emit()">
+    <app-top-bar
+      [time]="time()"
+      [progress]="progress()"
+      [errors]="errors()"
+      [hasSettings]="status() !== 'finished'"
+      (menu)="menu.emit()"
+      (settings)="settings.emit()"
+    >
       <ng-content />
       @if (status() !== 'finished') {
         <div actions class="contents">
@@ -90,34 +98,97 @@ const ICON = {
               {{ i18n.t('frame.skip') }}
             </button>
           }
-          <button
-            type="button"
-            class="action-btn w-[5.25rem] justify-center hover:bg-black/5 md:w-[7rem] md:text-[0.8125rem]"
-            (click)="restart.emit()"
-          >
-            <svg
-              viewBox="0 0 20 20"
-              class="size-4 fill-none stroke-current stroke-2"
-              aria-hidden="true"
+          <div class="relative md:hidden">
+            <button
+              type="button"
+              class="action-btn w-10 justify-center hover:bg-black/5"
+              aria-haspopup="menu"
+              [attr.aria-expanded]="moreOpen()"
+              [attr.aria-label]="i18n.t('bar.more')"
+              [title]="i18n.t('bar.more')"
+              (click)="moreOpen.set(!moreOpen())"
             >
-              <path [attr.d]="icon.restart" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-            {{ i18n.t('frame.restart') }}
-          </button>
-          <button
-            type="button"
-            class="action-btn w-[5.25rem] justify-center hover:bg-black/5 md:w-[7rem] md:text-[0.8125rem]"
-            (click)="giveUp.emit()"
-          >
-            <svg
-              viewBox="0 0 20 20"
-              class="size-4 fill-none stroke-current stroke-2"
-              aria-hidden="true"
+              <svg viewBox="0 0 20 20" class="size-5 fill-current" aria-hidden="true">
+                <circle cx="4.5" cy="10" r="1.6" />
+                <circle cx="10" cy="10" r="1.6" />
+                <circle cx="15.5" cy="10" r="1.6" />
+              </svg>
+            </button>
+            @if (moreOpen()) {
+              <button
+                type="button"
+                class="fixed inset-0 z-20 cursor-default"
+                tabindex="-1"
+                aria-hidden="true"
+                (click)="moreOpen.set(false)"
+              ></button>
+              <div
+                class="absolute top-full right-0 z-30 mt-1 flex w-40 flex-col rounded-xl bg-panel-solid p-1 shadow-panel"
+                role="menu"
+              >
+                <button
+                  type="button"
+                  role="menuitem"
+                  class="action-btn justify-start px-3 text-sm hover:bg-black/5"
+                  (click)="moreOpen.set(false); restart.emit()"
+                >
+                  <svg
+                    viewBox="0 0 20 20"
+                    class="size-4 fill-none stroke-current stroke-2"
+                    aria-hidden="true"
+                  >
+                    <path [attr.d]="icon.restart" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                  {{ i18n.t('frame.restart') }}
+                </button>
+                <button
+                  type="button"
+                  role="menuitem"
+                  class="action-btn justify-start px-3 text-sm hover:bg-black/5"
+                  (click)="moreOpen.set(false); giveUp.emit()"
+                >
+                  <svg
+                    viewBox="0 0 20 20"
+                    class="size-4 fill-none stroke-current stroke-2"
+                    aria-hidden="true"
+                  >
+                    <path [attr.d]="icon.giveUp" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                  {{ i18n.t('frame.giveUp') }}
+                </button>
+              </div>
+            }
+          </div>
+          <div class="hidden md:contents">
+            <button
+              type="button"
+              class="action-btn w-[5.25rem] justify-center hover:bg-black/5 md:w-[7rem] md:text-[0.8125rem]"
+              (click)="restart.emit()"
             >
-              <path [attr.d]="icon.giveUp" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-            {{ i18n.t('frame.giveUp') }}
-          </button>
+              <svg
+                viewBox="0 0 20 20"
+                class="size-4 fill-none stroke-current stroke-2"
+                aria-hidden="true"
+              >
+                <path [attr.d]="icon.restart" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+              {{ i18n.t('frame.restart') }}
+            </button>
+            <button
+              type="button"
+              class="action-btn w-[5.25rem] justify-center hover:bg-black/5 md:w-[7rem] md:text-[0.8125rem]"
+              (click)="giveUp.emit()"
+            >
+              <svg
+                viewBox="0 0 20 20"
+                class="size-4 fill-none stroke-current stroke-2"
+                aria-hidden="true"
+              >
+                <path [attr.d]="icon.giveUp" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+              {{ i18n.t('frame.giveUp') }}
+            </button>
+          </div>
         </div>
       }
     </app-top-bar>
@@ -155,18 +226,15 @@ const ICON = {
               {{ i18n.t('frame.in') }} {{ elapsed() }}{{ errorsText(r.errors) }}
             </span>
           </p>
+          @if (accuracy(r); as text) {
+            <p class="text-sm text-ink-muted">{{ text }}</p>
+          }
           @if (record(); as rec) {
             <p class="mt-0.5 text-sm">
               @if (rec.isNew) {
                 <span class="font-semibold">{{ i18n.t('frame.newRecord') }}</span>
               } @else if (rec.best; as best) {
-                <span class="text-ink-muted">{{
-                  i18n.t('frame.yourRecord', {
-                    found: best.found,
-                    total: best.total,
-                    time: bestTime(best.elapsedMs),
-                  })
-                }}</span>
+                <span class="text-ink-muted">{{ recordText(best) }}</span>
               }
             </p>
           }
@@ -213,6 +281,7 @@ export class GameFrameComponent {
   readonly skip = output<void>();
 
   readonly menu = output<void>();
+  readonly settings = output<void>();
   readonly togglePause = output<void>();
   readonly restart = output<void>();
   readonly giveUp = output<void>();
@@ -222,6 +291,8 @@ export class GameFrameComponent {
   protected readonly i18n = inject(I18nService);
   protected readonly icon = ICON;
   protected readonly collapsed = signal(false);
+  /** The "⋯" menu with restart and give up (phones only). */
+  protected readonly moreOpen = signal(false);
   private readonly endTitle = viewChild<ElementRef<HTMLElement>>('endTitle');
 
   protected readonly title = computed(() => {
@@ -229,18 +300,47 @@ export class GameFrameComponent {
     return result ? this.i18n.t(`frame.end.${result.reason}`) : '';
   });
 
+  private errorsLabel(errors: number): string {
+    return errors === 1 ? this.i18n.t('frame.error1') : this.i18n.t('frame.errorsN', { n: errors });
+  }
+
   /** " · 3 errors" after the time, only in games that count errors. */
   protected errorsText(errors: number | undefined): string {
-    if (errors === undefined) return '';
-    const text =
-      errors === 1 ? this.i18n.t('frame.error1') : this.i18n.t('frame.errorsN', { n: errors });
-    return ` · ${text}`;
+    return errors === undefined ? '' : ` · ${this.errorsLabel(errors)}`;
   }
+  /** Click games: hits out of every click made (hits + wrong clicks). */
+  protected accuracy(result: GameResult): string {
+    if (result.errors === undefined) return '';
+    const attempts = result.found + result.errors;
+    if (attempts === 0) return '';
+    return this.i18n.t('frame.accuracy', {
+      pct: Math.round((result.found / attempts) * 100),
+      found: result.found,
+      attempts,
+    });
+  }
+
+  protected recordText(best: RecordEntry): string {
+    const values = {
+      found: best.found,
+      total: best.total,
+      time: formatClock(best.elapsedMs, 'up'),
+    };
+    if (best.errors === undefined) return this.i18n.t('frame.yourRecord', values);
+    return this.i18n.t('frame.yourRecordErrors', {
+      ...values,
+      errors: this.errorsLabel(best.errors),
+    });
+  }
+
   protected readonly elapsed = computed(() => formatClock(this.result()?.elapsedMs ?? 0, 'up'));
-  protected readonly bestTime = (ms: number) => formatClock(ms, 'up');
 
   constructor() {
     // Moves focus to the result so screen readers announce it.
     effect(() => this.endTitle()?.nativeElement.focus());
+    // The menu does not stay open once the game is over.
+    effect(() => {
+      if (this.status() === 'finished') this.moreOpen.set(false);
+    });
   }
 }

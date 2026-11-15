@@ -29,6 +29,8 @@ export interface Country {
   flag: string;
   /** [longitude, latitude] for a label or a clickable spot (tiny places). */
   labelPoint: LonLat;
+  /** Neutral note shown in the info card (e.g. a disputed capital); only some countries have one. */
+  statusNote?: LocalizedText | null;
 }
 
 export type LonLat = [number, number];
@@ -46,6 +48,22 @@ export interface Territory extends Omit<Country, 'iso2'> {
   administeredBy: string | null;
   /** Explains the status of places without an administering country. */
   statusNote: LocalizedText | null;
+}
+
+/** A part of a country that is not a place of its own (England): only explains a typed answer. */
+export interface CountryPart {
+  id: string;
+  /** The country (ISO alpha-3) it belongs to. */
+  country: string;
+  name: LocalizedText;
+  aliases: LocalizedList;
+}
+
+/** non-targets.json: what is needed to explain answers that are not targets. */
+export interface NonTargetsData {
+  parts: CountryPart[];
+  /** A country as it reads in a sentence ("da Dinamarca" / "Denmark"); see decisions.json. */
+  countryPhrases: Record<string, LocalizedText>;
 }
 
 /** Federative unit of Brazil (states.json). `id` is the abbreviation, e.g. "SP". */

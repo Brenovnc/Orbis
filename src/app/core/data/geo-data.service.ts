@@ -4,6 +4,7 @@ import {
   BrazilRegion,
   BrazilState,
   Country,
+  NonTargetsData,
   Place,
   Territory,
   WorldUnitProperties,
@@ -22,6 +23,7 @@ export class GeoDataService {
   readonly world = signal<WorldTopology | null>(null);
   readonly countries = signal<Country[]>([]);
   readonly territories = signal<Territory[]>([]);
+  readonly nonTargets = signal<NonTargetsData | null>(null);
   readonly error = signal(false);
 
   // Brazil's files are only downloaded when the Brazil map is used.
@@ -43,8 +45,10 @@ export class GeoDataService {
       getJson<WorldTopology>('data/world.topo.json'),
       getJson<Country[]>('data/countries.json'),
       getJson<Territory[]>('data/territories.json'),
+      getJson<NonTargetsData>('data/non-targets.json'),
     ])
-      .then(([world, countries, territories]) => {
+      .then(([world, countries, territories, nonTargets]) => {
+        this.nonTargets.set(nonTargets);
         this.world.set(world);
         this.countries.set(countries);
         this.territories.set(territories);

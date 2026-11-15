@@ -55,6 +55,8 @@ export class MapStateService {
   readonly labels = signal<readonly MapLabel[]>([]);
   /** Current zoom level of the map (1 = whole world). */
   readonly zoom = signal(1);
+  /** Mouse double click zooms in. Click games turn it off: two quick answers are not a zoom. */
+  readonly doubleClickZoom = signal(true);
 
   setLayer(layer: Layer): void {
     this.layer.set(layer);
@@ -86,5 +88,6 @@ export class MapStateService {
     this.lastClick.set(null);
     this.hoveredId.set(null);
     this.labels.set([]);
+    this.doubleClickZoom.set(true);
   }
 }

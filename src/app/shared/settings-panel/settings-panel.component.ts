@@ -20,6 +20,13 @@ import { SwitchComponent } from '../ui/switch.component';
 @Injectable({ providedIn: 'root' })
 export class SettingsPanelService {
   readonly open = signal(false);
+  /** True when opened from inside a game: only then do the "next game" labels make sense. */
+  readonly duringGame = signal(false);
+
+  show(duringGame: boolean): void {
+    this.duringGame.set(duringGame);
+    this.open.set(true);
+  }
 }
 
 /**
@@ -91,7 +98,7 @@ export class SettingsPanelService {
       <section class="mt-3 divide-y divide-line">
         <app-switch
           [label]="i18n.t('settings.territories')"
-          [tag]="i18n.t('settings.nextGame')"
+          [tag]="nextGameTag()"
           [hint]="
             brazilMap()
               ? i18n.t('settings.territories.brazil')
@@ -131,7 +138,7 @@ export class SettingsPanelService {
             />
             <app-switch
               [label]="i18n.t('settings.learn')"
-              [tag]="i18n.t('settings.nextGame')"
+              [tag]="nextGameTag()"
               [hint]="i18n.t('settings.learn.hint')"
               [checked]="s().learnMode"
               (changed)="settings.update({ learnMode: $event })"
@@ -154,11 +161,13 @@ export class SettingsPanelService {
             <div class="py-2">
               <span class="block text-sm font-medium"
                 >{{ i18n.t('settings.reveal') }}
-                <span
-                  class="ml-1.5 rounded bg-black/5 px-1.5 py-0.5 align-middle text-[0.65rem] font-medium text-ink-muted"
-                  >{{ i18n.t('settings.nextGame') }}</span
-                ></span
-              >
+                @if (duringGame()) {
+                  <span
+                    class="ml-1.5 rounded bg-black/5 px-1.5 py-0.5 align-middle text-[0.65rem] font-medium text-ink-muted"
+                    >{{ i18n.t('settings.nextGame') }}</span
+                  >
+                }
+              </span>
               <span class="mb-1.5 block text-xs text-ink-muted">{{
                 i18n.t('settings.reveal.hint')
               }}</span>
@@ -172,11 +181,13 @@ export class SettingsPanelService {
             <div class="py-2">
               <span class="block text-sm font-medium"
                 >{{ i18n.t('settings.typo') }}
-                <span
-                  class="ml-1.5 rounded bg-black/5 px-1.5 py-0.5 align-middle text-[0.65rem] font-medium text-ink-muted"
-                  >{{ i18n.t('settings.nextGame') }}</span
-                ></span
-              >
+                @if (duringGame()) {
+                  <span
+                    class="ml-1.5 rounded bg-black/5 px-1.5 py-0.5 align-middle text-[0.65rem] font-medium text-ink-muted"
+                    >{{ i18n.t('settings.nextGame') }}</span
+                  >
+                }
+              </span>
               <span class="mb-1.5 block text-xs text-ink-muted">{{
                 i18n.t('settings.typo.hint')
               }}</span>
@@ -189,7 +200,7 @@ export class SettingsPanelService {
             </div>
             <app-switch
               [label]="i18n.t('settings.timer')"
-              [tag]="i18n.t('settings.nextGame')"
+              [tag]="nextGameTag()"
               [hint]="i18n.t('settings.timer.hint')"
               [checked]="s().timerEnabled"
               (changed)="settings.update({ timerEnabled: $event })"
@@ -224,7 +235,9 @@ export class SettingsPanelService {
             }
           </div>
         }
-        <p class="mt-3 text-xs text-ink-muted">{{ i18n.t('settings.nextGame.note') }}</p>
+        @if (duringGame()) {
+          <p class="mt-3 text-xs text-ink-muted">{{ i18n.t('settings.nextGame.note') }}</p>
+        }
       </section>
     </dialog>
   `,
@@ -239,6 +252,10 @@ export class SettingsPanelComponent {
   private readonly map = inject(MapStateService);
 
   protected readonly s = this.settings.value;
+  protected readonly duringGame = this.panel.duringGame;
+  protected readonly nextGameTag = computed(() =>
+    this.duringGame() ? this.i18n.t('settings.nextGame') : undefined,
+  );
   /** Territories only exist on the world map. */
   protected readonly brazilMap = computed(() => this.map.layer() === 'brazil');
   protected readonly languages: SegmentedOption[] = [

@@ -30,6 +30,7 @@ const writeJson = (name, data) =>
   writeFileSync(join(outDir, name), JSON.stringify(data, null, 1) + '\n');
 writeJson('countries.json', world.countries);
 writeJson('territories.json', world.territories);
+writeJson('non-targets.json', world.nonTargets);
 writeJson('states.json', brazil.states);
 writeJson('regions-br.json', brazil.regions);
 writeJson('flags/attributions.json', [...world.flagAttributions, ...brazil.flagAttributions]);

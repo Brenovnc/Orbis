@@ -8,6 +8,7 @@ import {
   viewChild,
 } from '@angular/core';
 import { AnswerMode } from '../../core/game/answers';
+import { explainNonTarget } from '../../core/game/non-targets';
 import { Target } from '../../core/game/targets';
 import { TypingGame } from '../../core/game/typing-game';
 import { GameFrameComponent } from '../../shared/game-frame/game-frame.component';
@@ -40,6 +41,7 @@ import { FEEDBACK_ICON, GamePage, NewGameOptions } from '../game-page';
         (replay)="replay()"
         (giveUp)="giveUp()"
         (toggleList)="listOpen.set(!listOpen())"
+        (settings)="openSettings()"
       >
         <div class="mx-auto flex w-full max-w-xl flex-col items-center gap-0.5">
           <label class="sr-only" for="answer">{{ prompt() }}</label>
@@ -148,6 +150,8 @@ export class TypingGamePage extends GamePage<TypingGame> {
   }
 
   protected createGame(options: NewGameOptions): TypingGame {
+    // Only the country-name game explains what is not an answer (Greenland, England...).
+    this.nonTargets = this.mode() === 'countries' ? this.buildNonTargets(options.targets) : null;
     return new TypingGame({
       gameId: this.gameId as 'digitar-paises' | 'digitar-capitais',
       layer: this.layer,
@@ -192,6 +196,8 @@ export class TypingGamePage extends GamePage<TypingGame> {
         this.i18n.t('typing.confirm', { name: this.describe(result.targets) }),
         6000,
       );
+    } else if (result.kind === 'miss' && this.nonTargets && this.explainMiss(element)) {
+      // A real place that is not an answer: it teaches, and counts as neither hit nor error.
     } else if (result.kind === 'miss' && fuzzy) {
       this.say('miss', this.i18n.t('typing.miss'));
       this.sound.play('wrong');
@@ -200,6 +206,14 @@ export class TypingGamePage extends GamePage<TypingGame> {
     } else if (this.feedback()?.kind === 'info') {
       this.feedback.set(null); // the Enter hint no longer applies
     }
+  }
+
+  private explainMiss(element: HTMLInputElement): boolean {
+    const why = this.nonTargets && explainNonTarget(element.value, this.nonTargets);
+    if (!why) return false;
+    element.value = '';
+    this.explain(why);
+    return true;
   }
 
   /** "Brasil", or "Brasília → Brasil" in the capitals game. */

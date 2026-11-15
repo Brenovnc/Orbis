@@ -12,8 +12,13 @@ circle {
 
 .sphere {
   fill: var(--color-ocean);
+}
+
+/* Thin and discreet; non-scaling-stroke (above) keeps it the same width at any zoom. */
+.sphere-edge {
+  fill: none;
   stroke: var(--color-ocean-edge);
-  stroke-width: 1px;
+  stroke-width: 0.75px;
 }
 
 .graticule {
@@ -153,7 +158,8 @@ svg.is-selectable .marker {
 .lakes,
 .coast,
 .borders,
-.graticule {
+.graticule,
+.sphere-edge {
   pointer-events: none;
 }
 

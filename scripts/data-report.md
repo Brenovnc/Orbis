@@ -1,6 +1,6 @@
 # Relatório da geração de dados (gerado automaticamente)
 
-Gerado em 2026-11-14 por `npm run data`.
+Gerado em 2026-11-15 por `npm run data`.
 
 ## Contagens
 - Membros da ONU encontrados: 193

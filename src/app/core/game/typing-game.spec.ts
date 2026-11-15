@@ -148,6 +148,19 @@ describe('records', () => {
     expect(isBetter(entry(49, 1), entry(50, 900_000))).toBe(false);
   });
 
+  it('ranks click games by found, then fewer errors, then time', () => {
+    const click = (found: number, errors: number, elapsedMs: number) => ({
+      ...entry(found, elapsedMs),
+      errors,
+    });
+    expect(isBetter(click(50, 9, 900_000), click(49, 0, 1))).toBe(true);
+    expect(isBetter(click(50, 2, 900_000), click(50, 5, 100_000))).toBe(true);
+    expect(isBetter(click(50, 5, 100_000), click(50, 2, 900_000))).toBe(false);
+    expect(isBetter(click(50, 2, 100_000), click(50, 2, 200_000))).toBe(true);
+    // A record saved before errors were counted loses to the same score with any count.
+    expect(isBetter(click(50, 9, 900_000), entry(50, 100_000))).toBe(true);
+  });
+
   it('keeps separate records for different rules', () => {
     const base = {
       gameId: 'digitar-paises',

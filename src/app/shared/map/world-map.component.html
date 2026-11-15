@@ -41,8 +41,9 @@
       a thin seam) nor the grid (just clutter there).
     -->
     @if (view().sphere) {
+      <clipPath id="sphere-clip"><path [attr.d]="spherePath()" /></clipPath>
       <path class="sphere" [attr.d]="spherePath()" />
-      <path class="graticule" [attr.d]="graticulePath()" />
+      <path class="graticule" clip-path="url(#sphere-clip)" [attr.d]="graticulePath()" />
     }
     @for (shape of shapes(); track shape.id) {
       <path
@@ -59,6 +60,10 @@
     <path class="lakes" [attr.d]="lakesPath()" />
     <path class="coast" [attr.d]="coastPath()" />
     <path class="borders" [attr.d]="bordersPath()" />
+    @if (view().sphere) {
+      <!-- The rounded edge of the map, over the land so the grid and Antarctica end cleanly. -->
+      <path class="sphere-edge" [attr.d]="spherePath()" />
+    }
     @for (shape of foundShapes(); track shape.id) {
       <path class="found-outline" [attr.d]="shape.outline" />
     }

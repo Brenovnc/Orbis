@@ -298,6 +298,9 @@ export async function buildWorld({ outDir, decisions, report }) {
       claimedBy: claimedBy(entity, iso3),
       labelPoint: labelPoint(main),
     });
+    const country = countries.at(-1);
+    addEditorialAliases(country, decisions.editorialAliases[iso3]);
+    if (decisions.countryNotes[iso3]) country.statusNote = pickLangs(decisions.countryNotes[iso3]);
   }
 
   // 6. Territory records.
@@ -338,6 +341,17 @@ export async function buildWorld({ outDir, decisions, report }) {
   checkAllUsed('territoryStatus', Object.keys(decisions.territoryStatus), (k) =>
     territories.some((t) => t.id === k),
   );
+  const countryIds = new Set(countries.map((c) => c.id));
+  for (const section of ['editorialAliases', 'countryNotes']) {
+    checkAllUsed(section, Object.keys(decisions[section]), (k) => countryIds.has(k));
+  }
+  // Every country named in an error phrase needs its own wording (article and preposition).
+  const phraseIds = new Set([
+    ...territories.map((t) => t.administeredBy).filter(Boolean),
+    ...decisions.countryParts.list.map((part) => part.country),
+  ]);
+  checkAllUsed('countryPhrases', [...phraseIds], (k) => decisions.countryPhrases[k]);
+  checkAllUsed('countryPhrases', Object.keys(decisions.countryPhrases), (k) => phraseIds.has(k));
   for (const t of territories) {
     if (!t.administeredBy && !t.statusNote)
       throw new Error(`Território sem país administrador precisa de territoryStatus: ${t.id}`);
@@ -461,10 +475,31 @@ export async function buildWorld({ outDir, decisions, report }) {
     ],
     topoBytes: output['world.topo.json'].length,
   };
-  return { countries, territories, flagAttributions };
+  const { _leia, ...countryPhrases } = decisions.countryPhrases;
+  return {
+    countries,
+    territories,
+    flagAttributions,
+    nonTargets: { parts: decisions.countryParts.list, countryPhrases },
+  };
 }
 
 const pickLangs = ({ pt, en }) => ({ pt, en });
+
+// Adds the editorial aliases (decisions.json) that are not already a name or alias of the place.
+function addEditorialAliases(place, decision) {
+  if (!decision) return;
+  for (const lang of ['pt', 'en']) {
+    const taken = new Set(
+      [place.name.pt, place.name.en, ...place.aliases.pt, ...place.aliases.en].map(normalize),
+    );
+    for (const alias of decision.aliases[lang]) {
+      if (taken.has(normalize(alias))) continue;
+      place.aliases[lang].push(alias);
+      taken.add(normalize(alias));
+    }
+  }
+}
 
 function checkAllUsed(section, keys, isUsed) {
   const unused = keys.filter((k) => k !== '_leia' && !isUsed(k));

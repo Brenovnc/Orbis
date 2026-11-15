@@ -10,13 +10,7 @@ import {
   untracked,
   viewChild,
 } from '@angular/core';
-import {
-  GeoProjection,
-  geoConicEqualArea,
-  geoGraticule10,
-  geoNaturalEarth1,
-  geoPath,
-} from 'd3-geo';
+import { GeoProjection, geoConicEqualArea, geoGraticule, geoNaturalEarth1, geoPath } from 'd3-geo';
 import { geoPatterson } from 'd3-geo-projection';
 import { select } from 'd3-selection';
 import { ZoomBehavior, ZoomTransform, zoom, zoomIdentity } from 'd3-zoom';
@@ -30,6 +24,18 @@ import { MapMarker, MapStateService } from './map-state.service';
 
 const WIDTH = 960;
 const SPHERE = { type: 'Sphere' } as const;
+
+/**
+ * Meridians and parallels every 10°. D3's default grid (geoGraticule10) stops most meridians at
+ * 80°; here every one reaches the poles. The tiny offset keeps the parallels at 80°, not 90°
+ * (the pole is a point, a "parallel" there would only repeat the edge of the map).
+ */
+const GRATICULE = geoGraticule()
+  .extentMinor([
+    [-180, -90 + 1e-6],
+    [180, 90 - 1e-6],
+  ])
+  .step([10, 10])();
 const MAX_ZOOM = 80; // enough to see the Vatican
 /** How far (as a share of the map height) it can be dragged past its top and bottom edges. */
 const VERTICAL_SLACK = 0.25;
@@ -185,7 +191,7 @@ export class WorldMapComponent {
     return continuous ? [-width, 0, width] : [0];
   });
   protected readonly spherePath = computed(() => this.view().path(SPHERE) ?? '');
-  protected readonly graticulePath = computed(() => this.view().path(geoGraticule10()) ?? '');
+  protected readonly graticulePath = computed(() => this.view().path(GRATICULE) ?? '');
   protected readonly loading = computed(() => {
     const ready = this.geo.world() && (this.state.layer() === 'world' || this.geo.brazil());
     return !ready && !this.geo.error();
@@ -298,6 +304,14 @@ export class WorldMapComponent {
         .scaleExtent([1, MAX_ZOOM])
         // A small finger movement during a tap still counts as a click, not a drag.
         .clickDistance(6)
+        // Only the mouse's "dblclick" is filtered: the double tap on a touch screen reaches the
+        // zoom through its touch events, so it keeps working.
+        .filter(
+          (event: Event) =>
+            !(event.type === 'dblclick' && !this.state.doubleClickZoom()) &&
+            (!(event as MouseEvent).ctrlKey || event.type === 'wheel') &&
+            !(event as MouseEvent).button,
+        )
         .on('zoom', (event) => this.applyTransform(event.transform))
         // Only at the end of a zoom or drag, so the labels are not recalculated all the time.
         .on('end', (event) => this.state.zoom.set(event.transform.k));

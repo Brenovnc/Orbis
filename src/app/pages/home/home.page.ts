@@ -1,8 +1,11 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { RecordsService, recordKey } from '../../core/game/records.service';
 import { SavedGameStore } from '../../core/game/saved-game.store';
 import { GAMES, GameId } from '../../core/games';
 import { I18nService } from '../../core/i18n/i18n.service';
+import { formatClock } from '../../core/labels';
+import { SettingsService } from '../../core/settings.service';
 import { MapStateService } from '../../shared/map/map-state.service';
 import { SettingsPanelService } from '../../shared/settings-panel/settings-panel.component';
 
@@ -74,6 +77,9 @@ import { SettingsPanelService } from '../../shared/settings-panel/settings-panel
                     description(game.id)
                   }}</span>
                 }
+                @if (record(game.id); as text) {
+                  <span class="block text-xs text-ink-muted tabular-nums">{{ text }}</span>
+                }
               </span>
             </a>
           </li>
@@ -84,7 +90,7 @@ import { SettingsPanelService } from '../../shared/settings-panel/settings-panel
         <button
           type="button"
           class="rounded-md px-2.5 py-2 hover:bg-accent-soft"
-          (click)="settings.open.set(true)"
+          (click)="settings.show(false)"
         >
           {{ i18n.t('home.settings') }}
         </button>
@@ -99,6 +105,8 @@ export class HomePage {
   protected readonly i18n = inject(I18nService);
   protected readonly settings = inject(SettingsPanelService);
   private readonly saved = inject(SavedGameStore);
+  private readonly records = inject(RecordsService);
+  private readonly rules = inject(SettingsService).value;
   protected readonly mapState = inject(MapStateService);
   protected readonly games = GAMES;
   protected readonly layers = [
@@ -122,6 +130,31 @@ export class HomePage {
 
   protected link(id: GameId): string[] {
     return this.layer() === 'brazil' ? ['/jogo', 'brasil', id] : ['/jogo', id];
+  }
+
+  /** The record of the mode the current settings would start (same rules as a new game). */
+  protected record(id: GameId): string {
+    const rules = this.rules();
+    const layer = this.layer();
+    const best = this.records.get(
+      recordKey({
+        gameId: id,
+        layer,
+        territories: layer === 'world' && rules.includeTerritories,
+        durationMs: rules.timerEnabled ? rules.durationMinutes[layer] * 60_000 : null,
+      }),
+    );
+    if (!best) return '';
+    const parts = [`${best.found}/${best.total}`];
+    if (best.errors !== undefined) {
+      parts.push(
+        best.errors === 1
+          ? this.i18n.t('frame.error1')
+          : this.i18n.t('frame.errorsN', { n: best.errors }),
+      );
+    }
+    parts.push(formatClock(best.elapsedMs, 'up'));
+    return this.i18n.t('home.record', { record: parts.join(' · ') });
   }
 
   protected inProgress(id: GameId): boolean {

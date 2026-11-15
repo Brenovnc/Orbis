@@ -117,10 +117,14 @@ describe('typing places with similar names', () => {
     expect(newGame(true).submit('Guiana', false).kind).toBe('pending');
   });
 
-  it('does not treat an ambiguous short form like "Congo" as either Congo', () => {
-    const game = newGame();
-    expect(typeLikeAPlayer(game, 'Congo')).toEqual([]);
-    expect(typeLikeAPlayer(game, 'RD Congo')).toEqual(['COD']);
+  it('lets "Congo" mean the Republic of the Congo, but only with Enter', () => {
+    // While typing it waits (it is the start of "Congo-Kinshasa"); Enter confirms it.
+    expect(newGame().submit('Congo', false).kind).toBe('pending');
+    expect(typeLikeAPlayer(newGame(), 'Congo')).toEqual(['COG']);
+    expect(typeLikeAPlayer(newGame(), 'Congo-Kinshasa')).toEqual(['COD']);
+    // (Typed letter by letter, "RD C" is already the alias RDC, so this one is pasted whole.)
+    const pasted = newGame().submit('RD Congo', true);
+    expect(pasted.kind === 'hit' && pasted.targets.map((target) => target.id)).toEqual(['COD']);
   });
 });
 

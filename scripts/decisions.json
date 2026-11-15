@@ -1,6 +1,5 @@
 {
   "_leia": "Decisões editoriais explícitas usadas pelo build-data. Nenhum dado geográfico é escrito aqui: só regras de agrupamento sobre as bases. Critério geral para áreas disputadas: o país que administra hoje. country = país (ISO alfa-3, um dos 195) ao qual a área pertence quando 'territórios' está desligado; null = aparece no mapa mas nunca é alvo nesse modo. territory = alvo próprio quando 'territórios' está ligado.",
-
   "unMemberItemOverrides": {
     "Q29999": {
       "useItem": "Q55",
@@ -11,19 +10,16 @@
       "why": "O membro da ONU no Wikidata é o 'Reino da Dinamarca' (inclui Groenlândia e Feroe); no jogo o país é a Dinamarca, e Groenlândia/Feroe são territórios."
     }
   },
-
   "extraCountries": {
     "Q237": "Vaticano (Santa Sé): Estado observador permanente da ONU.",
     "Q219060": "Palestina: Estado observador permanente da ONU."
   },
-
   "naturalEarthCodeOverrides": {
     "PSX": {
       "code": "PSE",
       "why": "O Natural Earth usa PSX para Gaza e Cisjordânia; o código ISO da Palestina é PSE."
     }
   },
-
   "units": {
     "ATC": {
       "country": "AUS",
@@ -127,28 +123,61 @@
       "why": "Chipre do Norte: reconhecido só pela Turquia, se administra; vira alvo só com territórios ligados (decidido pelo autor)."
     }
   },
-
   "nameChoice": {
     "_leia": "Por padrão o nome é o rótulo do Wikidata (pt-br, senão pt; en). Aqui se escolhe OUTRA grafia quando o rótulo tem erro ou foge do uso comum. O script só aceita grafias que já existem nas fontes (rótulos e apelidos do Wikidata, nomes do Natural Earth); as demais continuam aceitas como resposta.",
-    "CHN": { "pt": "China", "en": "China" },
-    "IRL": { "pt": "Irlanda" },
-    "MMR": { "pt": "Myanmar" },
-    "BHR": { "pt": "Bahrein" },
-    "BFA": { "pt": "Burkina Faso" },
-    "KIR": { "pt": "Kiribati" },
-    "GRL": { "pt": "Groenlândia" },
-    "PSE": { "pt": "Palestina" },
-    "capital:BEL": { "pt": "Bruxelas" },
-    "capital:KIR": { "pt": "Tarawa do Sul" },
-    "capital:SWZ": { "pt": "Mbabane" },
-    "capital:THA": { "pt": "Bangkok" },
-    "capital:JEY": { "pt": "Saint Helier" },
-    "capital:MTQ": { "pt": "Fort-de-France" },
-    "capital:REU": { "pt": "Saint-Denis" },
-    "capital:GUM": { "pt": "Hagåtña" },
-    "capital:CCK": { "pt": "West Island" }
+    "CHN": {
+      "pt": "China",
+      "en": "China"
+    },
+    "IRL": {
+      "pt": "Irlanda"
+    },
+    "MMR": {
+      "pt": "Myanmar"
+    },
+    "BHR": {
+      "pt": "Bahrein"
+    },
+    "BFA": {
+      "pt": "Burkina Faso"
+    },
+    "KIR": {
+      "pt": "Kiribati"
+    },
+    "GRL": {
+      "pt": "Groenlândia"
+    },
+    "PSE": {
+      "pt": "Palestina"
+    },
+    "capital:BEL": {
+      "pt": "Bruxelas"
+    },
+    "capital:KIR": {
+      "pt": "Tarawa do Sul"
+    },
+    "capital:SWZ": {
+      "pt": "Mbabane"
+    },
+    "capital:THA": {
+      "pt": "Bangkok"
+    },
+    "capital:JEY": {
+      "pt": "Saint Helier"
+    },
+    "capital:MTQ": {
+      "pt": "Fort-de-France"
+    },
+    "capital:REU": {
+      "pt": "Saint-Denis"
+    },
+    "capital:GUM": {
+      "pt": "Hagåtña"
+    },
+    "capital:CCK": {
+      "pt": "West Island"
+    }
   },
-
   "aliasBlocklist": {
     "_leia": "Apelidos do Wikidata que NÃO devem valer como resposta (errados, ofensivos ou que ensinariam errado). Só remove; nunca acrescenta.",
     "USA": ["América", "Merica", "Murica"],
@@ -156,24 +185,20 @@
     "KOR": ["Coreia", "Korea"],
     "capital:HUN": ["Buda", "Pest", "Ofen"]
   },
-
   "shortAliasAllow": {
     "_leia": "Apelidos de até 3 letras e siglas em maiúsculas de até 5 letras são descartados por serem quase sempre códigos esportivos, de aeroporto ou abreviações do Wikidata (GUI, BAR, CPH, per...). Ficam só estas siglas, que as pessoas realmente digitam e que existem nos apelidos do Wikidata.",
     "list": ["EUA", "USA", "UAE", "RDC", "DRC"]
   },
-
   "continentOverrides": {
     "SGS": {
       "continent": "south-america",
       "why": "Geórgia do Sul: o Natural Earth só diz 'Seven seas' / 'Americas'; agrupada com a América do Sul, a mais próxima. A REVISAR."
     }
   },
-
   "capitalExclude": {
     "_leia": "Capitais do Wikidata que não entram no jogo (pelo nome em inglês). Decidido pelo autor.",
     "YEM": ["Aden"]
   },
-
   "territoryStatus": {
     "_leia": "Nota de status mostrada na cartão de informações para territórios sem país administrador (obrigatória para eles). Quem reivindica cada um vem do Wikidata (P1336) e aparece à parte. Decidido pelo autor: nenhum deles conta como parte de um país com territórios desligados.",
     "KOS": {
@@ -199,6 +224,161 @@
     "ATA": {
       "pt": "Não é administrada por nenhum país. Neste jogo, só é alvo com territórios ligados.",
       "en": "Not administered by any country. In this game it is a target only with territories on."
+    }
+  },
+  "editorialAliases": {
+    "_leia": "Apelidos que as pessoas realmente digitam e que o Wikidata não traz. Só acrescenta (vale nos dois idiomas na resposta). Se um apelido apontar para dois lugares, o script o remove dos dois, e o relatório lista isso em 'Apelidos de países removidos por ambiguidade'.",
+    "COG": {
+      "aliases": {
+        "pt": ["Congo", "Congo-Brazzaville"],
+        "en": ["Congo", "Congo-Brazzaville"]
+      },
+      "why": "'Congo' sozinho é como a República do Congo costuma ser chamada; a outra é 'Congo-Kinshasa' ou RDC. 'Congo-Brazzaville' é a grafia mais comum (o Wikidata traz 'Brazavile'). Como 'Congo' é o começo de 'Congo-Kinshasa', só vale com Enter."
+    },
+    "COD": {
+      "aliases": {
+        "pt": ["Congo-Kinshasa"],
+        "en": ["Congo-Kinshasa"]
+      },
+      "why": "Forma comum, simétrica a 'Congo-Brazavile' (já vinda do Wikidata)."
+    },
+    "SWZ": {
+      "aliases": {
+        "pt": ["Swaziland"],
+        "en": ["Swaziland"]
+      },
+      "why": "Nome oficial até 2018, ainda muito usado; o Wikidata só traz 'Suazilândia' em português."
+    },
+    "MMR": {
+      "aliases": {
+        "pt": ["Burma"],
+        "en": ["Burma"]
+      },
+      "why": "Nome em inglês usado por vários governos e veículos; falta nos apelidos."
+    },
+    "TUR": {
+      "aliases": {
+        "pt": ["Türkiye"],
+        "en": ["Türkiye"]
+      },
+      "why": "Grafia oficial adotada pela ONU em 2022."
+    },
+    "VAT": {
+      "aliases": {
+        "pt": ["Santa Sé"],
+        "en": []
+      },
+      "why": "A Santa Sé é o sujeito de direito internacional admitido pela ONU como observador; só 'Holy See' (inglês) vinha do Wikidata."
+    },
+    "TLS": {
+      "aliases": {
+        "pt": ["Timor"],
+        "en": ["Timor"]
+      },
+      "why": "Forma abreviada comum de Timor-Leste. Como é o começo do nome completo, só vale com Enter."
+    }
+  },
+  "countryParts": {
+    "_leia": "Partes de um país que não são países nem territórios no mapa. Só servem para explicar o erro no modo de digitar ('A Inglaterra faz parte do Reino Unido'); nunca são alvo. Lista editorial, sem dado geográfico. 'country' é o país (ISO alfa-3) de que a parte faz parte.",
+    "list": [
+      {
+        "id": "ENG",
+        "country": "GBR",
+        "name": {
+          "pt": "Inglaterra",
+          "en": "England"
+        },
+        "aliases": {
+          "pt": [],
+          "en": []
+        }
+      },
+      {
+        "id": "SCT",
+        "country": "GBR",
+        "name": {
+          "pt": "Escócia",
+          "en": "Scotland"
+        },
+        "aliases": {
+          "pt": [],
+          "en": []
+        }
+      },
+      {
+        "id": "WLS",
+        "country": "GBR",
+        "name": {
+          "pt": "País de Gales",
+          "en": "Wales"
+        },
+        "aliases": {
+          "pt": ["Gales"],
+          "en": []
+        }
+      },
+      {
+        "id": "NIR",
+        "country": "GBR",
+        "name": {
+          "pt": "Irlanda do Norte",
+          "en": "Northern Ireland"
+        },
+        "aliases": {
+          "pt": [],
+          "en": []
+        }
+      }
+    ]
+  },
+  "countryPhrases": {
+    "_leia": "Como cada país aparece nas frases de erro. 'pt' já traz preposição e artigo ('da Dinamarca', 'do Reino Unido'), porque o gênero não dá para deduzir do nome; 'en' vem depois de 'of' ('the United Kingdom'). Precisa ter todo país que administra territórios ou aparece em countryParts: o script falha se faltar algum.",
+    "AUS": {
+      "pt": "da Austrália",
+      "en": "Australia"
+    },
+    "CHN": {
+      "pt": "da China",
+      "en": "China"
+    },
+    "DNK": {
+      "pt": "da Dinamarca",
+      "en": "Denmark"
+    },
+    "FIN": {
+      "pt": "da Finlândia",
+      "en": "Finland"
+    },
+    "FRA": {
+      "pt": "da França",
+      "en": "France"
+    },
+    "GBR": {
+      "pt": "do Reino Unido",
+      "en": "the United Kingdom"
+    },
+    "NLD": {
+      "pt": "dos Países Baixos",
+      "en": "the Netherlands"
+    },
+    "NOR": {
+      "pt": "da Noruega",
+      "en": "Norway"
+    },
+    "NZL": {
+      "pt": "da Nova Zelândia",
+      "en": "New Zealand"
+    },
+    "USA": {
+      "pt": "dos Estados Unidos",
+      "en": "the United States"
+    }
+  },
+  "countryNotes": {
+    "_leia": "Nota mostrada no cartão de informações de um país, no mesmo tom neutro das notas de territórios.",
+    "ISR": {
+      "pt": "O status de Jerusalém como capital é contestado internacionalmente.",
+      "en": "The status of Jerusalem as the capital is disputed internationally."
     }
   }
 }

@@ -117,8 +117,9 @@ function fuzzyLookup(
 
 /**
  * True when `key` is the start of the main name of another place not found yet ("Irã" →
- * "Iraque"). Aliases are left out on purpose: "Guiana" should not wait because Suriname was
- * once called "Guiana Holandesa".
+ * "Iraque"). Only targets count: places that are not answers never make a name wait. Aliases of other places are left out on purpose ("Guiana" should not wait because Suriname
+ * was once called "Guiana Holandesa"), except when the typed text is itself an alias: "Congo"
+ * (a nickname) waits because of "Congo-Kinshasa".
  */
 function startsAnotherName(
   key: string,
@@ -127,7 +128,8 @@ function startsAnotherName(
   found: ReadonlySet<string>,
 ): boolean {
   const matchedIds = new Set(matched.map((target) => target.id));
-  for (const [candidate, targets] of index.primary) {
+  const isAlias = !matched.some((target) => index.primary.get(key)?.includes(target));
+  for (const [candidate, targets] of isAlias ? index.exact : index.primary) {
     if (candidate.length <= key.length || !candidate.startsWith(key)) continue;
     if (targets.some((t) => !matchedIds.has(t.id) && !found.has(t.id))) return true;
   }

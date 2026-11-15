@@ -13,6 +13,7 @@ export const STRINGS = {
   'home.world': { pt: 'Mundo', en: 'World' },
   'home.brazil': { pt: 'Brasil', en: 'Brazil' },
   'home.inProgress': { pt: '● Partida em andamento', en: '● Game in progress' },
+  'home.record': { pt: 'Recorde: {record}', en: 'Record: {record}' },
   'home.settings': { pt: 'Configurações', en: 'Settings' },
   'home.about': { pt: 'Sobre', en: 'About' },
   'game.digitar-paises.title': { pt: 'Digitar países', en: 'Type countries' },
@@ -72,6 +73,8 @@ export const STRINGS = {
   'bar.time': { pt: 'Tempo', en: 'Time' },
   'bar.hits': { pt: 'Acertos', en: 'Correct' },
   'bar.errors': { pt: 'Erros', en: 'Errors' },
+  'bar.settings': { pt: 'Configurações', en: 'Settings' },
+  'bar.more': { pt: 'Mais ações', en: 'More actions' },
   'frame.pause': { pt: 'Pausar', en: 'Pause' },
   'frame.resume': { pt: 'Continuar', en: 'Resume' },
   'frame.list': { pt: 'Lista', en: 'List' },
@@ -92,6 +95,14 @@ export const STRINGS = {
     pt: 'Seu recorde: {found}/{total} em {time}',
     en: 'Your record: {found}/{total} in {time}',
   },
+  'frame.yourRecordErrors': {
+    pt: 'Seu recorde: {found}/{total}, {errors}, em {time}',
+    en: 'Your record: {found}/{total}, {errors}, in {time}',
+  },
+  'frame.accuracy': {
+    pt: 'Precisão: {pct}% ({found} de {attempts} cliques)',
+    en: 'Accuracy: {pct}% ({found} of {attempts} clicks)',
+  },
   'frame.playAgain': { pt: 'Jogar de novo', en: 'Play again' },
   'frame.menu': { pt: 'Menu', en: 'Menu' },
   'frame.seeMap': { pt: 'Ver mapa', en: 'See map' },
@@ -106,6 +117,18 @@ export const STRINGS = {
   'typing.listStates': { pt: 'Lista de estados', en: 'List of states' },
   'typing.confirm': { pt: 'Enter para confirmar: {name}', en: 'Press Enter to confirm: {name}' },
   'typing.dup': { pt: 'Você já acertou: {name}', en: 'Already found: {name}' },
+  'typing.explain.territory': {
+    pt: '{name} é um território {country}',
+    en: '{name} is a territory of {country}',
+  },
+  'typing.explain.part': {
+    pt: '{name} faz parte {country}',
+    en: '{name} is part of {country}',
+  },
+  'typing.explain.unlisted': {
+    pt: '{name} não está entre os 195 países deste jogo',
+    en: '{name} is not among the 195 countries in this game',
+  },
   'typing.miss': { pt: 'Não encontrei. Tente de novo.', en: 'Not found. Try again.' },
   'click.whereIs': { pt: 'Onde fica', en: 'Where is' },
   'click.capitalOf': { pt: 'De qual país é a capital', en: 'Which country has the capital' },
@@ -119,6 +142,14 @@ export const STRINGS = {
   'click.noMore': { pt: 'Fim das perguntas', en: 'No more questions' },
   'click.correct': { pt: 'Correto! {name}', en: 'Correct! {name}' },
   'click.thatIs': { pt: 'Esse é: {name}', en: "That's: {name}" },
+  'click.thatIsTerritory': {
+    pt: 'Esse é: {territory}, território {country}',
+    en: "That's: {territory}, a territory of {country}",
+  },
+  'click.correctTerritory': {
+    pt: 'Correto! {name}. {territory} é um território {country}',
+    en: 'Correct! {name}. {territory} is a territory of {country}',
+  },
   'click.notThat': { pt: 'Não é esse. Tente de novo.', en: "That's not it. Try again." },
   'click.itWas': { pt: 'Era: {name}', en: 'It was: {name}' },
   'list.found': { pt: 'Acertou:', en: 'Found:' },
@@ -138,23 +169,17 @@ export const STRINGS = {
     en: 'The game ends now and the places you missed are shown on the map.',
   },
   'confirm.giveUp.ok': { pt: 'Desistir', en: 'Give up' },
-  'confirm.leave.title': { pt: 'Sair da partida?', en: 'Leave the game?' },
-  'confirm.leave.message': {
-    pt: 'Seu progresso fica salvo neste navegador e você pode continuar depois.',
-    en: 'Your progress is saved in this browser and you can continue later.',
+  'game.rulesKept': {
+    pt: 'Esta partida continua com as regras de quando começou.',
+    en: 'This game continues with the rules it started with.',
   },
-  'confirm.leave.ok': { pt: 'Sair', en: 'Leave' },
-  'confirm.leave.cancel': { pt: 'Ficar', en: 'Stay' },
   'confirm.keepPlaying': { pt: 'Continuar jogando', en: 'Keep playing' },
 
   // Info card
   'info.about': { pt: 'Informações sobre {name}', en: 'Information about {name}' },
   'info.flag': { pt: 'Bandeira: {name}', en: 'Flag: {name}' },
   'info.close': { pt: 'Fechar', en: 'Close' },
-  'info.administeredBy': {
-    pt: 'Território administrado por {name}',
-    en: 'Territory administered by {name}',
-  },
+  'info.administeredBy': { pt: 'País administrador', en: 'Administered by' },
   'info.capital': { pt: 'Capital', en: 'Capital' },
   'info.capitals': { pt: 'Capitais', en: 'Capitals' },
   'info.continent': { pt: 'Continente', en: 'Continent' },

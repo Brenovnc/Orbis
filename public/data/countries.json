@@ -1586,7 +1586,8 @@
    "pt": [
     "Congo-Quinxassa",
     "RD Congo",
-    "RDC"
+    "RDC",
+    "Congo-Kinshasa"
    ],
    "en": [
     "DRC",
@@ -1635,7 +1636,9 @@
   },
   "aliases": {
    "pt": [
-    "Congo-Brazavile"
+    "Congo-Brazavile",
+    "Congo",
+    "Congo-Brazzaville"
    ],
    "en": [
     "Congo Republic",
@@ -3651,6 +3654,10 @@
    34.848,
    30.911
   ],
+  "statusNote": {
+   "pt": "O status de Jerusalém como capital é contestado internacionalmente.",
+   "en": "The status of Jerusalem as the capital is disputed internationally."
+  },
   "flag": "flags/world/isr.svg"
  },
  {
@@ -5190,7 +5197,8 @@
     "República da União de Mianmá",
     "Mianmá",
     "Mianmar",
-    "República da União de Myanmar"
+    "República da União de Myanmar",
+    "Burma"
    ],
    "en": [
     "Republic of the Union of Myanmar",
@@ -7338,7 +7346,8 @@
     "Suazilândia",
     "Reino de Essuatíni",
     "Umbuso weSwatini",
-    "Reino da Suazilândia"
+    "Reino da Suazilândia",
+    "Swaziland"
    ],
    "en": [
     "Kingdom of Swaziland"
@@ -7692,7 +7701,8 @@
   },
   "aliases": {
    "pt": [
-    "República Democrática de Timor-Leste"
+    "República Democrática de Timor-Leste",
+    "Timor"
    ],
    "en": [
     "Democratic Republic of Timor-Leste",
@@ -7859,7 +7869,8 @@
   },
   "aliases": {
    "pt": [
-    "República da Turquia"
+    "República da Turquia",
+    "Türkiye"
    ],
    "en": [
     "Republic of Türkiye",
@@ -8230,7 +8241,8 @@
     "Estado da Cidade do Vaticano",
     "Estado do Vaticano",
     "Stato della Città del Vaticano",
-    "Estado Pontifício"
+    "Estado Pontifício",
+    "Santa Sé"
    ],
    "en": [
     "Vatican City State",

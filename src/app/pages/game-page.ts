@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmOptions, ConfirmService, LeaveGuarded } from '../core/confirm/confirm.service';
 import { Layer, WorldUnitProperties } from '../core/data/geo-data.models';
 import { GeoDataService } from '../core/data/geo-data.service';
+import { Explanation, NonTargetIndex, buildNonTargetIndex } from '../core/game/non-targets';
 import { PlayableGame, SavedGame } from '../core/game/playable-game';
 import { RecordOutcome, RecordsService, recordKey } from '../core/game/records.service';
 import { SavedGameStore } from '../core/game/saved-game.store';
@@ -13,6 +14,7 @@ import { I18nService } from '../core/i18n/i18n.service';
 import { SettingsService } from '../core/settings.service';
 import { SoundService } from '../core/sound.service';
 import { MapLabel, MapMarker, MapStateService } from '../shared/map/map-state.service';
+import { SettingsPanelService } from '../shared/settings-panel/settings-panel.component';
 
 export interface Feedback {
   kind: 'hit' | 'duplicate' | 'miss' | 'info';
@@ -53,6 +55,7 @@ export abstract class GamePage<G extends PlayableGame> implements LeaveGuarded {
   private readonly router = inject(Router);
   private readonly records = inject(RecordsService);
   private readonly confirm = inject(ConfirmService);
+  private readonly settingsPanel = inject(SettingsPanelService);
 
   private readonly route = inject(ActivatedRoute).snapshot.data;
   protected readonly gameId = this.route['game'] as GameId;
@@ -88,6 +91,9 @@ export abstract class GamePage<G extends PlayableGame> implements LeaveGuarded {
   private sinceSave = 0;
   private readonly timers = new Set<ReturnType<typeof setTimeout>>();
 
+  /** Real places that are not answers (Greenland, England...), to explain them to the player. */
+  protected nonTargets: NonTargetIndex | null = null;
+
   protected abstract createGame(options: NewGameOptions): G;
 
   /** Click games give tiny places a bigger invisible click area. */
@@ -102,8 +108,14 @@ export abstract class GamePage<G extends PlayableGame> implements LeaveGuarded {
 
   constructor() {
     const ticker = setInterval(() => this.onTick(), TICK_MS);
+    // A hidden tab must not keep the clock running: pause and save right away.
+    const onVisibility = () => {
+      if (document.hidden && this.game()?.status() === 'playing') this.pause();
+    };
+    document.addEventListener('visibilitychange', onVisibility);
     inject(DestroyRef).onDestroy(() => {
       clearInterval(ticker);
+      document.removeEventListener('visibilitychange', onVisibility);
       this.timers.forEach(clearTimeout);
       this.save();
       this.mapState.reset();
@@ -210,9 +222,54 @@ export abstract class GamePage<G extends PlayableGame> implements LeaveGuarded {
     this.mapState.selectable.set(true);
     this.lastTick = Date.now();
     this.game.set(this.createGame({ saved, targets, territories, durationMs }));
+    if (saved && this.rulesChanged(saved)) {
+      this.say('info', this.i18n.t('game.rulesKept'), 8000);
+    }
+  }
+
+  /** True when a resumed game keeps rules that differ from the current settings. */
+  private rulesChanged(saved: SavedGame): boolean {
+    const settings = this.settings.value();
+    const settingsDuration = settings.timerEnabled
+      ? settings.durationMinutes[this.layer] * 60_000
+      : null;
+    // Older saves lack some rules: those cannot be compared.
+    const differs = <T>(savedValue: T | undefined, current: T) =>
+      savedValue !== undefined && savedValue !== current;
+    return (
+      saved.durationMs !== settingsDuration ||
+      (this.layer === 'world' && saved.territories !== settings.includeTerritories) ||
+      differs(saved.tolerance, settings.typoTolerance) ||
+      differs(saved.revealAfterErrors, settings.revealAfterErrors) ||
+      differs(saved.learnMode, settings.learnMode)
+    );
   }
 
   // --- feedback helpers ---
+
+  /** The index of non-answers for these targets; only the world map has any. */
+  protected buildNonTargets(targets: Target[]): NonTargetIndex | null {
+    const data = this.geo.nonTargets();
+    if (this.layer !== 'world' || !data) return null;
+    return buildNonTargetIndex(
+      this.geo.territories(),
+      data,
+      new Set(targets.map((target) => target.id)),
+    );
+  }
+
+  /** Says why a place is not an answer. It never counts as a hit or an error. */
+  protected explain(why: Explanation): void {
+    const name = this.i18n.name(why.name);
+    const text =
+      why.kind === 'unlisted'
+        ? this.i18n.t('typing.explain.unlisted', { name })
+        : this.i18n.t(`typing.explain.${why.kind}`, {
+            name,
+            country: this.i18n.name(why.country),
+          });
+    this.say('info', text, 6000);
+  }
 
   protected say(kind: Feedback['kind'], text: string, ms = 3500): void {
     this.feedback.set({ kind, text });
@@ -277,6 +334,7 @@ export abstract class GamePage<G extends PlayableGame> implements LeaveGuarded {
         found: result.found,
         total: result.total,
         elapsedMs: result.elapsedMs,
+        errors: result.errors,
         date: new Date().toISOString().slice(0, 10),
       }),
     );
@@ -299,6 +357,12 @@ export abstract class GamePage<G extends PlayableGame> implements LeaveGuarded {
   protected resume(): void {
     this.lastTick = Date.now();
     this.game()?.resume();
+  }
+
+  /** The gear in the top bar: pauses the game and opens the settings over it. */
+  protected openSettings(): void {
+    this.pause();
+    this.settingsPanel.show(true);
   }
 
   /** Pauses while a confirmation is open, and picks the game up again if the player backs out. */
@@ -349,21 +413,13 @@ export abstract class GamePage<G extends PlayableGame> implements LeaveGuarded {
     void this.router.navigate(['/']);
   }
 
-  /** Asked by the route guard before leaving the page. */
-  async confirmLeave(): Promise<boolean> {
+  /** Asked by the route guard before leaving the page. Leaving is free: progress is saved. */
+  confirmLeave(): boolean {
     const game = this.game();
-    if (!game || game.status() === 'finished') return true;
-    if (!game.hasProgress()) {
+    if (game && game.status() !== 'finished' && !game.hasProgress()) {
       this.saved.clear(this.gameId, this.layer);
-      return true;
     }
-    this.save();
-    return this.confirmRisky({
-      title: this.i18n.t('confirm.leave.title'),
-      message: this.i18n.t('confirm.leave.message'),
-      confirmLabel: this.i18n.t('confirm.leave.ok'),
-      cancelLabel: this.i18n.t('confirm.leave.cancel'),
-    });
+    return true;
   }
 
   protected showInfo(target: Target): void {

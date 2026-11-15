@@ -1,6 +1,6 @@
 # Fontes dos dados
 
-Todos os arquivos em `public/data/` são gerados por `npm run data` (script em `scripts/`). As decisões editoriais (agrupamentos, grafias corrigidas, apelidos bloqueados, notas sobre áreas disputadas) estão em [scripts/decisions.json](scripts/decisions.json), cada uma com justificativa.
+Todos os arquivos em `public/data/` são gerados por `npm run data` (script em `scripts/`). As decisões editoriais (agrupamentos, grafias corrigidas, apelidos bloqueados, notas sobre áreas disputadas, apelidos editoriais, partes do Reino Unido e frases de erro, nota sobre Jerusalém) estão em [scripts/decisions.json](scripts/decisions.json), cada uma com justificativa.
 
 | Dado                                                                                                        | Fonte                                                                                                                                                                                          | Licença                                                                                                                                        |
 | ----------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -23,3 +23,9 @@ As bandeiras dos estados são otimizadas pelo script: o SVGO remove metadados e 
 ## BNCC (aba Sobre)
 
 Códigos e textos das habilidades de Geografia exibidos na aba Sobre foram copiados do documento oficial do MEC: [BNCC, Educação Infantil e Ensino Fundamental, versão final (2018)](https://basenacionalcomum.mec.gov.br/). Documento público do governo brasileiro; o texto aparece em português nos dois idiomas. A relação de cada habilidade com os jogos é leitura do projeto e está marcada "a revisar".
+
+## Ícones
+
+O ícone de engrenagem da barra superior dos jogos é o "settings" do [Lucide](https://lucide.dev/) (licença ISC, © Lucide Contributors; partes © Cole Bemis, MIT, do Feather). Só o SVG desse ícone foi copiado, de `lucide-static` 0.468.0, sem a biblioteca. Licença: <https://github.com/lucide-icons/lucide/blob/main/LICENSE>.
+
+> ISC License. Copyright (c) for portions of Lucide are held by Cole Bemis 2013-2022 as part of Feather (MIT). All other copyright (c) for Lucide are held by Lucide Contributors 2022. Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby granted, provided that the above copyright notice and this permission notice appear in all copies.

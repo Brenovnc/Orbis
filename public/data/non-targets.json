@@ -1,0 +1,96 @@
+{
+ "parts": [
+  {
+   "id": "ENG",
+   "country": "GBR",
+   "name": {
+    "pt": "Inglaterra",
+    "en": "England"
+   },
+   "aliases": {
+    "pt": [],
+    "en": []
+   }
+  },
+  {
+   "id": "SCT",
+   "country": "GBR",
+   "name": {
+    "pt": "Escócia",
+    "en": "Scotland"
+   },
+   "aliases": {
+    "pt": [],
+    "en": []
+   }
+  },
+  {
+   "id": "WLS",
+   "country": "GBR",
+   "name": {
+    "pt": "País de Gales",
+    "en": "Wales"
+   },
+   "aliases": {
+    "pt": [
+     "Gales"
+    ],
+    "en": []
+   }
+  },
+  {
+   "id": "NIR",
+   "country": "GBR",
+   "name": {
+    "pt": "Irlanda do Norte",
+    "en": "Northern Ireland"
+   },
+   "aliases": {
+    "pt": [],
+    "en": []
+   }
+  }
+ ],
+ "countryPhrases": {
+  "AUS": {
+   "pt": "da Austrália",
+   "en": "Australia"
+  },
+  "CHN": {
+   "pt": "da China",
+   "en": "China"
+  },
+  "DNK": {
+   "pt": "da Dinamarca",
+   "en": "Denmark"
+  },
+  "FIN": {
+   "pt": "da Finlândia",
+   "en": "Finland"
+  },
+  "FRA": {
+   "pt": "da França",
+   "en": "France"
+  },
+  "GBR": {
+   "pt": "do Reino Unido",
+   "en": "the United Kingdom"
+  },
+  "NLD": {
+   "pt": "dos Países Baixos",
+   "en": "the Netherlands"
+  },
+  "NOR": {
+   "pt": "da Noruega",
+   "en": "Norway"
+  },
+  "NZL": {
+   "pt": "da Nova Zelândia",
+   "en": "New Zealand"
+  },
+  "USA": {
+   "pt": "dos Estados Unidos",
+   "en": "the United States"
+  }
+ }
+}

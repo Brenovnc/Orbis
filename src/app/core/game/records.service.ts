@@ -5,6 +5,8 @@ export interface RecordEntry {
   found: number;
   total: number;
   elapsedMs: number;
+  /** Wrong clicks; only click games have it (records from before it existed do not). */
+  errors?: number;
   date: string;
 }
 
@@ -14,13 +16,18 @@ export interface RecordOutcome {
   best: RecordEntry | null;
 }
 
-/** More found wins; with the same number, the faster one. */
+/**
+ * More found wins. Then, in click games, fewer errors (an old record without the count loses
+ * to any new one). Then the faster time. Typing games have no errors and skip that step.
+ */
 export function isBetter(candidate: RecordEntry, best: RecordEntry | null): boolean {
   if (!best) return candidate.found > 0;
-  return (
-    candidate.found > best.found ||
-    (candidate.found === best.found && candidate.elapsedMs < best.elapsedMs)
-  );
+  if (candidate.found !== best.found) return candidate.found > best.found;
+  if (candidate.errors !== undefined) {
+    const bestErrors = best.errors ?? Infinity;
+    if (candidate.errors !== bestErrors) return candidate.errors < bestErrors;
+  }
+  return candidate.elapsedMs < best.elapsedMs;
 }
 
 /**

@@ -44,11 +44,6 @@ import { I18nService } from '../../core/i18n/i18n.service';
           <h2 class="font-serif text-xl leading-tight font-semibold md:text-2xl">
             {{ name() }}
           </h2>
-          @if (adminName(); as admin) {
-            <p class="text-sm text-ink-muted">
-              {{ i18n.t('info.administeredBy', { name: admin }) }}
-            </p>
-          }
         </div>
         <button
           type="button"
@@ -84,6 +79,10 @@ import { I18nService } from '../../core/i18n/i18n.service';
         <dd class="font-medium">{{ group() }}</dd>
         <dt class="text-ink-muted">{{ i18n.t('info.area') }}</dt>
         <dd class="font-medium tabular-nums">{{ i18n.area(p.areaKm2) }}</dd>
+        @if (adminName(); as admin) {
+          <dt class="text-ink-muted">{{ i18n.t('info.administeredBy') }}</dt>
+          <dd class="font-medium">{{ admin }}</dd>
+        }
         @if (claimants(); as claimants) {
           <dt class="text-ink-muted">{{ i18n.t('info.claimedBy') }}</dt>
           <dd class="font-medium">{{ claimants }}</dd>
@@ -168,7 +167,8 @@ export class InfoBoxComponent {
     return place ? this.i18n.name(place.name) : undefined;
   });
   protected readonly statusNote = computed(() => {
-    const note = this.territory()?.statusNote;
+    const place = this.place();
+    const note = 'statusNote' in place ? place.statusNote : null;
     return note ? this.i18n.name(note) : undefined;
   });
 }
