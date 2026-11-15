@@ -1,0 +1,7 @@
+node_modules
+dist
+.angular
+package-lock.json
+public/data
+scripts/.cache
+scripts/data-report.md

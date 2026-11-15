@@ -1,0 +1,8675 @@
+[
+ {
+  "id": "AFG",
+  "iso2": "AF",
+  "wikidata": "Q889",
+  "name": {
+   "pt": "Afeganistão",
+   "en": "Afghanistan"
+  },
+  "aliases": {
+   "pt": [],
+   "en": [
+    "Affghanistan",
+    "Afghania",
+    "Affghanisthan",
+    "Affghaunistan",
+    "Afghanisthan",
+    "Afghaunistan",
+    "Afghaunistaun"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q5838",
+    "name": {
+     "pt": "Cabul",
+     "en": "Kabul"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "Cabool",
+      "Caubul",
+      "Kabol",
+      "Kaboul"
+     ]
+    }
+   }
+  ],
+  "continent": "asia",
+  "areaKm2": 652230,
+  "claimedBy": [],
+  "labelPoint": [
+   66.497,
+   34.164
+  ],
+  "flag": "flags/world/afg.svg"
+ },
+ {
+  "id": "AGO",
+  "iso2": "AO",
+  "wikidata": "Q916",
+  "name": {
+   "pt": "Angola",
+   "en": "Angola"
+  },
+  "aliases": {
+   "pt": [],
+   "en": [
+    "Republic of Angola",
+    "Ngola"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q3897",
+    "name": {
+     "pt": "Luanda",
+     "en": "Luanda"
+    },
+    "aliases": {
+     "pt": [
+      "São Paulo de Luanda",
+      "Cidade de Luanda"
+     ],
+     "en": [
+      "São Paulo da Assunção de Loanda",
+      "Loanda",
+      "St Paul of Loanda",
+      "St Paul of Luanda",
+      "Saint Paul of Loanda",
+      "Saint Paul of Luanda",
+      "São Paulo de Loanda"
+     ]
+    }
+   }
+  ],
+  "continent": "africa",
+  "areaKm2": 1246700,
+  "claimedBy": [],
+  "labelPoint": [
+   17.984,
+   -12.183
+  ],
+  "flag": "flags/world/ago.svg"
+ },
+ {
+  "id": "ALB",
+  "iso2": "AL",
+  "wikidata": "Q222",
+  "name": {
+   "pt": "Albânia",
+   "en": "Albania"
+  },
+  "aliases": {
+   "pt": [
+    "República da Albânia"
+   ],
+   "en": [
+    "Republic of Albania",
+    "Shqipërisë",
+    "People's Socialist Republic of Albania",
+    "People's Republic of Albania",
+    "Republika Popullore Socialiste e Shqiperise",
+    "Republika Popullore e Shqiperise"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q19689",
+    "name": {
+     "pt": "Tirana",
+     "en": "Tirana"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   }
+  ],
+  "continent": "europe",
+  "areaKm2": 28748,
+  "claimedBy": [],
+  "labelPoint": [
+   20.114,
+   40.655
+  ],
+  "flag": "flags/world/alb.svg"
+ },
+ {
+  "id": "AND",
+  "iso2": "AD",
+  "wikidata": "Q228",
+  "name": {
+   "pt": "Andorra",
+   "en": "Andorra"
+  },
+  "aliases": {
+   "pt": [
+    "Principado de Andorra",
+    "Principado dos Vales de Andorra",
+    "Principat d'Andorra"
+   ],
+   "en": [
+    "Principality of Andorra",
+    "Principality of the Valleys of Andorra"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q1863",
+    "name": {
+     "pt": "Andorra-a-Velha",
+     "en": "Andorra la Vella"
+    },
+    "aliases": {
+     "pt": [
+      "Vila de Andorra",
+      "Cidade de Andorra"
+     ],
+     "en": []
+    }
+   }
+  ],
+  "continent": "europe",
+  "areaKm2": 468,
+  "claimedBy": [],
+  "labelPoint": [
+   1.539,
+   42.548
+  ],
+  "flag": "flags/world/and.svg"
+ },
+ {
+  "id": "ARE",
+  "iso2": "AE",
+  "wikidata": "Q878",
+  "name": {
+   "pt": "Emirados Árabes Unidos",
+   "en": "United Arab Emirates"
+  },
+  "aliases": {
+   "pt": [
+    "Emiratos Árabes Unidos",
+    "U.A.E.",
+    "Emirados",
+    "Emirados Árabes"
+   ],
+   "en": [
+    "Emirates",
+    "UAE"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q1519",
+    "name": {
+     "pt": "Abu Dhabi",
+     "en": "Abu Dhabi"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "Abudhabi"
+     ]
+    }
+   }
+  ],
+  "continent": "asia",
+  "areaKm2": 83600,
+  "claimedBy": [],
+  "labelPoint": [
+   54.547,
+   23.466
+  ],
+  "flag": "flags/world/are.svg"
+ },
+ {
+  "id": "ARG",
+  "iso2": "AR",
+  "wikidata": "Q414",
+  "name": {
+   "pt": "Argentina",
+   "en": "Argentina"
+  },
+  "aliases": {
+   "pt": [
+    "República Argentina"
+   ],
+   "en": [
+    "Argentine Republic",
+    "Republic of Argentina"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q1486",
+    "name": {
+     "pt": "Buenos Aires",
+     "en": "Buenos Aires"
+    },
+    "aliases": {
+     "pt": [
+      "Cidade Autônoma de Buenos Aires"
+     ],
+     "en": [
+      "Ciudad Autonoma de Buenos Aires",
+      "Ciudad de Buenos Aires"
+     ]
+    }
+   }
+  ],
+  "continent": "south-america",
+  "areaKm2": 2780085,
+  "claimedBy": [],
+  "labelPoint": [
+   -64.173,
+   -33.501
+  ],
+  "flag": "flags/world/arg.svg"
+ },
+ {
+  "id": "ARM",
+  "iso2": "AM",
+  "wikidata": "Q399",
+  "name": {
+   "pt": "Armênia",
+   "en": "Armenia"
+  },
+  "aliases": {
+   "pt": [
+    "República da Armênia"
+   ],
+   "en": [
+    "Republic of Armenia",
+    "Hayastani Hanrapetut’yun",
+    "Հայաստան"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q1953",
+    "name": {
+     "pt": "Erevan",
+     "en": "Yerevan"
+    },
+    "aliases": {
+     "pt": [
+      "Erevã",
+      "Ierevan",
+      "Ierevã",
+      "Erivan"
+     ],
+     "en": [
+      "Pink City",
+      "Irevan",
+      "Iravan",
+      "Ravan",
+      "Revan"
+     ]
+    }
+   }
+  ],
+  "continent": "asia",
+  "areaKm2": 29743.42,
+  "claimedBy": [],
+  "labelPoint": [
+   44.801,
+   40.459
+  ],
+  "flag": "flags/world/arm.svg"
+ },
+ {
+  "id": "ATG",
+  "iso2": "AG",
+  "wikidata": "Q781",
+  "name": {
+   "pt": "Antígua e Barbuda",
+   "en": "Antigua and Barbuda"
+  },
+  "aliases": {
+   "pt": [
+    "Antígua"
+   ],
+   "en": [
+    "Antigua-Barbuda"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q36262",
+    "name": {
+     "pt": "São João",
+     "en": "St. John's"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "St. John's City"
+     ]
+    }
+   }
+  ],
+  "continent": "north-america",
+  "areaKm2": 440.29,
+  "claimedBy": [],
+  "labelPoint": [
+   -61.807,
+   17.076
+  ],
+  "flag": "flags/world/atg.svg"
+ },
+ {
+  "id": "AUS",
+  "iso2": "AU",
+  "wikidata": "Q408",
+  "name": {
+   "pt": "Austrália",
+   "en": "Australia"
+  },
+  "aliases": {
+   "pt": [
+    "Comunidade da Austrália"
+   ],
+   "en": [
+    "Commonwealth of Australia",
+    "Straya",
+    "Aussieland",
+    "Stralia",
+    "New Holland",
+    "New Hollandia",
+    "Nova Hollandia",
+    "Down Under",
+    "Stria"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q3114",
+    "name": {
+     "pt": "Camberra",
+     "en": "Canberra"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   }
+  ],
+  "continent": "oceania",
+  "areaKm2": 7688287,
+  "claimedBy": [],
+  "labelPoint": [
+   134.05,
+   -24.13
+  ],
+  "flag": "flags/world/aus.svg"
+ },
+ {
+  "id": "AUT",
+  "iso2": "AT",
+  "wikidata": "Q40",
+  "name": {
+   "pt": "Áustria",
+   "en": "Austria"
+  },
+  "aliases": {
+   "pt": [
+    "República da Áustria"
+   ],
+   "en": [
+    "Republic of Austria"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q1741",
+    "name": {
+     "pt": "Viena",
+     "en": "Vienna"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   }
+  ],
+  "continent": "europe",
+  "areaKm2": 83878.99,
+  "claimedBy": [],
+  "labelPoint": [
+   14.131,
+   47.519
+  ],
+  "flag": "flags/world/aut.svg"
+ },
+ {
+  "id": "AZE",
+  "iso2": "AZ",
+  "wikidata": "Q227",
+  "name": {
+   "pt": "Azerbaijão",
+   "en": "Azerbaijan"
+  },
+  "aliases": {
+   "pt": [
+    "República do Azerbaijão"
+   ],
+   "en": [
+    "Republic of Azerbaijan"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q9248",
+    "name": {
+     "pt": "Baku",
+     "en": "Baku"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "Baki",
+      "City of Winds",
+      "Baky"
+     ]
+    }
+   }
+  ],
+  "continent": "asia",
+  "areaKm2": 86600,
+  "claimedBy": [],
+  "labelPoint": [
+   47.211,
+   40.402
+  ],
+  "flag": "flags/world/aze.svg"
+ },
+ {
+  "id": "BDI",
+  "iso2": "BI",
+  "wikidata": "Q967",
+  "name": {
+   "pt": "Burundi",
+   "en": "Burundi"
+  },
+  "aliases": {
+   "pt": [],
+   "en": [
+    "Republic of Burundi",
+    "Republika y'Uburundi",
+    "Gouvernement du Burundi"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q167551",
+    "name": {
+     "pt": "Guitega",
+     "en": "Gitega"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "Kitega"
+     ]
+    }
+   }
+  ],
+  "continent": "africa",
+  "areaKm2": 27834,
+  "claimedBy": [],
+  "labelPoint": [
+   29.917,
+   -3.333
+  ],
+  "flag": "flags/world/bdi.svg"
+ },
+ {
+  "id": "BEL",
+  "iso2": "BE",
+  "wikidata": "Q31",
+  "name": {
+   "pt": "Bélgica",
+   "en": "Belgium"
+  },
+  "aliases": {
+   "pt": [
+    "Brabante Flamengo",
+    "Reino da Bélgica"
+   ],
+   "en": [
+    "Kingdom of Belgium"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q239",
+    "name": {
+     "pt": "Bruxelas",
+     "en": "Brussels"
+    },
+    "aliases": {
+     "pt": [
+      "Cidade de Bruxelas"
+     ],
+     "en": [
+      "Brussels City",
+      "City of Brussels"
+     ]
+    }
+   }
+  ],
+  "continent": "europe",
+  "areaKm2": 30688,
+  "claimedBy": [],
+  "labelPoint": [
+   4.768,
+   51.108
+  ],
+  "flag": "flags/world/bel.svg"
+ },
+ {
+  "id": "BEN",
+  "iso2": "BJ",
+  "wikidata": "Q962",
+  "name": {
+   "pt": "Benim",
+   "en": "Benin"
+  },
+  "aliases": {
+   "pt": [
+    "República do Benin",
+    "República do Benim"
+   ],
+   "en": [
+    "Republic of Benin"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q3799",
+    "name": {
+     "pt": "Porto Novo",
+     "en": "Porto-Novo"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "Hogbonu",
+      "Ajashe"
+     ]
+    }
+   },
+   {
+    "wikidata": "Q43595",
+    "name": {
+     "pt": "Cotonu",
+     "en": "Cotonou"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "Kútɔ̀nú"
+     ]
+    }
+   }
+  ],
+  "continent": "africa",
+  "areaKm2": 114763,
+  "claimedBy": [],
+  "labelPoint": [
+   2.352,
+   10.325
+  ],
+  "flag": "flags/world/ben.svg"
+ },
+ {
+  "id": "BFA",
+  "iso2": "BF",
+  "wikidata": "Q965",
+  "name": {
+   "pt": "Burkina Faso",
+   "en": "Burkina Faso"
+  },
+  "aliases": {
+   "pt": [
+    "Burquina Fasso",
+    "Burkina Fasso",
+    "Burquina Faso"
+   ],
+   "en": [
+    "Republic of Burkina Faso"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q3777",
+    "name": {
+     "pt": "Uagadugu",
+     "en": "Ouagadougou"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "Kumbee-Tenga",
+      "Wagadugu",
+      "Ouaga"
+     ]
+    }
+   }
+  ],
+  "continent": "africa",
+  "areaKm2": 274200,
+  "claimedBy": [],
+  "labelPoint": [
+   -1.364,
+   12.673
+  ],
+  "flag": "flags/world/bfa.svg"
+ },
+ {
+  "id": "BGD",
+  "iso2": "BD",
+  "wikidata": "Q902",
+  "name": {
+   "pt": "Bangladesh",
+   "en": "Bangladesh"
+  },
+  "aliases": {
+   "pt": [],
+   "en": [
+    "People's Republic of Bangladesh",
+    "Bangla Desh",
+    "Land of Bengal",
+    "Country of Bengal"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q1354",
+    "name": {
+     "pt": "Daca",
+     "en": "Dhaka"
+    },
+    "aliases": {
+     "pt": [
+      "Dhaca",
+      "Dacca"
+     ],
+     "en": [
+      "Dhaka City"
+     ]
+    }
+   }
+  ],
+  "continent": "asia",
+  "areaKm2": 147570,
+  "claimedBy": [],
+  "labelPoint": [
+   89.685,
+   24.215
+  ],
+  "flag": "flags/world/bgd.svg"
+ },
+ {
+  "id": "BGR",
+  "iso2": "BG",
+  "wikidata": "Q219",
+  "name": {
+   "pt": "Bulgária",
+   "en": "Bulgaria"
+  },
+  "aliases": {
+   "pt": [
+    "República da Bulgária"
+   ],
+   "en": [
+    "Republic of Bulgaria",
+    "Bulgarian Republic"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q472",
+    "name": {
+     "pt": "Sófia",
+     "en": "Sofia"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "Serdica",
+      "Sredets",
+      "Sredez",
+      "Sofija"
+     ]
+    }
+   }
+  ],
+  "continent": "europe",
+  "areaKm2": 110993.6,
+  "claimedBy": [],
+  "labelPoint": [
+   25.157,
+   42.509
+  ],
+  "flag": "flags/world/bgr.svg"
+ },
+ {
+  "id": "BHR",
+  "iso2": "BH",
+  "wikidata": "Q398",
+  "name": {
+   "pt": "Bahrein",
+   "en": "Bahrain"
+  },
+  "aliases": {
+   "pt": [
+    "Barém",
+    "Reino do Bahrein",
+    "Bareine",
+    "Reino do Barém",
+    "Barein"
+   ],
+   "en": [
+    "Kingdom of Bahrain",
+    "Bahrein Islands",
+    "Mamlakat al-Baḥrayn",
+    "Dawlat al-Bahrain"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q3882",
+    "name": {
+     "pt": "Manama",
+     "en": "Manama"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "al-Manāmah"
+     ]
+    }
+   }
+  ],
+  "continent": "asia",
+  "areaKm2": 786.5,
+  "claimedBy": [],
+  "labelPoint": [
+   50.555,
+   26.056
+  ],
+  "flag": "flags/world/bhr.svg"
+ },
+ {
+  "id": "BHS",
+  "iso2": "BS",
+  "wikidata": "Q778",
+  "name": {
+   "pt": "Bahamas",
+   "en": "The Bahamas"
+  },
+  "aliases": {
+   "pt": [
+    "Comunidade das Bahamas",
+    "Baamas",
+    "As Bahamas",
+    "Ilhas Bahamas"
+   ],
+   "en": [
+    "Commonwealth of The Bahamas",
+    "Bahama Islands"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q2467",
+    "name": {
+     "pt": "Nassau",
+     "en": "Nassau"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "City of Nassau"
+     ]
+    }
+   }
+  ],
+  "continent": "north-america",
+  "areaKm2": 13878,
+  "claimedBy": [],
+  "labelPoint": [
+   -77.147,
+   26.402
+  ],
+  "flag": "flags/world/bhs.svg"
+ },
+ {
+  "id": "BIH",
+  "iso2": "BA",
+  "wikidata": "Q225",
+  "name": {
+   "pt": "Bósnia e Herzegovina",
+   "en": "Bosnia and Herzegovina"
+  },
+  "aliases": {
+   "pt": [
+    "Federação da Bósnia e Herzegovina",
+    "Bósnia",
+    "Bósnia-Herzegovina"
+   ],
+   "en": [
+    "Bosnia and Hercegovina"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q11194",
+    "name": {
+     "pt": "Sarajevo",
+     "en": "Sarajevo"
+    },
+    "aliases": {
+     "pt": [
+      "Saraievo",
+      "Serajevo"
+     ],
+     "en": [
+      "City of Sarajevo",
+      "Bosna-Serai"
+     ]
+    }
+   }
+  ],
+  "continent": "europe",
+  "areaKm2": 51209.2,
+  "claimedBy": [],
+  "labelPoint": [
+   17.67,
+   43.792
+  ],
+  "flag": "flags/world/bih.svg"
+ },
+ {
+  "id": "BLR",
+  "iso2": "BY",
+  "wikidata": "Q184",
+  "name": {
+   "pt": "Belarus",
+   "en": "Belarus"
+  },
+  "aliases": {
+   "pt": [
+    "Bielorrússia",
+    "República da Bielorrússia",
+    "República da Belarus"
+   ],
+   "en": [
+    "White Russia",
+    "White Ruthenia",
+    "Republic of Belarus",
+    "Byeloruss",
+    "Bielorussia",
+    "Belorussia",
+    "Byelorussia",
+    "Respublika Belarus'",
+    "Respublika Bielaruś",
+    "Bielaruś"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q2280",
+    "name": {
+     "pt": "Minsk",
+     "en": "Minsk"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "Мінск",
+      "Менск",
+      "Минск",
+      "Minskas",
+      "Mensk",
+      "Miensk"
+     ]
+    }
+   }
+  ],
+  "continent": "europe",
+  "areaKm2": 207596.76,
+  "claimedBy": [],
+  "labelPoint": [
+   28.418,
+   53.822
+  ],
+  "flag": "flags/world/blr.svg"
+ },
+ {
+  "id": "BLZ",
+  "iso2": "BZ",
+  "wikidata": "Q242",
+  "name": {
+   "pt": "Belize",
+   "en": "Belize"
+  },
+  "aliases": {
+   "pt": [],
+   "en": []
+  },
+  "capitals": [
+   {
+    "wikidata": "Q3043",
+    "name": {
+     "pt": "Belmopan",
+     "en": "Belmopan"
+    },
+    "aliases": {
+     "pt": [
+      "Belmopã"
+     ],
+     "en": [
+      "Garden City",
+      "Planned City",
+      "City of Promise"
+     ]
+    }
+   }
+  ],
+  "continent": "north-america",
+  "areaKm2": 22966,
+  "claimedBy": [],
+  "labelPoint": [
+   -88.713,
+   17.202
+  ],
+  "flag": "flags/world/blz.svg"
+ },
+ {
+  "id": "BOL",
+  "iso2": "BO",
+  "wikidata": "Q750",
+  "name": {
+   "pt": "Bolívia",
+   "en": "Bolivia"
+  },
+  "aliases": {
+   "pt": [],
+   "en": [
+    "Plurinational State of Bolivia",
+    "Republic of Bolivia"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q2907",
+    "name": {
+     "pt": "Sucre",
+     "en": "Sucre"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "Charcas",
+      "La Plata",
+      "Chuquisaca",
+      "Illustrious and Heroic Sucre"
+     ]
+    }
+   },
+   {
+    "wikidata": "Q1491",
+    "name": {
+     "pt": "La Paz",
+     "en": "La Paz"
+    },
+    "aliases": {
+     "pt": [
+      "Nuestra Señora de La Paz",
+      "Chuqi Yapu",
+      "Chuqiyapu"
+     ],
+     "en": []
+    }
+   }
+  ],
+  "continent": "south-america",
+  "areaKm2": 1098581,
+  "claimedBy": [],
+  "labelPoint": [
+   -64.593,
+   -16.666
+  ],
+  "flag": "flags/world/bol.svg"
+ },
+ {
+  "id": "BRA",
+  "iso2": "BR",
+  "wikidata": "Q155",
+  "name": {
+   "pt": "Brasil",
+   "en": "Brazil"
+  },
+  "aliases": {
+   "pt": [
+    "República Federativa do Brasil",
+    "Pindorama"
+   ],
+   "en": [
+    "Federative Republic of Brazil"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q2844",
+    "name": {
+     "pt": "Brasília",
+     "en": "Brasília"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   }
+  ],
+  "continent": "south-america",
+  "areaKm2": 8509360.85,
+  "claimedBy": [],
+  "labelPoint": [
+   -49.559,
+   -12.099
+  ],
+  "flag": "flags/world/bra.svg"
+ },
+ {
+  "id": "BRB",
+  "iso2": "BB",
+  "wikidata": "Q244",
+  "name": {
+   "pt": "Barbados",
+   "en": "Barbados"
+  },
+  "aliases": {
+   "pt": [],
+   "en": [
+    "Barbadoes"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q36168",
+    "name": {
+     "pt": "Bridgetown",
+     "en": "Bridgetown"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   }
+  ],
+  "continent": "north-america",
+  "areaKm2": 439,
+  "claimedBy": [],
+  "labelPoint": [
+   -59.569,
+   13.164
+  ],
+  "flag": "flags/world/brb.svg"
+ },
+ {
+  "id": "BRN",
+  "iso2": "BN",
+  "wikidata": "Q921",
+  "name": {
+   "pt": "Brunei",
+   "en": "Brunei"
+  },
+  "aliases": {
+   "pt": [],
+   "en": [
+    "Negara Brunei Darussalam"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q9279",
+    "name": {
+     "pt": "Bandar Seri Begawan",
+     "en": "Bandar Seri Begawan"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "Bandar",
+      "Seri Begawan",
+      "Brunei Town",
+      "Bandar Brunei"
+     ]
+    }
+   }
+  ],
+  "continent": "asia",
+  "areaKm2": 5765.31,
+  "claimedBy": [],
+  "labelPoint": [
+   114.552,
+   4.448
+  ],
+  "flag": "flags/world/brn.svg"
+ },
+ {
+  "id": "BTN",
+  "iso2": "BT",
+  "wikidata": "Q917",
+  "name": {
+   "pt": "Butão",
+   "en": "Bhutan"
+  },
+  "aliases": {
+   "pt": [
+    "Reino do Butão"
+   ],
+   "en": [
+    "Kingdom of Bhutan"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q9270",
+    "name": {
+     "pt": "Thimbu",
+     "en": "Thimphu"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "Thimpu"
+     ]
+    }
+   }
+  ],
+  "continent": "asia",
+  "areaKm2": 38394,
+  "claimedBy": [],
+  "labelPoint": [
+   90.04,
+   27.537
+  ],
+  "flag": "flags/world/btn.svg"
+ },
+ {
+  "id": "BWA",
+  "iso2": "BW",
+  "wikidata": "Q963",
+  "name": {
+   "pt": "Botswana",
+   "en": "Botswana"
+  },
+  "aliases": {
+   "pt": [
+    "Botsuana",
+    "República de Botswana",
+    "República de Botsuana",
+    "República do Botswana",
+    "Lefatshe la Botswana"
+   ],
+   "en": [
+    "Republic of Botswana"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q3919",
+    "name": {
+     "pt": "Gaborone",
+     "en": "Gaborone"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "Gabs",
+      "Motse-Mshate",
+      "Gaberones"
+     ]
+    }
+   }
+  ],
+  "continent": "africa",
+  "areaKm2": 581737,
+  "claimedBy": [],
+  "labelPoint": [
+   24.179,
+   -22.103
+  ],
+  "flag": "flags/world/bwa.svg"
+ },
+ {
+  "id": "CAF",
+  "iso2": "CF",
+  "wikidata": "Q929",
+  "name": {
+   "pt": "República Centro-Africana",
+   "en": "Central African Republic"
+  },
+  "aliases": {
+   "pt": [],
+   "en": [
+    "Central Africa"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q3832",
+    "name": {
+     "pt": "Bangui",
+     "en": "Bangui"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   }
+  ],
+  "continent": "africa",
+  "areaKm2": 622984,
+  "claimedBy": [],
+  "labelPoint": [
+   20.907,
+   6.99
+  ],
+  "flag": "flags/world/caf.svg"
+ },
+ {
+  "id": "CAN",
+  "iso2": "CA",
+  "wikidata": "Q16",
+  "name": {
+   "pt": "Canadá",
+   "en": "Canada"
+  },
+  "aliases": {
+   "pt": [
+    "América do Norte Britânica"
+   ],
+   "en": []
+  },
+  "capitals": [
+   {
+    "wikidata": "Q1930",
+    "name": {
+     "pt": "Ottawa",
+     "en": "Ottawa"
+    },
+    "aliases": {
+     "pt": [
+      "Cidade de Ottawa"
+     ],
+     "en": [
+      "City of Ottawa"
+     ]
+    }
+   }
+  ],
+  "continent": "north-america",
+  "areaKm2": 9984670,
+  "claimedBy": [],
+  "labelPoint": [
+   -101.911,
+   60.324
+  ],
+  "flag": "flags/world/can.svg"
+ },
+ {
+  "id": "CHE",
+  "iso2": "CH",
+  "wikidata": "Q39",
+  "name": {
+   "pt": "Suíça",
+   "en": "Switzerland"
+  },
+  "aliases": {
+   "pt": [
+    "Confederação Suíça",
+    "Confederação Helvética"
+   ],
+   "en": [
+    "Swiss Confederation",
+    "Swiss",
+    "Confoederatio Helvetica"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q70",
+    "name": {
+     "pt": "Berna",
+     "en": "Bern"
+    },
+    "aliases": {
+     "pt": [
+      "Berne",
+      "cidade de Berna"
+     ],
+     "en": [
+      "city of Bern"
+     ]
+    }
+   }
+  ],
+  "continent": "europe",
+  "areaKm2": 41291,
+  "claimedBy": [],
+  "labelPoint": [
+   7.464,
+   46.719
+  ],
+  "flag": "flags/world/che.svg"
+ },
+ {
+  "id": "CHL",
+  "iso2": "CL",
+  "wikidata": "Q298",
+  "name": {
+   "pt": "Chile",
+   "en": "Chile"
+  },
+  "aliases": {
+   "pt": [],
+   "en": [
+    "Republic of Chile"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q2887",
+    "name": {
+     "pt": "Santiago",
+     "en": "Santiago"
+    },
+    "aliases": {
+     "pt": [
+      "Santiago do Chile",
+      "Grande Santiago"
+     ],
+     "en": [
+      "Greater Santiago"
+     ]
+    }
+   }
+  ],
+  "continent": "south-america",
+  "areaKm2": 756102,
+  "claimedBy": [],
+  "labelPoint": [
+   -72.319,
+   -38.152
+  ],
+  "flag": "flags/world/chl.svg"
+ },
+ {
+  "id": "CHN",
+  "iso2": "CN",
+  "wikidata": "Q148",
+  "name": {
+   "pt": "China",
+   "en": "China"
+  },
+  "aliases": {
+   "pt": [
+    "República Popular da China",
+    "RP China"
+   ],
+   "en": [
+    "People's Republic of China",
+    "Red China",
+    "PR China",
+    "Communist China",
+    "China PR"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q956",
+    "name": {
+     "pt": "Pequim",
+     "en": "Beijing"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "Beiping",
+      "Peiping",
+      "Yanjing",
+      "Zhongdu",
+      "Khanbaliq",
+      "Pekin",
+      "Shuntian",
+      "Shuntianfu",
+      "Shuntian Fu",
+      "Pe-king",
+      "Pei-p'ing",
+      "Pei-ping",
+      "Peip'ing",
+      "Pei-ching",
+      "Yan-ching",
+      "Yanking",
+      "Chung-tu",
+      "Chungtu",
+      "Khanbalik",
+      "Shun-t'ien",
+      "Shun-tien",
+      "Beeijing",
+      "Poh-cin",
+      "Bākgīng",
+      "Pak-kiann",
+      "Jicheng",
+      "Chi-ch'eng",
+      "Chi-cheng",
+      "Bei Jing Shi",
+      "Beijing Shi",
+      "Peking Shi"
+     ]
+    }
+   }
+  ],
+  "continent": "asia",
+  "areaKm2": 9562910,
+  "claimedBy": [
+   {
+    "country": null,
+    "name": {
+     "pt": "Taiwan",
+     "en": "Taiwan"
+    }
+   }
+  ],
+  "labelPoint": [
+   106.337,
+   32.498
+  ],
+  "flag": "flags/world/chn.svg"
+ },
+ {
+  "id": "CIV",
+  "iso2": "CI",
+  "wikidata": "Q1008",
+  "name": {
+   "pt": "Costa do Marfim",
+   "en": "Ivory Coast"
+  },
+  "aliases": {
+   "pt": [],
+   "en": [
+    "Republic of Côte d'Ivoire",
+    "Cote d'Ivoire",
+    "Cote d'lvoire",
+    "Cote Ivoire",
+    "Republic of Ivory Coast",
+    "Republic of the Ivory Coast"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q3768",
+    "name": {
+     "pt": "Iamussucro",
+     "en": "Yamoussoukro"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   }
+  ],
+  "continent": "africa",
+  "areaKm2": 322463,
+  "claimedBy": [],
+  "labelPoint": [
+   -5.569,
+   7.491
+  ],
+  "flag": "flags/world/civ.svg"
+ },
+ {
+  "id": "CMR",
+  "iso2": "CM",
+  "wikidata": "Q1009",
+  "name": {
+   "pt": "Camarões",
+   "en": "Cameroon"
+  },
+  "aliases": {
+   "pt": [],
+   "en": [
+    "Republic of Cameroon"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q3808",
+    "name": {
+     "pt": "Iaundé",
+     "en": "Yaoundé"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "Ongola"
+     ]
+    }
+   }
+  ],
+  "continent": "africa",
+  "areaKm2": 475442,
+  "claimedBy": [],
+  "labelPoint": [
+   12.473,
+   4.585
+  ],
+  "flag": "flags/world/cmr.svg"
+ },
+ {
+  "id": "COD",
+  "iso2": "CD",
+  "wikidata": "Q974",
+  "name": {
+   "pt": "República Democrática do Congo",
+   "en": "Democratic Republic of the Congo"
+  },
+  "aliases": {
+   "pt": [
+    "Congo-Quinxassa",
+    "RD Congo",
+    "RDC"
+   ],
+   "en": [
+    "DRC",
+    "DR Congo",
+    "Democratic Republic of Congo",
+    "Dem. Republic of the Congo",
+    "Dem. Republic of Congo",
+    "Dem. Rep. Congo",
+    "D.R.C."
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q3838",
+    "name": {
+     "pt": "Quinxassa",
+     "en": "Kinshasa"
+    },
+    "aliases": {
+     "pt": [
+      "Quinxasa",
+      "Léopoldivile"
+     ],
+     "en": [
+      "Leopoldstad"
+     ]
+    }
+   }
+  ],
+  "continent": "africa",
+  "areaKm2": 2345410,
+  "claimedBy": [],
+  "labelPoint": [
+   23.459,
+   -1.858
+  ],
+  "flag": "flags/world/cod.svg"
+ },
+ {
+  "id": "COG",
+  "iso2": "CG",
+  "wikidata": "Q971",
+  "name": {
+   "pt": "República do Congo",
+   "en": "Republic of the Congo"
+  },
+  "aliases": {
+   "pt": [
+    "Congo-Brazavile"
+   ],
+   "en": [
+    "Congo Republic",
+    "République du Congo",
+    "Republic of Congo",
+    "Rep. Congo"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q3844",
+    "name": {
+     "pt": "Brazavile",
+     "en": "Brazzaville"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   }
+  ],
+  "continent": "africa",
+  "areaKm2": 342000,
+  "claimedBy": [],
+  "labelPoint": [
+   15.901,
+   0.142
+  ],
+  "flag": "flags/world/cog.svg"
+ },
+ {
+  "id": "COL",
+  "iso2": "CO",
+  "wikidata": "Q739",
+  "name": {
+   "pt": "Colômbia",
+   "en": "Colombia"
+  },
+  "aliases": {
+   "pt": [
+    "República da Colômbia"
+   ],
+   "en": [
+    "Republic of Colombia"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q2841",
+    "name": {
+     "pt": "Bogotá",
+     "en": "Bogotá"
+    },
+    "aliases": {
+     "pt": [
+      "Santa Fé de Bogotá",
+      "Santafé de Bogotá"
+     ],
+     "en": []
+    }
+   }
+  ],
+  "continent": "south-america",
+  "areaKm2": 1141748,
+  "claimedBy": [],
+  "labelPoint": [
+   -73.174,
+   3.373
+  ],
+  "flag": "flags/world/col.svg"
+ },
+ {
+  "id": "COM",
+  "iso2": "KM",
+  "wikidata": "Q970",
+  "name": {
+   "pt": "Comores",
+   "en": "Comoros"
+  },
+  "aliases": {
+   "pt": [],
+   "en": [
+    "Juzur al-Qumur",
+    "Juzur al-Qamar",
+    "Union of the Comoros",
+    "Udzima wa Komori",
+    "Union des Comores",
+    "al-Ittiḥād al-Qumurī",
+    "Massiwa ya komori",
+    "ouvoimoja wakomori"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q3901",
+    "name": {
+     "pt": "Moroni",
+     "en": "Moroni"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   }
+  ],
+  "continent": "africa",
+  "areaKm2": 2034,
+  "claimedBy": [],
+  "labelPoint": [
+   43.318,
+   -11.728
+  ],
+  "flag": "flags/world/com.svg"
+ },
+ {
+  "id": "CPV",
+  "iso2": "CV",
+  "wikidata": "Q1011",
+  "name": {
+   "pt": "Cabo Verde",
+   "en": "Cape Verde"
+  },
+  "aliases": {
+   "pt": [
+    "República de Cabo Verde"
+   ],
+   "en": [
+    "Republic of Cape Verde",
+    "Republic of Cabo Verde",
+    "Cape Verde Islands"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q3751",
+    "name": {
+     "pt": "Praia",
+     "en": "Praia"
+    },
+    "aliases": {
+     "pt": [
+      "Praia de Santa Maria"
+     ],
+     "en": []
+    }
+   }
+  ],
+  "continent": "africa",
+  "areaKm2": 4033,
+  "claimedBy": [],
+  "labelPoint": [
+   -23.639,
+   15.075
+  ],
+  "flag": "flags/world/cpv.svg"
+ },
+ {
+  "id": "CRI",
+  "iso2": "CR",
+  "wikidata": "Q800",
+  "name": {
+   "pt": "Costa Rica",
+   "en": "Costa Rica"
+  },
+  "aliases": {
+   "pt": [
+    "República da Costa Rica"
+   ],
+   "en": [
+    "Republic of Costa Rica"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q3070",
+    "name": {
+     "pt": "San José",
+     "en": "San José"
+    },
+    "aliases": {
+     "pt": [
+      "São José"
+     ],
+     "en": []
+    }
+   }
+  ],
+  "continent": "north-america",
+  "areaKm2": 51179.92,
+  "claimedBy": [],
+  "labelPoint": [
+   -84.078,
+   10.065
+  ],
+  "flag": "flags/world/cri.svg"
+ },
+ {
+  "id": "CUB",
+  "iso2": "CU",
+  "wikidata": "Q241",
+  "name": {
+   "pt": "Cuba",
+   "en": "Cuba"
+  },
+  "aliases": {
+   "pt": [
+    "República de Cuba"
+   ],
+   "en": [
+    "Republic of Cuba"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q1563",
+    "name": {
+     "pt": "Havana",
+     "en": "Havana"
+    },
+    "aliases": {
+     "pt": [
+      "La Habana",
+      "Habana"
+     ],
+     "en": []
+    }
+   }
+  ],
+  "continent": "north-america",
+  "areaKm2": 109884,
+  "claimedBy": [],
+  "labelPoint": [
+   -77.976,
+   21.334
+  ],
+  "flag": "flags/world/cub.svg"
+ },
+ {
+  "id": "CYP",
+  "iso2": "CY",
+  "wikidata": "Q229",
+  "name": {
+   "pt": "Chipre",
+   "en": "Cyprus"
+  },
+  "aliases": {
+   "pt": [
+    "República do Chipre"
+   ],
+   "en": [
+    "Greek Cypriot State",
+    "Republic of Cyprus",
+    "Greek Administration of Southern Cyprus"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q3856",
+    "name": {
+     "pt": "Nicósia",
+     "en": "Nicosia"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "Lefkosia",
+      "Leucosia",
+      "Nicosie",
+      "Lefkosa",
+      "Ledra",
+      "Ledron",
+      "Ledrae",
+      "Ledroi",
+      "Leuteon",
+      "Leucotheon",
+      "Leukoi Theoi",
+      "Leucopolis"
+     ]
+    }
+   }
+  ],
+  "continent": "asia",
+  "areaKm2": 9242.45,
+  "claimedBy": [
+   {
+    "country": null,
+    "name": {
+     "pt": "República Turca de Chipre do Norte",
+     "en": "Northern Cyprus"
+    }
+   }
+  ],
+  "labelPoint": [
+   33.084,
+   34.913
+  ],
+  "flag": "flags/world/cyp.svg"
+ },
+ {
+  "id": "CZE",
+  "iso2": "CZ",
+  "wikidata": "Q213",
+  "name": {
+   "pt": "Tchéquia",
+   "en": "Czech Republic"
+  },
+  "aliases": {
+   "pt": [
+    "Chéquia",
+    "República Tcheca",
+    "República Checa"
+   ],
+   "en": [
+    "Czechia"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q1085",
+    "name": {
+     "pt": "Praga",
+     "en": "Prague"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "Hlavní město Praha",
+      "City of Prague"
+     ]
+    }
+   }
+  ],
+  "continent": "europe",
+  "areaKm2": 78871,
+  "claimedBy": [],
+  "labelPoint": [
+   15.378,
+   49.882
+  ],
+  "flag": "flags/world/cze.svg"
+ },
+ {
+  "id": "DEU",
+  "iso2": "DE",
+  "wikidata": "Q183",
+  "name": {
+   "pt": "Alemanha",
+   "en": "Germany"
+  },
+  "aliases": {
+   "pt": [
+    "República Federal da Alemanha"
+   ],
+   "en": [
+    "Federal Republic of Germany"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q64",
+    "name": {
+     "pt": "Berlim",
+     "en": "Berlin"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   }
+  ],
+  "continent": "europe",
+  "areaKm2": 357587.77,
+  "claimedBy": [],
+  "labelPoint": [
+   9.678,
+   50.962
+  ],
+  "flag": "flags/world/deu.svg"
+ },
+ {
+  "id": "DJI",
+  "iso2": "DJ",
+  "wikidata": "Q977",
+  "name": {
+   "pt": "Djibuti",
+   "en": "Djibouti"
+  },
+  "aliases": {
+   "pt": [
+    "República do Djibouti",
+    "República do Jibuti"
+   ],
+   "en": [
+    "Republic of Djibouti",
+    "Jabuuti",
+    "Gabuuti",
+    "Jībūtī"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q3604",
+    "name": {
+     "pt": "Djibuti",
+     "en": "Djibouti"
+    },
+    "aliases": {
+     "pt": [
+      "Cidade do Djibouti"
+     ],
+     "en": [
+      "Djibouti City"
+     ]
+    }
+   }
+  ],
+  "continent": "africa",
+  "areaKm2": 23200,
+  "claimedBy": [],
+  "labelPoint": [
+   42.499,
+   11.976
+  ],
+  "flag": "flags/world/dji.svg"
+ },
+ {
+  "id": "DMA",
+  "iso2": "DM",
+  "wikidata": "Q784",
+  "name": {
+   "pt": "Dominica",
+   "en": "Dominica"
+  },
+  "aliases": {
+   "pt": [
+    "Comunidade da Dominica"
+   ],
+   "en": [
+    "Commonwealth of Dominica",
+    "Wai'tu kubuli",
+    "Island of Dominica"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q36281",
+    "name": {
+     "pt": "Roseau",
+     "en": "Roseau"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   }
+  ],
+  "continent": "north-america",
+  "areaKm2": 751.1,
+  "claimedBy": [],
+  "labelPoint": [
+   -61.345,
+   15.459
+  ],
+  "flag": "flags/world/dma.svg"
+ },
+ {
+  "id": "DNK",
+  "iso2": "DK",
+  "wikidata": "Q35",
+  "name": {
+   "pt": "Dinamarca",
+   "en": "Denmark"
+  },
+  "aliases": {
+   "pt": [],
+   "en": [
+    "Denmark proper",
+    "metropolitan Denmark",
+    "Dania",
+    "Danmark",
+    "Danemark"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q1748",
+    "name": {
+     "pt": "Copenhague",
+     "en": "Copenhagen"
+    },
+    "aliases": {
+     "pt": [
+      "Copenhaga"
+     ],
+     "en": [
+      "Kopenhagen",
+      "Kobenhavn",
+      "Hafn"
+     ]
+    }
+   }
+  ],
+  "continent": "europe",
+  "areaKm2": 42925.46,
+  "claimedBy": [],
+  "labelPoint": [
+   9.018,
+   55.967
+  ],
+  "flag": "flags/world/dnk.svg"
+ },
+ {
+  "id": "DOM",
+  "iso2": "DO",
+  "wikidata": "Q786",
+  "name": {
+   "pt": "República Dominicana",
+   "en": "Dominican Republic"
+  },
+  "aliases": {
+   "pt": [],
+   "en": [
+    "Dominicana",
+    "DomRep"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q34820",
+    "name": {
+     "pt": "São Domingos",
+     "en": "Santo Domingo"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "Santo Domingo de Guzman",
+      "San Domingo"
+     ]
+    }
+   }
+  ],
+  "continent": "north-america",
+  "areaKm2": 48670.82,
+  "claimedBy": [],
+  "labelPoint": [
+   -70.654,
+   19.104
+  ],
+  "flag": "flags/world/dom.svg"
+ },
+ {
+  "id": "DZA",
+  "iso2": "DZ",
+  "wikidata": "Q262",
+  "name": {
+   "pt": "Argélia",
+   "en": "Algeria"
+  },
+  "aliases": {
+   "pt": [
+    "República Democrática e Popular da Argélia",
+    "Dzayer",
+    "Djazaïr"
+   ],
+   "en": [
+    "People's Democratic Republic of Algeria"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q3561",
+    "name": {
+     "pt": "Argel",
+     "en": "Algiers"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   }
+  ],
+  "continent": "africa",
+  "areaKm2": 2381741,
+  "claimedBy": [],
+  "labelPoint": [
+   2.808,
+   27.397
+  ],
+  "flag": "flags/world/dza.svg"
+ },
+ {
+  "id": "ECU",
+  "iso2": "EC",
+  "wikidata": "Q736",
+  "name": {
+   "pt": "Equador",
+   "en": "Ecuador"
+  },
+  "aliases": {
+   "pt": [
+    "República do Equador"
+   ],
+   "en": [
+    "Republic of Ecuador",
+    "Republic of the Equator",
+    "Republic of Equator",
+    "Ecuadorian State"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q2900",
+    "name": {
+     "pt": "Quito",
+     "en": "Quito"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "Kitu"
+     ]
+    }
+   }
+  ],
+  "continent": "south-america",
+  "areaKm2": 257204.27,
+  "claimedBy": [],
+  "labelPoint": [
+   -78.188,
+   -1.259
+  ],
+  "flag": "flags/world/ecu.svg"
+ },
+ {
+  "id": "EGY",
+  "iso2": "EG",
+  "wikidata": "Q79",
+  "name": {
+   "pt": "Egito",
+   "en": "Egypt"
+  },
+  "aliases": {
+   "pt": [
+    "República Árabe do Egito",
+    "Egipto",
+    "República Árabe do Egipto"
+   ],
+   "en": [
+    "Republic of Egypt",
+    "Arab Republic of Egypt",
+    "Arab Rep. Egypt",
+    "Rep. Egypt",
+    "Misr"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q85",
+    "name": {
+     "pt": "Cairo",
+     "en": "Cairo"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "Qahira",
+      "ghahere"
+     ]
+    }
+   }
+  ],
+  "continent": "africa",
+  "areaKm2": 1010407.87,
+  "claimedBy": [],
+  "labelPoint": [
+   29.446,
+   26.186
+  ],
+  "flag": "flags/world/egy.svg"
+ },
+ {
+  "id": "ERI",
+  "iso2": "ER",
+  "wikidata": "Q986",
+  "name": {
+   "pt": "Eritreia",
+   "en": "Eritrea"
+  },
+  "aliases": {
+   "pt": [
+    "Estado da Eritreia"
+   ],
+   "en": [
+    "State of Eritrea",
+    "Ertrā",
+    "Iritriyā"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q3642",
+    "name": {
+     "pt": "Asmara",
+     "en": "Asmara"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "Asmera"
+     ]
+    }
+   }
+  ],
+  "continent": "africa",
+  "areaKm2": 117600,
+  "claimedBy": [],
+  "labelPoint": [
+   38.286,
+   15.787
+  ],
+  "flag": "flags/world/eri.svg"
+ },
+ {
+  "id": "ESP",
+  "iso2": "ES",
+  "wikidata": "Q29",
+  "name": {
+   "pt": "Espanha",
+   "en": "Spain"
+  },
+  "aliases": {
+   "pt": [
+    "Reino da Espanha",
+    "Reino de Espanha"
+   ],
+   "en": [
+    "Kingdom of Spain"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q2807",
+    "name": {
+     "pt": "Madri",
+     "en": "Madrid"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   }
+  ],
+  "continent": "europe",
+  "areaKm2": 505990,
+  "claimedBy": [],
+  "labelPoint": [
+   -3.465,
+   40.091
+  ],
+  "flag": "flags/world/esp.svg"
+ },
+ {
+  "id": "EST",
+  "iso2": "EE",
+  "wikidata": "Q191",
+  "name": {
+   "pt": "Estônia",
+   "en": "Estonia"
+  },
+  "aliases": {
+   "pt": [
+    "República da Estônia",
+    "Eesti Vabariik"
+   ],
+   "en": [
+    "Republic of Estonia",
+    "Estland"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q1770",
+    "name": {
+     "pt": "Tallinn",
+     "en": "Tallinn"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "Revel",
+      "Rewel",
+      "Kolywan",
+      "Lyndanisse",
+      "Lindanäs",
+      "Reuel"
+     ]
+    }
+   }
+  ],
+  "continent": "europe",
+  "areaKm2": 45335,
+  "claimedBy": [],
+  "labelPoint": [
+   25.867,
+   58.725
+  ],
+  "flag": "flags/world/est.svg"
+ },
+ {
+  "id": "ETH",
+  "iso2": "ET",
+  "wikidata": "Q115",
+  "name": {
+   "pt": "Etiópia",
+   "en": "Ethiopia"
+  },
+  "aliases": {
+   "pt": [
+    "República Democrática Federal da Etiópia"
+   ],
+   "en": [
+    "Federal Democratic Republic of Ethiopia"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q3624",
+    "name": {
+     "pt": "Adis Abeba",
+     "en": "Addis Ababa"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "Finfinne"
+     ]
+    }
+   }
+  ],
+  "continent": "africa",
+  "areaKm2": 1129819,
+  "claimedBy": [],
+  "labelPoint": [
+   39.089,
+   8.033
+  ],
+  "flag": "flags/world/eth.svg"
+ },
+ {
+  "id": "FIN",
+  "iso2": "FI",
+  "wikidata": "Q33",
+  "name": {
+   "pt": "Finlândia",
+   "en": "Finland"
+  },
+  "aliases": {
+   "pt": [
+    "República da Finlândia"
+   ],
+   "en": [
+    "Republic of Finland",
+    "Finnia",
+    "Land of Thousand Lakes",
+    "Suomen tasavalta",
+    "Republiken Finland"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q1757",
+    "name": {
+     "pt": "Helsinque",
+     "en": "Helsinki"
+    },
+    "aliases": {
+     "pt": [
+      "Helsínquia"
+     ],
+     "en": [
+      "Helsingia",
+      "Helsingin kaupunki",
+      "Stadi",
+      "Hesa"
+     ]
+    }
+   }
+  ],
+  "continent": "europe",
+  "areaKm2": 338478.34,
+  "claimedBy": [],
+  "labelPoint": [
+   27.276,
+   63.252
+  ],
+  "flag": "flags/world/fin.svg"
+ },
+ {
+  "id": "FJI",
+  "iso2": "FJ",
+  "wikidata": "Q712",
+  "name": {
+   "pt": "Fiji",
+   "en": "Fiji"
+  },
+  "aliases": {
+   "pt": [
+    "República de Fiji",
+    "Ilhas Fiji"
+   ],
+   "en": [
+    "Republic of Fiji",
+    "Republic of the Fiji Islands",
+    "Viti",
+    "Matanitu Tugalala o Viti",
+    "Fijī Gaṇarājya"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q38807",
+    "name": {
+     "pt": "Suva",
+     "en": "Suva"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   }
+  ],
+  "continent": "oceania",
+  "areaKm2": 18274,
+  "claimedBy": [],
+  "labelPoint": [
+   177.975,
+   -17.826
+  ],
+  "flag": "flags/world/fji.svg"
+ },
+ {
+  "id": "FRA",
+  "iso2": "FR",
+  "wikidata": "Q142",
+  "name": {
+   "pt": "França",
+   "en": "France"
+  },
+  "aliases": {
+   "pt": [
+    "República Francesa",
+    "República da França"
+   ],
+   "en": [
+    "French Republic"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q90",
+    "name": {
+     "pt": "Paris",
+     "en": "Paris"
+    },
+    "aliases": {
+     "pt": [
+      "Ville de Paris"
+     ],
+     "en": [
+      "City of Light",
+      "City of Love",
+      "Lutetia"
+     ]
+    }
+   }
+  ],
+  "continent": "europe",
+  "areaKm2": 643801,
+  "claimedBy": [],
+  "labelPoint": [
+   2.552,
+   46.696
+  ],
+  "flag": "flags/world/fra.svg"
+ },
+ {
+  "id": "FSM",
+  "iso2": "FM",
+  "wikidata": "Q702",
+  "name": {
+   "pt": "Micronésia",
+   "en": "Federated States of Micronesia"
+  },
+  "aliases": {
+   "pt": [],
+   "en": [
+    "Fed. Sts. Micronesia",
+    "Fed. Sts. of Micronesia"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q42751",
+    "name": {
+     "pt": "Paliquir",
+     "en": "Palikir"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   }
+  ],
+  "continent": "oceania",
+  "areaKm2": 702,
+  "claimedBy": [],
+  "labelPoint": [
+   158.234,
+   6.888
+  ],
+  "flag": "flags/world/fsm.svg"
+ },
+ {
+  "id": "GAB",
+  "iso2": "GA",
+  "wikidata": "Q1000",
+  "name": {
+   "pt": "Gabão",
+   "en": "Gabon"
+  },
+  "aliases": {
+   "pt": [
+    "República Gabonesa"
+   ],
+   "en": [
+    "Gabonese Republic",
+    "République Gabonaise"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q3825",
+    "name": {
+     "pt": "Libreville",
+     "en": "Libreville"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   }
+  ],
+  "continent": "africa",
+  "areaKm2": 267667,
+  "claimedBy": [],
+  "labelPoint": [
+   11.836,
+   -0.438
+  ],
+  "flag": "flags/world/gab.svg"
+ },
+ {
+  "id": "GBR",
+  "iso2": "GB",
+  "wikidata": "Q145",
+  "name": {
+   "pt": "Reino Unido",
+   "en": "United Kingdom"
+  },
+  "aliases": {
+   "pt": [
+    "Reino Unido da Grã-Bretanha e Irlanda do Norte",
+    "Grã-Bretanha",
+    "UKGBNI"
+   ],
+   "en": [
+    "United Kingdom of Great Britain and Northern Ireland",
+    "Great Britain",
+    "Great Britain and Northern Ireland"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q84",
+    "name": {
+     "pt": "Londres",
+     "en": "London"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "London UK",
+      "Londinium",
+      "Lundenwic",
+      "Londinio",
+      "Londini",
+      "Londiniensium",
+      "Augusta",
+      "Trinovantum",
+      "Kaerlud",
+      "Karelundein",
+      "Lunden",
+      "Big Smoke",
+      "Lundenburh",
+      "Lundenburgh",
+      "Llyn Dain",
+      "Llan Dian",
+      "Londinion",
+      "Loniniensi"
+     ]
+    }
+   }
+  ],
+  "continent": "europe",
+  "areaKm2": 242495,
+  "claimedBy": [],
+  "labelPoint": [
+   -6.466,
+   54.656
+  ],
+  "flag": "flags/world/gbr.svg"
+ },
+ {
+  "id": "GEO",
+  "iso2": "GE",
+  "wikidata": "Q230",
+  "name": {
+   "pt": "Geórgia",
+   "en": "Georgia"
+  },
+  "aliases": {
+   "pt": [],
+   "en": [
+    "Republic of Georgia",
+    "Sakartvelo"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q994",
+    "name": {
+     "pt": "Tiblíssi",
+     "en": "Tbilisi"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "Tiflis",
+      "Tpilisi",
+      "Tbilissi",
+      "Tpilissi"
+     ]
+    }
+   }
+  ],
+  "continent": "asia",
+  "areaKm2": 69700,
+  "claimedBy": [],
+  "labelPoint": [
+   43.736,
+   41.87
+  ],
+  "flag": "flags/world/geo.svg"
+ },
+ {
+  "id": "GHA",
+  "iso2": "GH",
+  "wikidata": "Q117",
+  "name": {
+   "pt": "Gana",
+   "en": "Ghana"
+  },
+  "aliases": {
+   "pt": [
+    "República de Gana"
+   ],
+   "en": []
+  },
+  "capitals": [
+   {
+    "wikidata": "Q3761",
+    "name": {
+     "pt": "Acra",
+     "en": "Accra"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "Akra"
+     ]
+    }
+   }
+  ],
+  "continent": "africa",
+  "areaKm2": 238535,
+  "claimedBy": [],
+  "labelPoint": [
+   -1.037,
+   7.718
+  ],
+  "flag": "flags/world/gha.svg"
+ },
+ {
+  "id": "GIN",
+  "iso2": "GN",
+  "wikidata": "Q1006",
+  "name": {
+   "pt": "Guiné",
+   "en": "Guinea"
+  },
+  "aliases": {
+   "pt": [
+    "Guiné-Conacri",
+    "República da Guiné",
+    "République de Guinée"
+   ],
+   "en": [
+    "Guinea-Conakry",
+    "Republic of Guinea"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q3733",
+    "name": {
+     "pt": "Conacri",
+     "en": "Conakry"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   }
+  ],
+  "continent": "africa",
+  "areaKm2": 245857,
+  "claimedBy": [],
+  "labelPoint": [
+   -10.016,
+   10.619
+  ],
+  "flag": "flags/world/gin.svg"
+ },
+ {
+  "id": "GMB",
+  "iso2": "GM",
+  "wikidata": "Q1005",
+  "name": {
+   "pt": "Gâmbia",
+   "en": "The Gambia"
+  },
+  "aliases": {
+   "pt": [
+    "República Islâmica da Gâmbia",
+    "República da Gâmbia"
+   ],
+   "en": [
+    "Islamic Republic of the Gambia",
+    "Republic of the Gambia"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q3726",
+    "name": {
+     "pt": "Banjul",
+     "en": "Banjul"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "City of Banjul",
+      "Bathurst"
+     ]
+    }
+   }
+  ],
+  "continent": "africa",
+  "areaKm2": 11300,
+  "claimedBy": [],
+  "labelPoint": [
+   -14.998,
+   13.642
+  ],
+  "flag": "flags/world/gmb.svg"
+ },
+ {
+  "id": "GNB",
+  "iso2": "GW",
+  "wikidata": "Q1007",
+  "name": {
+   "pt": "Guiné-Bissau",
+   "en": "Guinea-Bissau"
+  },
+  "aliases": {
+   "pt": [
+    "República da Guiné-Bissau"
+   ],
+   "en": [
+    "Republic of Guinea-Bissau"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q3739",
+    "name": {
+     "pt": "Bissau",
+     "en": "Bissau"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   }
+  ],
+  "continent": "africa",
+  "areaKm2": 36125,
+  "claimedBy": [],
+  "labelPoint": [
+   -14.524,
+   12.164
+  ],
+  "flag": "flags/world/gnb.svg"
+ },
+ {
+  "id": "GNQ",
+  "iso2": "GQ",
+  "wikidata": "Q983",
+  "name": {
+   "pt": "Guiné Equatorial",
+   "en": "Equatorial Guinea"
+  },
+  "aliases": {
+   "pt": [
+    "República da Guiné Equatorial"
+   ],
+   "en": [
+    "Republic of Equatorial Guinea"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q1140136",
+    "name": {
+     "pt": "Ciudad de la Paz",
+     "en": "Ciudad de la Paz"
+    },
+    "aliases": {
+     "pt": [
+      "Djibloho",
+      "Oyala"
+     ],
+     "en": []
+    }
+   }
+  ],
+  "continent": "africa",
+  "areaKm2": 28051,
+  "claimedBy": [],
+  "labelPoint": [
+   8.99,
+   2.333
+  ],
+  "flag": "flags/world/gnq.svg"
+ },
+ {
+  "id": "GRC",
+  "iso2": "GR",
+  "wikidata": "Q41",
+  "name": {
+   "pt": "Grécia",
+   "en": "Greece"
+  },
+  "aliases": {
+   "pt": [
+    "República Helênica"
+   ],
+   "en": [
+    "Hellenic Republic",
+    "Greek Republic"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q1524",
+    "name": {
+     "pt": "Atenas",
+     "en": "Athens"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "Athens city",
+      "Athenae"
+     ]
+    }
+   }
+  ],
+  "continent": "europe",
+  "areaKm2": 131957,
+  "claimedBy": [],
+  "labelPoint": [
+   21.726,
+   39.493
+  ],
+  "flag": "flags/world/grc.svg"
+ },
+ {
+  "id": "GRD",
+  "iso2": "GD",
+  "wikidata": "Q769",
+  "name": {
+   "pt": "Granada",
+   "en": "Grenada"
+  },
+  "aliases": {
+   "pt": [],
+   "en": []
+  },
+  "capitals": [
+   {
+    "wikidata": "Q41547",
+    "name": {
+     "pt": "São Jorge",
+     "en": "St. George's"
+    },
+    "aliases": {
+     "pt": [
+      "Saint George's"
+     ],
+     "en": [
+      "Saint Georges"
+     ]
+    }
+   }
+  ],
+  "continent": "north-america",
+  "areaKm2": 348.5,
+  "claimedBy": [],
+  "labelPoint": [
+   -61.68,
+   12.113
+  ],
+  "flag": "flags/world/grd.svg"
+ },
+ {
+  "id": "GTM",
+  "iso2": "GT",
+  "wikidata": "Q774",
+  "name": {
+   "pt": "Guatemala",
+   "en": "Guatemala"
+  },
+  "aliases": {
+   "pt": [
+    "República da Guatemala"
+   ],
+   "en": [
+    "Republic of Guatemala"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q1555",
+    "name": {
+     "pt": "Cidade da Guatemala",
+     "en": "Guatemala City"
+    },
+    "aliases": {
+     "pt": [
+      "Guate",
+      "Nueva Guatemala de la Asunción"
+     ],
+     "en": [
+      "City of Guatemala",
+      "Guatemala",
+      "New Guatemala of Assumption"
+     ]
+    }
+   }
+  ],
+  "continent": "north-america",
+  "areaKm2": 108889,
+  "claimedBy": [],
+  "labelPoint": [
+   -90.497,
+   14.982
+  ],
+  "flag": "flags/world/gtm.svg"
+ },
+ {
+  "id": "GUY",
+  "iso2": "GY",
+  "wikidata": "Q734",
+  "name": {
+   "pt": "Guiana",
+   "en": "Guyana"
+  },
+  "aliases": {
+   "pt": [
+    "República Cooperativa da Guiana",
+    "República da Guiana"
+   ],
+   "en": [
+    "Co-operative Republic of Guyana",
+    "Republic of Guyana"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q10717",
+    "name": {
+     "pt": "Georgetown",
+     "en": "Georgetown"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "Garden City of the Caribbean"
+     ]
+    }
+   }
+  ],
+  "continent": "south-america",
+  "areaKm2": 214970,
+  "claimedBy": [],
+  "labelPoint": [
+   -58.943,
+   5.124
+  ],
+  "flag": "flags/world/guy.svg"
+ },
+ {
+  "id": "HND",
+  "iso2": "HN",
+  "wikidata": "Q783",
+  "name": {
+   "pt": "Honduras",
+   "en": "Honduras"
+  },
+  "aliases": {
+   "pt": [
+    "República de Honduras",
+    "República das Honduras"
+   ],
+   "en": [
+    "Republic of Honduras",
+    "Honduran Republic"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q3238",
+    "name": {
+     "pt": "Tegucigalpa",
+     "en": "Tegucigalpa"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   }
+  ],
+  "continent": "north-america",
+  "areaKm2": 112492,
+  "claimedBy": [],
+  "labelPoint": [
+   -86.888,
+   14.795
+  ],
+  "flag": "flags/world/hnd.svg"
+ },
+ {
+  "id": "HRV",
+  "iso2": "HR",
+  "wikidata": "Q224",
+  "name": {
+   "pt": "Croácia",
+   "en": "Croatia"
+  },
+  "aliases": {
+   "pt": [
+    "República da Croácia"
+   ],
+   "en": [
+    "Republic of Croatia"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q1435",
+    "name": {
+     "pt": "Zagreb",
+     "en": "Zagreb"
+    },
+    "aliases": {
+     "pt": [
+      "Zagrebe"
+     ],
+     "en": []
+    }
+   }
+  ],
+  "continent": "europe",
+  "areaKm2": 56594,
+  "claimedBy": [],
+  "labelPoint": [
+   16.372,
+   45.806
+  ],
+  "flag": "flags/world/hrv.svg"
+ },
+ {
+  "id": "HTI",
+  "iso2": "HT",
+  "wikidata": "Q790",
+  "name": {
+   "pt": "Haiti",
+   "en": "Haiti"
+  },
+  "aliases": {
+   "pt": [
+    "República do Haiti"
+   ],
+   "en": [
+    "Republic of Haiti",
+    "Hayti",
+    "Haitian Republic",
+    "Ayiti"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q34261",
+    "name": {
+     "pt": "Porto Príncipe",
+     "en": "Port-au-Prince"
+    },
+    "aliases": {
+     "pt": [
+      "Porto do Príncipe",
+      "Porto-au-Príncipe",
+      "Porto au Prince"
+     ],
+     "en": []
+    }
+   }
+  ],
+  "continent": "north-america",
+  "areaKm2": 27750,
+  "claimedBy": [],
+  "labelPoint": [
+   -72.224,
+   19.264
+  ],
+  "flag": "flags/world/hti.svg"
+ },
+ {
+  "id": "HUN",
+  "iso2": "HU",
+  "wikidata": "Q28",
+  "name": {
+   "pt": "Hungria",
+   "en": "Hungary"
+  },
+  "aliases": {
+   "pt": [],
+   "en": []
+  },
+  "capitals": [
+   {
+    "wikidata": "Q1781",
+    "name": {
+     "pt": "Budapeste",
+     "en": "Budapest"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "Buda Pest",
+      "Budapesta",
+      "Budapeszt",
+      "Budín",
+      "Budim",
+      "Budon",
+      "Pešta",
+      "Alt-Ofen",
+      "Buda-Pesth"
+     ]
+    }
+   }
+  ],
+  "continent": "europe",
+  "areaKm2": 93011.4,
+  "claimedBy": [],
+  "labelPoint": [
+   19.448,
+   47.087
+  ],
+  "flag": "flags/world/hun.svg"
+ },
+ {
+  "id": "IDN",
+  "iso2": "ID",
+  "wikidata": "Q252",
+  "name": {
+   "pt": "Indonésia",
+   "en": "Indonesia"
+  },
+  "aliases": {
+   "pt": [
+    "República da Indonésia"
+   ],
+   "en": [
+    "Republic of Indonesia"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q3630",
+    "name": {
+     "pt": "Jacarta",
+     "en": "Jakarta"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "Djakarta",
+      "Jakarta Province",
+      "DKI Jakarta",
+      "Specific Region of Jakarta",
+      "Specific Capital Region of Jakarta",
+      "Jakarta Specific Region"
+     ]
+    }
+   }
+  ],
+  "continent": "asia",
+  "areaKm2": 1916907,
+  "claimedBy": [],
+  "labelPoint": [
+   101.893,
+   -0.954
+  ],
+  "flag": "flags/world/idn.svg"
+ },
+ {
+  "id": "IND",
+  "iso2": "IN",
+  "wikidata": "Q668",
+  "name": {
+   "pt": "Índia",
+   "en": "India"
+  },
+  "aliases": {
+   "pt": [],
+   "en": [
+    "Republic of India",
+    "Bharatvarsh",
+    "Hindustan",
+    "Bharata",
+    "Hindoostan",
+    "Indostan",
+    "Bharat Ganarajya",
+    "Al Hind",
+    "Tianzhu",
+    "Tenjiku"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q987",
+    "name": {
+     "pt": "Nova Deli",
+     "en": "New Delhi"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "Nayi Dilli",
+      "New Delhi Municipal Council Area",
+      "NDMC area",
+      "Nai Dilli"
+     ]
+    }
+   }
+  ],
+  "continent": "asia",
+  "areaKm2": 3287593,
+  "claimedBy": [],
+  "labelPoint": [
+   79.358,
+   22.687
+  ],
+  "flag": "flags/world/ind.svg"
+ },
+ {
+  "id": "IRL",
+  "iso2": "IE",
+  "wikidata": "Q27",
+  "name": {
+   "pt": "Irlanda",
+   "en": "Ireland"
+  },
+  "aliases": {
+   "pt": [
+    "República da Irlanda"
+   ],
+   "en": [
+    "Republic of Ireland",
+    "Southern Ireland",
+    "Irish Republic"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q1761",
+    "name": {
+     "pt": "Dublin",
+     "en": "Dublin"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "Dublin city",
+      "City of Dublin"
+     ]
+    }
+   }
+  ],
+  "continent": "europe",
+  "areaKm2": 69797,
+  "claimedBy": [],
+  "labelPoint": [
+   -7.799,
+   53.079
+  ],
+  "flag": "flags/world/irl.svg"
+ },
+ {
+  "id": "IRN",
+  "iso2": "IR",
+  "wikidata": "Q794",
+  "name": {
+   "pt": "Irã",
+   "en": "Iran"
+  },
+  "aliases": {
+   "pt": [
+    "Irão",
+    "República Islâmica do Irã",
+    "República Islâmica do Irão"
+   ],
+   "en": [
+    "Islamic Republic of Iran",
+    "Islamic Rep. Iran"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q3616",
+    "name": {
+     "pt": "Teerã",
+     "en": "Tehran"
+    },
+    "aliases": {
+     "pt": [
+      "Teerão"
+     ],
+     "en": [
+      "Ṭihrán"
+     ]
+    }
+   }
+  ],
+  "continent": "asia",
+  "areaKm2": 1648195,
+  "claimedBy": [],
+  "labelPoint": [
+   54.931,
+   32.166
+  ],
+  "flag": "flags/world/irn.svg"
+ },
+ {
+  "id": "IRQ",
+  "iso2": "IQ",
+  "wikidata": "Q796",
+  "name": {
+   "pt": "Iraque",
+   "en": "Iraq"
+  },
+  "aliases": {
+   "pt": [
+    "Curdistão iraquiano",
+    "República do Iraque"
+   ],
+   "en": [
+    "Republic of Iraq"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q1530",
+    "name": {
+     "pt": "Bagdá",
+     "en": "Baghdad"
+    },
+    "aliases": {
+     "pt": [
+      "Bagdade",
+      "Baguedade"
+     ],
+     "en": [
+      "Bagdat"
+     ]
+    }
+   }
+  ],
+  "continent": "asia",
+  "areaKm2": 437072,
+  "claimedBy": [],
+  "labelPoint": [
+   44.54,
+   36.323
+  ],
+  "flag": "flags/world/irq.svg"
+ },
+ {
+  "id": "ISL",
+  "iso2": "IS",
+  "wikidata": "Q189",
+  "name": {
+   "pt": "Islândia",
+   "en": "Iceland"
+  },
+  "aliases": {
+   "pt": [],
+   "en": [
+    "Republic of Iceland",
+    "Ysland",
+    "Icelandic republic"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q1764",
+    "name": {
+     "pt": "Reykjavík",
+     "en": "Reykjavík"
+    },
+    "aliases": {
+     "pt": [
+      "Reiquejavique",
+      "Reiquiavique",
+      "Reykjavíkurborg"
+     ],
+     "en": []
+    }
+   }
+  ],
+  "continent": "europe",
+  "areaKm2": 103004,
+  "claimedBy": [],
+  "labelPoint": [
+   -18.674,
+   64.779
+  ],
+  "flag": "flags/world/isl.svg"
+ },
+ {
+  "id": "ISR",
+  "iso2": "IL",
+  "wikidata": "Q801",
+  "name": {
+   "pt": "Israel",
+   "en": "Israel"
+  },
+  "aliases": {
+   "pt": [
+    "Estado de Israel",
+    "Terra Sagrada",
+    "Estado Judeu"
+   ],
+   "en": [
+    "State of Israel",
+    "Yisrael"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q1218",
+    "name": {
+     "pt": "Jerusalém",
+     "en": "Jerusalem"
+    },
+    "aliases": {
+     "pt": [
+      "J'lem",
+      "Aelia Capitolina"
+     ],
+     "en": [
+      "Mint of Aelia Capitolina"
+     ]
+    }
+   }
+  ],
+  "continent": "asia",
+  "areaKm2": 20770,
+  "claimedBy": [],
+  "labelPoint": [
+   34.848,
+   30.911
+  ],
+  "flag": "flags/world/isr.svg"
+ },
+ {
+  "id": "ITA",
+  "iso2": "IT",
+  "wikidata": "Q38",
+  "name": {
+   "pt": "Itália",
+   "en": "Italy"
+  },
+  "aliases": {
+   "pt": [
+    "República da Itália",
+    "Repubblica Italiana",
+    "República Italiana"
+   ],
+   "en": [
+    "Italian Republic",
+    "Republic of Italy"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q220",
+    "name": {
+     "pt": "Roma",
+     "en": "Rome"
+    },
+    "aliases": {
+     "pt": [
+      "A Cidade Eterna"
+     ],
+     "en": [
+      "Eternal City",
+      "City of Seven Hills",
+      "City of Marble",
+      "Capital of the World"
+     ]
+    }
+   }
+  ],
+  "continent": "europe",
+  "areaKm2": 302068,
+  "claimedBy": [],
+  "labelPoint": [
+   11.077,
+   44.732
+  ],
+  "flag": "flags/world/ita.svg"
+ },
+ {
+  "id": "JAM",
+  "iso2": "JM",
+  "wikidata": "Q766",
+  "name": {
+   "pt": "Jamaica",
+   "en": "Jamaica"
+  },
+  "aliases": {
+   "pt": [],
+   "en": [
+    "Commonwealth of Jamaica"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q34692",
+    "name": {
+     "pt": "Kingston",
+     "en": "Kingston"
+    },
+    "aliases": {
+     "pt": [
+      "Capital de Jamaica"
+     ],
+     "en": []
+    }
+   }
+  ],
+  "continent": "north-america",
+  "areaKm2": 10991.91,
+  "claimedBy": [],
+  "labelPoint": [
+   -77.319,
+   18.137
+  ],
+  "flag": "flags/world/jam.svg"
+ },
+ {
+  "id": "JOR",
+  "iso2": "JO",
+  "wikidata": "Q810",
+  "name": {
+   "pt": "Jordânia",
+   "en": "Jordan"
+  },
+  "aliases": {
+   "pt": [],
+   "en": [
+    "Hashemite Kingdom of Jordan",
+    "Kingdom of Jordan",
+    "Yarden",
+    "Giordania",
+    "State of Jordan"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q3805",
+    "name": {
+     "pt": "Amã",
+     "en": "Amman"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "Philadelphia",
+      "Aman",
+      "Ammon",
+      "ʿAmmān",
+      "Mint of Philadelphia"
+     ]
+    }
+   }
+  ],
+  "continent": "asia",
+  "areaKm2": 89341,
+  "claimedBy": [],
+  "labelPoint": [
+   36.376,
+   30.805
+  ],
+  "flag": "flags/world/jor.svg"
+ },
+ {
+  "id": "JPN",
+  "iso2": "JP",
+  "wikidata": "Q17",
+  "name": {
+   "pt": "Japão",
+   "en": "Japan"
+  },
+  "aliases": {
+   "pt": [
+    "Estado do Japão",
+    "Terra do Sol Nascente",
+    "Nippon-koku",
+    "Nihon-koku"
+   ],
+   "en": [
+    "State of Japan",
+    "Land of the Rising Sun",
+    "Iapan",
+    "Iapon",
+    "Land of Rising Sun"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q1490",
+    "name": {
+     "pt": "Tóquio",
+     "en": "Tokyo"
+    },
+    "aliases": {
+     "pt": [
+      "Metrópole de Tóquio",
+      "Tokyo-to",
+      "Tokyo Metropolis",
+      "Tokio",
+      "Tokei"
+     ],
+     "en": [
+      "Tokyo Metropolitan prefecture",
+      "Tokyo Prefecture",
+      "Jedo",
+      "Yedo"
+     ]
+    }
+   }
+  ],
+  "continent": "asia",
+  "areaKm2": 377973.68,
+  "claimedBy": [],
+  "labelPoint": [
+   138.442,
+   36.143
+  ],
+  "flag": "flags/world/jpn.svg"
+ },
+ {
+  "id": "KAZ",
+  "iso2": "KZ",
+  "wikidata": "Q232",
+  "name": {
+   "pt": "Cazaquistão",
+   "en": "Kazakhstan"
+  },
+  "aliases": {
+   "pt": [
+    "República do Cazaquistão"
+   ],
+   "en": [
+    "Republic of Kazakhstan",
+    "Republic of Qazaqstan"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q1520",
+    "name": {
+     "pt": "Astana",
+     "en": "Astana"
+    },
+    "aliases": {
+     "pt": [
+      "Nur Sultã"
+     ],
+     "en": [
+      "Akmola",
+      "Aqmola",
+      "Tselinograd",
+      "Akmolinsk",
+      "Nur-Sultan"
+     ]
+    }
+   }
+  ],
+  "continent": "asia",
+  "areaKm2": 2724910,
+  "claimedBy": [],
+  "labelPoint": [
+   68.686,
+   49.054
+  ],
+  "flag": "flags/world/kaz.svg"
+ },
+ {
+  "id": "KEN",
+  "iso2": "KE",
+  "wikidata": "Q114",
+  "name": {
+   "pt": "Quênia",
+   "en": "Kenya"
+  },
+  "aliases": {
+   "pt": [
+    "República do Quênia"
+   ],
+   "en": [
+    "Republic of Kenya"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q3870",
+    "name": {
+     "pt": "Nairóbi",
+     "en": "Nairobi"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "Kenya's capital",
+      "Kenyan capital",
+      "Kenya capital city",
+      "Kenya capital"
+     ]
+    }
+   }
+  ],
+  "continent": "africa",
+  "areaKm2": 581309,
+  "claimedBy": [],
+  "labelPoint": [
+   37.908,
+   0.549
+  ],
+  "flag": "flags/world/ken.svg"
+ },
+ {
+  "id": "KGZ",
+  "iso2": "KG",
+  "wikidata": "Q813",
+  "name": {
+   "pt": "Quirguistão",
+   "en": "Kyrgyzstan"
+  },
+  "aliases": {
+   "pt": [
+    "Quirguizistão",
+    "Quirguízia",
+    "República Quirguiz"
+   ],
+   "en": [
+    "Kyrgyz Republic"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q9361",
+    "name": {
+     "pt": "Bisqueque",
+     "en": "Bishkek"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "Pishpek"
+     ]
+    }
+   }
+  ],
+  "continent": "asia",
+  "areaKm2": 199951,
+  "claimedBy": [],
+  "labelPoint": [
+   74.533,
+   41.669
+  ],
+  "flag": "flags/world/kgz.svg"
+ },
+ {
+  "id": "KHM",
+  "iso2": "KH",
+  "wikidata": "Q424",
+  "name": {
+   "pt": "Camboja",
+   "en": "Cambodia"
+  },
+  "aliases": {
+   "pt": [
+    "Reino do Camboja",
+    "Cambodja"
+   ],
+   "en": [
+    "Kingdom of Cambodia",
+    "Kampuchea",
+    "Camboya",
+    "Campuchia",
+    "Kamboja",
+    "Kambodzha"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q1850",
+    "name": {
+     "pt": "Phnom Penh",
+     "en": "Phnom Penh"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   }
+  ],
+  "continent": "asia",
+  "areaKm2": 181035,
+  "claimedBy": [],
+  "labelPoint": [
+   104.505,
+   12.648
+  ],
+  "flag": "flags/world/khm.svg"
+ },
+ {
+  "id": "KIR",
+  "iso2": "KI",
+  "wikidata": "Q710",
+  "name": {
+   "pt": "Kiribati",
+   "en": "Kiribati"
+  },
+  "aliases": {
+   "pt": [
+    "Quiribáti"
+   ],
+   "en": [
+    "Republic of Kiribati"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q131233",
+    "name": {
+     "pt": "Tarawa do Sul",
+     "en": "South Tarawa"
+    },
+    "aliases": {
+     "pt": [
+      "Taraua do Sul",
+      "Tarawa-Sul",
+      "Teinainano Urban Council"
+     ],
+     "en": []
+    }
+   }
+  ],
+  "continent": "oceania",
+  "areaKm2": 811,
+  "claimedBy": [],
+  "labelPoint": [
+   -157.385,
+   1.82
+  ],
+  "flag": "flags/world/kir.svg"
+ },
+ {
+  "id": "KNA",
+  "iso2": "KN",
+  "wikidata": "Q763",
+  "name": {
+   "pt": "São Cristóvão e Neves",
+   "en": "Saint Kitts and Nevis"
+  },
+  "aliases": {
+   "pt": [
+    "São Cristóvão e Nevis",
+    "Federação de São Cristóvão e Neves"
+   ],
+   "en": [
+    "Saint Christopher and Nevis",
+    "Federation of Saint Christopher and Nevis",
+    "Federation of Saint Kitts and Nevis",
+    "St. Kitts and Nevis",
+    "Kitts and Nevis"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q41295",
+    "name": {
+     "pt": "Basseterre",
+     "en": "Basseterre"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   }
+  ],
+  "continent": "north-america",
+  "areaKm2": 271.95,
+  "claimedBy": [],
+  "labelPoint": [
+   -62.758,
+   17.337
+  ],
+  "flag": "flags/world/kna.svg"
+ },
+ {
+  "id": "KOR",
+  "iso2": "KR",
+  "wikidata": "Q884",
+  "name": {
+   "pt": "Coreia do Sul",
+   "en": "South Korea"
+  },
+  "aliases": {
+   "pt": [
+    "República da Coreia",
+    "Rep. da Coreia",
+    "Hanguk",
+    "Daehan Minguk",
+    "Daehanminguk"
+   ],
+   "en": [
+    "Republic of Korea",
+    "Rep. Korea",
+    "Korea Republic",
+    "Choson",
+    "Silla"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q8684",
+    "name": {
+     "pt": "Seul",
+     "en": "Seoul"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "Seoul Special City",
+      "Sŏul T'ŭkpyŏlsi",
+      "Wiryeseong",
+      "Namgyeong",
+      "Hanseong",
+      "Hanyang",
+      "Keijō",
+      "Keijou",
+      "Gyeongseong"
+     ]
+    }
+   }
+  ],
+  "continent": "asia",
+  "areaKm2": 100295,
+  "claimedBy": [
+   {
+    "country": "PRK",
+    "name": {
+     "pt": "Coreia do Norte",
+     "en": "North Korea"
+    }
+   }
+  ],
+  "labelPoint": [
+   128.13,
+   36.385
+  ],
+  "flag": "flags/world/kor.svg"
+ },
+ {
+  "id": "KWT",
+  "iso2": "KW",
+  "wikidata": "Q817",
+  "name": {
+   "pt": "Kuwait",
+   "en": "Kuwait"
+  },
+  "aliases": {
+   "pt": [
+    "Estado do Kuwait",
+    "Koweit",
+    "Kuweit",
+    "Cuvaite",
+    "Covaite",
+    "Kuaite"
+   ],
+   "en": [
+    "State of Kuwait"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q35178",
+    "name": {
+     "pt": "Kuwait",
+     "en": "Kuwait City"
+    },
+    "aliases": {
+     "pt": [
+      "Quaite",
+      "Cidade do Kuwait",
+      "Couaite",
+      "Cuaite",
+      "Al Kuwait"
+     ],
+     "en": []
+    }
+   }
+  ],
+  "continent": "asia",
+  "areaKm2": 17818,
+  "claimedBy": [],
+  "labelPoint": [
+   47.314,
+   29.414
+  ],
+  "flag": "flags/world/kwt.svg"
+ },
+ {
+  "id": "LAO",
+  "iso2": "LA",
+  "wikidata": "Q819",
+  "name": {
+   "pt": "Laos",
+   "en": "Laos"
+  },
+  "aliases": {
+   "pt": [
+    "Laus",
+    "República Democrática Popular Lau"
+   ],
+   "en": [
+    "Lao People's Democratic Republic",
+    "Lao PDR"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q9326",
+    "name": {
+     "pt": "Vienciana",
+     "en": "Vientiane"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "Bientani",
+      "Viangchan",
+      "Vientane",
+      "Wei-t'ien",
+      "Vieṅ Čan",
+      "Vieṅg-Čăn",
+      "Wīangčhan",
+      "Viang chan",
+      "Vyentyan",
+      "Wiangcan",
+      "Vienchan",
+      "Viengchan",
+      "Nakhon Viangchan",
+      "Vien Chang",
+      "Vieng-Cæn",
+      "urban Vientiane"
+     ]
+    }
+   }
+  ],
+  "continent": "asia",
+  "areaKm2": 236800,
+  "claimedBy": [],
+  "labelPoint": [
+   102.534,
+   19.432
+  ],
+  "flag": "flags/world/lao.svg"
+ },
+ {
+  "id": "LBN",
+  "iso2": "LB",
+  "wikidata": "Q822",
+  "name": {
+   "pt": "Líbano",
+   "en": "Lebanon"
+  },
+  "aliases": {
+   "pt": [
+    "República do Líbano"
+   ],
+   "en": [
+    "Lebanese Republic",
+    "Republic of Lebanon",
+    "Lubnan",
+    "State of Lebanon"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q3820",
+    "name": {
+     "pt": "Beirute",
+     "en": "Beirut"
+    },
+    "aliases": {
+     "pt": [
+      "Beyrout"
+     ],
+     "en": []
+    }
+   }
+  ],
+  "continent": "asia",
+  "areaKm2": 10452,
+  "claimedBy": [],
+  "labelPoint": [
+   35.993,
+   34.133
+  ],
+  "flag": "flags/world/lbn.svg"
+ },
+ {
+  "id": "LBR",
+  "iso2": "LR",
+  "wikidata": "Q1014",
+  "name": {
+   "pt": "Libéria",
+   "en": "Liberia"
+  },
+  "aliases": {
+   "pt": [
+    "República da Libéria"
+   ],
+   "en": [
+    "Republic of Liberia",
+    "Liber"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q3748",
+    "name": {
+     "pt": "Monróvia",
+     "en": "Monrovia"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   }
+  ],
+  "continent": "africa",
+  "areaKm2": 111369,
+  "claimedBy": [],
+  "labelPoint": [
+   -9.46,
+   6.447
+  ],
+  "flag": "flags/world/lbr.svg"
+ },
+ {
+  "id": "LBY",
+  "iso2": "LY",
+  "wikidata": "Q1016",
+  "name": {
+   "pt": "Líbia",
+   "en": "Libya"
+  },
+  "aliases": {
+   "pt": [
+    "República da Líbia"
+   ],
+   "en": [
+    "State of Libya"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q3579",
+    "name": {
+     "pt": "Trípoli",
+     "en": "Tripoli"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "Tarabulus"
+     ]
+    }
+   }
+  ],
+  "continent": "africa",
+  "areaKm2": 1759540,
+  "claimedBy": [],
+  "labelPoint": [
+   18.011,
+   26.639
+  ],
+  "flag": "flags/world/lby.svg"
+ },
+ {
+  "id": "LCA",
+  "iso2": "LC",
+  "wikidata": "Q760",
+  "name": {
+   "pt": "Santa Lúcia",
+   "en": "Saint Lucia"
+  },
+  "aliases": {
+   "pt": [],
+   "en": [
+    "St. Lucia",
+    "Iyonola",
+    "Hewanorra"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q41699",
+    "name": {
+     "pt": "Castries",
+     "en": "Castries"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   }
+  ],
+  "continent": "north-america",
+  "areaKm2": 617.01,
+  "claimedBy": [],
+  "labelPoint": [
+   -60.98,
+   13.892
+  ],
+  "flag": "flags/world/lca.svg"
+ },
+ {
+  "id": "LIE",
+  "iso2": "LI",
+  "wikidata": "Q347",
+  "name": {
+   "pt": "Liechtenstein",
+   "en": "Liechtenstein"
+  },
+  "aliases": {
+   "pt": [
+    "Listenstaine",
+    "Principado de Liechtenstein"
+   ],
+   "en": [
+    "Principality of Liechtenstein"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q1844",
+    "name": {
+     "pt": "Vaduz",
+     "en": "Vaduz"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   }
+  ],
+  "continent": "europe",
+  "areaKm2": 160.5,
+  "claimedBy": [],
+  "labelPoint": [
+   9.559,
+   47.111
+  ],
+  "flag": "flags/world/lie.svg"
+ },
+ {
+  "id": "LKA",
+  "iso2": "LK",
+  "wikidata": "Q854",
+  "name": {
+   "pt": "Sri Lanka",
+   "en": "Sri Lanka"
+  },
+  "aliases": {
+   "pt": [
+    "Ceilão",
+    "República Democrática Socialista do Sri Lanka"
+   ],
+   "en": [
+    "Democratic Socialist Republic of Sri Lanka",
+    "Taprobane",
+    "Serendib",
+    "Ceylan",
+    "Srilanka"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q41963",
+    "name": {
+     "pt": "Kotte",
+     "en": "Sri Jayawardenepura Kotte"
+    },
+    "aliases": {
+     "pt": [
+      "Cote",
+      "Sri jayewardenepura kotte",
+      "Sri Jaywardenepura",
+      "Sri Jayawardenapura"
+     ],
+     "en": []
+    }
+   },
+   {
+    "wikidata": "Q35381",
+    "name": {
+     "pt": "Colombo",
+     "en": "Colombo"
+    },
+    "aliases": {
+     "pt": [
+      "Columbo",
+      "Kolamba"
+     ],
+     "en": []
+    }
+   }
+  ],
+  "continent": "asia",
+  "areaKm2": 65610,
+  "claimedBy": [],
+  "labelPoint": [
+   80.705,
+   7.581
+  ],
+  "flag": "flags/world/lka.svg"
+ },
+ {
+  "id": "LSO",
+  "iso2": "LS",
+  "wikidata": "Q1013",
+  "name": {
+   "pt": "Lesoto",
+   "en": "Lesotho"
+  },
+  "aliases": {
+   "pt": [],
+   "en": [
+    "Kingdom of Lesotho",
+    "Mountain Kingdom"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q3909",
+    "name": {
+     "pt": "Maseru",
+     "en": "Maseru"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   }
+  ],
+  "continent": "africa",
+  "areaKm2": 30355,
+  "claimedBy": [],
+  "labelPoint": [
+   28.247,
+   -29.48
+  ],
+  "flag": "flags/world/lso.svg"
+ },
+ {
+  "id": "LTU",
+  "iso2": "LT",
+  "wikidata": "Q37",
+  "name": {
+   "pt": "Lituânia",
+   "en": "Lithuania"
+  },
+  "aliases": {
+   "pt": [
+    "República da Lituânia"
+   ],
+   "en": [
+    "Republic of Lithuania"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q216",
+    "name": {
+     "pt": "Vilnius",
+     "en": "Vilnius"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "Viļņa",
+      "Vilnia",
+      "Vilno",
+      "Vilnyus",
+      "Vilnė"
+     ]
+    }
+   }
+  ],
+  "continent": "europe",
+  "areaKm2": 65300,
+  "claimedBy": [],
+  "labelPoint": [
+   24.09,
+   55.104
+  ],
+  "flag": "flags/world/ltu.svg"
+ },
+ {
+  "id": "LUX",
+  "iso2": "LU",
+  "wikidata": "Q32",
+  "name": {
+   "pt": "Luxemburgo",
+   "en": "Luxembourg"
+  },
+  "aliases": {
+   "pt": [
+    "Grão-Ducado de Luxemburgo"
+   ],
+   "en": [
+    "Grand Duchy of Luxembourg"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q1842",
+    "name": {
+     "pt": "Luxemburgo",
+     "en": "Luxembourg"
+    },
+    "aliases": {
+     "pt": [
+      "Cidade de Luxemburgo",
+      "Cidade do Luxemburgo"
+     ],
+     "en": [
+      "Luxembourg City",
+      "City of Luxembourg",
+      "Luxemburg"
+     ]
+    }
+   }
+  ],
+  "continent": "europe",
+  "areaKm2": 2593.05,
+  "claimedBy": [],
+  "labelPoint": [
+   6.078,
+   49.734
+  ],
+  "flag": "flags/world/lux.svg"
+ },
+ {
+  "id": "LVA",
+  "iso2": "LV",
+  "wikidata": "Q211",
+  "name": {
+   "pt": "Letônia",
+   "en": "Latvia"
+  },
+  "aliases": {
+   "pt": [
+    "República da Letônia"
+   ],
+   "en": [
+    "Leţmо̄ Vabāmо̄",
+    "Leţmо̄",
+    "Republic of Latvia",
+    "Latvian Republic",
+    "Latvija",
+    "Latveja",
+    "Latvijas Republika",
+    "Latvejas Republika"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q1773",
+    "name": {
+     "pt": "Riga",
+     "en": "Riga"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "Rige",
+      "Riia",
+      "Rija",
+      "Rīgõ"
+     ]
+    }
+   }
+  ],
+  "continent": "europe",
+  "areaKm2": 64593.77,
+  "claimedBy": [],
+  "labelPoint": [
+   25.459,
+   57.067
+  ],
+  "flag": "flags/world/lva.svg"
+ },
+ {
+  "id": "MAR",
+  "iso2": "MA",
+  "wikidata": "Q1028",
+  "name": {
+   "pt": "Marrocos",
+   "en": "Morocco"
+  },
+  "aliases": {
+   "pt": [],
+   "en": [
+    "Kingdom of Morocco",
+    "Marocco",
+    "al-Maġrib",
+    "Lmaġrib",
+    "Maroc"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q3551",
+    "name": {
+     "pt": "Rabat",
+     "en": "Rabat"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "Rabbat"
+     ]
+    }
+   }
+  ],
+  "continent": "africa",
+  "areaKm2": 446550,
+  "claimedBy": [],
+  "labelPoint": [
+   -7.187,
+   31.651
+  ],
+  "flag": "flags/world/mar.svg"
+ },
+ {
+  "id": "MCO",
+  "iso2": "MC",
+  "wikidata": "Q235",
+  "name": {
+   "pt": "Mônaco",
+   "en": "Monaco"
+  },
+  "aliases": {
+   "pt": [
+    "Principado de Mônaco",
+    "Principado do Mónaco"
+   ],
+   "en": [
+    "Principality of Monaco",
+    "Fort-Hercule",
+    "Principality and Diocese of Monaco",
+    "Principauté de Monaco",
+    "Mùnegu",
+    "Prinçipatu de Mùnegu",
+    "Principato di Monaco"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q235",
+    "name": {
+     "pt": "Mônaco",
+     "en": "Monaco"
+    },
+    "aliases": {
+     "pt": [
+      "Principado de Mônaco",
+      "Principado do Mónaco"
+     ],
+     "en": [
+      "Principality of Monaco",
+      "Fort-Hercule",
+      "Principality and Diocese of Monaco",
+      "Principauté de Monaco",
+      "Mùnegu",
+      "Prinçipatu de Mùnegu",
+      "Principato di Monaco"
+     ]
+    }
+   }
+  ],
+  "continent": "europe",
+  "areaKm2": 2.08,
+  "claimedBy": [],
+  "labelPoint": [
+   7.398,
+   43.74
+  ],
+  "flag": "flags/world/mco.svg"
+ },
+ {
+  "id": "MDA",
+  "iso2": "MD",
+  "wikidata": "Q217",
+  "name": {
+   "pt": "Moldávia",
+   "en": "Moldova"
+  },
+  "aliases": {
+   "pt": [
+    "República da Moldávia",
+    "República Moldova"
+   ],
+   "en": [
+    "Republic of Moldova"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q21197",
+    "name": {
+     "pt": "Chişinău",
+     "en": "Chișinău"
+    },
+    "aliases": {
+     "pt": [
+      "Quichinau",
+      "Quisinau",
+      "Quixinau",
+      "Quichineve",
+      "Kishinev"
+     ],
+     "en": [
+      "Keshenev",
+      "Kischinew",
+      "Kyshyniv",
+      "Kiszyniów",
+      "Kišinìv",
+      "Kişinev",
+      "Keshinov",
+      "Khisinau",
+      "Kishinef",
+      "Kiscinev",
+      "Kischiniov",
+      "Chisnau"
+     ]
+    }
+   }
+  ],
+  "continent": "europe",
+  "areaKm2": 33843.5,
+  "claimedBy": [],
+  "labelPoint": [
+   28.488,
+   47.435
+  ],
+  "flag": "flags/world/mda.svg"
+ },
+ {
+  "id": "MDG",
+  "iso2": "MG",
+  "wikidata": "Q1019",
+  "name": {
+   "pt": "Madagascar",
+   "en": "Madagascar"
+  },
+  "aliases": {
+   "pt": [
+    "República de Madagáscar",
+    "République de Madagascar",
+    "Repoblikan'i Madagasikara",
+    "República Malgaxe"
+   ],
+   "en": [
+    "Republic of Madagascar",
+    "Malagaskar",
+    "Malagascar"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q3915",
+    "name": {
+     "pt": "Antananarivo",
+     "en": "Antananarivo"
+    },
+    "aliases": {
+     "pt": [
+      "Tananarive",
+      "Iarivo",
+      "Analamanga"
+     ],
+     "en": []
+    }
+   }
+  ],
+  "continent": "africa",
+  "areaKm2": 587295,
+  "claimedBy": [],
+  "labelPoint": [
+   46.704,
+   -18.628
+  ],
+  "flag": "flags/world/mdg.svg"
+ },
+ {
+  "id": "MDV",
+  "iso2": "MV",
+  "wikidata": "Q826",
+  "name": {
+   "pt": "Maldivas",
+   "en": "Maldives"
+  },
+  "aliases": {
+   "pt": [],
+   "en": [
+    "Republic of Maldives"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q9347",
+    "name": {
+     "pt": "Malé",
+     "en": "Malé"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "Malé City"
+     ]
+    }
+   }
+  ],
+  "continent": "asia",
+  "areaKm2": 298,
+  "claimedBy": [],
+  "labelPoint": [
+   73.508,
+   4.174
+  ],
+  "flag": "flags/world/mdv.svg"
+ },
+ {
+  "id": "MEX",
+  "iso2": "MX",
+  "wikidata": "Q96",
+  "name": {
+   "pt": "México",
+   "en": "Mexico"
+  },
+  "aliases": {
+   "pt": [
+    "Estados Unidos Mexicanos",
+    "República Mexicana"
+   ],
+   "en": [
+    "Mexican United States",
+    "Mexican Republic",
+    "US of M",
+    "United States of Mexico",
+    "United Mexican States"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q1489",
+    "name": {
+     "pt": "Cidade do México",
+     "en": "Mexico City"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "City of Mexico",
+      "Mexico"
+     ]
+    }
+   }
+  ],
+  "continent": "north-america",
+  "areaKm2": 1960647,
+  "claimedBy": [],
+  "labelPoint": [
+   -102.289,
+   23.92
+  ],
+  "flag": "flags/world/mex.svg"
+ },
+ {
+  "id": "MHL",
+  "iso2": "MH",
+  "wikidata": "Q709",
+  "name": {
+   "pt": "Ilhas Marshall",
+   "en": "Marshall Islands"
+  },
+  "aliases": {
+   "pt": [],
+   "en": [
+    "Republic of the Marshall Islands"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q12919",
+    "name": {
+     "pt": "Majuro",
+     "en": "Majuro"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "Mājro"
+     ]
+    }
+   }
+  ],
+  "continent": "oceania",
+  "areaKm2": 181,
+  "claimedBy": [],
+  "labelPoint": [
+   171.194,
+   7.083
+  ],
+  "flag": "flags/world/mhl.svg"
+ },
+ {
+  "id": "MKD",
+  "iso2": "MK",
+  "wikidata": "Q221",
+  "name": {
+   "pt": "Macedônia do Norte",
+   "en": "North Macedonia"
+  },
+  "aliases": {
+   "pt": [
+    "Antiga República Iugoslava da Macedônia",
+    "Macedônia",
+    "República da Macedônia",
+    "República da Macedônia do Norte",
+    "Antiga República Jugoslava da Macedónia"
+   ],
+   "en": [
+    "Republic of North Macedonia",
+    "FYR Macedonia",
+    "Former Yugoslav Republic of Macedonia",
+    "Republic of Macedonia",
+    "Makedonia"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q384",
+    "name": {
+     "pt": "Skopje",
+     "en": "Skopje"
+    },
+    "aliases": {
+     "pt": [
+      "Escópia",
+      "Skopie",
+      "Escópie"
+     ],
+     "en": [
+      "Üsküb",
+      "Skoplje",
+      "Shkup",
+      "Shkupi"
+     ]
+    }
+   }
+  ],
+  "continent": "europe",
+  "areaKm2": 25713,
+  "claimedBy": [],
+  "labelPoint": [
+   21.556,
+   41.558
+  ],
+  "flag": "flags/world/mkd.svg"
+ },
+ {
+  "id": "MLI",
+  "iso2": "ML",
+  "wikidata": "Q912",
+  "name": {
+   "pt": "Mali",
+   "en": "Mali"
+  },
+  "aliases": {
+   "pt": [
+    "República do Mali"
+   ],
+   "en": [
+    "Republic of Mali"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q3703",
+    "name": {
+     "pt": "Bamaco",
+     "en": "Bamako"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   }
+  ],
+  "continent": "africa",
+  "areaKm2": 1241231,
+  "claimedBy": [],
+  "labelPoint": [
+   -2.038,
+   18.693
+  ],
+  "flag": "flags/world/mli.svg"
+ },
+ {
+  "id": "MLT",
+  "iso2": "MT",
+  "wikidata": "Q233",
+  "name": {
+   "pt": "Malta",
+   "en": "Malta"
+  },
+  "aliases": {
+   "pt": [
+    "República de Malta"
+   ],
+   "en": [
+    "Republic of Malta"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q23800",
+    "name": {
+     "pt": "Valeta",
+     "en": "Valletta"
+    },
+    "aliases": {
+     "pt": [
+      "Península de Valeta",
+      "Cidade de Valletta",
+      "La valletta",
+      "Humilissima Civitas Valletta",
+      "La Valetta"
+     ],
+     "en": [
+      "Capital of Malta",
+      "Il-Belt Valletta",
+      "Città Umilissima",
+      "La Valleta"
+     ]
+    }
+   }
+  ],
+  "continent": "europe",
+  "areaKm2": 316,
+  "claimedBy": [],
+  "labelPoint": [
+   14.433,
+   35.893
+  ],
+  "flag": "flags/world/mlt.svg"
+ },
+ {
+  "id": "MMR",
+  "iso2": "MM",
+  "wikidata": "Q836",
+  "name": {
+   "pt": "Myanmar",
+   "en": "Myanmar"
+  },
+  "aliases": {
+   "pt": [
+    "Birmânia",
+    "República da União de Mianmá",
+    "Mianmá",
+    "Mianmar",
+    "República da União de Myanmar"
+   ],
+   "en": [
+    "Republic of the Union of Myanmar",
+    "Union of Burma"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q37400",
+    "name": {
+     "pt": "Naypyidaw",
+     "en": "Naypyidaw"
+    },
+    "aliases": {
+     "pt": [
+      "Nepiedó",
+      "Naipidau",
+      "Nay pyi taw"
+     ],
+     "en": [
+      "Naypyitaw"
+     ]
+    }
+   }
+  ],
+  "continent": "asia",
+  "areaKm2": 676577.2,
+  "claimedBy": [],
+  "labelPoint": [
+   95.804,
+   21.574
+  ],
+  "flag": "flags/world/mmr.svg"
+ },
+ {
+  "id": "MNE",
+  "iso2": "ME",
+  "wikidata": "Q236",
+  "name": {
+   "pt": "Montenegro",
+   "en": "Montenegro"
+  },
+  "aliases": {
+   "pt": [],
+   "en": [
+    "Republic of Montenegro"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q23564",
+    "name": {
+     "pt": "Podgorica",
+     "en": "Podgorica"
+    },
+    "aliases": {
+     "pt": [
+      "Podgóritsa",
+      "Birziminium",
+      "Podegorica",
+      "Ribnica",
+      "Podgóritza"
+     ],
+     "en": [
+      "Capital of Montenegro",
+      "Burguriçe"
+     ]
+    }
+   }
+  ],
+  "continent": "europe",
+  "areaKm2": 13883,
+  "claimedBy": [],
+  "labelPoint": [
+   19.144,
+   42.803
+  ],
+  "flag": "flags/world/mne.svg"
+ },
+ {
+  "id": "MNG",
+  "iso2": "MN",
+  "wikidata": "Q711",
+  "name": {
+   "pt": "Mongólia",
+   "en": "Mongolia"
+  },
+  "aliases": {
+   "pt": [],
+   "en": [
+    "Mongol State",
+    "State of Mongolia"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q23430",
+    "name": {
+     "pt": "Ulan Bator",
+     "en": "Ulaanbaatar"
+    },
+    "aliases": {
+     "pt": [
+      "Ulã Bator"
+     ],
+     "en": [
+      "Niislel Hüree",
+      "East Hüree",
+      "Khan of Urga",
+      "Hüree",
+      "Ih Huree",
+      "Kulun",
+      "Wulan Batuo",
+      "Örgöö",
+      "Khüree",
+      "Ikh Khüree"
+     ]
+    }
+   }
+  ],
+  "continent": "asia",
+  "areaKm2": 1564116,
+  "claimedBy": [],
+  "labelPoint": [
+   104.15,
+   45.997
+  ],
+  "flag": "flags/world/mng.svg"
+ },
+ {
+  "id": "MOZ",
+  "iso2": "MZ",
+  "wikidata": "Q1029",
+  "name": {
+   "pt": "Moçambique",
+   "en": "Mozambique"
+  },
+  "aliases": {
+   "pt": [
+    "República de Moçambique"
+   ],
+   "en": [
+    "Republic of Mozambique"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q3889",
+    "name": {
+     "pt": "Maputo",
+     "en": "Maputo"
+    },
+    "aliases": {
+     "pt": [
+      "Lourenço Marques"
+     ],
+     "en": [
+      "Cam Phumo"
+     ]
+    }
+   }
+  ],
+  "continent": "africa",
+  "areaKm2": 801590,
+  "claimedBy": [],
+  "labelPoint": [
+   37.838,
+   -13.943
+  ],
+  "flag": "flags/world/moz.svg"
+ },
+ {
+  "id": "MRT",
+  "iso2": "MR",
+  "wikidata": "Q1025",
+  "name": {
+   "pt": "Mauritânia",
+   "en": "Mauritania"
+  },
+  "aliases": {
+   "pt": [],
+   "en": [
+    "Islamic Republic of Mauritania",
+    "Muritanya",
+    "Agawej",
+    "Gànnaar",
+    "Murutaane",
+    "Moritani",
+    "Mauretania"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q3688",
+    "name": {
+     "pt": "Nouakchott",
+     "en": "Nouakchott"
+    },
+    "aliases": {
+     "pt": [
+      "Nuaquexote",
+      "Nuaquechote"
+     ],
+     "en": [
+      "Nawākshūṭ",
+      "Capital of Mauritania",
+      "Nouakchot",
+      "Noukchott",
+      "Nuwākshūṭ"
+     ]
+    }
+   }
+  ],
+  "continent": "africa",
+  "areaKm2": 1030700,
+  "claimedBy": [],
+  "labelPoint": [
+   -9.74,
+   19.587
+  ],
+  "flag": "flags/world/mrt.svg"
+ },
+ {
+  "id": "MUS",
+  "iso2": "MU",
+  "wikidata": "Q1027",
+  "name": {
+   "pt": "Maurício",
+   "en": "Mauritius"
+  },
+  "aliases": {
+   "pt": [
+    "Maurícia",
+    "República de Maurício",
+    "República da Maurícia",
+    "Maurícias"
+   ],
+   "en": [
+    "Republic of Mauritius",
+    "Maurice",
+    "Moris"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q3929",
+    "name": {
+     "pt": "Porto Luís",
+     "en": "Port Louis"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "Porlwi",
+      "Polwi"
+     ]
+    }
+   }
+  ],
+  "continent": "africa",
+  "areaKm2": 2040,
+  "claimedBy": [],
+  "labelPoint": [
+   57.566,
+   -20.3
+  ],
+  "flag": "flags/world/mus.svg"
+ },
+ {
+  "id": "MWI",
+  "iso2": "MW",
+  "wikidata": "Q1020",
+  "name": {
+   "pt": "Malawi",
+   "en": "Malawi"
+  },
+  "aliases": {
+   "pt": [
+    "República do Malawi",
+    "Maláui",
+    "Malávi"
+   ],
+   "en": [
+    "Republic of Malawi"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q3876",
+    "name": {
+     "pt": "Lilongué",
+     "en": "Lilongwe"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   }
+  ],
+  "continent": "africa",
+  "areaKm2": 118484,
+  "claimedBy": [],
+  "labelPoint": [
+   33.608,
+   -13.387
+  ],
+  "flag": "flags/world/mwi.svg"
+ },
+ {
+  "id": "MYS",
+  "iso2": "MY",
+  "wikidata": "Q833",
+  "name": {
+   "pt": "Malásia",
+   "en": "Malaysia"
+  },
+  "aliases": {
+   "pt": [],
+   "en": [
+    "Federation of Malaysia",
+    "Malaysia Federation"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q1865",
+    "name": {
+     "pt": "Kuala Lumpur",
+     "en": "Kuala Lumpur"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "Federal Territory of Kuala Lumpur"
+     ]
+    }
+   },
+   {
+    "wikidata": "Q182378",
+    "name": {
+     "pt": "Putrajaya",
+     "en": "Putrajaya"
+    },
+    "aliases": {
+     "pt": [
+      "Putrajaia"
+     ],
+     "en": [
+      "Federal Territory of Purajaya"
+     ]
+    }
+   }
+  ],
+  "continent": "asia",
+  "areaKm2": 330803,
+  "claimedBy": [],
+  "labelPoint": [
+   113.837,
+   2.529
+  ],
+  "flag": "flags/world/mys.svg"
+ },
+ {
+  "id": "NAM",
+  "iso2": "NA",
+  "wikidata": "Q1030",
+  "name": {
+   "pt": "Namíbia",
+   "en": "Namibia"
+  },
+  "aliases": {
+   "pt": [
+    "República da Namíbia"
+   ],
+   "en": [
+    "Republic of Namibia"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q3935",
+    "name": {
+     "pt": "Windhoek",
+     "en": "Windhoek"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "Otjomuise",
+      "Windhuk",
+      "ǀAi-ǁGams",
+      "Windhök"
+     ]
+    }
+   }
+  ],
+  "continent": "africa",
+  "areaKm2": 825615,
+  "claimedBy": [],
+  "labelPoint": [
+   17.108,
+   -20.575
+  ],
+  "flag": "flags/world/nam.svg"
+ },
+ {
+  "id": "NER",
+  "iso2": "NE",
+  "wikidata": "Q1032",
+  "name": {
+   "pt": "Níger",
+   "en": "Niger"
+  },
+  "aliases": {
+   "pt": [
+    "República do Níger"
+   ],
+   "en": [
+    "Republic of Niger",
+    "Republic Niger",
+    "Republic of the Niger"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q3674",
+    "name": {
+     "pt": "Niamey",
+     "en": "Niamey"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "Niamey Urban Community"
+     ]
+    }
+   }
+  ],
+  "continent": "africa",
+  "areaKm2": 1267000,
+  "claimedBy": [],
+  "labelPoint": [
+   9.504,
+   17.446
+  ],
+  "flag": "flags/world/ner.svg"
+ },
+ {
+  "id": "NGA",
+  "iso2": "NG",
+  "wikidata": "Q1033",
+  "name": {
+   "pt": "Nigéria",
+   "en": "Nigeria"
+  },
+  "aliases": {
+   "pt": [
+    "República Federal da Nigéria"
+   ],
+   "en": [
+    "Federal Republic of Nigeria",
+    "Naija"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q3787",
+    "name": {
+     "pt": "Abuja",
+     "en": "Abuja"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   }
+  ],
+  "continent": "africa",
+  "areaKm2": 923768,
+  "claimedBy": [],
+  "labelPoint": [
+   7.503,
+   9.44
+  ],
+  "flag": "flags/world/nga.svg"
+ },
+ {
+  "id": "NIC",
+  "iso2": "NI",
+  "wikidata": "Q811",
+  "name": {
+   "pt": "Nicarágua",
+   "en": "Nicaragua"
+  },
+  "aliases": {
+   "pt": [
+    "República da Nicaragua"
+   ],
+   "en": [
+    "Republic of Nicaragua"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q131546626",
+    "name": {
+     "pt": "Managua",
+     "en": "Managua"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "Santiago de Managua",
+      "Managua City",
+      "City of Managua"
+     ]
+    }
+   }
+  ],
+  "continent": "north-america",
+  "areaKm2": 120340,
+  "claimedBy": [],
+  "labelPoint": [
+   -85.069,
+   12.671
+  ],
+  "flag": "flags/world/nic.svg"
+ },
+ {
+  "id": "NLD",
+  "iso2": "NL",
+  "wikidata": "Q55",
+  "name": {
+   "pt": "Países Baixos",
+   "en": "Netherlands"
+  },
+  "aliases": {
+   "pt": [
+    "Holanda",
+    "os Países Baixos",
+    "Nederland"
+   ],
+   "en": [
+    "Holland",
+    "Nederlanden",
+    "de Nederlanden"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q727",
+    "name": {
+     "pt": "Amsterdã",
+     "en": "Amsterdam"
+    },
+    "aliases": {
+     "pt": [
+      "Amesterdão",
+      "Abstradam",
+      "Mastradama"
+     ],
+     "en": [
+      "Mokum",
+      "A'dam"
+     ]
+    }
+   }
+  ],
+  "continent": "europe",
+  "areaKm2": 37378,
+  "claimedBy": [],
+  "labelPoint": [
+   5.611,
+   52.422
+  ],
+  "flag": "flags/world/nld.svg"
+ },
+ {
+  "id": "NOR",
+  "iso2": "NO",
+  "wikidata": "Q20",
+  "name": {
+   "pt": "Noruega",
+   "en": "Norway"
+  },
+  "aliases": {
+   "pt": [
+    "Reino da Noruega"
+   ],
+   "en": [
+    "Kingdom of Norway"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q585",
+    "name": {
+     "pt": "Oslo",
+     "en": "Oslo"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   }
+  ],
+  "continent": "europe",
+  "areaKm2": 385207,
+  "claimedBy": [],
+  "labelPoint": [
+   9.68,
+   61.357
+  ],
+  "flag": "flags/world/nor.svg"
+ },
+ {
+  "id": "NPL",
+  "iso2": "NP",
+  "wikidata": "Q837",
+  "name": {
+   "pt": "Nepal",
+   "en": "Nepal"
+  },
+  "aliases": {
+   "pt": [
+    "República Democrática Federal do Nepal"
+   ],
+   "en": [
+    "Federal Democratic Republic of Nepal",
+    "Nipal",
+    "Nekbal",
+    "Nehpal",
+    "Palpou",
+    "Naipala",
+    "Pa-lo-pou",
+    "Pa-le-pou",
+    "Pa-eul-pou",
+    "Paï-pou",
+    "Balpo",
+    "Balbo",
+    "Bal-bo",
+    "Bal-po'i yul",
+    "Bal-yul",
+    "Naipál",
+    "Necbal",
+    "Nei-pal",
+    "Népaal",
+    "Nepall",
+    "Nepaul",
+    "Ne-pel",
+    "Nercerri",
+    "Niepal",
+    "Ni-po-lo",
+    "Ni-po-louo",
+    "Palpa",
+    "Balpo-yul",
+    "Nekpal"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q3037",
+    "name": {
+     "pt": "Catmandu",
+     "en": "Kathmandu"
+    },
+    "aliases": {
+     "pt": [
+      "Cidade Metropolitana de Catmandu",
+      "Vale de Catmandu",
+      "Khatmandu",
+      "Cidade dos Templos",
+      "jiade mandu"
+     ],
+     "en": [
+      "Kathmandu Metropolitan City",
+      "Kathmandu Valley",
+      "City of Temples",
+      "Kasthamandap",
+      "Kantipur",
+      "Yambu",
+      "Katmandu",
+      "Cadmendu",
+      "Kadmendu",
+      "Catmeduour",
+      "Catmandir",
+      "Katmandou",
+      "Katmandir"
+     ]
+    }
+   }
+  ],
+  "continent": "asia",
+  "areaKm2": 147181.25,
+  "claimedBy": [],
+  "labelPoint": [
+   83.64,
+   28.298
+  ],
+  "flag": "flags/world/npl.svg"
+ },
+ {
+  "id": "NRU",
+  "iso2": "NR",
+  "wikidata": "Q697",
+  "name": {
+   "pt": "Nauru",
+   "en": "Nauru"
+  },
+  "aliases": {
+   "pt": [
+    "Naoero",
+    "República de Nauru",
+    "Pleasant Island",
+    "Ilha Aprazível",
+    "República de Naoero"
+   ],
+   "en": [
+    "Republic of Naoero",
+    "Republic of Nauru"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q31026",
+    "name": {
+     "pt": "Yaren",
+     "en": "Yaren District"
+    },
+    "aliases": {
+     "pt": [
+      "Iarém"
+     ],
+     "en": [
+      "Moqua",
+      "Makwa"
+     ]
+    }
+   }
+  ],
+  "continent": "oceania",
+  "areaKm2": 21.2,
+  "claimedBy": [],
+  "labelPoint": [
+   166.933,
+   -0.52
+  ],
+  "flag": "flags/world/nru.svg"
+ },
+ {
+  "id": "NZL",
+  "iso2": "NZ",
+  "wikidata": "Q664",
+  "name": {
+   "pt": "Nova Zelândia",
+   "en": "New Zealand"
+  },
+  "aliases": {
+   "pt": [],
+   "en": [
+    "Dominion of New Zealand",
+    "Aotearoa New Zealand"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q23661",
+    "name": {
+     "pt": "Wellington",
+     "en": "Wellington"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "Te Whanga-nui-a-Tara",
+      "Te Whanganui-a-Tara",
+      "Pōneke",
+      "Wellington metropolitan area",
+      "Port Nicholson",
+      "Port Nick"
+     ]
+    }
+   }
+  ],
+  "continent": "oceania",
+  "areaKm2": 268021,
+  "claimedBy": [],
+  "labelPoint": [
+   172.787,
+   -39.759
+  ],
+  "flag": "flags/world/nzl.svg"
+ },
+ {
+  "id": "OMN",
+  "iso2": "OM",
+  "wikidata": "Q842",
+  "name": {
+   "pt": "Omã",
+   "en": "Oman"
+  },
+  "aliases": {
+   "pt": [
+    "Omão",
+    "Sultanato de Omã"
+   ],
+   "en": [
+    "Sultanate of Oman",
+    "Uman"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q3826",
+    "name": {
+     "pt": "Mascate",
+     "en": "Muscat"
+    },
+    "aliases": {
+     "pt": [
+      "Muskat"
+     ],
+     "en": [
+      "Maskat"
+     ]
+    }
+   }
+  ],
+  "continent": "asia",
+  "areaKm2": 309500,
+  "claimedBy": [],
+  "labelPoint": [
+   57.337,
+   22.12
+  ],
+  "flag": "flags/world/omn.svg"
+ },
+ {
+  "id": "PAK",
+  "iso2": "PK",
+  "wikidata": "Q843",
+  "name": {
+   "pt": "Paquistão",
+   "en": "Pakistan"
+  },
+  "aliases": {
+   "pt": [
+    "República Islâmica do Paquistão"
+   ],
+   "en": [
+    "Islamic Republic of Pakistan",
+    "Republic of Pakistan",
+    "Hồi Quốc",
+    "Tây Hồi"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q1362",
+    "name": {
+     "pt": "Islamabad",
+     "en": "Islamabad"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   }
+  ],
+  "continent": "asia",
+  "areaKm2": 881913,
+  "claimedBy": [],
+  "labelPoint": [
+   68.546,
+   29.328
+  ],
+  "flag": "flags/world/pak.svg"
+ },
+ {
+  "id": "PAN",
+  "iso2": "PA",
+  "wikidata": "Q804",
+  "name": {
+   "pt": "Panamá",
+   "en": "Panama"
+  },
+  "aliases": {
+   "pt": [
+    "República do Panamá"
+   ],
+   "en": [
+    "Republic of Panama"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q3306",
+    "name": {
+     "pt": "Cidade do Panamá",
+     "en": "Panama City"
+    },
+    "aliases": {
+     "pt": [
+      "Ciudad de Panamá",
+      "Panamá"
+     ],
+     "en": []
+    }
+   }
+  ],
+  "continent": "north-america",
+  "areaKm2": 74177.3,
+  "claimedBy": [],
+  "labelPoint": [
+   -80.352,
+   8.722
+  ],
+  "flag": "flags/world/pan.svg"
+ },
+ {
+  "id": "PER",
+  "iso2": "PE",
+  "wikidata": "Q419",
+  "name": {
+   "pt": "Peru",
+   "en": "Peru"
+  },
+  "aliases": {
+   "pt": [],
+   "en": [
+    "Republic of Peru",
+    "Republica del Peru"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q2868",
+    "name": {
+     "pt": "Lima",
+     "en": "Lima"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "City of the Kings"
+     ]
+    }
+   }
+  ],
+  "continent": "south-america",
+  "areaKm2": 1285215.6,
+  "claimedBy": [],
+  "labelPoint": [
+   -72.9,
+   -12.977
+  ],
+  "flag": "flags/world/per.svg"
+ },
+ {
+  "id": "PHL",
+  "iso2": "PH",
+  "wikidata": "Q928",
+  "name": {
+   "pt": "Filipinas",
+   "en": "Philippines"
+  },
+  "aliases": {
+   "pt": [
+    "República das Filipinas"
+   ],
+   "en": [
+    "Republic of the Philippines",
+    "Philippine Islands"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q1461",
+    "name": {
+     "pt": "Manila",
+     "en": "Manila"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "City of Manila",
+      "Pearl of the Orient",
+      "Queen City of the Pacific and others"
+     ]
+    }
+   }
+  ],
+  "continent": "asia",
+  "areaKm2": 343448,
+  "claimedBy": [],
+  "labelPoint": [
+   122.465,
+   11.198
+  ],
+  "flag": "flags/world/phl.svg"
+ },
+ {
+  "id": "PLW",
+  "iso2": "PW",
+  "wikidata": "Q695",
+  "name": {
+   "pt": "Palau",
+   "en": "Palau"
+  },
+  "aliases": {
+   "pt": [],
+   "en": [
+    "Republic of Palau",
+    "Belau",
+    "Pelew",
+    "Republic of Belau",
+    "Pelew islands",
+    "Peeloo",
+    "Pellew"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q515229",
+    "name": {
+     "pt": "Ngerulmud",
+     "en": "Ngerulmud"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   }
+  ],
+  "continent": "oceania",
+  "areaKm2": 465.55,
+  "claimedBy": [],
+  "labelPoint": [
+   134.58,
+   7.518
+  ],
+  "flag": "flags/world/plw.svg"
+ },
+ {
+  "id": "PNG",
+  "iso2": "PG",
+  "wikidata": "Q691",
+  "name": {
+   "pt": "Papua-Nova Guiné",
+   "en": "Papua New Guinea"
+  },
+  "aliases": {
+   "pt": [
+    "Estado Independente da Papua-Nova Guiné"
+   ],
+   "en": [
+    "Independent State of Papua New Guinea"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q36526",
+    "name": {
+     "pt": "Port Moresby",
+     "en": "Port Moresby"
+    },
+    "aliases": {
+     "pt": [
+      "Porto Moresby"
+     ],
+     "en": []
+    }
+   }
+  ],
+  "continent": "oceania",
+  "areaKm2": 462840,
+  "claimedBy": [],
+  "labelPoint": [
+   143.91,
+   -5.695
+  ],
+  "flag": "flags/world/png.svg"
+ },
+ {
+  "id": "POL",
+  "iso2": "PL",
+  "wikidata": "Q36",
+  "name": {
+   "pt": "Polônia",
+   "en": "Poland"
+  },
+  "aliases": {
+   "pt": [
+    "República da Polônia"
+   ],
+   "en": [
+    "Republic of Poland"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q270",
+    "name": {
+     "pt": "Varsóvia",
+     "en": "Warsaw"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   }
+  ],
+  "continent": "europe",
+  "areaKm2": 312683,
+  "claimedBy": [],
+  "labelPoint": [
+   19.49,
+   51.99
+  ],
+  "flag": "flags/world/pol.svg"
+ },
+ {
+  "id": "PRK",
+  "iso2": "KP",
+  "wikidata": "Q423",
+  "name": {
+   "pt": "Coreia do Norte",
+   "en": "North Korea"
+  },
+  "aliases": {
+   "pt": [
+    "República Popular Democrática da Coreia do Norte",
+    "República Popular Democrática da Coreia"
+   ],
+   "en": [
+    "Democratic People's Republic of Korea",
+    "DPR Korea"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q18808",
+    "name": {
+     "pt": "Pyongyang",
+     "en": "Pyongyang"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "Pyeongyang",
+      "Capital of Revolution",
+      "Ryugyong",
+      "P’yŏng-yang"
+     ]
+    }
+   }
+  ],
+  "continent": "asia",
+  "areaKm2": 120540,
+  "claimedBy": [],
+  "labelPoint": [
+   126.445,
+   39.885
+  ],
+  "flag": "flags/world/prk.svg"
+ },
+ {
+  "id": "PRT",
+  "iso2": "PT",
+  "wikidata": "Q45",
+  "name": {
+   "pt": "Portugal",
+   "en": "Portugal"
+  },
+  "aliases": {
+   "pt": [],
+   "en": [
+    "Portuguese Republic"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q597",
+    "name": {
+     "pt": "Lisboa",
+     "en": "Lisbon"
+    },
+    "aliases": {
+     "pt": [
+      "Município de Lisboa"
+     ],
+     "en": []
+    }
+   }
+  ],
+  "continent": "europe",
+  "areaKm2": 92225,
+  "claimedBy": [],
+  "labelPoint": [
+   -8.272,
+   39.607
+  ],
+  "flag": "flags/world/prt.svg"
+ },
+ {
+  "id": "PRY",
+  "iso2": "PY",
+  "wikidata": "Q733",
+  "name": {
+   "pt": "Paraguai",
+   "en": "Paraguay"
+  },
+  "aliases": {
+   "pt": [],
+   "en": [
+    "Republic of Paraguay",
+    "Heart of South America"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q2933",
+    "name": {
+     "pt": "Assunção",
+     "en": "Asunción"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "Assumption"
+     ]
+    }
+   }
+  ],
+  "continent": "south-america",
+  "areaKm2": 406756,
+  "claimedBy": [],
+  "labelPoint": [
+   -60.146,
+   -21.675
+  ],
+  "flag": "flags/world/pry.svg"
+ },
+ {
+  "id": "PSE",
+  "iso2": "PS",
+  "wikidata": "Q219060",
+  "name": {
+   "pt": "Palestina",
+   "en": "Palestine"
+  },
+  "aliases": {
+   "pt": [
+    "Estado da Palestina",
+    "Faixa de Gaza"
+   ],
+   "en": [
+    "State of Palestine"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q212938",
+    "name": {
+     "pt": "Jerusalém Oriental",
+     "en": "East Jerusalem"
+    },
+    "aliases": {
+     "pt": [
+      "Este de Jerusalém"
+     ],
+     "en": [
+      "Eastern Jerusalem",
+      "Arab Jerusalem"
+     ]
+    }
+   },
+   {
+    "wikidata": "Q158119",
+    "name": {
+     "pt": "Ramallah",
+     "en": "Ramallah"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   }
+  ],
+  "continent": "asia",
+  "areaKm2": 6020,
+  "claimedBy": [],
+  "labelPoint": [
+   34.281,
+   31.306
+  ],
+  "flag": "flags/world/pse.svg"
+ },
+ {
+  "id": "QAT",
+  "iso2": "QA",
+  "wikidata": "Q846",
+  "name": {
+   "pt": "Catar",
+   "en": "Qatar"
+  },
+  "aliases": {
+   "pt": [
+    "Estado do Catar"
+   ],
+   "en": [
+    "State of Qatar"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q3861",
+    "name": {
+     "pt": "Doha",
+     "en": "Doha"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   }
+  ],
+  "continent": "asia",
+  "areaKm2": 11437,
+  "claimedBy": [],
+  "labelPoint": [
+   51.144,
+   25.237
+  ],
+  "flag": "flags/world/qat.svg"
+ },
+ {
+  "id": "ROU",
+  "iso2": "RO",
+  "wikidata": "Q218",
+  "name": {
+   "pt": "Romênia",
+   "en": "Romania"
+  },
+  "aliases": {
+   "pt": [],
+   "en": [
+    "Roumania",
+    "Rumania"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q19660",
+    "name": {
+     "pt": "Bucareste",
+     "en": "Bucharest"
+    },
+    "aliases": {
+     "pt": [
+      "Bucuresti"
+     ],
+     "en": [
+      "Little Paris",
+      "Paris of the East"
+     ]
+    }
+   }
+  ],
+  "continent": "europe",
+  "areaKm2": 238397,
+  "claimedBy": [],
+  "labelPoint": [
+   24.973,
+   45.733
+  ],
+  "flag": "flags/world/rou.svg"
+ },
+ {
+  "id": "RUS",
+  "iso2": "RU",
+  "wikidata": "Q159",
+  "name": {
+   "pt": "Rússia",
+   "en": "Russia"
+  },
+  "aliases": {
+   "pt": [
+    "Federação da Rússia",
+    "Federação Russa"
+   ],
+   "en": [
+    "Russian Federation"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q649",
+    "name": {
+     "pt": "Moscou",
+     "en": "Moscow"
+    },
+    "aliases": {
+     "pt": [
+      "Moscovo"
+     ],
+     "en": [
+      "City of Moscow",
+      "Москва",
+      "Mosky",
+      "Moskovĭ",
+      "Moskvi",
+      "Moskve"
+     ]
+    }
+   }
+  ],
+  "continent": "europe",
+  "areaKm2": 17098246,
+  "claimedBy": [],
+  "labelPoint": [
+   44.686,
+   58.249
+  ],
+  "flag": "flags/world/rus.svg"
+ },
+ {
+  "id": "RWA",
+  "iso2": "RW",
+  "wikidata": "Q1037",
+  "name": {
+   "pt": "Ruanda",
+   "en": "Rwanda"
+  },
+  "aliases": {
+   "pt": [],
+   "en": [
+    "Republic of Rwanda",
+    "Land of a Thousand Hills"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q3859",
+    "name": {
+     "pt": "Kigali",
+     "en": "Kigali"
+    },
+    "aliases": {
+     "pt": [
+      "Quigali"
+     ],
+     "en": [
+      "City of Kigali",
+      "Kigali City"
+     ]
+    }
+   }
+  ],
+  "continent": "africa",
+  "areaKm2": 26338,
+  "claimedBy": [],
+  "labelPoint": [
+   30.104,
+   -1.897
+  ],
+  "flag": "flags/world/rwa.svg"
+ },
+ {
+  "id": "SAU",
+  "iso2": "SA",
+  "wikidata": "Q851",
+  "name": {
+   "pt": "Arábia Saudita",
+   "en": "Saudi Arabia"
+  },
+  "aliases": {
+   "pt": [
+    "Reino da Arábia Saudita"
+   ],
+   "en": [
+    "Kingdom of Saudi Arabia",
+    "Saudi"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q3692",
+    "name": {
+     "pt": "Riade",
+     "en": "Riyadh"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "Reyadh",
+      "AlRiyadh",
+      "Al-Riyadh",
+      "Ar-Riyadh"
+     ]
+    }
+   }
+  ],
+  "continent": "asia",
+  "areaKm2": 2250000,
+  "claimedBy": [],
+  "labelPoint": [
+   44.7,
+   23.807
+  ],
+  "flag": "flags/world/sau.svg"
+ },
+ {
+  "id": "SDN",
+  "iso2": "SD",
+  "wikidata": "Q1049",
+  "name": {
+   "pt": "Sudão",
+   "en": "Sudan"
+  },
+  "aliases": {
+   "pt": [],
+   "en": [
+    "Republic of the Sudan",
+    "as-Sūdān",
+    "North Sudan",
+    "Republic of Sudan",
+    "Soudan",
+    "al-Sudan"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q1963",
+    "name": {
+     "pt": "Cartum",
+     "en": "Khartoum"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "Khartum"
+     ]
+    }
+   }
+  ],
+  "continent": "africa",
+  "areaKm2": 1878000,
+  "claimedBy": [],
+  "labelPoint": [
+   29.261,
+   16.331
+  ],
+  "flag": "flags/world/sdn.svg"
+ },
+ {
+  "id": "SEN",
+  "iso2": "SN",
+  "wikidata": "Q1041",
+  "name": {
+   "pt": "Senegal",
+   "en": "Senegal"
+  },
+  "aliases": {
+   "pt": [
+    "República do Senegal"
+   ],
+   "en": [
+    "Republic of Senegal"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q3718",
+    "name": {
+     "pt": "Dacar",
+     "en": "Dakar"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   }
+  ],
+  "continent": "africa",
+  "areaKm2": 196722,
+  "claimedBy": [],
+  "labelPoint": [
+   -14.779,
+   15.138
+  ],
+  "flag": "flags/world/sen.svg"
+ },
+ {
+  "id": "SGP",
+  "iso2": "SG",
+  "wikidata": "Q334",
+  "name": {
+   "pt": "Singapura",
+   "en": "Singapore"
+  },
+  "aliases": {
+   "pt": [
+    "República de Singapura",
+    "Cingapura",
+    "República de Cingapura"
+   ],
+   "en": [
+    "Republic of Singapore",
+    "Singapore City",
+    "Lion City",
+    "Garden City",
+    "S'pore"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q334",
+    "name": {
+     "pt": "Singapura",
+     "en": "Singapore"
+    },
+    "aliases": {
+     "pt": [
+      "República de Singapura",
+      "Cingapura",
+      "República de Cingapura"
+     ],
+     "en": [
+      "Republic of Singapore",
+      "Singapore City",
+      "Lion City",
+      "Garden City",
+      "S'pore"
+     ]
+    }
+   }
+  ],
+  "continent": "asia",
+  "areaKm2": 719.1,
+  "claimedBy": [],
+  "labelPoint": [
+   103.817,
+   1.367
+  ],
+  "flag": "flags/world/sgp.svg"
+ },
+ {
+  "id": "SLB",
+  "iso2": "SB",
+  "wikidata": "Q685",
+  "name": {
+   "pt": "Ilhas Salomão",
+   "en": "Solomon Islands"
+  },
+  "aliases": {
+   "pt": [],
+   "en": []
+  },
+  "capitals": [
+   {
+    "wikidata": "Q40921",
+    "name": {
+     "pt": "Honiara",
+     "en": "Honiara"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   }
+  ],
+  "continent": "oceania",
+  "areaKm2": 28400,
+  "claimedBy": [],
+  "labelPoint": [
+   159.17,
+   -8.03
+  ],
+  "flag": "flags/world/slb.svg"
+ },
+ {
+  "id": "SLE",
+  "iso2": "SL",
+  "wikidata": "Q1044",
+  "name": {
+   "pt": "Serra Leoa",
+   "en": "Sierra Leone"
+  },
+  "aliases": {
+   "pt": [],
+   "en": [
+    "Republic of Sierra Leone"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q3780",
+    "name": {
+     "pt": "Freetown",
+     "en": "Freetown"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   }
+  ],
+  "continent": "africa",
+  "areaKm2": 71740,
+  "claimedBy": [],
+  "labelPoint": [
+   -11.764,
+   8.617
+  ],
+  "flag": "flags/world/sle.svg"
+ },
+ {
+  "id": "SLV",
+  "iso2": "SV",
+  "wikidata": "Q792",
+  "name": {
+   "pt": "El Salvador",
+   "en": "El Salvador"
+  },
+  "aliases": {
+   "pt": [
+    "República de El Salvador"
+   ],
+   "en": [
+    "Republic of El Salvador",
+    "Salvador"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q3110",
+    "name": {
+     "pt": "San Salvador",
+     "en": "San Salvador"
+    },
+    "aliases": {
+     "pt": [
+      "São Salvador"
+     ],
+     "en": []
+    }
+   }
+  ],
+  "continent": "north-america",
+  "areaKm2": 21041,
+  "claimedBy": [],
+  "labelPoint": [
+   -88.89,
+   13.685
+  ],
+  "flag": "flags/world/slv.svg"
+ },
+ {
+  "id": "SMR",
+  "iso2": "SM",
+  "wikidata": "Q238",
+  "name": {
+   "pt": "San Marino",
+   "en": "San Marino"
+  },
+  "aliases": {
+   "pt": [
+    "Sereníssima República de San Marino",
+    "São Marinho",
+    "São Marino",
+    "Mais Serena República de San Marino"
+   ],
+   "en": [
+    "Most Serene Republic of San Marino"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q1848",
+    "name": {
+     "pt": "San Marino",
+     "en": "San Marino"
+    },
+    "aliases": {
+     "pt": [
+      "São Marinho",
+      "Cidade de San Marino"
+     ],
+     "en": [
+      "City of San Marino"
+     ]
+    }
+   }
+  ],
+  "continent": "europe",
+  "areaKm2": 61.2,
+  "claimedBy": [],
+  "labelPoint": [
+   12.441,
+   43.934
+  ],
+  "flag": "flags/world/smr.svg"
+ },
+ {
+  "id": "SOM",
+  "iso2": "SO",
+  "wikidata": "Q1045",
+  "name": {
+   "pt": "Somália",
+   "en": "Somalia"
+  },
+  "aliases": {
+   "pt": [
+    "República Federal da Somália"
+   ],
+   "en": [
+    "Federal Republic of Somalia"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q2449",
+    "name": {
+     "pt": "Mogadíscio",
+     "en": "Mogadishu"
+    },
+    "aliases": {
+     "pt": [
+      "Mogadixo"
+     ],
+     "en": [
+      "Xamar",
+      "Seat of the Shah",
+      "Hamar",
+      "Maqadīshū"
+     ]
+    }
+   }
+  ],
+  "continent": "africa",
+  "areaKm2": 637657,
+  "claimedBy": [],
+  "labelPoint": [
+   43.935,
+   3.16
+  ],
+  "flag": "flags/world/som.svg"
+ },
+ {
+  "id": "SRB",
+  "iso2": "RS",
+  "wikidata": "Q403",
+  "name": {
+   "pt": "Sérvia",
+   "en": "Serbia"
+  },
+  "aliases": {
+   "pt": [
+    "Voivodina",
+    "República da Sérvia"
+   ],
+   "en": [
+    "Republic of Serbia"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q3711",
+    "name": {
+     "pt": "Belgrado",
+     "en": "Belgrade"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "City of Belgrade"
+     ]
+    }
+   }
+  ],
+  "continent": "europe",
+  "areaKm2": 88499,
+  "claimedBy": [],
+  "labelPoint": [
+   19.929,
+   45.552
+  ],
+  "flag": "flags/world/srb.svg"
+ },
+ {
+  "id": "SSD",
+  "iso2": "SS",
+  "wikidata": "Q958",
+  "name": {
+   "pt": "Sudão do Sul",
+   "en": "South Sudan"
+  },
+  "aliases": {
+   "pt": [
+    "República do Sudão do Sul",
+    "Sul do Sudão"
+   ],
+   "en": [
+    "Republic of South Sudan",
+    "Southern Sudan"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q1947",
+    "name": {
+     "pt": "Juba",
+     "en": "Juba"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   }
+  ],
+  "continent": "africa",
+  "areaKm2": 644329,
+  "claimedBy": [],
+  "labelPoint": [
+   30.39,
+   7.23
+  ],
+  "flag": "flags/world/ssd.svg"
+ },
+ {
+  "id": "STP",
+  "iso2": "ST",
+  "wikidata": "Q1039",
+  "name": {
+   "pt": "São Tomé e Príncipe",
+   "en": "São Tomé and Príncipe"
+  },
+  "aliases": {
+   "pt": [
+    "República Democrática de São Tomé e Príncipe",
+    "São Tomé og Príncipe"
+   ],
+   "en": [
+    "Democratic Republic of São Tomé and Príncipe"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q3932",
+    "name": {
+     "pt": "São Tomé",
+     "en": "São Tomé"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   }
+  ],
+  "continent": "africa",
+  "areaKm2": 1001,
+  "claimedBy": [],
+  "labelPoint": [
+   7.021,
+   0.971
+  ],
+  "flag": "flags/world/stp.svg"
+ },
+ {
+  "id": "SUR",
+  "iso2": "SR",
+  "wikidata": "Q730",
+  "name": {
+   "pt": "Suriname",
+   "en": "Suriname"
+  },
+  "aliases": {
+   "pt": [
+    "Guiana Holandesa"
+   ],
+   "en": [
+    "Surinam",
+    "Republic of Suriname",
+    "Republic of Surinam",
+    "Dutch Guiana",
+    "Surrinam"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q3001",
+    "name": {
+     "pt": "Paramaribo",
+     "en": "Paramaribo"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "Parbo"
+     ]
+    }
+   }
+  ],
+  "continent": "south-america",
+  "areaKm2": 163270,
+  "claimedBy": [],
+  "labelPoint": [
+   -55.911,
+   4.144
+  ],
+  "flag": "flags/world/sur.svg"
+ },
+ {
+  "id": "SVK",
+  "iso2": "SK",
+  "wikidata": "Q214",
+  "name": {
+   "pt": "Eslováquia",
+   "en": "Slovakia"
+  },
+  "aliases": {
+   "pt": [
+    "República Eslovaca"
+   ],
+   "en": [
+    "Slovak Republic"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q1780",
+    "name": {
+     "pt": "Bratislava",
+     "en": "Bratislava"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   }
+  ],
+  "continent": "europe",
+  "areaKm2": 49033.72,
+  "claimedBy": [],
+  "labelPoint": [
+   19.05,
+   48.734
+  ],
+  "flag": "flags/world/svk.svg"
+ },
+ {
+  "id": "SVN",
+  "iso2": "SI",
+  "wikidata": "Q215",
+  "name": {
+   "pt": "Eslovênia",
+   "en": "Slovenia"
+  },
+  "aliases": {
+   "pt": [
+    "República da Eslovênia",
+    "Slovenija"
+   ],
+   "en": [
+    "Republic of Slovenia"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q437",
+    "name": {
+     "pt": "Liubliana",
+     "en": "Ljubljana"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "Lublana",
+      "Labacum"
+     ]
+    }
+   }
+  ],
+  "continent": "europe",
+  "areaKm2": 20271,
+  "claimedBy": [],
+  "labelPoint": [
+   14.915,
+   46.061
+  ],
+  "flag": "flags/world/svn.svg"
+ },
+ {
+  "id": "SWE",
+  "iso2": "SE",
+  "wikidata": "Q34",
+  "name": {
+   "pt": "Suécia",
+   "en": "Sweden"
+  },
+  "aliases": {
+   "pt": [
+    "Reino da Suécia"
+   ],
+   "en": [
+    "Kingdom of Sweden",
+    "Swedish Kingdom"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q1754",
+    "name": {
+     "pt": "Estocolmo",
+     "en": "Stockholm"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "Sthlm"
+     ]
+    }
+   }
+  ],
+  "continent": "europe",
+  "areaKm2": 447425.16,
+  "claimedBy": [],
+  "labelPoint": [
+   19.017,
+   65.859
+  ],
+  "flag": "flags/world/swe.svg"
+ },
+ {
+  "id": "SWZ",
+  "iso2": "SZ",
+  "wikidata": "Q1050",
+  "name": {
+   "pt": "Essuatíni",
+   "en": "Eswatini"
+  },
+  "aliases": {
+   "pt": [
+    "Suazilândia",
+    "Reino de Essuatíni",
+    "Umbuso weSwatini",
+    "Reino da Suazilândia"
+   ],
+   "en": [
+    "Kingdom of Swaziland"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q101418",
+    "name": {
+     "pt": "Lobamba",
+     "en": "Lobamba"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   },
+   {
+    "wikidata": "Q3904",
+    "name": {
+     "pt": "Mbabane",
+     "en": "Mbabane"
+    },
+    "aliases": {
+     "pt": [
+      "Mebabane"
+     ],
+     "en": []
+    }
+   }
+  ],
+  "continent": "africa",
+  "areaKm2": 17364,
+  "claimedBy": [],
+  "labelPoint": [
+   31.467,
+   -26.534
+  ],
+  "flag": "flags/world/swz.svg"
+ },
+ {
+  "id": "SYC",
+  "iso2": "SC",
+  "wikidata": "Q1042",
+  "name": {
+   "pt": "Seicheles",
+   "en": "Seychelles"
+  },
+  "aliases": {
+   "pt": [
+    "Sychelles",
+    "República das Seychelles"
+   ],
+   "en": [
+    "Republic of Seychelles"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q3940",
+    "name": {
+     "pt": "Vitória",
+     "en": "Victoria"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "Port Victoria"
+     ]
+    }
+   }
+  ],
+  "continent": "africa",
+  "areaKm2": 459,
+  "claimedBy": [],
+  "labelPoint": [
+   55.48,
+   -4.677
+  ],
+  "flag": "flags/world/syc.svg"
+ },
+ {
+  "id": "SYR",
+  "iso2": "SY",
+  "wikidata": "Q858",
+  "name": {
+   "pt": "Síria",
+   "en": "Syria"
+  },
+  "aliases": {
+   "pt": [
+    "República Árabe Síria"
+   ],
+   "en": [
+    "Syrian Arab Republic",
+    "Sūriyā"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q3766",
+    "name": {
+     "pt": "Damasco",
+     "en": "Damascus"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "Sham city",
+      "Jasmine city",
+      "Mint of Damascus"
+     ]
+    }
+   }
+  ],
+  "continent": "asia",
+  "areaKm2": 185180,
+  "claimedBy": [],
+  "labelPoint": [
+   35.865,
+   33.145
+  ],
+  "flag": "flags/world/syr.svg"
+ },
+ {
+  "id": "TCD",
+  "iso2": "TD",
+  "wikidata": "Q657",
+  "name": {
+   "pt": "Chade",
+   "en": "Chad"
+  },
+  "aliases": {
+   "pt": [
+    "República do Chade"
+   ],
+   "en": [
+    "Republic of Chad"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q3659",
+    "name": {
+     "pt": "Jamena",
+     "en": "N'Djamena"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "NDjamena"
+     ]
+    }
+   }
+  ],
+  "continent": "africa",
+  "areaKm2": 1284000,
+  "claimedBy": [],
+  "labelPoint": [
+   18.645,
+   15.143
+  ],
+  "flag": "flags/world/tcd.svg"
+ },
+ {
+  "id": "TGO",
+  "iso2": "TG",
+  "wikidata": "Q945",
+  "name": {
+   "pt": "Togo",
+   "en": "Togo"
+  },
+  "aliases": {
+   "pt": [],
+   "en": [
+    "Togolese Republic"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q3792",
+    "name": {
+     "pt": "Lomé",
+     "en": "Lomé"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   }
+  ],
+  "continent": "africa",
+  "areaKm2": 56785,
+  "claimedBy": [],
+  "labelPoint": [
+   1.058,
+   8.807
+  ],
+  "flag": "flags/world/tgo.svg"
+ },
+ {
+  "id": "THA",
+  "iso2": "TH",
+  "wikidata": "Q869",
+  "name": {
+   "pt": "Tailândia",
+   "en": "Thailand"
+  },
+  "aliases": {
+   "pt": [],
+   "en": [
+    "Kingdom of Thailand",
+    "Kingdom of Siam",
+    "Thai",
+    "Ratcha-anachak Thai",
+    "Prathet Thai"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q1861",
+    "name": {
+     "pt": "Bangkok",
+     "en": "Bangkok"
+    },
+    "aliases": {
+     "pt": [
+      "Bancoque",
+      "Banguecoque"
+     ],
+     "en": [
+      "Krung Thep",
+      "Sia-Yut'hia",
+      "Krungthepmahanakhon Amonrattanakosin Mahintharayutthaya Mahadilokphop Noppharatratchathaniburirom Udomratchaniwetmahasathan Amonphimanawatansathit Sakkathattiyawitsanukamprasit"
+     ]
+    }
+   }
+  ],
+  "continent": "asia",
+  "areaKm2": 513119.5,
+  "claimedBy": [],
+  "labelPoint": [
+   101.073,
+   15.46
+  ],
+  "flag": "flags/world/tha.svg"
+ },
+ {
+  "id": "TJK",
+  "iso2": "TJ",
+  "wikidata": "Q863",
+  "name": {
+   "pt": "Tajiquistão",
+   "en": "Tajikistan"
+  },
+  "aliases": {
+   "pt": [],
+   "en": [
+    "Republic of Tajikistan"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q9365",
+    "name": {
+     "pt": "Duxambé",
+     "en": "Dushanbe"
+    },
+    "aliases": {
+     "pt": [
+      "Duchambe"
+     ],
+     "en": [
+      "Dyushambe",
+      "Stalinabad"
+     ]
+    }
+   }
+  ],
+  "continent": "asia",
+  "areaKm2": 143100,
+  "claimedBy": [],
+  "labelPoint": [
+   72.587,
+   38.2
+  ],
+  "flag": "flags/world/tjk.svg"
+ },
+ {
+  "id": "TKM",
+  "iso2": "TM",
+  "wikidata": "Q874",
+  "name": {
+   "pt": "Turquemenistão",
+   "en": "Turkmenistan"
+  },
+  "aliases": {
+   "pt": [
+    "Turcomenistão",
+    "Turcomênia"
+   ],
+   "en": [
+    "Turkmenia"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q23438",
+    "name": {
+     "pt": "Asgabate",
+     "en": "Ashgabat"
+    },
+    "aliases": {
+     "pt": [
+      "Ascabade",
+      "Achgabad",
+      "Asgabade",
+      "Ashkabad"
+     ],
+     "en": [
+      "Ashqabad",
+      "Aschchabad",
+      "Ashkabat",
+      "Ishqabad",
+      "Askhabad",
+      "Ashabad",
+      "Ak-Gaudan",
+      "Askabad",
+      "Ishqabat",
+      "Konjikala"
+     ]
+    }
+   }
+  ],
+  "continent": "asia",
+  "areaKm2": 491210,
+  "claimedBy": [],
+  "labelPoint": [
+   58.677,
+   39.855
+  ],
+  "flag": "flags/world/tkm.svg"
+ },
+ {
+  "id": "TLS",
+  "iso2": "TL",
+  "wikidata": "Q574",
+  "name": {
+   "pt": "Timor-Leste",
+   "en": "Timor-Leste"
+  },
+  "aliases": {
+   "pt": [
+    "República Democrática de Timor-Leste"
+   ],
+   "en": [
+    "Democratic Republic of Timor-Leste",
+    "East Timor"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q9310",
+    "name": {
+     "pt": "Díli",
+     "en": "Dili"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "City of Dili"
+     ]
+    }
+   }
+  ],
+  "continent": "asia",
+  "areaKm2": 14918.72,
+  "claimedBy": [],
+  "labelPoint": [
+   125.855,
+   -8.804
+  ],
+  "flag": "flags/world/tls.svg"
+ },
+ {
+  "id": "TON",
+  "iso2": "TO",
+  "wikidata": "Q678",
+  "name": {
+   "pt": "Tonga",
+   "en": "Tonga"
+  },
+  "aliases": {
+   "pt": [],
+   "en": [
+    "Kingdom of Tonga",
+    "Friendly Islands",
+    "Tonga Islands"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q38834",
+    "name": {
+     "pt": "Nuku'alofa",
+     "en": "Nukuʻalofa"
+    },
+    "aliases": {
+     "pt": [
+      "Nucualofa",
+      "Nucu'alofa"
+     ],
+     "en": []
+    }
+   }
+  ],
+  "continent": "oceania",
+  "areaKm2": 748.51,
+  "claimedBy": [],
+  "labelPoint": [
+   -175.163,
+   -21.21
+  ],
+  "flag": "flags/world/ton.svg"
+ },
+ {
+  "id": "TTO",
+  "iso2": "TT",
+  "wikidata": "Q754",
+  "name": {
+   "pt": "Trindade e Tobago",
+   "en": "Trinidad and Tobago"
+  },
+  "aliases": {
+   "pt": [
+    "Trinidad e Tobago"
+   ],
+   "en": [
+    "Republic of Trinidad and Tobago"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q39178",
+    "name": {
+     "pt": "Port of Spain",
+     "en": "Port of Spain"
+    },
+    "aliases": {
+     "pt": [
+      "Porto da Espanha",
+      "Porto de Espanha"
+     ],
+     "en": [
+      "Puerto España",
+      "Cumucurapo"
+     ]
+    }
+   }
+  ],
+  "continent": "north-america",
+  "areaKm2": 5128,
+  "claimedBy": [],
+  "labelPoint": [
+   -60.918,
+   10.999
+  ],
+  "flag": "flags/world/tto.svg"
+ },
+ {
+  "id": "TUN",
+  "iso2": "TN",
+  "wikidata": "Q948",
+  "name": {
+   "pt": "Tunísia",
+   "en": "Tunisia"
+  },
+  "aliases": {
+   "pt": [
+    "República Tunisina"
+   ],
+   "en": [
+    "Republic of Tunisia",
+    "Tunisian Republic"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q3572",
+    "name": {
+     "pt": "Túnis",
+     "en": "Tunis"
+    },
+    "aliases": {
+     "pt": [
+      "Tunes"
+     ],
+     "en": []
+    }
+   }
+  ],
+  "continent": "africa",
+  "areaKm2": 163610,
+  "claimedBy": [],
+  "labelPoint": [
+   9.008,
+   33.687
+  ],
+  "flag": "flags/world/tun.svg"
+ },
+ {
+  "id": "TUR",
+  "iso2": "TR",
+  "wikidata": "Q43",
+  "name": {
+   "pt": "Turquia",
+   "en": "Turkey"
+  },
+  "aliases": {
+   "pt": [
+    "República da Turquia"
+   ],
+   "en": [
+    "Republic of Türkiye",
+    "Republic of Turkey"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q3640",
+    "name": {
+     "pt": "Ancara",
+     "en": "Ankara"
+    },
+    "aliases": {
+     "pt": [
+      "Angorá",
+      "Ancira",
+      "Ankuwash",
+      "Engürü"
+     ],
+     "en": []
+    }
+   }
+  ],
+  "continent": "asia",
+  "areaKm2": 783562,
+  "claimedBy": [],
+  "labelPoint": [
+   34.508,
+   39.345
+  ],
+  "flag": "flags/world/tur.svg"
+ },
+ {
+  "id": "TUV",
+  "iso2": "TV",
+  "wikidata": "Q672",
+  "name": {
+   "pt": "Tuvalu",
+   "en": "Tuvalu"
+  },
+  "aliases": {
+   "pt": [],
+   "en": [
+    "Ellice Islands"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q34126",
+    "name": {
+     "pt": "Funafuti",
+     "en": "Funafuti"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "Funafuti Island"
+     ]
+    }
+   }
+  ],
+  "continent": "oceania",
+  "areaKm2": 25.63,
+  "claimedBy": [],
+  "labelPoint": [
+   179.21,
+   -8.514
+  ],
+  "flag": "flags/world/tuv.svg"
+ },
+ {
+  "id": "TZA",
+  "iso2": "TZ",
+  "wikidata": "Q924",
+  "name": {
+   "pt": "Tanzânia",
+   "en": "Tanzania"
+  },
+  "aliases": {
+   "pt": [
+    "República Unida da Tanzânia"
+   ],
+   "en": [
+    "United Republic of Tanzania",
+    "United Republic of Tanganyika and Zanzibar"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q3866",
+    "name": {
+     "pt": "Dodoma",
+     "en": "Dodoma"
+    },
+    "aliases": {
+     "pt": [
+      "Cidade de Dodoma"
+     ],
+     "en": [
+      "Dodoma City"
+     ]
+    }
+   }
+  ],
+  "continent": "africa",
+  "areaKm2": 947303,
+  "claimedBy": [],
+  "labelPoint": [
+   34.959,
+   -6.052
+  ],
+  "flag": "flags/world/tza.svg"
+ },
+ {
+  "id": "UGA",
+  "iso2": "UG",
+  "wikidata": "Q1036",
+  "name": {
+   "pt": "Uganda",
+   "en": "Uganda"
+  },
+  "aliases": {
+   "pt": [
+    "República de Uganda",
+    "República do Uganda"
+   ],
+   "en": [
+    "Republic of Uganda",
+    "Ugandah",
+    "Ouganda",
+    "Pearl of Africa"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q3894",
+    "name": {
+     "pt": "Kampala",
+     "en": "Kampala"
+    },
+    "aliases": {
+     "pt": [
+      "Campala"
+     ],
+     "en": [
+      "uganda's Capital city"
+     ]
+    }
+   }
+  ],
+  "continent": "africa",
+  "areaKm2": 241038,
+  "claimedBy": [],
+  "labelPoint": [
+   32.949,
+   1.973
+  ],
+  "flag": "flags/world/uga.svg"
+ },
+ {
+  "id": "UKR",
+  "iso2": "UA",
+  "wikidata": "Q212",
+  "name": {
+   "pt": "Ucrânia",
+   "en": "Ukraine"
+  },
+  "aliases": {
+   "pt": [
+    "Ukrainia"
+   ],
+   "en": [
+    "Ukraïna"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q1899",
+    "name": {
+     "pt": "Kiev",
+     "en": "Kyiv"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "Kyjiw",
+      "Kyiw",
+      "Kief",
+      "Kieff",
+      "Kiew",
+      "Kioff",
+      "Kiof",
+      "Kiowia",
+      "Kiovia",
+      "Kiow",
+      "Kiou",
+      "Kyїv",
+      "Kiyev"
+     ]
+    }
+   }
+  ],
+  "continent": "europe",
+  "areaKm2": 603550,
+  "claimedBy": [],
+  "labelPoint": [
+   32.141,
+   49.725
+  ],
+  "flag": "flags/world/ukr.svg"
+ },
+ {
+  "id": "URY",
+  "iso2": "UY",
+  "wikidata": "Q77",
+  "name": {
+   "pt": "Uruguai",
+   "en": "Uruguay"
+  },
+  "aliases": {
+   "pt": [
+    "República Oriental do Uruguai"
+   ],
+   "en": [
+    "Oriental Republic of Uruguay",
+    "Eastern Republic of Uruguay"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q1335",
+    "name": {
+     "pt": "Montevidéu",
+     "en": "Montevideo"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   }
+  ],
+  "continent": "south-america",
+  "areaKm2": 176215,
+  "claimedBy": [],
+  "labelPoint": [
+   -55.967,
+   -32.961
+  ],
+  "flag": "flags/world/ury.svg"
+ },
+ {
+  "id": "USA",
+  "iso2": "US",
+  "wikidata": "Q30",
+  "name": {
+   "pt": "Estados Unidos",
+   "en": "United States"
+  },
+  "aliases": {
+   "pt": [
+    "E.U.A.",
+    "U.S.A",
+    "Estados Unidos da América"
+   ],
+   "en": [
+    "States",
+    "United States of America",
+    "US of America",
+    "US of A",
+    "U.S. of America",
+    "USA",
+    "U.S. of A"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q61",
+    "name": {
+     "pt": "Washington, D.C.",
+     "en": "Washington, D.C."
+    },
+    "aliases": {
+     "pt": [
+      "Distrito de Colúmbia"
+     ],
+     "en": [
+      "D.C. Washington",
+      "District",
+      "District of Columbia"
+     ]
+    }
+   }
+  ],
+  "continent": "north-america",
+  "areaKm2": 9833517,
+  "claimedBy": [],
+  "labelPoint": [
+   -97.483,
+   39.538
+  ],
+  "flag": "flags/world/usa.svg"
+ },
+ {
+  "id": "UZB",
+  "iso2": "UZ",
+  "wikidata": "Q265",
+  "name": {
+   "pt": "Uzbequistão",
+   "en": "Uzbekistan"
+  },
+  "aliases": {
+   "pt": [
+    "Usbequistão",
+    "República do Uzbequistão",
+    "República do Usbequistão"
+   ],
+   "en": [
+    "Republic of Uzbekistan"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q269",
+    "name": {
+     "pt": "Tashkent",
+     "en": "Tashkent"
+    },
+    "aliases": {
+     "pt": [
+      "Tasquente",
+      "Toshkent",
+      "Toshqand",
+      "Toshkand",
+      "Tachkent"
+     ],
+     "en": [
+      "Chach",
+      "Choch",
+      "Shosh",
+      "Shash",
+      "Binkath",
+      "Tashkand"
+     ]
+    }
+   }
+  ],
+  "continent": "asia",
+  "areaKm2": 448978,
+  "claimedBy": [],
+  "labelPoint": [
+   64.005,
+   41.694
+  ],
+  "flag": "flags/world/uzb.svg"
+ },
+ {
+  "id": "VAT",
+  "iso2": "VA",
+  "wikidata": "Q237",
+  "name": {
+   "pt": "Vaticano",
+   "en": "Vatican City"
+  },
+  "aliases": {
+   "pt": [
+    "Cidade do Vaticano",
+    "Estado da Cidade do Vaticano",
+    "Estado do Vaticano",
+    "Stato della Città del Vaticano",
+    "Estado Pontifício"
+   ],
+   "en": [
+    "Vatican City State",
+    "Papal State",
+    "Vatican",
+    "Status Civitatis Vaticanae",
+    "Città del Vaticano",
+    "State of Vatican City",
+    "Holy See"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q237",
+    "name": {
+     "pt": "Vaticano",
+     "en": "Vatican City"
+    },
+    "aliases": {
+     "pt": [
+      "Cidade do Vaticano",
+      "Estado da Cidade do Vaticano",
+      "Estado do Vaticano",
+      "Stato della Città del Vaticano",
+      "Estado Pontifício"
+     ],
+     "en": [
+      "Vatican City State",
+      "Papal State",
+      "Vatican",
+      "Status Civitatis Vaticanae",
+      "Città del Vaticano",
+      "State of Vatican City",
+      "Holy See"
+     ]
+    }
+   }
+  ],
+  "continent": "europe",
+  "areaKm2": 0.44,
+  "claimedBy": [],
+  "labelPoint": [
+   12.453,
+   41.903
+  ],
+  "flag": "flags/world/vat.svg"
+ },
+ {
+  "id": "VCT",
+  "iso2": "VC",
+  "wikidata": "Q757",
+  "name": {
+   "pt": "São Vicente e Granadinas",
+   "en": "Saint Vincent and the Grenadines"
+  },
+  "aliases": {
+   "pt": [
+    "São Vicente"
+   ],
+   "en": [
+    "St. Vincent and the Grenadines",
+    "Saint Vincent",
+    "St. Vincent"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q41474",
+    "name": {
+     "pt": "Kingstown",
+     "en": "Kingstown"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   }
+  ],
+  "continent": "north-america",
+  "areaKm2": 389,
+  "claimedBy": [],
+  "labelPoint": [
+   -61.336,
+   13.088
+  ],
+  "flag": "flags/world/vct.svg"
+ },
+ {
+  "id": "VEN",
+  "iso2": "VE",
+  "wikidata": "Q717",
+  "name": {
+   "pt": "Venezuela",
+   "en": "Venezuela"
+  },
+  "aliases": {
+   "pt": [
+    "República Bolivariana da Venezuela"
+   ],
+   "en": [
+    "Bolivarian Republic of Venezuela",
+    "BR Venezuela",
+    "Republic of Venezuela"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q1533",
+    "name": {
+     "pt": "Caracas",
+     "en": "Caracas"
+    },
+    "aliases": {
+     "pt": [
+      "Santiago de León de Caracas"
+     ],
+     "en": [
+      "Carracas"
+     ]
+    }
+   }
+  ],
+  "continent": "south-america",
+  "areaKm2": 912050,
+  "claimedBy": [],
+  "labelPoint": [
+   -64.599,
+   7.182
+  ],
+  "flag": "flags/world/ven.svg"
+ },
+ {
+  "id": "VNM",
+  "iso2": "VN",
+  "wikidata": "Q881",
+  "name": {
+   "pt": "Vietnã",
+   "en": "Vietnam"
+  },
+  "aliases": {
+   "pt": [
+    "Vietname",
+    "República Socialista do Vietnã",
+    "República Socialista do Vietname"
+   ],
+   "en": [
+    "Socialist Republic of Viet Nam"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q1858",
+    "name": {
+     "pt": "Hanói",
+     "en": "Hanoi"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "Thang Long",
+      "Dong Do",
+      "Tonkin",
+      "Hà Nội",
+      "Đại La"
+     ]
+    }
+   }
+  ],
+  "continent": "asia",
+  "areaKm2": 331690,
+  "claimedBy": [],
+  "labelPoint": [
+   105.387,
+   21.715
+  ],
+  "flag": "flags/world/vnm.svg"
+ },
+ {
+  "id": "VUT",
+  "iso2": "VU",
+  "wikidata": "Q686",
+  "name": {
+   "pt": "Vanuatu",
+   "en": "Vanuatu"
+  },
+  "aliases": {
+   "pt": [],
+   "en": [
+    "Republic of Vanuatu"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q37806",
+    "name": {
+     "pt": "Porto Vila",
+     "en": "Port Vila"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   }
+  ],
+  "continent": "oceania",
+  "areaKm2": 12190,
+  "claimedBy": [],
+  "labelPoint": [
+   166.909,
+   -15.372
+  ],
+  "flag": "flags/world/vut.svg"
+ },
+ {
+  "id": "WSM",
+  "iso2": "WS",
+  "wikidata": "Q683",
+  "name": {
+   "pt": "Samoa",
+   "en": "Samoa"
+  },
+  "aliases": {
+   "pt": [],
+   "en": [
+    "Western Samoa",
+    "Independent State of Samoa"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q36260",
+    "name": {
+     "pt": "Apia",
+     "en": "Apia"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   }
+  ],
+  "continent": "oceania",
+  "areaKm2": 2842,
+  "claimedBy": [],
+  "labelPoint": [
+   -172.438,
+   -13.639
+  ],
+  "flag": "flags/world/wsm.svg"
+ },
+ {
+  "id": "YEM",
+  "iso2": "YE",
+  "wikidata": "Q805",
+  "name": {
+   "pt": "Iêmen",
+   "en": "Yemen"
+  },
+  "aliases": {
+   "pt": [
+    "Iêmene"
+   ],
+   "en": [
+    "Republic of Yemen",
+    "Rep. Yemen"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q2471",
+    "name": {
+     "pt": "Sana",
+     "en": "Sanaa"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "Ṣanʻāʼ",
+      "San'a'",
+      "Ṣanʿāʾ",
+      "Sana'a"
+     ]
+    }
+   }
+  ],
+  "continent": "asia",
+  "areaKm2": 455503,
+  "claimedBy": [],
+  "labelPoint": [
+   45.874,
+   15.328
+  ],
+  "flag": "flags/world/yem.svg"
+ },
+ {
+  "id": "ZAF",
+  "iso2": "ZA",
+  "wikidata": "Q258",
+  "name": {
+   "pt": "África do Sul",
+   "en": "South Africa"
+  },
+  "aliases": {
+   "pt": [
+    "República da África do Sul"
+   ],
+   "en": [
+    "Republic of South Africa"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q3926",
+    "name": {
+     "pt": "Pretória",
+     "en": "Pretoria"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   },
+   {
+    "wikidata": "Q37701",
+    "name": {
+     "pt": "Bloemfontein",
+     "en": "Bloemfontein"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   },
+   {
+    "wikidata": "Q5465",
+    "name": {
+     "pt": "Cidade do Cabo",
+     "en": "Cape Town"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "iKapa",
+      "Kaap",
+      "Cape",
+      "Mother City",
+      "Tavern of the Seas",
+      "West side"
+     ]
+    }
+   }
+  ],
+  "continent": "africa",
+  "areaKm2": 1220813,
+  "claimedBy": [],
+  "labelPoint": [
+   23.666,
+   -29.709
+  ],
+  "flag": "flags/world/zaf.svg"
+ },
+ {
+  "id": "ZMB",
+  "iso2": "ZM",
+  "wikidata": "Q953",
+  "name": {
+   "pt": "Zâmbia",
+   "en": "Zambia"
+  },
+  "aliases": {
+   "pt": [],
+   "en": [
+    "Republic of Zambia"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q3881",
+    "name": {
+     "pt": "Lusaca",
+     "en": "Lusaka"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   }
+  ],
+  "continent": "africa",
+  "areaKm2": 752618,
+  "claimedBy": [],
+  "labelPoint": [
+   26.395,
+   -14.661
+  ],
+  "flag": "flags/world/zmb.svg"
+ },
+ {
+  "id": "ZWE",
+  "iso2": "ZW",
+  "wikidata": "Q954",
+  "name": {
+   "pt": "Zimbábue",
+   "en": "Zimbabwe"
+  },
+  "aliases": {
+   "pt": [
+    "República do Zimbábue",
+    "Zimbaué"
+   ],
+   "en": [
+    "Republic of Zimbabwe",
+    "Southern Rhodesia",
+    "Rhodesia",
+    "Zimbabwe Rhodesia"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q3921",
+    "name": {
+     "pt": "Harare",
+     "en": "Harare"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "Fort Salisbury"
+     ]
+    }
+   }
+  ],
+  "continent": "africa",
+  "areaKm2": 390757,
+  "claimedBy": [],
+  "labelPoint": [
+   29.925,
+   -18.912
+  ],
+  "flag": "flags/world/zwe.svg"
+ }
+]

@@ -1,0 +1,204 @@
+{
+  "_leia": "Decisões editoriais explícitas usadas pelo build-data. Nenhum dado geográfico é escrito aqui: só regras de agrupamento sobre as bases. Critério geral para áreas disputadas: o país que administra hoje. country = país (ISO alfa-3, um dos 195) ao qual a área pertence quando 'territórios' está desligado; null = aparece no mapa mas nunca é alvo nesse modo. territory = alvo próprio quando 'territórios' está ligado.",
+
+  "unMemberItemOverrides": {
+    "Q29999": {
+      "useItem": "Q55",
+      "why": "O membro da ONU no Wikidata é o 'Reino dos Países Baixos' (inclui Aruba, Curaçao e Sint Maarten); no jogo o país é os Países Baixos, e os outros são territórios."
+    },
+    "Q756617": {
+      "useItem": "Q35",
+      "why": "O membro da ONU no Wikidata é o 'Reino da Dinamarca' (inclui Groenlândia e Feroe); no jogo o país é a Dinamarca, e Groenlândia/Feroe são territórios."
+    }
+  },
+
+  "extraCountries": {
+    "Q237": "Vaticano (Santa Sé): Estado observador permanente da ONU.",
+    "Q219060": "Palestina: Estado observador permanente da ONU."
+  },
+
+  "naturalEarthCodeOverrides": {
+    "PSX": {
+      "code": "PSE",
+      "why": "O Natural Earth usa PSX para Gaza e Cisjordânia; o código ISO da Palestina é PSE."
+    }
+  },
+
+  "units": {
+    "ATC": {
+      "country": "AUS",
+      "territory": null,
+      "why": "Ilhas Ashmore e Cartier: território externo australiano sem código ISO próprio."
+    },
+    "CSI": {
+      "country": "AUS",
+      "territory": null,
+      "why": "Ilhas do Mar de Coral: território externo australiano sem código ISO próprio."
+    },
+    "CLP": {
+      "country": "FRA",
+      "territory": null,
+      "why": "Ilha de Clipperton: possessão francesa sem código ISO próprio."
+    },
+    "ESB": {
+      "country": "GBR",
+      "territory": null,
+      "why": "Dhekelia: base soberana do Reino Unido em Chipre."
+    },
+    "WSB": {
+      "country": "GBR",
+      "territory": null,
+      "why": "Akrotiri: base soberana do Reino Unido em Chipre."
+    },
+    "KAB": {
+      "country": "KAZ",
+      "territory": null,
+      "why": "Baikonur: território do Cazaquistão arrendado à Rússia (Natural Earth: soberania do Cazaquistão)."
+    },
+    "USG": {
+      "country": "USA",
+      "territory": null,
+      "why": "Base de Guantánamo: território cubano administrado pelos EUA; segue o critério de quem administra hoje."
+    },
+    "UMI": {
+      "country": "USA",
+      "territory": "UMI",
+      "why": "Ilhas Menores Distantes dos EUA: o Natural Earth separa cada ilha; aqui viram um único território (código ISO UM)."
+    },
+    "BJN": {
+      "country": "COL",
+      "territory": null,
+      "why": "Banco Bajo Nuevo: disputado, administrado pela Colômbia."
+    },
+    "SER": {
+      "country": "COL",
+      "territory": null,
+      "why": "Banco Serranilla: disputado, administrado pela Colômbia."
+    },
+    "BRI": {
+      "country": "BRA",
+      "territory": null,
+      "why": "Ilha Brasileira: disputada com o Uruguai, administrada pelo Brasil."
+    },
+    "KAS": {
+      "country": "IND",
+      "territory": null,
+      "why": "Geleira de Siachen: disputada com o Paquistão, administrada pela Índia."
+    },
+    "BRT": {
+      "country": null,
+      "territory": null,
+      "why": "Bir Tawil: não reivindicado por nenhum país; nunca é alvo."
+    },
+    "CNM": {
+      "country": null,
+      "territory": null,
+      "why": "Zona-tampão da ONU em Chipre; nunca é alvo."
+    },
+    "PGA": {
+      "country": null,
+      "territory": null,
+      "why": "Ilhas Spratly: ocupadas por vários países ao mesmo tempo; nunca é alvo."
+    },
+    "SCR": {
+      "country": null,
+      "territory": null,
+      "why": "Recife de Scarborough: disputado entre China e Filipinas; nunca é alvo."
+    },
+    "SPI": {
+      "country": null,
+      "territory": null,
+      "why": "Campo de Gelo Patagônico Sul: fronteira não demarcada entre Argentina e Chile; nunca é alvo."
+    },
+    "KOS": {
+      "country": null,
+      "territory": "KOS",
+      "flagCode": "xk",
+      "why": "Kosovo: não é membro da ONU e se administra; vira alvo só com territórios ligados (decidido pelo autor)."
+    },
+    "SOL": {
+      "country": null,
+      "territory": "SOL",
+      "why": "Somalilândia: não reconhecida, se administra; vira alvo só com territórios ligados (decidido pelo autor)."
+    },
+    "CYN": {
+      "country": null,
+      "territory": "CYN",
+      "why": "Chipre do Norte: reconhecido só pela Turquia, se administra; vira alvo só com territórios ligados (decidido pelo autor)."
+    }
+  },
+
+  "nameChoice": {
+    "_leia": "Por padrão o nome é o rótulo do Wikidata (pt-br, senão pt; en). Aqui se escolhe OUTRA grafia quando o rótulo tem erro ou foge do uso comum. O script só aceita grafias que já existem nas fontes (rótulos e apelidos do Wikidata, nomes do Natural Earth); as demais continuam aceitas como resposta.",
+    "CHN": { "pt": "China", "en": "China" },
+    "IRL": { "pt": "Irlanda" },
+    "MMR": { "pt": "Myanmar" },
+    "BHR": { "pt": "Bahrein" },
+    "BFA": { "pt": "Burkina Faso" },
+    "KIR": { "pt": "Kiribati" },
+    "GRL": { "pt": "Groenlândia" },
+    "PSE": { "pt": "Palestina" },
+    "capital:BEL": { "pt": "Bruxelas" },
+    "capital:KIR": { "pt": "Tarawa do Sul" },
+    "capital:SWZ": { "pt": "Mbabane" },
+    "capital:THA": { "pt": "Bangkok" },
+    "capital:JEY": { "pt": "Saint Helier" },
+    "capital:MTQ": { "pt": "Fort-de-France" },
+    "capital:REU": { "pt": "Saint-Denis" },
+    "capital:GUM": { "pt": "Hagåtña" },
+    "capital:CCK": { "pt": "West Island" }
+  },
+
+  "aliasBlocklist": {
+    "_leia": "Apelidos do Wikidata que NÃO devem valer como resposta (errados, ofensivos ou que ensinariam errado). Só remove; nunca acrescenta.",
+    "USA": ["América", "Merica", "Murica"],
+    "GBR": ["Irlanda do Norte"],
+    "KOR": ["Coreia", "Korea"],
+    "capital:HUN": ["Buda", "Pest", "Ofen"]
+  },
+
+  "shortAliasAllow": {
+    "_leia": "Apelidos de até 3 letras e siglas em maiúsculas de até 5 letras são descartados por serem quase sempre códigos esportivos, de aeroporto ou abreviações do Wikidata (GUI, BAR, CPH, per...). Ficam só estas siglas, que as pessoas realmente digitam e que existem nos apelidos do Wikidata.",
+    "list": ["EUA", "USA", "UAE", "RDC", "DRC"]
+  },
+
+  "continentOverrides": {
+    "SGS": {
+      "continent": "south-america",
+      "why": "Geórgia do Sul: o Natural Earth só diz 'Seven seas' / 'Americas'; agrupada com a América do Sul, a mais próxima. A REVISAR."
+    }
+  },
+
+  "capitalExclude": {
+    "_leia": "Capitais do Wikidata que não entram no jogo (pelo nome em inglês). Decidido pelo autor.",
+    "YEM": ["Aden"]
+  },
+
+  "territoryStatus": {
+    "_leia": "Nota de status mostrada na cartão de informações para territórios sem país administrador (obrigatória para eles). Quem reivindica cada um vem do Wikidata (P1336) e aparece à parte. Decidido pelo autor: nenhum deles conta como parte de um país com territórios desligados.",
+    "KOS": {
+      "pt": "Não é membro da ONU. Governa-se de forma independente, mas seu reconhecimento como país é contestado. Neste jogo, só é alvo com territórios ligados.",
+      "en": "Not a UN member. It governs itself, but its recognition as a country is disputed. In this game it is a target only with territories on."
+    },
+    "SOL": {
+      "pt": "Não é membro da ONU. Governa-se de forma independente, mas seu reconhecimento como país é contestado. Neste jogo, só é alvo com territórios ligados.",
+      "en": "Not a UN member. It governs itself, but its recognition as a country is disputed. In this game it is a target only with territories on."
+    },
+    "CYN": {
+      "pt": "Não é membro da ONU. Governa-se de forma independente, mas seu reconhecimento como país é contestado. Neste jogo, só é alvo com territórios ligados.",
+      "en": "Not a UN member. It governs itself, but its recognition as a country is disputed. In this game it is a target only with territories on."
+    },
+    "TWN": {
+      "pt": "Não é membro da ONU. Governa-se de forma independente, mas seu reconhecimento como país é contestado. Neste jogo, só é alvo com territórios ligados.",
+      "en": "Not a UN member. It governs itself, but its recognition as a country is disputed. In this game it is a target only with territories on."
+    },
+    "ESH": {
+      "pt": "Território em disputa. Neste jogo, não conta como parte de nenhum país e só é alvo com territórios ligados.",
+      "en": "Disputed territory. In this game it does not count as part of any country and is a target only with territories on."
+    },
+    "ATA": {
+      "pt": "Não é administrada por nenhum país. Neste jogo, só é alvo com territórios ligados.",
+      "en": "Not administered by any country. In this game it is a target only with territories on."
+    }
+  }
+}

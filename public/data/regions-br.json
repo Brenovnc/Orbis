@@ -1,0 +1,37 @@
+[
+ {
+  "id": "N",
+  "name": {
+   "pt": "Norte",
+   "en": "North Region"
+  }
+ },
+ {
+  "id": "NE",
+  "name": {
+   "pt": "Nordeste",
+   "en": "Northeast Region"
+  }
+ },
+ {
+  "id": "SE",
+  "name": {
+   "pt": "Sudeste",
+   "en": "Southeast Region"
+  }
+ },
+ {
+  "id": "S",
+  "name": {
+   "pt": "Sul",
+   "en": "South Region"
+  }
+ },
+ {
+  "id": "CO",
+  "name": {
+   "pt": "Centro-Oeste",
+   "en": "Central-West Region"
+  }
+ }
+]

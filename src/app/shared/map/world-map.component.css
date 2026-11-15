@@ -1,0 +1,221 @@
+:host {
+  position: fixed;
+  inset: 0;
+  display: block;
+}
+
+/* Strokes keep the same thickness on screen at any zoom level. */
+path,
+circle {
+  vector-effect: non-scaling-stroke;
+}
+
+.sphere {
+  fill: var(--color-ocean);
+  stroke: var(--color-ocean-edge);
+  stroke-width: 1px;
+}
+
+.graticule {
+  fill: none;
+  stroke: rgb(255 255 255 / 0.45);
+  stroke-width: 0.5px;
+}
+
+/*
+ * Land is also stroked with its own fill. Where two pieces meet without a coast (Russia split
+ * at 180°, the edges of the map copies), their anti-aliased edges would otherwise leave a thin
+ * light seam. Coasts and borders are drawn on top, so the stroke never shows elsewhere.
+ */
+.land {
+  --land-paint: var(--color-land);
+  fill: var(--land-paint);
+  stroke: var(--land-paint);
+  stroke-width: 0.8px;
+  transition:
+    fill 120ms ease-out,
+    stroke 120ms ease-out;
+}
+
+.land.is-neutral {
+  --land-paint: var(--color-land-muted);
+}
+
+.land.is-found {
+  --land-paint: var(--color-found);
+}
+
+.land.is-missed {
+  --land-paint: url(#missed-hatch);
+}
+
+.land.is-selected {
+  --land-paint: var(--color-selected);
+}
+
+/* Found = solid dark outline; missed = dashed outline. Shape and pattern, not only color. */
+.found-outline {
+  fill: none;
+  stroke: var(--color-found-edge);
+  stroke-width: 1.5px;
+  stroke-linejoin: round;
+  pointer-events: none;
+}
+
+.missed-outline {
+  fill: none;
+  stroke: var(--color-missed-edge);
+  stroke-width: 1.3px;
+  stroke-dasharray: 4 3;
+  pointer-events: none;
+}
+
+/* Rings for places too small to see; they scale back down as the map zooms in. */
+.marker {
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: scale(calc(1 / var(--k, 1)));
+  stroke-width: 1.6px;
+}
+
+.marker.is-found {
+  fill: var(--color-found);
+  stroke: var(--color-found-edge);
+}
+
+.marker.is-missed {
+  fill: var(--color-land);
+  stroke: var(--color-missed-edge);
+  stroke-dasharray: 3 2;
+}
+
+svg.is-selectable .marker {
+  cursor: pointer;
+}
+
+/* Invisible but clickable: a circle of 14 screen px radius, whatever the zoom and screen size. */
+.hit-area {
+  fill: transparent;
+  stroke: none;
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: scale(calc(14 / var(--unit, 1) / var(--k, 1)));
+  cursor: pointer;
+}
+
+/* A wrong click: thick dashed outline that fades away. */
+.wrong-outline {
+  fill: none;
+  stroke: var(--color-missed-edge);
+  stroke-width: 2.4px;
+  stroke-dasharray: 5 3;
+  pointer-events: none;
+  animation: fade-out 900ms ease-out forwards;
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.lakes {
+  fill: var(--color-ocean);
+  stroke: var(--color-border);
+  stroke-width: 0.4px;
+}
+
+.coast {
+  fill: none;
+  stroke: var(--color-border);
+  stroke-width: 0.6px;
+}
+
+.borders {
+  fill: none;
+  stroke: var(--color-border);
+  stroke-width: 0.7px;
+  stroke-linejoin: round;
+}
+
+.selected-outline {
+  fill: none;
+  stroke: var(--color-selected-edge);
+  stroke-width: 1.6px;
+  stroke-linejoin: round;
+  pointer-events: none;
+  animation: var(--animate-pulse-select);
+}
+
+.lakes,
+.coast,
+.borders,
+.graticule {
+  pointer-events: none;
+}
+
+/* Lines cut at 180° end on both sides of the seam; round ends overlap so no notch shows. */
+.coast,
+.borders,
+.found-outline,
+.selected-outline {
+  stroke-linecap: round;
+}
+
+svg.is-selectable .land:not(.is-neutral) {
+  cursor: pointer;
+}
+
+/* Name written over a found place; the size on screen stays the same at any zoom. */
+.map-label {
+  font:
+    600 11px var(--font-sans),
+    sans-serif;
+  fill: var(--color-ink);
+  stroke: rgb(255 255 255 / 0.9);
+  stroke-width: 3px;
+  paint-order: stroke;
+  stroke-linejoin: round;
+  pointer-events: none;
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: scale(calc(1 / (var(--unit, 1) * var(--k, 1))));
+}
+
+.map-label-anchor {
+  pointer-events: none;
+}
+
+/* By class, not :hover, so every copy of the map (and both sides of 180°) light up together. */
+svg.is-selectable:not(.no-hover)
+  .land.is-hovered:not(.is-neutral, .is-selected, .is-found, .is-missed) {
+  --land-paint: var(--color-land-hover);
+}
+
+.zoom-button {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  color: var(--color-ink);
+}
+
+.zoom-button + .zoom-button {
+  border-top: 1px solid var(--color-line);
+}
+
+.zoom-button:hover {
+  background: var(--color-accent-soft);
+}
+
+.zoom-button svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+}

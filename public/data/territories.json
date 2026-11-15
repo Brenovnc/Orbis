@@ -1,0 +1,2572 @@
+[
+ {
+  "id": "ABW",
+  "iso2": "AW",
+  "wikidata": "Q21203",
+  "name": {
+   "pt": "Aruba",
+   "en": "Aruba"
+  },
+  "aliases": {
+   "pt": [
+    "Ilha de Aruba"
+   ],
+   "en": [
+    "Island of Aruba",
+    "Country of Aruba"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q131243",
+    "name": {
+     "pt": "Oranjestad",
+     "en": "Oranjestad"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   }
+  ],
+  "continent": "north-america",
+  "areaKm2": 193,
+  "administeredBy": "NLD",
+  "claimedBy": [],
+  "statusNote": null,
+  "labelPoint": [
+   -69.973,
+   12.517
+  ],
+  "flag": "flags/world/abw.svg"
+ },
+ {
+  "id": "AIA",
+  "iso2": "AI",
+  "wikidata": "Q25228",
+  "name": {
+   "pt": "Anguilla",
+   "en": "Anguilla"
+  },
+  "aliases": {
+   "pt": [
+    "Anguila",
+    "Anguiha"
+   ],
+   "en": [
+    "Malliouhana"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q30994",
+    "name": {
+     "pt": "The Valley",
+     "en": "The Valley"
+    },
+    "aliases": {
+     "pt": [
+      "Valley"
+     ],
+     "en": []
+    }
+   }
+  ],
+  "continent": "north-america",
+  "areaKm2": 97.55,
+  "administeredBy": "GBR",
+  "claimedBy": [],
+  "statusNote": null,
+  "labelPoint": [
+   -63.026,
+   18.243
+  ],
+  "flag": "flags/world/aia.svg"
+ },
+ {
+  "id": "ALA",
+  "iso2": "AX",
+  "wikidata": "Q5689",
+  "name": {
+   "pt": "Åland",
+   "en": "Åland"
+  },
+  "aliases": {
+   "pt": [
+    "Alanda",
+    "Aaland",
+    "Ilhas Aaland",
+    "Região de Åland",
+    "Ilhas Aland"
+   ],
+   "en": [
+    "Aland Isles",
+    "Åland region",
+    "Aaland Islands",
+    "Aland Islands"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q48329",
+    "name": {
+     "pt": "Mariehamn",
+     "en": "Mariehamn"
+    },
+    "aliases": {
+     "pt": [
+      "Marieâmene"
+     ],
+     "en": [
+      "Maarianhamina"
+     ]
+    }
+   }
+  ],
+  "continent": "europe",
+  "areaKm2": 1582.93,
+  "administeredBy": "FIN",
+  "claimedBy": [],
+  "statusNote": null,
+  "labelPoint": [
+   19.87,
+   60.156
+  ],
+  "flag": "flags/world/ala.svg"
+ },
+ {
+  "id": "ASM",
+  "iso2": "AS",
+  "wikidata": "Q16641",
+  "name": {
+   "pt": "Samoa Americana",
+   "en": "American Samoa"
+  },
+  "aliases": {
+   "pt": [],
+   "en": [
+    "East Samoa",
+    "Territory of American Samoa",
+    "U.S. Samoa",
+    "US Samoa"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q51678",
+    "name": {
+     "pt": "Pago Pago",
+     "en": "Pago Pago"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   }
+  ],
+  "continent": "oceania",
+  "areaKm2": 199,
+  "administeredBy": "USA",
+  "claimedBy": [],
+  "statusNote": null,
+  "labelPoint": [
+   -170.747,
+   -14.327
+  ],
+  "flag": "flags/world/asm.svg"
+ },
+ {
+  "id": "ATA",
+  "iso2": "AQ",
+  "wikidata": "Q51",
+  "name": {
+   "pt": "Antártida",
+   "en": "Antarctica"
+  },
+  "aliases": {
+   "pt": [
+    "Antártica",
+    "continente austral"
+   ],
+   "en": []
+  },
+  "capitals": [],
+  "continent": "antarctica",
+  "areaKm2": 14106900,
+  "administeredBy": null,
+  "claimedBy": [],
+  "statusNote": {
+   "pt": "Não é administrada por nenhum país. Neste jogo, só é alvo com territórios ligados.",
+   "en": "Not administered by any country. In this game it is a target only with territories on."
+  },
+  "labelPoint": [
+   35.885,
+   -79.843
+  ],
+  "flag": "flags/world/ata.svg"
+ },
+ {
+  "id": "ATF",
+  "iso2": "TF",
+  "wikidata": "Q129003",
+  "name": {
+   "pt": "Terras Austrais e Antárticas Francesas",
+   "en": "French Southern and Antarctic Lands"
+  },
+  "aliases": {
+   "pt": [
+    "Territórios Austrais Franceses",
+    "Territórios Antárticos Franceses",
+    "Terras Austrais e Antárcticas Francesas",
+    "Terras Francesas do Sul e da Antárctica"
+   ],
+   "en": [
+    "French Southern Territories"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q839559",
+    "name": {
+     "pt": "Port-aux-Français",
+     "en": "Port-aux-Français"
+    },
+    "aliases": {
+     "pt": [
+      "Porto dos Franceses"
+     ],
+     "en": []
+    }
+   }
+  ],
+  "continent": "africa",
+  "areaKm2": 7829,
+  "administeredBy": "FRA",
+  "claimedBy": [],
+  "statusNote": null,
+  "labelPoint": [
+   69.122,
+   -49.304
+  ],
+  "flag": "flags/world/atf.svg"
+ },
+ {
+  "id": "BES",
+  "iso2": "BQ",
+  "wikidata": "Q27561",
+  "name": {
+   "pt": "Países Baixos Caribenhos",
+   "en": "Caribbean Netherlands"
+  },
+  "aliases": {
+   "pt": [],
+   "en": [
+    "BES islands"
+   ]
+  },
+  "capitals": [],
+  "continent": "north-america",
+  "areaKm2": 322,
+  "administeredBy": "NLD",
+  "claimedBy": [],
+  "statusNote": null,
+  "labelPoint": [
+   -63.133,
+   17.544
+  ],
+  "flag": "flags/world/bes.svg"
+ },
+ {
+  "id": "BLM",
+  "iso2": "BL",
+  "wikidata": "Q25362",
+  "name": {
+   "pt": "São Bartolomeu",
+   "en": "Saint Barthélemy"
+  },
+  "aliases": {
+   "pt": [
+    "Coletividade de São Bartolomeu"
+   ],
+   "en": [
+    "Ouanalao",
+    "Collectivité de Saint-Barthélemy",
+    "Saint Barths",
+    "Ile Saint-Barthélemy",
+    "St. Barthelemy",
+    "St barths",
+    "Saint Barts",
+    "Saint Bartz",
+    "St barts",
+    "St. Barth",
+    "Collectivity of Saint Barthélemy",
+    "Saint Barth"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q34112",
+    "name": {
+     "pt": "Gustavia",
+     "en": "Gustavia"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   }
+  ],
+  "continent": "north-america",
+  "areaKm2": 25,
+  "administeredBy": "FRA",
+  "claimedBy": [],
+  "statusNote": null,
+  "labelPoint": [
+   -62.833,
+   17.902
+  ],
+  "flag": "flags/world/blm.svg"
+ },
+ {
+  "id": "BMU",
+  "iso2": "BM",
+  "wikidata": "Q23635",
+  "name": {
+   "pt": "Bermudas",
+   "en": "Bermuda"
+  },
+  "aliases": {
+   "pt": [
+    "Ilha das Bermudas",
+    "Ilhas Bermuda",
+    "Ilhas Bermudas"
+   ],
+   "en": [
+    "Somers Isles",
+    "Bermuda Islands",
+    "Bermudian Islands",
+    "Bermoothes",
+    "Virgineola",
+    "Summers' Isles",
+    "Territory of Bermuda",
+    "Somers Islands",
+    "Colony of Bermuda",
+    "Devil's Isles",
+    "Summer's Isles",
+    "Isle of Devils",
+    "Barmuda",
+    "Barmuda Islands",
+    "Barmudas"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q30985",
+    "name": {
+     "pt": "Hamilton",
+     "en": "Hamilton"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   }
+  ],
+  "continent": "north-america",
+  "areaKm2": 53,
+  "administeredBy": "GBR",
+  "claimedBy": [],
+  "statusNote": null,
+  "labelPoint": [
+   -64.764,
+   32.297
+  ],
+  "flag": "flags/world/bmu.svg"
+ },
+ {
+  "id": "BVT",
+  "iso2": "BV",
+  "wikidata": "Q23408",
+  "name": {
+   "pt": "Ilha Bouvet",
+   "en": "Bouvet Island"
+  },
+  "aliases": {
+   "pt": [],
+   "en": []
+  },
+  "capitals": [],
+  "continent": "antarctica",
+  "areaKm2": 49,
+  "administeredBy": "NOR",
+  "claimedBy": [],
+  "statusNote": null,
+  "labelPoint": [
+   3.414,
+   -54.415
+  ],
+  "flag": "flags/world/bvt.svg"
+ },
+ {
+  "id": "CCK",
+  "iso2": "CC",
+  "wikidata": "Q36004",
+  "name": {
+   "pt": "Ilhas Cocos",
+   "en": "Cocos (Keeling) Islands"
+  },
+  "aliases": {
+   "pt": [
+    "Território das Ilhas Cocos",
+    "Ilhas Keeling",
+    "Território das Ilhas Keeling"
+   ],
+   "en": []
+  },
+  "capitals": [
+   {
+    "wikidata": "Q48675",
+    "name": {
+     "pt": "West Island",
+     "en": "West Island"
+    },
+    "aliases": {
+     "pt": [
+      "Ilha Ocidental",
+      "Ilha Oeste"
+     ],
+     "en": [
+      "West Keeling Island"
+     ]
+    }
+   }
+  ],
+  "continent": "asia",
+  "areaKm2": 14,
+  "administeredBy": "AUS",
+  "claimedBy": [],
+  "statusNote": null,
+  "labelPoint": [
+   96.83,
+   -12.16
+  ],
+  "flag": "flags/world/cck.svg"
+ },
+ {
+  "id": "COK",
+  "iso2": "CK",
+  "wikidata": "Q26988",
+  "name": {
+   "pt": "Ilhas Cook",
+   "en": "Cook Islands"
+  },
+  "aliases": {
+   "pt": [],
+   "en": [
+    "Hervey Islands",
+    "Cook Group"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q170482",
+    "name": {
+     "pt": "Avarua",
+     "en": "Avarua"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   }
+  ],
+  "continent": "oceania",
+  "areaKm2": 240,
+  "administeredBy": "NZL",
+  "claimedBy": [],
+  "statusNote": null,
+  "labelPoint": [
+   -159.786,
+   -21.216
+  ],
+  "flag": "flags/world/cok.svg"
+ },
+ {
+  "id": "CUW",
+  "iso2": "CW",
+  "wikidata": "Q25279",
+  "name": {
+   "pt": "Curaçau",
+   "en": "Curaçao"
+  },
+  "aliases": {
+   "pt": [],
+   "en": [
+    "Island Territory of Curaçao",
+    "Curaçoa",
+    "Curaςao",
+    "Curocao",
+    "Curazao",
+    "Country of Curaçao"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q132679",
+    "name": {
+     "pt": "Willemstad",
+     "en": "Willemstad"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "Williamtown",
+      "Willemtown"
+     ]
+    }
+   }
+  ],
+  "continent": "north-america",
+  "areaKm2": 444,
+  "administeredBy": "NLD",
+  "claimedBy": [],
+  "statusNote": null,
+  "labelPoint": [
+   -68.921,
+   12.145
+  ],
+  "flag": "flags/world/cuw.svg"
+ },
+ {
+  "id": "CXR",
+  "iso2": "CX",
+  "wikidata": "Q31063",
+  "name": {
+   "pt": "Ilha Christmas",
+   "en": "Christmas Island"
+  },
+  "aliases": {
+   "pt": [
+    "Ilha de Natal",
+    "Território da Ilha Christmas",
+    "Ilha Natal",
+    "Ilha do Natal"
+   ],
+   "en": [
+    "Territory of Christmas Island"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q30980",
+    "name": {
+     "pt": "Flying Fish Cove",
+     "en": "Flying Fish Cove"
+    },
+    "aliases": {
+     "pt": [
+      "settlement"
+     ],
+     "en": []
+    }
+   }
+  ],
+  "continent": "asia",
+  "areaKm2": 135,
+  "administeredBy": "AUS",
+  "claimedBy": [],
+  "statusNote": null,
+  "labelPoint": [
+   105.673,
+   -10.491
+  ],
+  "flag": "flags/world/cxr.svg"
+ },
+ {
+  "id": "CYM",
+  "iso2": "KY",
+  "wikidata": "Q5785",
+  "name": {
+   "pt": "Ilhas Caimã",
+   "en": "Cayman Islands"
+  },
+  "aliases": {
+   "pt": [
+    "Ilhas Cayman",
+    "Ilhas Caimão"
+   ],
+   "en": [
+    "Caymans"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q172996",
+    "name": {
+     "pt": "George Town",
+     "en": "George Town"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "Georgetown"
+     ]
+    }
+   }
+  ],
+  "continent": "north-america",
+  "areaKm2": 262,
+  "administeredBy": "GBR",
+  "claimedBy": [],
+  "statusNote": null,
+  "labelPoint": [
+   -81.241,
+   19.32
+  ],
+  "flag": "flags/world/cym.svg"
+ },
+ {
+  "id": "CYN",
+  "iso2": null,
+  "wikidata": "Q23681",
+  "name": {
+   "pt": "República Turca de Chipre do Norte",
+   "en": "Northern Cyprus"
+  },
+  "aliases": {
+   "pt": [
+    "República Turca do Chipre do Norte",
+    "República Turca de Chipre Setentrional",
+    "Norte do chipre",
+    "República Turca de Norte de Chipre",
+    "República turca do chipre sententrional",
+    "República turca do norte de chipre",
+    "República Turca do Norte do Chipre",
+    "Chipre setentrional",
+    "Norte de chipre",
+    "Chipre do norte",
+    "República Turca de Norte do Chipre",
+    "República Turca do Chipre Setentrional"
+   ],
+   "en": [
+    "Turkish Cyprus",
+    "Turkish Cypriot state",
+    "Turkish Cypriot constituent state",
+    "Turkish Republic of North Cyprus",
+    "Turkish Republic of Northern Cyprus",
+    "Turkish Federative State of North Cyprus",
+    "Turkish occupied Cyprus",
+    "Republic of Northern Cyprus",
+    "North Cyprus",
+    "Turkish Republic of Cyprus",
+    "North Cyprus Turkish Republic"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q2762100",
+    "name": {
+     "pt": "Nicósia do Norte",
+     "en": "North Nicosia"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "Northern Nicosia"
+     ]
+    }
+   }
+  ],
+  "continent": "asia",
+  "areaKm2": 3355,
+  "administeredBy": null,
+  "claimedBy": [
+   {
+    "country": "CYP",
+    "name": {
+     "pt": "Chipre",
+     "en": "Cyprus"
+    }
+   }
+  ],
+  "statusNote": {
+   "pt": "Não é membro da ONU. Governa-se de forma independente, mas seu reconhecimento como país é contestado. Neste jogo, só é alvo com territórios ligados.",
+   "en": "Not a UN member. It governs itself, but its recognition as a country is disputed. In this game it is a target only with territories on."
+  },
+  "labelPoint": [
+   33.692,
+   35.216
+  ],
+  "flag": "flags/world/cyn.svg"
+ },
+ {
+  "id": "ESH",
+  "iso2": "EH",
+  "wikidata": "Q6250",
+  "name": {
+   "pt": "Saara Ocidental",
+   "en": "Western Sahara"
+  },
+  "aliases": {
+   "pt": [
+    "Sara Ocidental"
+   ],
+   "en": [
+    "West Sahara",
+    "Spanish Sahara",
+    "Southern Provinces"
+   ]
+  },
+  "capitals": [],
+  "continent": "africa",
+  "areaKm2": 266000,
+  "administeredBy": null,
+  "claimedBy": [
+   {
+    "country": "MAR",
+    "name": {
+     "pt": "Marrocos",
+     "en": "Morocco"
+    }
+   },
+   {
+    "country": null,
+    "name": {
+     "pt": "República Árabe Saaraui Democrática",
+     "en": "Sahrawi Arab Democratic Republic"
+    }
+   }
+  ],
+  "statusNote": {
+   "pt": "Território em disputa. Neste jogo, não conta como parte de nenhum país e só é alvo com territórios ligados.",
+   "en": "Disputed territory. In this game it does not count as part of any country and is a target only with territories on."
+  },
+  "labelPoint": [
+   -12.63,
+   23.968
+  ],
+  "flag": "flags/world/esh.svg"
+ },
+ {
+  "id": "FLK",
+  "iso2": "FK",
+  "wikidata": "Q9648",
+  "name": {
+   "pt": "Ilhas Malvinas",
+   "en": "Falkland Islands"
+  },
+  "aliases": {
+   "pt": [
+    "Ilhas Falkland",
+    "Falklands"
+   ],
+   "en": [
+    "Malvinas Islands"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q12245",
+    "name": {
+     "pt": "Stanley",
+     "en": "Stanley"
+    },
+    "aliases": {
+     "pt": [
+      "Porto Stanley",
+      "Port Stanley"
+     ],
+     "en": [
+      "Stanley Harbour"
+     ]
+    }
+   }
+  ],
+  "continent": "south-america",
+  "areaKm2": 12173,
+  "administeredBy": "GBR",
+  "claimedBy": [
+   {
+    "country": "ARG",
+    "name": {
+     "pt": "Argentina",
+     "en": "Argentina"
+    }
+   }
+  ],
+  "statusNote": null,
+  "labelPoint": [
+   -58.739,
+   -51.609
+  ],
+  "flag": "flags/world/flk.svg"
+ },
+ {
+  "id": "FRO",
+  "iso2": "FO",
+  "wikidata": "Q4628",
+  "name": {
+   "pt": "Ilhas Feroe",
+   "en": "Faroe Islands"
+  },
+  "aliases": {
+   "pt": [
+    "Féroes",
+    "Ilhas Faroes",
+    "Feroé",
+    "Ilhas Faroé",
+    "Faroes",
+    "Ilhas Feroés",
+    "Faroé",
+    "Faeroes",
+    "Ilhas Faeroe",
+    "Faeroe"
+   ],
+   "en": [
+    "Faeroe Islands",
+    "Fareo islands",
+    "Faeroyene",
+    "Far Oer",
+    "Faeroerne",
+    "Faer Oer",
+    "Faroe Isles",
+    "Faroer",
+    "Faeroe Isles",
+    "Faroese Islands",
+    "Faeroer",
+    "Faroe Island",
+    "Færøer",
+    "Færeyjar",
+    "Fær Øer",
+    "Faeroe Is",
+    "Færøyene",
+    "Sheep Islands",
+    "Færoes",
+    "Farre",
+    "Farre Islands"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q10704",
+    "name": {
+     "pt": "Tórshavn",
+     "en": "Tórshavn"
+    },
+    "aliases": {
+     "pt": [
+      "Thorshavn"
+     ],
+     "en": []
+    }
+   }
+  ],
+  "continent": "europe",
+  "areaKm2": 1399,
+  "administeredBy": "DNK",
+  "claimedBy": [],
+  "statusNote": null,
+  "labelPoint": [
+   -7.058,
+   62.186
+  ],
+  "flag": "flags/world/fro.svg"
+ },
+ {
+  "id": "GGY",
+  "iso2": "GG",
+  "wikidata": "Q25230",
+  "name": {
+   "pt": "Guernsey",
+   "en": "Guernsey"
+  },
+  "aliases": {
+   "pt": [
+    "Bailiado de Guernsey",
+    "Guérnesei",
+    "Guérnsei",
+    "Bailiado de guernesei",
+    "Baia de Guernsey"
+   ],
+   "en": [
+    "Bailliage de Guernesey",
+    "Great Britain Guernsey",
+    "Lisia",
+    "Giernési",
+    "Bailliage dé Guernési"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q174262",
+    "name": {
+     "pt": "Saint Peter Port",
+     "en": "Saint Peter Port"
+    },
+    "aliases": {
+     "pt": [
+      "Porto de São Pedro",
+      "São Pedro Porto"
+     ],
+     "en": [
+      "Parish of St Peter Port"
+     ]
+    }
+   }
+  ],
+  "continent": "europe",
+  "areaKm2": 78,
+  "administeredBy": "GBR",
+  "claimedBy": [],
+  "statusNote": null,
+  "labelPoint": [
+   -2.562,
+   49.464
+  ],
+  "flag": "flags/world/ggy.svg"
+ },
+ {
+  "id": "GIB",
+  "iso2": "GI",
+  "wikidata": "Q1410",
+  "name": {
+   "pt": "Gibraltar",
+   "en": "Gibraltar"
+  },
+  "aliases": {
+   "pt": [
+    "O Rochedo de Gibraltar"
+   ],
+   "en": []
+  },
+  "capitals": [
+   {
+    "wikidata": "Q1410",
+    "name": {
+     "pt": "Gibraltar",
+     "en": "Gibraltar"
+    },
+    "aliases": {
+     "pt": [
+      "O Rochedo de Gibraltar"
+     ],
+     "en": []
+    }
+   }
+  ],
+  "continent": "europe",
+  "areaKm2": 6.8,
+  "administeredBy": "GBR",
+  "claimedBy": [
+   {
+    "country": "ESP",
+    "name": {
+     "pt": "Espanha",
+     "en": "Spain"
+    }
+   }
+  ],
+  "statusNote": null,
+  "labelPoint": [
+   -5.347,
+   36.129
+  ],
+  "flag": "flags/world/gib.svg"
+ },
+ {
+  "id": "GLP",
+  "iso2": "GP",
+  "wikidata": "Q17012",
+  "name": {
+   "pt": "Guadalupe",
+   "en": "Guadeloupe"
+  },
+  "aliases": {
+   "pt": [
+    "Gwadloup"
+   ],
+   "en": [
+    "Karukera",
+    "Gwada"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q167024",
+    "name": {
+     "pt": "Basse-Terre",
+     "en": "Basse-Terre"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "Bastè"
+     ]
+    }
+   }
+  ],
+  "continent": "north-america",
+  "areaKm2": 1628,
+  "administeredBy": "FRA",
+  "claimedBy": [],
+  "statusNote": null,
+  "labelPoint": [
+   -61.434,
+   16.299
+  ],
+  "flag": "flags/world/glp.svg"
+ },
+ {
+  "id": "GRL",
+  "iso2": "GL",
+  "wikidata": "Q223",
+  "name": {
+   "pt": "Groenlândia",
+   "en": "Greenland"
+  },
+  "aliases": {
+   "pt": [
+    "Groelândia",
+    "Gronelândia",
+    "Grønland"
+   ],
+   "en": [
+    "Groenland",
+    "Greenlandia"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q226",
+    "name": {
+     "pt": "Nuuk",
+     "en": "Nuuk"
+    },
+    "aliases": {
+     "pt": [
+      "Godthåb"
+     ],
+     "en": []
+    }
+   }
+  ],
+  "continent": "north-america",
+  "areaKm2": 2166086,
+  "administeredBy": "DNK",
+  "claimedBy": [],
+  "statusNote": null,
+  "labelPoint": [
+   -39.335,
+   74.319
+  ],
+  "flag": "flags/world/grl.svg"
+ },
+ {
+  "id": "GUF",
+  "iso2": "GF",
+  "wikidata": "Q3769",
+  "name": {
+   "pt": "Guiana Francesa",
+   "en": "French Guiana"
+  },
+  "aliases": {
+   "pt": [
+    "Guyane"
+   ],
+   "en": []
+  },
+  "capitals": [
+   {
+    "wikidata": "Q44401",
+    "name": {
+     "pt": "Caiena",
+     "en": "Cayenne"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   }
+  ],
+  "continent": "south-america",
+  "areaKm2": 83534,
+  "administeredBy": "FRA",
+  "claimedBy": [],
+  "statusNote": null,
+  "labelPoint": [
+   -53.068,
+   3.999
+  ],
+  "flag": "flags/world/guf.svg"
+ },
+ {
+  "id": "GUM",
+  "iso2": "GU",
+  "wikidata": "Q16635",
+  "name": {
+   "pt": "Guam",
+   "en": "Guam"
+  },
+  "aliases": {
+   "pt": [],
+   "en": [
+    "Territory of Guam",
+    "Guåhån",
+    "Island of Guam"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q30988",
+    "name": {
+     "pt": "Hagåtña",
+     "en": "Hagåtña"
+    },
+    "aliases": {
+     "pt": [
+      "Aganha",
+      "Agana"
+     ],
+     "en": [
+      "San Ignacio de Agaña"
+     ]
+    }
+   }
+  ],
+  "continent": "oceania",
+  "areaKm2": 544,
+  "administeredBy": "USA",
+  "claimedBy": [],
+  "statusNote": null,
+  "labelPoint": [
+   144.704,
+   13.354
+  ],
+  "flag": "flags/world/gum.svg"
+ },
+ {
+  "id": "HKG",
+  "iso2": "HK",
+  "wikidata": "Q8646",
+  "name": {
+   "pt": "Hong Kong",
+   "en": "Hong Kong"
+  },
+  "aliases": {
+   "pt": [
+    "Honguecongue",
+    "Região Administrativa Especial de Hong Kong",
+    "Hongkong"
+   ],
+   "en": [
+    "Hong Kong SAR",
+    "Hong Kong Special Administrative Region",
+    "Hong Kong Special Administrative Region of the People's Republic of China"
+   ]
+  },
+  "capitals": [],
+  "continent": "asia",
+  "areaKm2": 1105.69,
+  "administeredBy": "CHN",
+  "claimedBy": [],
+  "statusNote": null,
+  "labelPoint": [
+   114.098,
+   22.449
+  ],
+  "flag": "flags/world/hkg.svg"
+ },
+ {
+  "id": "HMD",
+  "iso2": "HM",
+  "wikidata": "Q131198",
+  "name": {
+   "pt": "Ilha Heard e Ilhas McDonald",
+   "en": "Heard Island and McDonald Islands"
+  },
+  "aliases": {
+   "pt": [
+    "Ilha Heard",
+    "Ilha McDonald",
+    "Ilhas Heard e McDonald",
+    "Território das Ilhas Heard e McDonald"
+   ],
+   "en": [
+    "Territory of Heard Island and McDonald Islands",
+    "Heard and McDonald Islands",
+    "Heard and Macdonald Islands"
+   ]
+  },
+  "capitals": [],
+  "continent": "africa",
+  "areaKm2": 368,
+  "administeredBy": "AUS",
+  "claimedBy": [],
+  "statusNote": null,
+  "labelPoint": [
+   73.505,
+   -53.103
+  ],
+  "flag": "flags/world/hmd.svg"
+ },
+ {
+  "id": "IMN",
+  "iso2": "IM",
+  "wikidata": "Q9676",
+  "name": {
+   "pt": "Ilha de Man",
+   "en": "Isle of Man"
+  },
+  "aliases": {
+   "pt": [],
+   "en": [
+    "Mann",
+    "Manx",
+    "Isle of Mann"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q18569",
+    "name": {
+     "pt": "Douglas",
+     "en": "Douglas"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "Doolish"
+     ]
+    }
+   }
+  ],
+  "continent": "europe",
+  "areaKm2": 572,
+  "administeredBy": "GBR",
+  "claimedBy": [],
+  "statusNote": null,
+  "labelPoint": [
+   -4.53,
+   54.221
+  ],
+  "flag": "flags/world/imn.svg"
+ },
+ {
+  "id": "IOT",
+  "iso2": "IO",
+  "wikidata": "Q43448",
+  "name": {
+   "pt": "Território Britânico do Oceano Índico",
+   "en": "British Indian Ocean Territory"
+  },
+  "aliases": {
+   "pt": [
+    "O Território Britânico do Oceano Índico"
+   ],
+   "en": []
+  },
+  "capitals": [
+   {
+    "wikidata": "Q184851",
+    "name": {
+     "pt": "Diego Garcia",
+     "en": "Diego Garcia"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   }
+  ],
+  "continent": "africa",
+  "areaKm2": 60,
+  "administeredBy": "GBR",
+  "claimedBy": [],
+  "statusNote": null,
+  "labelPoint": [
+   71.348,
+   -6.191
+  ],
+  "flag": "flags/world/iot.svg"
+ },
+ {
+  "id": "JEY",
+  "iso2": "JE",
+  "wikidata": "Q785",
+  "name": {
+   "pt": "Jersey",
+   "en": "Jersey"
+  },
+  "aliases": {
+   "pt": [],
+   "en": [
+    "Balliwick of Jersey",
+    "Bailliage de Jersey",
+    "Bailliage de Jèrri",
+    "Jèrri",
+    "Iersey",
+    "Jersey Island",
+    "Isle of Jersey"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q147738",
+    "name": {
+     "pt": "Saint Helier",
+     "en": "Saint Helier"
+    },
+    "aliases": {
+     "pt": [
+      "Santo Helério",
+      "St. Helier"
+     ],
+     "en": [
+      "Saint Hélyi"
+     ]
+    }
+   }
+  ],
+  "continent": "europe",
+  "areaKm2": 118.2,
+  "administeredBy": "GBR",
+  "claimedBy": [],
+  "statusNote": null,
+  "labelPoint": [
+   -2.09,
+   49.221
+  ],
+  "flag": "flags/world/jey.svg"
+ },
+ {
+  "id": "KOS",
+  "iso2": "XK",
+  "wikidata": "Q1246",
+  "name": {
+   "pt": "Kosovo",
+   "en": "Kosovo"
+  },
+  "aliases": {
+   "pt": [
+    "República do Kosovo"
+   ],
+   "en": [
+    "Republic of Kosovo"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q25270",
+    "name": {
+     "pt": "Pristina",
+     "en": "Pristina"
+    },
+    "aliases": {
+     "pt": [
+      "Prishtinë"
+     ],
+     "en": [
+      "Prishtina"
+     ]
+    }
+   }
+  ],
+  "continent": "europe",
+  "areaKm2": 10909,
+  "administeredBy": null,
+  "claimedBy": [
+   {
+    "country": "SRB",
+    "name": {
+     "pt": "Sérvia",
+     "en": "Serbia"
+    }
+   }
+  ],
+  "statusNote": {
+   "pt": "Não é membro da ONU. Governa-se de forma independente, mas seu reconhecimento como país é contestado. Neste jogo, só é alvo com territórios ligados.",
+   "en": "Not a UN member. It governs itself, but its recognition as a country is disputed. In this game it is a target only with territories on."
+  },
+  "labelPoint": [
+   20.861,
+   42.594
+  ],
+  "flag": "flags/world/kos.svg"
+ },
+ {
+  "id": "MAC",
+  "iso2": "MO",
+  "wikidata": "Q14773",
+  "name": {
+   "pt": "Macau",
+   "en": "Macau"
+  },
+  "aliases": {
+   "pt": [],
+   "en": [
+    "Macau Special Administrative Region",
+    "Macau Special Administrative Region of the People's Republic of China",
+    "Aomen",
+    "Macao Special Administrative Region",
+    "Macao Special Administrative Region of the People's Republic of China",
+    "Macau SAR",
+    "Macao SAR"
+   ]
+  },
+  "capitals": [],
+  "continent": "asia",
+  "areaKm2": 118.4,
+  "administeredBy": "CHN",
+  "claimedBy": [],
+  "statusNote": null,
+  "labelPoint": [
+   113.556,
+   22.13
+  ],
+  "flag": "flags/world/mac.svg"
+ },
+ {
+  "id": "MAF",
+  "iso2": "MF",
+  "wikidata": "Q126125",
+  "name": {
+   "pt": "São Martinho (França)",
+   "en": "Saint-Martin"
+  },
+  "aliases": {
+   "pt": [
+    "Coletividade de São Martinho"
+   ],
+   "en": [
+    "Collectivity of Saint Martin"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q200605",
+    "name": {
+     "pt": "Marigot",
+     "en": "Marigot"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   }
+  ],
+  "continent": "north-america",
+  "areaKm2": 56,
+  "administeredBy": "FRA",
+  "claimedBy": [],
+  "statusNote": null,
+  "labelPoint": [
+   -63.049,
+   18.081
+  ],
+  "flag": "flags/world/maf.svg"
+ },
+ {
+  "id": "MNP",
+  "iso2": "MP",
+  "wikidata": "Q16644",
+  "name": {
+   "pt": "Marianas Setentrionais",
+   "en": "Northern Mariana Islands"
+  },
+  "aliases": {
+   "pt": [
+    "Ilhas Marianas do Norte",
+    "Comunidade das Ilhas Marianas Setentrionais",
+    "Comunidade das Ilhas Marianas do Norte"
+   ],
+   "en": [
+    "Commonwealth of the Northern Maria Islands",
+    "Northern Marianas",
+    "Commonwealth of the Northern Mariana Islands"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q49755159",
+    "name": {
+     "pt": "Saipan",
+     "en": "Saipan"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   }
+  ],
+  "continent": "oceania",
+  "areaKm2": 464,
+  "administeredBy": "USA",
+  "claimedBy": [],
+  "statusNote": null,
+  "labelPoint": [
+   145.734,
+   15.188
+  ],
+  "flag": "flags/world/mnp.svg"
+ },
+ {
+  "id": "MSR",
+  "iso2": "MS",
+  "wikidata": "Q13353",
+  "name": {
+   "pt": "Montserrat",
+   "en": "Montserrat"
+  },
+  "aliases": {
+   "pt": [
+    "Monserrate"
+   ],
+   "en": [
+    "Island of Montserrat"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q30990",
+    "name": {
+     "pt": "Plymouth",
+     "en": "Plymouth"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   },
+   {
+    "wikidata": "Q31006",
+    "name": {
+     "pt": "Brades",
+     "en": "Brades"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "Brades Estate"
+     ]
+    }
+   }
+  ],
+  "continent": "north-america",
+  "areaKm2": 102,
+  "administeredBy": "GBR",
+  "claimedBy": [],
+  "statusNote": null,
+  "labelPoint": [
+   -62.188,
+   16.737
+  ],
+  "flag": "flags/world/msr.svg"
+ },
+ {
+  "id": "MTQ",
+  "iso2": "MQ",
+  "wikidata": "Q17054",
+  "name": {
+   "pt": "Martinica",
+   "en": "Martinique"
+  },
+  "aliases": {
+   "pt": [
+    "Coletividade Territorial da Martinica"
+   ],
+   "en": [
+    "Matnik",
+    "Matinik",
+    "Territorial Collectivity of Martinique",
+    "Jouanacaëra",
+    "Wanakaera",
+    "Madiana",
+    "Madinina",
+    "Matinino"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q81621",
+    "name": {
+     "pt": "Fort-de-France",
+     "en": "Fort-de-France"
+    },
+    "aliases": {
+     "pt": [
+      "Forte da França",
+      "Forte de França"
+     ],
+     "en": [
+      "Fodfwans",
+      "Fort-Royal",
+      "Fort of France"
+     ]
+    }
+   }
+  ],
+  "continent": "north-america",
+  "areaKm2": 1128,
+  "administeredBy": "FRA",
+  "claimedBy": [],
+  "statusNote": null,
+  "labelPoint": [
+   -61.056,
+   14.712
+  ],
+  "flag": "flags/world/mtq.svg"
+ },
+ {
+  "id": "MYT",
+  "iso2": "YT",
+  "wikidata": "Q17063",
+  "name": {
+   "pt": "Mayotte",
+   "en": "Mayotte"
+  },
+  "aliases": {
+   "pt": [],
+   "en": [
+    "Department of Mayotte"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q132676",
+    "name": {
+     "pt": "Mamoudzou",
+     "en": "Mamoudzou"
+    },
+    "aliases": {
+     "pt": [
+      "Mamuzu",
+      "Mamudzu"
+     ],
+     "en": [
+      "Mambutzou",
+      "Mamoutzou",
+      "Mamutzu",
+      "Momoju"
+     ]
+    }
+   }
+  ],
+  "continent": "africa",
+  "areaKm2": 374,
+  "administeredBy": "FRA",
+  "claimedBy": [
+   {
+    "country": "COM",
+    "name": {
+     "pt": "Comores",
+     "en": "Comoros"
+    }
+   }
+  ],
+  "statusNote": null,
+  "labelPoint": [
+   45.151,
+   -12.775
+  ],
+  "flag": "flags/world/myt.svg"
+ },
+ {
+  "id": "NCL",
+  "iso2": "NC",
+  "wikidata": "Q33788",
+  "name": {
+   "pt": "Nova Caledônia",
+   "en": "New Caledonia"
+  },
+  "aliases": {
+   "pt": [
+    "Território da Nova Caledônia e Possessões",
+    "Nouvelle-Caledonie"
+   ],
+   "en": [
+    "Territory of New Caledonia and Dependencies",
+    "New Cal"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q9733",
+    "name": {
+     "pt": "Numeá",
+     "en": "Nouméa"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   }
+  ],
+  "continent": "oceania",
+  "areaKm2": 18576,
+  "administeredBy": "FRA",
+  "claimedBy": [],
+  "statusNote": null,
+  "labelPoint": [
+   165.084,
+   -21.065
+  ],
+  "flag": "flags/world/ncl.svg"
+ },
+ {
+  "id": "NFK",
+  "iso2": "NF",
+  "wikidata": "Q31057",
+  "name": {
+   "pt": "Ilha Norfolk",
+   "en": "Norfolk Island"
+  },
+  "aliases": {
+   "pt": [
+    "Ilha de Norfolque",
+    "Ilha de norfolk",
+    "Território da Ilha Norfolk",
+    "Ilha norfolque"
+   ],
+   "en": [
+    "Territory of Norfolk Island"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q30963",
+    "name": {
+     "pt": "Kingston",
+     "en": "Kingston"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   }
+  ],
+  "continent": "oceania",
+  "areaKm2": 34.6,
+  "administeredBy": "AUS",
+  "claimedBy": [],
+  "statusNote": null,
+  "labelPoint": [
+   167.955,
+   -29.033
+  ],
+  "flag": "flags/world/nfk.svg"
+ },
+ {
+  "id": "NIU",
+  "iso2": "NU",
+  "wikidata": "Q34020",
+  "name": {
+   "pt": "Niue",
+   "en": "Niue"
+  },
+  "aliases": {
+   "pt": [
+    "Ilha Niue"
+   ],
+   "en": []
+  },
+  "capitals": [
+   {
+    "wikidata": "Q30966",
+    "name": {
+     "pt": "Alofi",
+     "en": "Alofi"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   }
+  ],
+  "continent": "oceania",
+  "areaKm2": 260,
+  "administeredBy": "NZL",
+  "claimedBy": [],
+  "statusNote": null,
+  "labelPoint": [
+   -169.863,
+   -19.046
+  ],
+  "flag": "flags/world/niu.svg"
+ },
+ {
+  "id": "PCN",
+  "iso2": "PN",
+  "wikidata": "Q35672",
+  "name": {
+   "pt": "Ilhas Pitcairn",
+   "en": "Pitcairn Islands"
+  },
+  "aliases": {
+   "pt": [
+    "Ilha de Pitcairn"
+   ],
+   "en": [
+    "Occas Island"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q48273",
+    "name": {
+     "pt": "Adamstown",
+     "en": "Adamstown"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   }
+  ],
+  "continent": "oceania",
+  "areaKm2": 46.5,
+  "administeredBy": "GBR",
+  "claimedBy": [],
+  "statusNote": null,
+  "labelPoint": [
+   -128.318,
+   -24.365
+  ],
+  "flag": "flags/world/pcn.svg"
+ },
+ {
+  "id": "PRI",
+  "iso2": "PR",
+  "wikidata": "Q1183",
+  "name": {
+   "pt": "Porto Rico",
+   "en": "Puerto Rico"
+  },
+  "aliases": {
+   "pt": [
+    "Estado Livre Associado de Porto Rico",
+    "Território de Porto Rico"
+   ],
+   "en": [
+    "Free Associated State of Puerto Rico",
+    "Territory of Puerto Rico",
+    "Commonwealth of Puerto Rico",
+    "Island of Enchantment",
+    "Borikén",
+    "Borinquen",
+    "Boriquén",
+    "Isle of Enchantment",
+    "Territory of Porto Rico"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q41211",
+    "name": {
+     "pt": "San Juan",
+     "en": "San Juan"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "San Juan Bautista",
+      "San Juan Municipio",
+      "San Juan de Puerto Rico",
+      "San Juan PR",
+      "San Juan Bautista de Puerto Rico"
+     ]
+    }
+   }
+  ],
+  "continent": "north-america",
+  "areaKm2": 9104,
+  "administeredBy": "USA",
+  "claimedBy": [],
+  "statusNote": null,
+  "labelPoint": [
+   -66.481,
+   18.235
+  ],
+  "flag": "flags/world/pri.svg"
+ },
+ {
+  "id": "PYF",
+  "iso2": "PF",
+  "wikidata": "Q30971",
+  "name": {
+   "pt": "Polinésia Francesa",
+   "en": "French Polynesia"
+  },
+  "aliases": {
+   "pt": [
+    "Território Polinésia Francesa",
+    "Pōrīnetia Farāni"
+   ],
+   "en": [
+    "French Oceania",
+    "French Settlements in Oceania",
+    "French Establishments in Oceania",
+    "Territory of French Polynesia"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q130800",
+    "name": {
+     "pt": "Papeete",
+     "en": "Papeete"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   }
+  ],
+  "continent": "oceania",
+  "areaKm2": 4167,
+  "administeredBy": "FRA",
+  "claimedBy": [],
+  "statusNote": null,
+  "labelPoint": [
+   -149.462,
+   -17.628
+  ],
+  "flag": "flags/world/pyf.svg"
+ },
+ {
+  "id": "REU",
+  "iso2": "RE",
+  "wikidata": "Q17070",
+  "name": {
+   "pt": "Reunião",
+   "en": "Réunion"
+  },
+  "aliases": {
+   "pt": [],
+   "en": [
+    "La Réunion",
+    "La Réunion Island",
+    "Reunion Island",
+    "Bourbon Island",
+    "Île de La Réunion",
+    "Île de Bourbon"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q47045",
+    "name": {
+     "pt": "Saint-Denis",
+     "en": "Saint-Denis"
+    },
+    "aliases": {
+     "pt": [
+      "São Dinis"
+     ],
+     "en": [
+      "Saint-Denis-de-la-Réunion"
+     ]
+    }
+   }
+  ],
+  "continent": "africa",
+  "areaKm2": 2512,
+  "administeredBy": "FRA",
+  "claimedBy": [],
+  "statusNote": null,
+  "labelPoint": [
+   55.536,
+   -21.113
+  ],
+  "flag": "flags/world/reu.svg"
+ },
+ {
+  "id": "SGS",
+  "iso2": "GS",
+  "wikidata": "Q35086",
+  "name": {
+   "pt": "Ilhas Geórgia do Sul e Sandwich do Sul",
+   "en": "South Georgia and the South Sandwich Islands"
+  },
+  "aliases": {
+   "pt": [],
+   "en": [
+    "South Georgia",
+    "South Sandwich Islands",
+    "South Georgia and South Sandwich Islands"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q393878",
+    "name": {
+     "pt": "Cabo Rei Eduardo",
+     "en": "King Edward Point"
+    },
+    "aliases": {
+     "pt": [
+      "Ponto Rei Eduardo"
+     ],
+     "en": []
+    }
+   },
+   {
+    "wikidata": "Q185672",
+    "name": {
+     "pt": "Grytviken",
+     "en": "Grytviken"
+    },
+    "aliases": {
+     "pt": [
+      "estação baleeira de Grytviken"
+     ],
+     "en": [
+      "Grytviken whaling station"
+     ]
+    }
+   }
+  ],
+  "continent": "south-america",
+  "areaKm2": 4066,
+  "administeredBy": "GBR",
+  "claimedBy": [
+   {
+    "country": "ARG",
+    "name": {
+     "pt": "Argentina",
+     "en": "Argentina"
+    }
+   }
+  ],
+  "statusNote": null,
+  "labelPoint": [
+   -31.063,
+   -55.683
+  ],
+  "flag": "flags/world/sgs.svg"
+ },
+ {
+  "id": "SHN",
+  "iso2": "SH",
+  "wikidata": "Q34497",
+  "name": {
+   "pt": "Santa Helena",
+   "en": "Saint Helena"
+  },
+  "aliases": {
+   "pt": [
+    "Ilha de Santa Helena"
+   ],
+   "en": []
+  },
+  "capitals": [],
+  "continent": "africa",
+  "areaKm2": 121,
+  "administeredBy": "GBR",
+  "claimedBy": [],
+  "statusNote": null,
+  "labelPoint": [
+   -5.713,
+   -15.95
+  ],
+  "flag": "flags/world/shn.svg"
+ },
+ {
+  "id": "SJM",
+  "iso2": "SJ",
+  "wikidata": "Q25231",
+  "name": {
+   "pt": "Svalbard",
+   "en": "Svalbard"
+  },
+  "aliases": {
+   "pt": [
+    "Esvalbarda",
+    "Arquipélago de svalbard"
+   ],
+   "en": [
+    "Svaldbard",
+    "Spitsburgen",
+    "Svalbard Archipelago",
+    "Svaalbard",
+    "Svalbard Islands",
+    "Sval'bard",
+    "Spitzburgen",
+    "Svalbard Island",
+    "Spitzbergen",
+    "Spitzbergen Archipelago"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q25923",
+    "name": {
+     "pt": "Longyearbyen",
+     "en": "Longyearbyen"
+    },
+    "aliases": {
+     "pt": [
+      "Longuiarbien"
+     ],
+     "en": [
+      "Longyear City"
+     ]
+    }
+   }
+  ],
+  "continent": "europe",
+  "areaKm2": 61022,
+  "administeredBy": "NOR",
+  "claimedBy": [],
+  "statusNote": null,
+  "labelPoint": [
+   18.081,
+   78.778
+  ],
+  "flag": "flags/world/sjm.svg"
+ },
+ {
+  "id": "SOL",
+  "iso2": null,
+  "wikidata": "Q34754",
+  "name": {
+   "pt": "Somalilândia",
+   "en": "Somaliland"
+  },
+  "aliases": {
+   "pt": [],
+   "en": [
+    "Republic of Somaliland"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q168652",
+    "name": {
+     "pt": "Hargeisa",
+     "en": "Hargeisa"
+    },
+    "aliases": {
+     "pt": [
+      "Hargeysa"
+     ],
+     "en": []
+    }
+   }
+  ],
+  "continent": "africa",
+  "areaKm2": 177000,
+  "administeredBy": null,
+  "claimedBy": [],
+  "statusNote": {
+   "pt": "Não é membro da ONU. Governa-se de forma independente, mas seu reconhecimento como país é contestado. Neste jogo, só é alvo com territórios ligados.",
+   "en": "Not a UN member. It governs itself, but its recognition as a country is disputed. In this game it is a target only with territories on."
+  },
+  "labelPoint": [
+   46.732,
+   9.444
+  ],
+  "flag": "flags/world/sol.svg"
+ },
+ {
+  "id": "SPM",
+  "iso2": "PM",
+  "wikidata": "Q34617",
+  "name": {
+   "pt": "Saint-Pierre e Miquelon",
+   "en": "Saint Pierre and Miquelon"
+  },
+  "aliases": {
+   "pt": [
+    "São Pedro e Miquelão",
+    "ilhas das Onze Mil Virgens",
+    "ilhas Verdes",
+    "São Pedro e Miquelon",
+    "Saint-Pierre-et-Miquellon"
+   ],
+   "en": [
+    "St. Pierre and Miquelon",
+    "Territorial Collectivity of Saint Pierre and Miquelon"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q185678",
+    "name": {
+     "pt": "Saint-Pierre",
+     "en": "Saint-Pierre"
+    },
+    "aliases": {
+     "pt": [
+      "São Pedro"
+     ],
+     "en": [
+      "St Pierre",
+      "Saint Pierre Commune",
+      "St Pierre Commune",
+      "Saint-Pierre-en-l'Île",
+      "St-Pierre-en-l'Île",
+      "Saint Pierre on the Isle",
+      "St. Pierre on the Isle"
+     ]
+    }
+   }
+  ],
+  "continent": "north-america",
+  "areaKm2": 242,
+  "administeredBy": "FRA",
+  "claimedBy": [],
+  "statusNote": null,
+  "labelPoint": [
+   -56.332,
+   47.04
+  ],
+  "flag": "flags/world/spm.svg"
+ },
+ {
+  "id": "SXM",
+  "iso2": "SX",
+  "wikidata": "Q26273",
+  "name": {
+   "pt": "São Martinho (Países Baixos)",
+   "en": "Sint Maarten"
+  },
+  "aliases": {
+   "pt": [
+    "Saint Marteen"
+   ],
+   "en": [
+    "Sint Martin"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q30958",
+    "name": {
+     "pt": "Philipsburg",
+     "en": "Philipsburg"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   }
+  ],
+  "continent": "north-america",
+  "areaKm2": 34,
+  "administeredBy": "NLD",
+  "claimedBy": [],
+  "statusNote": null,
+  "labelPoint": [
+   -63.07,
+   18.041
+  ],
+  "flag": "flags/world/sxm.svg"
+ },
+ {
+  "id": "TCA",
+  "iso2": "TC",
+  "wikidata": "Q18221",
+  "name": {
+   "pt": "Turks e Caicos",
+   "en": "Turks and Caicos Islands"
+  },
+  "aliases": {
+   "pt": [
+    "Ilhas Turcas e Caicos",
+    "Ilhas Turks e Caicos",
+    "Turcas e Caicos"
+   ],
+   "en": [
+    "Turks and Caicos"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q34205",
+    "name": {
+     "pt": "Cockburn Town",
+     "en": "Cockburn Town"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   }
+  ],
+  "continent": "north-america",
+  "areaKm2": 417,
+  "administeredBy": "GBR",
+  "claimedBy": [],
+  "statusNote": null,
+  "labelPoint": [
+   -71.753,
+   21.817
+  ],
+  "flag": "flags/world/tca.svg"
+ },
+ {
+  "id": "TKL",
+  "iso2": "TK",
+  "wikidata": "Q36823",
+  "name": {
+   "pt": "Tokelau",
+   "en": "Tokelau"
+  },
+  "aliases": {
+   "pt": [
+    "Ilhas Tokelau",
+    "Toquelao",
+    "Toquelau"
+   ],
+   "en": [
+    "Tokelau Islands",
+    "Union Islands"
+   ]
+  },
+  "capitals": [],
+  "continent": "oceania",
+  "areaKm2": 12.2,
+  "administeredBy": "NZL",
+  "claimedBy": [],
+  "statusNote": null,
+  "labelPoint": [
+   -172.486,
+   -8.562
+  ],
+  "flag": "flags/world/tkl.svg"
+ },
+ {
+  "id": "TWN",
+  "iso2": "TW",
+  "wikidata": "Q865",
+  "name": {
+   "pt": "Taiwan",
+   "en": "Taiwan"
+  },
+  "aliases": {
+   "pt": [
+    "República da China",
+    "Chunghwa Minkwo",
+    "Chunghwa Minkuo",
+    "China Nacionalista",
+    "China Livre",
+    "Área livre da República da China",
+    "Taipé Chinesa",
+    "Taiwan RC",
+    "Taipé",
+    "Taipei"
+   ],
+   "en": [
+    "Taiwan ROC",
+    "Nationalist China",
+    "Chinese Taipei",
+    "Free China",
+    "Republic of China",
+    "Chinese Republic"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q1867",
+    "name": {
+     "pt": "Taipé",
+     "en": "Taipei"
+    },
+    "aliases": {
+     "pt": [
+      "Cidade das Azáleas",
+      "Cidade de Taipé",
+      "Cidade de Taipei",
+      "Taibei"
+     ],
+     "en": [
+      "City of Azaleas",
+      "Taipei City",
+      "City of Taipei",
+      "Tanshoui",
+      "Tai Pei",
+      "Tâi-pak",
+      "Taipak",
+      "Thòi-pet",
+      "Thoipet",
+      "Taihoku"
+     ]
+    }
+   }
+  ],
+  "continent": "asia",
+  "areaKm2": 36197,
+  "administeredBy": null,
+  "claimedBy": [
+   {
+    "country": "CHN",
+    "name": {
+     "pt": "China",
+     "en": "China"
+    }
+   }
+  ],
+  "statusNote": {
+   "pt": "Não é membro da ONU. Governa-se de forma independente, mas seu reconhecimento como país é contestado. Neste jogo, só é alvo com territórios ligados.",
+   "en": "Not a UN member. It governs itself, but its recognition as a country is disputed. In this game it is a target only with territories on."
+  },
+  "labelPoint": [
+   120.868,
+   23.652
+  ],
+  "flag": "flags/world/twn.svg"
+ },
+ {
+  "id": "UMI",
+  "iso2": "UM",
+  "wikidata": "Q16645",
+  "name": {
+   "pt": "Ilhas Menores Distantes dos Estados Unidos",
+   "en": "United States Minor Outlying Islands"
+  },
+  "aliases": {
+   "pt": [],
+   "en": [
+    "US Minor Outlying Islands",
+    "U.S. Minor Outlying Islands"
+   ]
+  },
+  "capitals": [],
+  "continent": "oceania",
+  "areaKm2": 34.2,
+  "administeredBy": "USA",
+  "claimedBy": [],
+  "statusNote": null,
+  "labelPoint": [
+   -169.538,
+   16.727
+  ],
+  "flag": "flags/world/umi.svg"
+ },
+ {
+  "id": "VGB",
+  "iso2": "VG",
+  "wikidata": "Q25305",
+  "name": {
+   "pt": "Ilhas Virgens Britânicas",
+   "en": "British Virgin Islands"
+  },
+  "aliases": {
+   "pt": [
+    "Ilhas Virgens"
+   ],
+   "en": [
+    "Virgin Islands of the United Kingdom"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q179431",
+    "name": {
+     "pt": "Road Town",
+     "en": "Road Town"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "Road Harbour Town"
+     ]
+    }
+   }
+  ],
+  "continent": "north-america",
+  "areaKm2": 153,
+  "administeredBy": "GBR",
+  "claimedBy": [],
+  "statusNote": null,
+  "labelPoint": [
+   -64.637,
+   18.427
+  ],
+  "flag": "flags/world/vgb.svg"
+ },
+ {
+  "id": "VIR",
+  "iso2": "VI",
+  "wikidata": "Q11703",
+  "name": {
+   "pt": "Ilhas Virgens Americanas",
+   "en": "United States Virgin Islands"
+  },
+  "aliases": {
+   "pt": [],
+   "en": [
+    "Virgin Islands of the United States",
+    "US Virgin Islands",
+    "American Virgin Islands"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q51681",
+    "name": {
+     "pt": "Charlotte Amalie",
+     "en": "Charlotte Amalie"
+    },
+    "aliases": {
+     "pt": [],
+     "en": [
+      "Taphus"
+     ]
+    }
+   }
+  ],
+  "continent": "north-america",
+  "areaKm2": 346.36,
+  "administeredBy": "USA",
+  "claimedBy": [],
+  "statusNote": null,
+  "labelPoint": [
+   -64.779,
+   17.747
+  ],
+  "flag": "flags/world/vir.svg"
+ },
+ {
+  "id": "WLF",
+  "iso2": "WF",
+  "wikidata": "Q35555",
+  "name": {
+   "pt": "Wallis e Futuna",
+   "en": "Wallis and Futuna"
+  },
+  "aliases": {
+   "pt": [
+    "Walis e Futuna",
+    "Território das Ilhas Wallis e Futuna",
+    "Wallis e Futuna Islands"
+   ],
+   "en": [
+    "Wallis and Futuna Islands"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q31002",
+    "name": {
+     "pt": "Mata-Utu",
+     "en": "Mata-Utu"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   }
+  ],
+  "continent": "oceania",
+  "areaKm2": 142,
+  "administeredBy": "FRA",
+  "claimedBy": [],
+  "statusNote": null,
+  "labelPoint": [
+   -178.137,
+   -14.286
+  ],
+  "flag": "flags/world/wlf.svg"
+ }
+]

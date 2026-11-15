@@ -1,0 +1,157 @@
+<!-- The click game is not meant to be playable without sight (see CLAUDE.md), so no key handler. -->
+<!-- eslint-disable-next-line @angular-eslint/template/click-events-have-key-events -->
+<svg
+  #svg
+  class="block h-full w-full touch-none select-none"
+  [class.is-selectable]="state.selectable()"
+  [class.no-hover]="!settings.value().hoverHighlight"
+  [attr.viewBox]="viewBox()"
+  preserveAspectRatio="xMidYMid meet"
+  role="img"
+  [attr.aria-label]="i18n.t('map.aria')"
+  (click)="onClick($event)"
+  (pointerover)="onPointerOver($event)"
+  (pointerleave)="state.hover(null)"
+>
+  <defs>
+    <!-- Diagonal hatching marks missed places without relying on color alone. -->
+    <pattern
+      id="missed-hatch"
+      width="5"
+      height="5"
+      patternUnits="userSpaceOnUse"
+      patternTransform="rotate(45)"
+    >
+      <rect width="5" height="5" fill="#f6efd9" />
+      <rect width="2" height="5" fill="#c9693b" />
+    </pattern>
+  </defs>
+  <g #layer>
+    <!-- One copy of the world, or three side by side when the map repeats sideways. -->
+    @for (offset of copies(); track offset) {
+      <g [attr.transform]="'translate(' + offset + ' 0)'">
+        <ng-container [ngTemplateOutlet]="world" />
+      </g>
+    }
+  </g>
+  <ng-template #world>
+    <!--
+      The repeating map is a rectangle over the ocean-colored page, so it needs neither the sphere
+      (one copy's ocean would be painted over the land at the edge of the copy before it, leaving
+      a thin seam) nor the grid (just clutter there).
+    -->
+    @if (view().sphere) {
+      <path class="sphere" [attr.d]="spherePath()" />
+      <path class="graticule" [attr.d]="graticulePath()" />
+    }
+    @for (shape of shapes(); track shape.id) {
+      <path
+        class="land"
+        [class.is-neutral]="shape.neutral"
+        [class.is-found]="state.found().has(shape.id)"
+        [class.is-missed]="state.missed().has(shape.id)"
+        [class.is-selected]="shape.id === state.selectedId()"
+        [class.is-hovered]="shape.id === state.hoveredId()"
+        [attr.d]="shape.d"
+        [attr.data-id]="shape.id"
+      />
+    }
+    <path class="lakes" [attr.d]="lakesPath()" />
+    <path class="coast" [attr.d]="coastPath()" />
+    <path class="borders" [attr.d]="bordersPath()" />
+    @for (shape of foundShapes(); track shape.id) {
+      <path class="found-outline" [attr.d]="shape.outline" />
+    }
+    @for (shape of missedShapes(); track shape.id) {
+      <path class="missed-outline" [attr.d]="shape.outline" />
+    }
+    @for (marker of markers(); track marker.id) {
+      <circle
+        class="marker"
+        [class.is-found]="marker.kind === 'found'"
+        [class.is-missed]="marker.kind === 'missed'"
+        [attr.cx]="marker.x"
+        [attr.cy]="marker.y"
+        r="4.5"
+        [attr.data-id]="marker.id"
+      />
+    }
+    @for (area of hitAreas(); track area.id) {
+      <!-- Invisible bigger target around tiny places, so a finger or mouse can hit them. -->
+      <circle
+        class="hit-area"
+        [attr.cx]="area.x"
+        [attr.cy]="area.y"
+        r="1"
+        [attr.data-id]="area.id"
+      />
+    }
+    @for (label of labels(); track label.id) {
+      <!-- Name of a found place; the group is placed on the map, the text keeps its size. -->
+      <g [attr.transform]="'translate(' + label.x + ' ' + label.y + ')'" class="map-label-anchor">
+        <text class="map-label" text-anchor="middle">{{ label.text }}</text>
+      </g>
+    }
+    @for (shape of wrongShapes(); track shape.id) {
+      <path class="wrong-outline" [attr.d]="shape.outline" />
+    }
+    @for (shape of pulseShapes(); track shape.id) {
+      <path class="selected-outline" [attr.d]="shape.outline" />
+    }
+    @if (selectedShape(); as shape) {
+      <!-- Drawn on top so the outline is never hidden by neighbours; keyed to replay the pulse. -->
+      @for (s of [shape]; track s.id) {
+        <path class="selected-outline" [attr.d]="s.outline" />
+      }
+    }
+  </ng-template>
+</svg>
+
+@if (loading()) {
+  <p class="pointer-events-none absolute inset-0 grid place-items-center text-sm text-ink-muted">
+    {{ i18n.t('map.loading') }}
+  </p>
+}
+@if (error()) {
+  <p
+    class="absolute inset-x-4 top-1/2 mx-auto max-w-sm -translate-y-1/2 rounded-lg bg-panel-solid p-4 text-center text-sm shadow-panel"
+    role="alert"
+  >
+    {{ i18n.t('map.error') }}
+  </p>
+}
+
+<div
+  class="absolute right-3 bottom-[max(1rem,env(safe-area-inset-bottom))] hidden flex-col overflow-hidden rounded-lg bg-panel shadow-panel backdrop-blur pointer-fine:flex"
+>
+  <button
+    type="button"
+    class="zoom-button"
+    [attr.aria-label]="i18n.t('map.zoomIn')"
+    [title]="i18n.t('map.zoomIn')"
+    (click)="zoomBy(1.6)"
+  >
+    <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 4v12M4 10h12" /></svg>
+  </button>
+  <button
+    type="button"
+    class="zoom-button"
+    [attr.aria-label]="i18n.t('map.zoomOut')"
+    [title]="i18n.t('map.zoomOut')"
+    (click)="zoomBy(1 / 1.6)"
+  >
+    <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h12" /></svg>
+  </button>
+  <button
+    type="button"
+    class="zoom-button"
+    [attr.aria-label]="i18n.t('map.reset')"
+    [title]="i18n.t('map.reset')"
+    (click)="resetZoom()"
+  >
+    <svg viewBox="0 0 20 20" aria-hidden="true">
+      <circle cx="10" cy="10" r="6.5" />
+      <path d="M3.5 10h13M10 3.5c-2.2 2-2.2 11 0 13M10 3.5c2.2 2 2.2 11 0 13" />
+    </svg>
+  </button>
+</div>

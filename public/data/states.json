@@ -1,0 +1,1125 @@
+[
+ {
+  "id": "AC",
+  "ibgeCode": 12,
+  "wikidata": "Q40780",
+  "name": {
+   "pt": "Acre",
+   "en": "Acre"
+  },
+  "aliases": {
+   "pt": [
+    "Estado do Acre"
+   ],
+   "en": [
+    "State of Acre",
+    "Acre State"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q171612",
+    "name": {
+     "pt": "Rio Branco",
+     "en": "Rio Branco"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   }
+  ],
+  "region": "N",
+  "areaKm2": 164173.429,
+  "flag": "flags/br/ac.svg",
+  "labelPoint": [
+   -70.4729,
+   -9.2133
+  ]
+ },
+ {
+  "id": "AL",
+  "ibgeCode": 27,
+  "wikidata": "Q40885",
+  "name": {
+   "pt": "Alagoas",
+   "en": "Alagoas"
+  },
+  "aliases": {
+   "pt": [
+    "Estado de Alagoas"
+   ],
+   "en": [
+    "State of Alagoas",
+    "Alagoas State"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q168888",
+    "name": {
+     "pt": "Maceió",
+     "en": "Maceió"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   }
+  ],
+  "region": "NE",
+  "areaKm2": 27830.661,
+  "flag": "flags/br/al.svg",
+  "labelPoint": [
+   -36.6248,
+   -9.5137
+  ]
+ },
+ {
+  "id": "AP",
+  "ibgeCode": 16,
+  "wikidata": "Q40130",
+  "name": {
+   "pt": "Amapá",
+   "en": "Amapá"
+  },
+  "aliases": {
+   "pt": [
+    "Estado do Amapá"
+   ],
+   "en": [
+    "State of Amapá",
+    "Portuguese Guiana"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q180215",
+    "name": {
+     "pt": "Macapá",
+     "en": "Macapá"
+    },
+    "aliases": {
+     "pt": [
+      "São José de Macapá",
+      "Capital do Meio do Mundo",
+      "Sam Joze de Macapá"
+     ],
+     "en": [
+      "São José de Macapá",
+      "Sam Joze de Macapá"
+     ]
+    }
+   }
+  ],
+  "region": "N",
+  "areaKm2": 142470.762,
+  "flag": "flags/br/ap.svg",
+  "labelPoint": [
+   -51.9673,
+   1.4455
+  ]
+ },
+ {
+  "id": "AM",
+  "ibgeCode": 13,
+  "wikidata": "Q40040",
+  "name": {
+   "pt": "Amazonas",
+   "en": "Amazonas"
+  },
+  "aliases": {
+   "pt": [
+    "Estado do Amazonas"
+   ],
+   "en": [
+    "State of Amazonas",
+    "Amazonas State"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q40236",
+    "name": {
+     "pt": "Manaus",
+     "en": "Manaus"
+    },
+    "aliases": {
+     "pt": [
+      "Paris dos Trópicos",
+      "Mãe dos Deuses",
+      "Metrópole da Amazônia",
+      "Cidade dos nobres Barés",
+      "Porto de Lenha",
+      "Cidade da Barra do Rio Negro",
+      "Barra do Rio Negro",
+      "Capital da Amazônia"
+     ],
+     "en": [
+      "Mother of Gods",
+      "Paris of the Tropics"
+     ]
+    }
+   }
+  ],
+  "region": "N",
+  "areaKm2": 1559255.881,
+  "flag": "flags/br/am.svg",
+  "labelPoint": [
+   -64.6535,
+   -4.1541
+  ]
+ },
+ {
+  "id": "BA",
+  "ibgeCode": 29,
+  "wikidata": "Q40430",
+  "name": {
+   "pt": "Bahia",
+   "en": "Bahia"
+  },
+  "aliases": {
+   "pt": [
+    "Estado da Bahia",
+    "Baía",
+    "Estado da Baía"
+   ],
+   "en": [
+    "State of Bahia",
+    "Bahia State"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q36947",
+    "name": {
+     "pt": "Salvador",
+     "en": "Salvador"
+    },
+    "aliases": {
+     "pt": [
+      "Município do Salvador",
+      "Cidade do Salvador",
+      "Cidade de Salvador",
+      "Município de Salvador",
+      "Cidade da Bahia",
+      "Salvador da Bahia",
+      "Salvador da Baía",
+      "Salvador-BA",
+      "São Salvador da Bahia",
+      "São Salvador da Baía",
+      "São Salvador da Baía de Todos os Santos",
+      "Roma Negra"
+     ],
+     "en": [
+      "São Salvador da Bahia de Todos os Santos",
+      "Bahia"
+     ]
+    }
+   }
+  ],
+  "region": "NE",
+  "areaKm2": 564760.429,
+  "flag": "flags/br/ba.svg",
+  "labelPoint": [
+   -41.7212,
+   -12.4753
+  ]
+ },
+ {
+  "id": "CE",
+  "ibgeCode": 23,
+  "wikidata": "Q40123",
+  "name": {
+   "pt": "Ceará",
+   "en": "Ceará"
+  },
+  "aliases": {
+   "pt": [
+    "Estado do Ceará"
+   ],
+   "en": [
+    "State of Ceará",
+    "Ceara State"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q43463",
+    "name": {
+     "pt": "Fortaleza",
+     "en": "Fortaleza"
+    },
+    "aliases": {
+     "pt": [
+      "Terra da Luz",
+      "Fortal"
+     ],
+     "en": [
+      "Ceara"
+     ]
+    }
+   }
+  ],
+  "region": "NE",
+  "areaKm2": 148894.447,
+  "flag": "flags/br/ce.svg",
+  "labelPoint": [
+   -39.6158,
+   -5.0932
+  ]
+ },
+ {
+  "id": "DF",
+  "ibgeCode": 53,
+  "wikidata": "Q119158",
+  "name": {
+   "pt": "Distrito Federal",
+   "en": "Federal District"
+  },
+  "aliases": {
+   "pt": [],
+   "en": []
+  },
+  "capitals": [
+   {
+    "wikidata": "Q2844",
+    "name": {
+     "pt": "Brasília",
+     "en": "Brasília"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   }
+  ],
+  "region": "CO",
+  "areaKm2": 5760.784,
+  "flag": "flags/br/df.svg",
+  "labelPoint": [
+   -47.7969,
+   -15.7812
+  ]
+ },
+ {
+  "id": "ES",
+  "ibgeCode": 32,
+  "wikidata": "Q43233",
+  "name": {
+   "pt": "Espírito Santo",
+   "en": "Espírito Santo"
+  },
+  "aliases": {
+   "pt": [
+    "Estado do Espírito Santo"
+   ],
+   "en": [
+    "Espiritu Santo",
+    "Espirito Santo State"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q168376",
+    "name": {
+     "pt": "Vitória",
+     "en": "Vitória"
+    },
+    "aliases": {
+     "pt": [
+      "Ilha do Mel",
+      "Vitória do Espírito Santo"
+     ],
+     "en": []
+    }
+   }
+  ],
+  "region": "SE",
+  "areaKm2": 46074.448,
+  "flag": "flags/br/es.svg",
+  "labelPoint": [
+   -40.6712,
+   -19.5749
+  ]
+ },
+ {
+  "id": "GO",
+  "ibgeCode": 52,
+  "wikidata": "Q41587",
+  "name": {
+   "pt": "Goiás",
+   "en": "Goiás"
+  },
+  "aliases": {
+   "pt": [
+    "Estado de Goiás"
+   ],
+   "en": [
+    "Goias state"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q83189",
+    "name": {
+     "pt": "Goiânia",
+     "en": "Goiânia"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   }
+  ],
+  "region": "CO",
+  "areaKm2": 340242.859,
+  "flag": "flags/br/go.svg",
+  "labelPoint": [
+   -49.6225,
+   -16.0412
+  ]
+ },
+ {
+  "id": "MA",
+  "ibgeCode": 21,
+  "wikidata": "Q42362",
+  "name": {
+   "pt": "Maranhão",
+   "en": "Maranhão"
+  },
+  "aliases": {
+   "pt": [
+    "Estado do Maranhão"
+   ],
+   "en": [
+    "Maranhao State",
+    "Maranhato"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q28441",
+    "name": {
+     "pt": "São Luís",
+     "en": "São Luís"
+    },
+    "aliases": {
+     "pt": [
+      "São Luís do Maranhão",
+      "Atenas brasileira",
+      "Ilha do amor",
+      "Rainha do Maranhão",
+      "Ludovicenses",
+      "São Luís-MA"
+     ],
+     "en": []
+    }
+   }
+  ],
+  "region": "NE",
+  "areaKm2": 329651.496,
+  "flag": "flags/br/ma.svg",
+  "labelPoint": [
+   -45.2892,
+   -5.0789
+  ]
+ },
+ {
+  "id": "MT",
+  "ibgeCode": 51,
+  "wikidata": "Q42824",
+  "name": {
+   "pt": "Mato Grosso",
+   "en": "Mato Grosso"
+  },
+  "aliases": {
+   "pt": [
+    "Estado de Mato Grosso"
+   ],
+   "en": [
+    "Mato Grosso State"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q170762",
+    "name": {
+     "pt": "Cuiabá",
+     "en": "Cuiabá"
+    },
+    "aliases": {
+     "pt": [
+      "Vila Real do Senhor Bom Jesus do Cuiabá",
+      "Cuiabano"
+     ],
+     "en": []
+    }
+   }
+  ],
+  "region": "CO",
+  "areaKm2": 903208.361,
+  "flag": "flags/br/mt.svg",
+  "labelPoint": [
+   -55.9123,
+   -12.949
+  ]
+ },
+ {
+  "id": "MS",
+  "ibgeCode": 50,
+  "wikidata": "Q43319",
+  "name": {
+   "pt": "Mato Grosso do Sul",
+   "en": "Mato Grosso do Sul"
+  },
+  "aliases": {
+   "pt": [
+    "Estado do Mato Grosso do Sul",
+    "Estado de Mato Grosso do Sul"
+   ],
+   "en": [
+    "Southern Mato Grosso"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q168929",
+    "name": {
+     "pt": "Campo Grande",
+     "en": "Campo Grande"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   }
+  ],
+  "region": "CO",
+  "areaKm2": 357142.082,
+  "flag": "flags/br/ms.svg",
+  "labelPoint": [
+   -54.8456,
+   -20.3273
+  ]
+ },
+ {
+  "id": "MG",
+  "ibgeCode": 31,
+  "wikidata": "Q39109",
+  "name": {
+   "pt": "Minas Gerais",
+   "en": "Minas Gerais"
+  },
+  "aliases": {
+   "pt": [
+    "Estado de Minas Gerais"
+   ],
+   "en": [
+    "Minas Gerais state",
+    "Minais Gerais"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q42800",
+    "name": {
+     "pt": "Belo Horizonte",
+     "en": "Belo Horizonte"
+    },
+    "aliases": {
+     "pt": [
+      "Arraial do Curral del-Rei",
+      "Cidade de Belo Horizonte"
+     ],
+     "en": [
+      "White Horizon"
+     ]
+    }
+   }
+  ],
+  "region": "SE",
+  "areaKm2": 586513.983,
+  "flag": "flags/br/mg.svg",
+  "labelPoint": [
+   -44.6734,
+   -18.4562
+  ]
+ },
+ {
+  "id": "PA",
+  "ibgeCode": 15,
+  "wikidata": "Q39517",
+  "name": {
+   "pt": "Pará",
+   "en": "Pará"
+  },
+  "aliases": {
+   "pt": [
+    "Estado do Pará"
+   ],
+   "en": [
+    "Para State"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q12829733",
+    "name": {
+     "pt": "Belém",
+     "en": "Belém"
+    },
+    "aliases": {
+     "pt": [
+      "Belém do Pará",
+      "Santa Maria de Belém do Grão-Pará"
+     ],
+     "en": []
+    }
+   }
+  ],
+  "region": "N",
+  "areaKm2": 1245870.704,
+  "flag": "flags/br/pa.svg",
+  "labelPoint": [
+   -53.0722,
+   -3.981
+  ]
+ },
+ {
+  "id": "PB",
+  "ibgeCode": 25,
+  "wikidata": "Q38088",
+  "name": {
+   "pt": "Paraíba",
+   "en": "Paraíba"
+  },
+  "aliases": {
+   "pt": [
+    "Estado da Paraíba"
+   ],
+   "en": [
+    "Paraiba State"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q167436",
+    "name": {
+     "pt": "João Pessoa",
+     "en": "João Pessoa"
+    },
+    "aliases": {
+     "pt": [
+      "Município de João Pessoa"
+     ],
+     "en": [
+      "Paraiba"
+     ]
+    }
+   }
+  ],
+  "region": "NE",
+  "areaKm2": 56467.242,
+  "flag": "flags/br/pb.svg",
+  "labelPoint": [
+   -36.8327,
+   -7.1211
+  ]
+ },
+ {
+  "id": "PR",
+  "ibgeCode": 41,
+  "wikidata": "Q15499",
+  "name": {
+   "pt": "Paraná",
+   "en": "Paraná"
+  },
+  "aliases": {
+   "pt": [
+    "Estado do Paraná"
+   ],
+   "en": [
+    "Parana State"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q4361",
+    "name": {
+     "pt": "Curitiba",
+     "en": "Curitiba"
+    },
+    "aliases": {
+     "pt": [
+      "Curitiba-PR"
+     ],
+     "en": [
+      "Curityba do Parana",
+      "Curityba",
+      "Coritiba",
+      "Corityba"
+     ]
+    }
+   }
+  ],
+  "region": "S",
+  "areaKm2": 199298.981,
+  "flag": "flags/br/pr.svg",
+  "labelPoint": [
+   -51.6166,
+   -24.6359
+  ]
+ },
+ {
+  "id": "PE",
+  "ibgeCode": 26,
+  "wikidata": "Q40942",
+  "name": {
+   "pt": "Pernambuco",
+   "en": "Pernambuco"
+  },
+  "aliases": {
+   "pt": [
+    "Estado de Pernambuco"
+   ],
+   "en": [
+    "Pernambuco state"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q48344",
+    "name": {
+     "pt": "Recife",
+     "en": "Recife"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   }
+  ],
+  "region": "NE",
+  "areaKm2": 98067.877,
+  "flag": "flags/br/pe.svg",
+  "labelPoint": [
+   -37.9988,
+   -8.3261
+  ]
+ },
+ {
+  "id": "PI",
+  "ibgeCode": 22,
+  "wikidata": "Q42722",
+  "name": {
+   "pt": "Piauí",
+   "en": "Piauí"
+  },
+  "aliases": {
+   "pt": [
+    "Estado do Piauí"
+   ],
+   "en": [
+    "Piaui State"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q165341",
+    "name": {
+     "pt": "Teresina",
+     "en": "Teresina"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   }
+  ],
+  "region": "NE",
+  "areaKm2": 251755.481,
+  "flag": "flags/br/pi.svg",
+  "labelPoint": [
+   -42.9705,
+   -7.3893
+  ]
+ },
+ {
+  "id": "RJ",
+  "ibgeCode": 33,
+  "wikidata": "Q41428",
+  "name": {
+   "pt": "Rio de Janeiro",
+   "en": "Rio de Janeiro"
+  },
+  "aliases": {
+   "pt": [
+    "Estado do Rio de Janeiro"
+   ],
+   "en": [
+    "State of Rio de Janeiro",
+    "Rio de Janeiro State",
+    "Estado do Rio de Janeiro"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q8678",
+    "name": {
+     "pt": "Rio de Janeiro",
+     "en": "Rio de Janeiro"
+    },
+    "aliases": {
+     "pt": [
+      "Capital do RJ",
+      "Capital do Rio de Janeiro",
+      "Cidade Maravilhosa",
+      "Cidade Carioca",
+      "Coração Carioca",
+      "Coração Guanabara",
+      "Nação Carioca",
+      "Império Carioca",
+      "Cidade do Rio de Janeiro"
+     ],
+     "en": [
+      "Rio de Janeiro city",
+      "City of Río de Janeiro"
+     ]
+    }
+   }
+  ],
+  "region": "SE",
+  "areaKm2": 43750.425,
+  "flag": "flags/br/rj.svg",
+  "labelPoint": [
+   -42.6524,
+   -22.1885
+  ]
+ },
+ {
+  "id": "RN",
+  "ibgeCode": 24,
+  "wikidata": "Q43255",
+  "name": {
+   "pt": "Rio Grande do Norte",
+   "en": "Rio Grande do Norte"
+  },
+  "aliases": {
+   "pt": [
+    "Estado do Rio Grande do Norte"
+   ],
+   "en": [
+    "Rio Grande do Norte state"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q131620",
+    "name": {
+     "pt": "Natal",
+     "en": "Natal"
+    },
+    "aliases": {
+     "pt": [
+      "Cidade do Sol",
+      "Cidade do Natal"
+     ],
+     "en": []
+    }
+   }
+  ],
+  "region": "NE",
+  "areaKm2": 52809.599,
+  "flag": "flags/br/rn.svg",
+  "labelPoint": [
+   -36.6733,
+   -5.8398
+  ]
+ },
+ {
+  "id": "RS",
+  "ibgeCode": 43,
+  "wikidata": "Q40030",
+  "name": {
+   "pt": "Rio Grande do Sul",
+   "en": "Rio Grande do Sul"
+  },
+  "aliases": {
+   "pt": [
+    "Estado do Rio Grande do Sul"
+   ],
+   "en": [
+    "Rio Grande do Sul State"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q40269",
+    "name": {
+     "pt": "Porto Alegre",
+     "en": "Porto Alegre"
+    },
+    "aliases": {
+     "pt": [
+      "Porto de São Francisco dos Casais",
+      "Nossa Senhora Madre de Deus de Porto Alegre",
+      "Porto-alegrense",
+      "Porto dos Dorneles",
+      "Porto do Viamão"
+     ],
+     "en": []
+    }
+   }
+  ],
+  "region": "S",
+  "areaKm2": 281707.151,
+  "flag": "flags/br/rs.svg",
+  "labelPoint": [
+   -53.2452,
+   -29.7865
+  ]
+ },
+ {
+  "id": "RO",
+  "ibgeCode": 11,
+  "wikidata": "Q43235",
+  "name": {
+   "pt": "Rondônia",
+   "en": "Rondônia"
+  },
+  "aliases": {
+   "pt": [
+    "Estado de Rondônia"
+   ],
+   "en": [
+    "Rondonia State"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q172512",
+    "name": {
+     "pt": "Porto Velho",
+     "en": "Porto Velho"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   }
+  ],
+  "region": "N",
+  "areaKm2": 237754.172,
+  "flag": "flags/br/ro.svg",
+  "labelPoint": [
+   -62.842,
+   -10.9131
+  ]
+ },
+ {
+  "id": "RR",
+  "ibgeCode": 14,
+  "wikidata": "Q42508",
+  "name": {
+   "pt": "Roraima",
+   "en": "Roraima"
+  },
+  "aliases": {
+   "pt": [
+    "Estado de Roraima"
+   ],
+   "en": [
+    "Roraima state"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q181056",
+    "name": {
+     "pt": "Boa Vista",
+     "en": "Boa Vista"
+    },
+    "aliases": {
+     "pt": [
+      "Boa Vista - RR",
+      "Boa Vista do Rio Branco"
+     ],
+     "en": []
+    }
+   }
+  ],
+  "region": "N",
+  "areaKm2": 223644.53,
+  "flag": "flags/br/rr.svg",
+  "labelPoint": [
+   -61.3919,
+   2.0827
+  ]
+ },
+ {
+  "id": "SC",
+  "ibgeCode": 42,
+  "wikidata": "Q41115",
+  "name": {
+   "pt": "Santa Catarina",
+   "en": "Santa Catarina"
+  },
+  "aliases": {
+   "pt": [
+    "Estado de Santa Catarina"
+   ],
+   "en": [
+    "Santa Catarina state"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q132997",
+    "name": {
+     "pt": "Florianópolis",
+     "en": "Florianópolis"
+    },
+    "aliases": {
+     "pt": [
+      "Ilha da Magia",
+      "Floripa",
+      "Vila de Nossa Senhora do Desterro",
+      "Florianopolitano",
+      "Nossa Senhora de Desterro"
+     ],
+     "en": []
+    }
+   }
+  ],
+  "region": "S",
+  "areaKm2": 95730.69,
+  "flag": "flags/br/sc.svg",
+  "labelPoint": [
+   -50.4749,
+   -27.2474
+  ]
+ },
+ {
+  "id": "SP",
+  "ibgeCode": 35,
+  "wikidata": "Q175",
+  "name": {
+   "pt": "São Paulo",
+   "en": "São Paulo"
+  },
+  "aliases": {
+   "pt": [
+    "Estado de São Paulo"
+   ],
+   "en": [
+    "State of São Paulo",
+    "São Paulo State"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q174",
+    "name": {
+     "pt": "São Paulo",
+     "en": "São Paulo"
+    },
+    "aliases": {
+     "pt": [
+      "Sampa",
+      "Terra da garoa",
+      "cidade de São Paulo",
+      "Município de São Paulo",
+      "Cidade de SP"
+     ],
+     "en": [
+      "City of São Paulo",
+      "Saint Paul",
+      "St. Paul"
+     ]
+    }
+   }
+  ],
+  "region": "SE",
+  "areaKm2": 248219.485,
+  "flag": "flags/br/sp.svg",
+  "labelPoint": [
+   -48.734,
+   -22.2635
+  ]
+ },
+ {
+  "id": "SE",
+  "ibgeCode": 28,
+  "wikidata": "Q43783",
+  "name": {
+   "pt": "Sergipe",
+   "en": "Sergipe"
+  },
+  "aliases": {
+   "pt": [
+    "Estado de Sergipe"
+   ],
+   "en": [
+    "Sergipe State"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q170578",
+    "name": {
+     "pt": "Aracaju",
+     "en": "Aracaju"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   }
+  ],
+  "region": "NE",
+  "areaKm2": 21938.188,
+  "flag": "flags/br/se.svg",
+  "labelPoint": [
+   -37.4438,
+   -10.5838
+  ]
+ },
+ {
+  "id": "TO",
+  "ibgeCode": 17,
+  "wikidata": "Q43695",
+  "name": {
+   "pt": "Tocantins",
+   "en": "Tocantins"
+  },
+  "aliases": {
+   "pt": [
+    "Estado do Tocantins"
+   ],
+   "en": [
+    "Tocantins State"
+   ]
+  },
+  "capitals": [
+   {
+    "wikidata": "Q178993",
+    "name": {
+     "pt": "Palmas",
+     "en": "Palmas"
+    },
+    "aliases": {
+     "pt": [],
+     "en": []
+    }
+   }
+  ],
+  "region": "N",
+  "areaKm2": 277423.627,
+  "flag": "flags/br/to.svg",
+  "labelPoint": [
+   -48.3313,
+   -10.1481
+  ]
+ }
+]
