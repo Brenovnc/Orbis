@@ -88,7 +88,7 @@ const CLUES: Record<ClickGameId, ClueKind> = {
           } @else {
             <p class="text-ink-muted">{{ i18n.t('click.noMore') }}</p>
           }
-          <p class="h-5 w-full truncate font-sans text-xs md:text-sm" aria-live="polite">
+          <p class="bar-line h-5 truncate font-sans text-xs md:text-sm" aria-live="polite">
             @if (feedback(); as f) {
               <span class="font-medium">{{ icon[f.kind] }} {{ f.text }}</span>
             }

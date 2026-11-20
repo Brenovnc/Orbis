@@ -1,18 +1,23 @@
 import { Injectable } from '@angular/core';
-import { Layer } from '../data/geo-data.models';
+import { Continent, Layer } from '../data/geo-data.models';
 import { GameId } from '../games';
 import { readStore, removeStore, writeStore } from '../storage';
 import { SavedGame } from './typing-game';
 
-/** The world keeps its original key, so games saved before the Brazil layer still resume. */
-const keyOf = (gameId: GameId, layer: Layer) =>
-  layer === 'world' ? `game:${gameId}` : `game:${layer}:${gameId}`;
+/**
+ * The whole world keeps its original key, so games saved before the Brazil layer and the
+ * continents still resume. Each continent has its own slot.
+ */
+const keyOf = (gameId: GameId, layer: Layer, continent: Continent | null) => {
+  if (layer !== 'world') return `game:${layer}:${gameId}`;
+  return continent ? `game:${continent}:${gameId}` : `game:${gameId}`;
+};
 
-/** The game in progress, one slot per game and map. */
+/** The game in progress, one slot per game, map and continent. */
 @Injectable({ providedIn: 'root' })
 export class SavedGameStore {
-  get(gameId: GameId, layer: Layer): SavedGame | null {
-    const saved = readStore<SavedGame>(keyOf(gameId, layer));
+  get(gameId: GameId, layer: Layer, continent: Continent | null): SavedGame | null {
+    const saved = readStore<SavedGame>(keyOf(gameId, layer, continent));
     const valid =
       saved?.v === 1 &&
       saved.gameId === gameId &&
@@ -22,15 +27,15 @@ export class SavedGameStore {
     return valid ? saved : null;
   }
 
-  has(gameId: GameId, layer: Layer): boolean {
-    return this.get(gameId, layer) !== null;
+  has(gameId: GameId, layer: Layer, continent: Continent | null): boolean {
+    return this.get(gameId, layer, continent) !== null;
   }
 
-  save(game: SavedGame): void {
-    writeStore(keyOf(game.gameId, game.layer), game);
+  save(game: SavedGame, continent: Continent | null): void {
+    writeStore(keyOf(game.gameId, game.layer, continent), game);
   }
 
-  clear(gameId: GameId, layer: Layer): void {
-    removeStore(keyOf(gameId, layer));
+  clear(gameId: GameId, layer: Layer, continent: Continent | null): void {
+    removeStore(keyOf(gameId, layer, continent));
   }
 }

@@ -5,7 +5,10 @@ import { normalizeAnswer } from './answers';
 import { FinishReason, GameResult, GameStatus, PlayableGame, SavedGame } from './playable-game';
 import { Target } from './targets';
 
-export type ClueKind = 'name' | 'capital' | 'flag';
+/** Games built on this class: the click games, and Silhouettes (answered by typing). */
+export type ClickLikeId = ClickGameId | 'silhuetas';
+
+export type ClueKind = 'name' | 'capital' | 'flag' | 'silhouette';
 
 export type ClickOutcome =
   | { kind: 'ignored' }
@@ -17,7 +20,7 @@ export type ClickOutcome =
   | { kind: 'revealed'; clicked: Target; asked: Target };
 
 export interface ClickGameConfig {
-  gameId: ClickGameId;
+  gameId: ClickLikeId;
   /** Defaults to the world map. */
   layer?: Layer;
   clue: ClueKind;
@@ -35,7 +38,7 @@ export interface ClickGameConfig {
 
 /** Rules of the three click games: a question queue, score, errors, skip and reveal. */
 export class ClickGame implements PlayableGame {
-  readonly gameId: ClickGameId;
+  readonly gameId: ClickLikeId;
   readonly layer: Layer;
   readonly clue: ClueKind;
   readonly targets: Target[];
@@ -136,6 +139,11 @@ export class ClickGame implements PlayableGame {
       return { kind: 'hit', target: clicked };
     }
 
+    return this.wrong(asked, clicked);
+  }
+
+  /** A wrong answer: an error, and the answer is shown after too many on the same question. */
+  protected wrong(asked: Target, clicked: Target): ClickOutcome {
     this.errors.update((count) => count + 1);
     this.currentErrors.update((count) => count + 1);
     if (this.revealAfterErrors > 0 && this.currentErrors() >= this.revealAfterErrors) {

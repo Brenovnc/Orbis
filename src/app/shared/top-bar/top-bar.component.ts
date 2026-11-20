@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input, output } from '@angular/core';
 import { I18nService } from '../../core/i18n/i18n.service';
 
 /**
@@ -87,7 +87,7 @@ import { I18nService } from '../../core/i18n/i18n.service';
             </dd>
           }
           @if (progress()) {
-            <dt class="flex items-center gap-1 text-found-edge" [title]="i18n.t('bar.hits')">
+            <dt class="flex items-center gap-1 text-found-edge" [title]="label()">
               <svg
                 viewBox="0 0 20 20"
                 class="size-3.5 fill-none stroke-current stroke-[2.5]"
@@ -95,9 +95,9 @@ import { I18nService } from '../../core/i18n/i18n.service';
               >
                 <path d="m4 10.5 4 4 8-9" stroke-linecap="round" stroke-linejoin="round" />
               </svg>
-              <span class="sr-only md:not-sr-only">{{ i18n.t('bar.hits') }}</span>
+              <span class="sr-only md:not-sr-only">{{ label() }}</span>
             </dt>
-            <dd class="min-w-[4.5ch] text-right font-medium text-ink" [title]="i18n.t('bar.hits')">
+            <dd class="min-w-[4.5ch] text-right font-medium text-ink" [title]="label()">
               {{ progress() }}
             </dd>
           }
@@ -133,8 +133,11 @@ export class TopBarComponent {
   protected readonly i18n = inject(I18nService);
   readonly time = input<string>();
   readonly progress = input<string>();
+  /** What the progress counts, as a word ("Acertos" by default). */
+  readonly progressLabel = input<string>();
   /** Wrong clicks so far; leave undefined in games without errors. */
   readonly errors = input<number>();
+  protected readonly label = computed(() => this.progressLabel() ?? this.i18n.t('bar.hits'));
   /** Shows the settings gear (games only). */
   readonly hasSettings = input(false);
   readonly menu = output<void>();

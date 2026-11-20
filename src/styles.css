@@ -13,6 +13,13 @@
   --color-found: #3a9d8c;
   --color-found-edge: #0d4a40;
   --color-missed-edge: #8a3412;
+  /* Proximity: hot (0, neighbour) to cold (5, far away); cold end kept apart from the ocean. */
+  --color-heat-0: #b2182b;
+  --color-heat-1: #e2553a;
+  --color-heat-2: #f39c4f;
+  --color-heat-3: #c9b8dc;
+  --color-heat-4: #8c8fc9;
+  --color-heat-5: #5a5f9e;
 
   --color-ink: #1d2730;
   --color-ink-muted: #4c5a66;
@@ -80,6 +87,19 @@
   color: var(--color-ink);
 }
 
+/*
+ * A line of text above or below the answer field in the top bar. On phones the bar's middle
+ * column is narrow, so the line spans the whole bar: the side columns (buttons and score) sit
+ * in the middle of the row and leave its top and bottom strips free.
+ */
+@utility bar-line {
+  width: calc(100vw - 1.5rem);
+  pointer-events: none;
+  @media (width >= 48rem) {
+    width: 100%;
+  }
+}
+
 @utility btn-primary {
   border-radius: 0.5rem;
   background: var(--color-accent);
@@ -118,6 +138,26 @@ body {
   color: var(--color-ink);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
+}
+
+/* Any element with data-heat (map shape, list swatch) gets its Proximity color as --heat. */
+[data-heat='0'] {
+  --heat: var(--color-heat-0);
+}
+[data-heat='1'] {
+  --heat: var(--color-heat-1);
+}
+[data-heat='2'] {
+  --heat: var(--color-heat-2);
+}
+[data-heat='3'] {
+  --heat: var(--color-heat-3);
+}
+[data-heat='4'] {
+  --heat: var(--color-heat-4);
+}
+[data-heat='5'] {
+  --heat: var(--color-heat-5);
 }
 
 :focus-visible {

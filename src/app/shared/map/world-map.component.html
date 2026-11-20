@@ -4,7 +4,7 @@
   #svg
   class="block h-full w-full touch-none select-none"
   [class.is-selectable]="state.selectable()"
-  [class.no-hover]="!settings.value().hoverHighlight"
+  [class.no-hover]="!settings.value().hoverHighlight || state.coastOnly()"
   [attr.viewBox]="viewBox()"
   preserveAspectRatio="xMidYMid meet"
   role="img"
@@ -51,15 +51,18 @@
         [class.is-neutral]="shape.neutral"
         [class.is-found]="state.found().has(shape.id)"
         [class.is-missed]="state.missed().has(shape.id)"
-        [class.is-selected]="shape.id === state.selectedId()"
+        [class.is-selected]="shape.id === state.selectedId() || state.focus().has(shape.id)"
         [class.is-hovered]="shape.id === state.hoveredId()"
+        [attr.data-heat]="state.heat().get(shape.id) ?? null"
         [attr.d]="shape.d"
         [attr.data-id]="shape.id"
       />
     }
     <path class="lakes" [attr.d]="lakesPath()" />
     <path class="coast" [attr.d]="coastPath()" />
-    <path class="borders" [attr.d]="bordersPath()" />
+    @if (!state.coastOnly()) {
+      <path class="borders" [attr.d]="bordersPath()" />
+    }
     @if (view().sphere) {
       <!-- The rounded edge of the map, over the land so the grid and Antarctica end cleanly. -->
       <path class="sphere-edge" [attr.d]="spherePath()" />
@@ -70,11 +73,17 @@
     @for (shape of missedShapes(); track shape.id) {
       <path class="missed-outline" [attr.d]="shape.outline" />
     }
+    @for (shape of focusShapes(); track shape.id) {
+      <path class="focus-outline" [attr.d]="shape.outline" />
+    }
     @for (marker of markers(); track marker.id) {
       <circle
         class="marker"
         [class.is-found]="marker.kind === 'found'"
         [class.is-missed]="marker.kind === 'missed'"
+        [class.is-focus]="marker.kind === 'focus'"
+        [class.is-heat]="marker.kind === 'heat'"
+        [attr.data-heat]="marker.heat ?? null"
         [attr.cx]="marker.x"
         [attr.cy]="marker.y"
         r="4.5"
@@ -150,8 +159,8 @@
   <button
     type="button"
     class="zoom-button"
-    [attr.aria-label]="i18n.t('map.reset')"
-    [title]="i18n.t('map.reset')"
+    [attr.aria-label]="resetLabel()"
+    [title]="resetLabel()"
     (click)="resetZoom()"
   >
     <svg viewBox="0 0 20 20" aria-hidden="true">

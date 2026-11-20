@@ -1,0 +1,209 @@
+{
+ "minAreaKm2": 1,
+ "minPoints": 5,
+ "world": [
+  {
+   "id": "ABW",
+   "reasons": [
+    "points"
+   ],
+   "points": 4,
+   "areaKm2": 119.2
+  },
+  {
+   "id": "AND",
+   "reasons": [
+    "points"
+   ],
+   "points": 4,
+   "areaKm2": 336.2
+  },
+  {
+   "id": "BLM",
+   "reasons": [
+    "points"
+   ],
+   "points": 3,
+   "areaKm2": 16.4
+  },
+  {
+   "id": "BRB",
+   "reasons": [
+    "points"
+   ],
+   "points": 3,
+   "areaKm2": 251.1
+  },
+  {
+   "id": "BVT",
+   "reasons": [
+    "points"
+   ],
+   "points": 4,
+   "areaKm2": 40.4
+  },
+  {
+   "id": "CXR",
+   "reasons": [
+    "points"
+   ],
+   "points": 3,
+   "areaKm2": 43
+  },
+  {
+   "id": "DMA",
+   "reasons": [
+    "points"
+   ],
+   "points": 4,
+   "areaKm2": 611.2
+  },
+  {
+   "id": "GIB",
+   "reasons": [
+    "points"
+   ],
+   "points": 4,
+   "areaKm2": 3.3
+  },
+  {
+   "id": "GUM",
+   "reasons": [
+    "points"
+   ],
+   "points": 4,
+   "areaKm2": 259.2
+  },
+  {
+   "id": "HMD",
+   "reasons": [
+    "points"
+   ],
+   "points": 4,
+   "areaKm2": 289.3
+  },
+  {
+   "id": "IMN",
+   "reasons": [
+    "points"
+   ],
+   "points": 4,
+   "areaKm2": 458.8
+  },
+  {
+   "id": "JEY",
+   "reasons": [
+    "points"
+   ],
+   "points": 4,
+   "areaKm2": 97.9
+  },
+  {
+   "id": "LCA",
+   "reasons": [
+    "points"
+   ],
+   "points": 3,
+   "areaKm2": 291.2
+  },
+  {
+   "id": "LIE",
+   "reasons": [
+    "points"
+   ],
+   "points": 3,
+   "areaKm2": 53.4
+  },
+  {
+   "id": "MAF",
+   "reasons": [
+    "points"
+   ],
+   "points": 3,
+   "areaKm2": 46.8
+  },
+  {
+   "id": "MCO",
+   "reasons": [
+    "points"
+   ],
+   "points": 3,
+   "areaKm2": 9
+  },
+  {
+   "id": "MSR",
+   "reasons": [
+    "points"
+   ],
+   "points": 3,
+   "areaKm2": 42.5
+  },
+  {
+   "id": "NFK",
+   "reasons": [
+    "points"
+   ],
+   "points": 4,
+   "areaKm2": 35
+  },
+  {
+   "id": "NIU",
+   "reasons": [
+    "points"
+   ],
+   "points": 4,
+   "areaKm2": 149.3
+  },
+  {
+   "id": "NRU",
+   "reasons": [
+    "points"
+   ],
+   "points": 4,
+   "areaKm2": 17.9
+  },
+  {
+   "id": "SCR",
+   "reasons": [
+    "area",
+    "points"
+   ],
+   "points": 4,
+   "areaKm2": 0.1
+  },
+  {
+   "id": "SGP",
+   "reasons": [
+    "points"
+   ],
+   "points": 4,
+   "areaKm2": 370
+  },
+  {
+   "id": "SMR",
+   "reasons": [
+    "points"
+   ],
+   "points": 4,
+   "areaKm2": 35.1
+  },
+  {
+   "id": "SXM",
+   "reasons": [
+    "points"
+   ],
+   "points": 3,
+   "areaKm2": 11.9
+  },
+  {
+   "id": "VAT",
+   "reasons": [
+    "area",
+    "points"
+   ],
+   "points": 2,
+   "areaKm2": 0
+  }
+ ],
+ "brazil": []
+}

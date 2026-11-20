@@ -3,9 +3,11 @@ import { Layer } from '../data/geo-data.models';
 import { GameId } from '../games';
 import { TypoTolerance } from './answers';
 import { Target } from './targets';
+import type { TrailPuzzle } from './trail-graph';
 
 export type GameStatus = 'playing' | 'paused' | 'finished';
-export type FinishReason = 'complete' | 'timeout' | 'gaveup';
+/** `guesses`: the Trail game ran out of guesses. */
+export type FinishReason = 'complete' | 'timeout' | 'gaveup' | 'guesses';
 
 export interface GameResult {
   found: number;
@@ -14,6 +16,8 @@ export interface GameResult {
   reason: FinishReason;
   /** Wrong clicks (click games only). */
   errors?: number;
+  /** Guesses spent (Trail and Proximity games only; it is the score there). */
+  guesses?: number;
 }
 
 /** What is saved in the browser so a reload continues where the player stopped. */
@@ -22,7 +26,7 @@ export interface SavedGame {
   gameId: GameId;
   layer: Layer;
   territories: boolean;
-  /** Ids answered correctly. */
+  /** Ids answered correctly (in the Neighbors game: in the round being played). */
   found: string[];
   elapsedMs: number;
   durationMs: number | null;
@@ -42,6 +46,22 @@ export interface SavedGame {
   errors?: number;
   /** Errors on the question being asked now. */
   currentErrors?: number;
+  // Neighbors game only:
+  /** The places asked, one per round. */
+  subjects?: string[];
+  /** Round being played (0-based). */
+  round?: number;
+  /** Rounds already played. */
+  results?: { id: string; found: number; total: number }[];
+  // Trail game only:
+  puzzle?: TrailPuzzle;
+  /** The trail so far, origin first. */
+  trail?: string[];
+  guesses?: number;
+  // Proximity game only:
+  secret?: string;
+  /** Ids guessed, in order. */
+  guessed?: string[];
 }
 
 /** What every game offers to the shared game page: clock, score, states and saving. */

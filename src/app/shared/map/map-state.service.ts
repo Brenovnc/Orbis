@@ -1,4 +1,5 @@
 import { Injectable, signal } from '@angular/core';
+import { PlayableContinent, isPlayableContinent } from '../../core/data/continent-frames';
 import { Layer, LonLat } from '../../core/data/geo-data.models';
 import { readStore, writeStore } from '../../core/storage';
 
@@ -6,7 +7,9 @@ import { readStore, writeStore } from '../../core/storage';
 export interface MapMarker {
   id: string;
   point: LonLat;
-  kind: 'found' | 'missed';
+  kind: 'found' | 'missed' | 'focus' | 'heat';
+  /** Heat level (0-5) of a `heat` marker. */
+  heat?: number;
 }
 
 /** A name written on the map over a found place. */
@@ -20,6 +23,11 @@ export interface MapLabel {
 
 const NONE: ReadonlySet<string> = new Set();
 
+function storedContinent(): PlayableContinent | null {
+  const stored = readStore<string>('continent');
+  return isPlayableContinent(stored) ? stored : null;
+}
+
 /**
  * What the map shows and what the user did on it. The map lives in the app shell (always on
  * screen), so pages talk to it through this service instead of through inputs and outputs.
@@ -28,6 +36,8 @@ const NONE: ReadonlySet<string> = new Set();
 export class MapStateService {
   /** Which map is shown: the world or Brazil. Remembered, so the menu opens on the last one. */
   readonly layer = signal<Layer>(readStore<Layer>('layer') === 'brazil' ? 'brazil' : 'world');
+  /** Continent chosen on the world map (null = whole world). Remembered like the layer. */
+  readonly continent = signal<PlayableContinent | null>(storedContinent());
   /** When false, clicks on the map do nothing (e.g. on the home menu). */
   readonly selectable = signal(false);
   /** Feature id (unit id from world.topo.json) currently selected. */
@@ -40,6 +50,8 @@ export class MapStateService {
   /** Shapes that just changed: briefly pulsing outline. */
   readonly pulse = signal<readonly string[]>([]);
   readonly markers = signal<readonly MapMarker[]>([]);
+  /** The place a round is about (Neighbors): amber fill and a steady outline. */
+  readonly focus = signal<ReadonlySet<string>>(NONE);
   /** Shapes just clicked wrongly: briefly shown with a dashed outline. */
   readonly wrong = signal<readonly string[]>([]);
   /**
@@ -47,6 +59,10 @@ export class MapStateService {
    * finger or mouse. Only places still to be found get one.
    */
   readonly hitAreas = signal<readonly MapMarker[]>([]);
+  /** Shapes painted from hot (0, neighbour) to cold (5, far away): the Proximity guesses. */
+  readonly heat = signal<ReadonlyMap<string, number>>(new Map());
+  /** Only the coast is drawn: no border lines, no highlight under the mouse (Hard Trail). */
+  readonly coastOnly = signal(false);
   /** Every click on a place, even on the same one twice in a row (`n` tells them apart). */
   readonly lastClick = signal<{ id: string | null; n: number } | null>(null);
   private clickCount = 0;
@@ -61,6 +77,11 @@ export class MapStateService {
   setLayer(layer: Layer): void {
     this.layer.set(layer);
     writeStore('layer', layer);
+  }
+
+  setContinent(continent: PlayableContinent | null): void {
+    this.continent.set(continent);
+    writeStore('continent', continent);
   }
 
   select(id: string | null): void {
@@ -81,6 +102,8 @@ export class MapStateService {
     this.selectedId.set(null);
     this.found.set(NONE);
     this.missed.set(NONE);
+    this.focus.set(NONE);
+    this.heat.set(new Map());
     this.pulse.set([]);
     this.markers.set([]);
     this.wrong.set([]);
@@ -89,5 +112,6 @@ export class MapStateService {
     this.hoveredId.set(null);
     this.labels.set([]);
     this.doubleClickZoom.set(true);
+    this.coastOnly.set(false);
   }
 }

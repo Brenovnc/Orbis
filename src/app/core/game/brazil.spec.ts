@@ -125,10 +125,10 @@ describe('saved games per map', () => {
     const store = new SavedGameStore();
     const game = typingGame('countries');
     typeLikeAPlayer(game, 'Acre');
-    store.save(game.snapshot());
-    expect(store.has('digitar-paises', 'brazil')).toBe(true);
-    expect(store.has('digitar-paises', 'world')).toBe(false);
-    store.clear('digitar-paises', 'brazil');
-    expect(store.has('digitar-paises', 'brazil')).toBe(false);
+    store.save(game.snapshot(), null);
+    expect(store.has('digitar-paises', 'brazil', null)).toBe(true);
+    expect(store.has('digitar-paises', 'world', null)).toBe(false);
+    store.clear('digitar-paises', 'brazil', null);
+    expect(store.has('digitar-paises', 'brazil', null)).toBe(false);
   });
 });

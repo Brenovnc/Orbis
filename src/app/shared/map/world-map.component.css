@@ -58,11 +58,24 @@ circle {
   --land-paint: var(--color-selected);
 }
 
+/* Proximity guesses; `--heat` comes from the data-heat attribute (see styles.css). */
+.land[data-heat] {
+  --land-paint: var(--heat);
+}
+
 /* Found = solid dark outline; missed = dashed outline. Shape and pattern, not only color. */
 .found-outline {
   fill: none;
   stroke: var(--color-found-edge);
   stroke-width: 1.5px;
+  stroke-linejoin: round;
+  pointer-events: none;
+}
+
+.focus-outline {
+  fill: none;
+  stroke: var(--color-selected-edge);
+  stroke-width: 2.2px;
   stroke-linejoin: round;
   pointer-events: none;
 }
@@ -86,6 +99,17 @@ circle {
 .marker.is-found {
   fill: var(--color-found);
   stroke: var(--color-found-edge);
+}
+
+.marker.is-focus {
+  fill: var(--color-selected);
+  stroke: var(--color-selected-edge);
+  stroke-width: 2.2px;
+}
+
+.marker.is-heat {
+  fill: var(--heat);
+  stroke: var(--color-border);
 }
 
 .marker.is-missed {
@@ -197,7 +221,7 @@ svg.is-selectable .land:not(.is-neutral) {
 
 /* By class, not :hover, so every copy of the map (and both sides of 180°) light up together. */
 svg.is-selectable:not(.no-hover)
-  .land.is-hovered:not(.is-neutral, .is-selected, .is-found, .is-missed) {
+  .land.is-hovered:not(.is-neutral, .is-selected, .is-found, .is-missed, [data-heat]) {
   --land-paint: var(--color-land-hover);
 }
 

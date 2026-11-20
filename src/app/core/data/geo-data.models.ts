@@ -59,6 +59,22 @@ export interface CountryPart {
   aliases: LocalizedList;
 }
 
+/** silhouette-excluded.json: places whose outline is degenerate at the maps' resolution. */
+export interface SilhouetteExclusions {
+  minAreaKm2: number;
+  minPoints: number;
+  world: SilhouetteExclusion[];
+  brazil: SilhouetteExclusion[];
+}
+
+export interface SilhouetteExclusion {
+  /** Id of the map shape (a country, a territory or a state). */
+  id: string;
+  reasons: ('area' | 'points')[];
+  points: number;
+  areaKm2: number;
+}
+
 /** non-targets.json: what is needed to explain answers that are not targets. */
 export interface NonTargetsData {
   parts: CountryPart[];

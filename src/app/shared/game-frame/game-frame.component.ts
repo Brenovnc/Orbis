@@ -11,6 +11,7 @@ import {
   viewChild,
 } from '@angular/core';
 import { I18nService } from '../../core/i18n/i18n.service';
+import { StringKey } from '../../core/i18n/strings';
 import { RecordEntry, RecordOutcome } from '../../core/game/records.service';
 import { GameResult, GameStatus } from '../../core/game/typing-game';
 import { formatClock } from '../../core/labels';
@@ -27,7 +28,8 @@ const ICON = {
 /**
  * The frame shared by every game: top bar with time, score and progress, the pause / give up /
  * restart actions, the pause card and the end screen. The game puts its question in the default
- * slot and the full answer list for the end screen in the `end` slot.
+ * slot, a button of its own next to Pause in the `gameAction` slot (Undo, Next round...) and the
+ * full answer list for the end screen in the `end` slot.
  */
 @Component({
   selector: 'app-game-frame',
@@ -38,6 +40,7 @@ const ICON = {
     <app-top-bar
       [time]="time()"
       [progress]="progress()"
+      [progressLabel]="progressLabel()"
       [errors]="errors()"
       [hasSettings]="status() !== 'finished'"
       (menu)="menu.emit()"
@@ -98,6 +101,7 @@ const ICON = {
               {{ i18n.t('frame.skip') }}
             </button>
           }
+          <ng-content select="[gameAction]" />
           <div class="relative md:hidden">
             <button
               type="button"
@@ -221,7 +225,9 @@ const ICON = {
             {{ title() }}
           </h2>
           <p class="mt-1 text-lg">
-            <strong class="tabular-nums">{{ r.found }}/{{ r.total }}</strong>
+            <strong class="tabular-nums">{{
+              r.guesses === undefined ? r.found + '/' + r.total : guessesLabel(r.guesses)
+            }}</strong>
             <span class="text-sm text-ink-muted">
               {{ i18n.t('frame.in') }} {{ elapsed() }}{{ errorsText(r.errors) }}
             </span>
@@ -267,6 +273,8 @@ const ICON = {
 export class GameFrameComponent {
   readonly time = input<string>();
   readonly progress = input<string>();
+  /** What the progress counts, if not "Acertos". */
+  readonly progressLabel = input<string>();
   readonly status = input.required<GameStatus>();
   readonly result = input<GameResult | null>(null);
   readonly record = input<RecordOutcome | null>(null);
@@ -278,6 +286,10 @@ export class GameFrameComponent {
   readonly canSkip = input(true);
   /** Wrong clicks so far; leave undefined in games without errors. */
   readonly errors = input<number>();
+  /** Title of the end screen, for a game that has its own (Proximity). */
+  readonly ownEndTitle = input<string>();
+  /** The errors were wrong answers typed, not wrong clicks (Silhouettes). */
+  readonly typed = input(false);
   readonly skip = output<void>();
 
   readonly menu = output<void>();
@@ -297,11 +309,25 @@ export class GameFrameComponent {
 
   protected readonly title = computed(() => {
     const result = this.result();
-    return result ? this.i18n.t(`frame.end.${result.reason}`) : '';
+    if (!result) return '';
+    const own = this.ownEndTitle();
+    if (own) return own;
+    // The Trail game ends by reaching the destination or running out of guesses.
+    return this.i18n.t(
+      result.guesses === undefined
+        ? (`frame.end.${result.reason}` as StringKey)
+        : (`frame.end.trail.${result.reason}` as StringKey),
+    );
   });
 
   private errorsLabel(errors: number): string {
     return errors === 1 ? this.i18n.t('frame.error1') : this.i18n.t('frame.errorsN', { n: errors });
+  }
+
+  protected guessesLabel(guesses: number): string {
+    return guesses === 1
+      ? this.i18n.t('frame.guess1')
+      : this.i18n.t('frame.guessesN', { n: guesses });
   }
 
   /** " · 3 errors" after the time, only in games that count errors. */
@@ -313,7 +339,7 @@ export class GameFrameComponent {
     if (result.errors === undefined) return '';
     const attempts = result.found + result.errors;
     if (attempts === 0) return '';
-    return this.i18n.t('frame.accuracy', {
+    return this.i18n.t(this.typed() ? 'frame.accuracyTyped' : 'frame.accuracy', {
       pct: Math.round((result.found / attempts) * 100),
       found: result.found,
       attempts,
@@ -326,6 +352,12 @@ export class GameFrameComponent {
       total: best.total,
       time: formatClock(best.elapsedMs, 'up'),
     };
+    if (best.guesses !== undefined) {
+      return this.i18n.t('frame.yourRecordGuesses', {
+        guesses: this.guessesLabel(best.guesses),
+        time: values.time,
+      });
+    }
     if (best.errors === undefined) return this.i18n.t('frame.yourRecord', values);
     return this.i18n.t('frame.yourRecordErrors', {
       ...values,

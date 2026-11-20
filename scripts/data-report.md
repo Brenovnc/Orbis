@@ -168,3 +168,44 @@ Gerado em 2026-11-15 por `npm run data`.
 - MAF: "St. Martin"
 - SXM: "Saint Martin"
 - SXM: "St Martin"
+
+## Fora das Silhuetas (contorno degenerado na resolução do mapa; não são sorteados)
+- ABW Aruba: 4 pontos no contorno (menos de 5)
+- AND Andorra: 4 pontos no contorno (menos de 5)
+- BLM São Bartolomeu: 3 pontos no contorno (menos de 5)
+- BRB Barbados: 3 pontos no contorno (menos de 5)
+- BVT Ilha Bouvet: 4 pontos no contorno (menos de 5)
+- CXR Ilha Christmas: 3 pontos no contorno (menos de 5)
+- DMA Dominica: 4 pontos no contorno (menos de 5)
+- GIB Gibraltar: 4 pontos no contorno (menos de 5)
+- GUM Guam: 4 pontos no contorno (menos de 5)
+- HMD Ilha Heard e Ilhas McDonald: 4 pontos no contorno (menos de 5)
+- IMN Ilha de Man: 4 pontos no contorno (menos de 5)
+- JEY Jersey: 4 pontos no contorno (menos de 5)
+- LCA Santa Lúcia: 3 pontos no contorno (menos de 5)
+- LIE Liechtenstein: 3 pontos no contorno (menos de 5)
+- MAF São Martinho (França): 3 pontos no contorno (menos de 5)
+- MCO Mônaco: 3 pontos no contorno (menos de 5)
+- MSR Montserrat: 3 pontos no contorno (menos de 5)
+- NFK Ilha Norfolk: 4 pontos no contorno (menos de 5)
+- NIU Niue: 4 pontos no contorno (menos de 5)
+- NRU Nauru: 4 pontos no contorno (menos de 5)
+- SCR (sem alvo): área de 0.1 km² (menos de 1 km²); 4 pontos no contorno (menos de 5)
+- SGP Singapura: 4 pontos no contorno (menos de 5)
+- SMR San Marino: 4 pontos no contorno (menos de 5)
+- SXM São Martinho (Países Baixos): 3 pontos no contorno (menos de 5)
+- VAT Vaticano: área de 0 km² (menos de 1 km²); 2 pontos no contorno (menos de 5)
+
+## Pares a menos de 10 km que não são vizinhos (candidatos a extraNeighbors em decisions.json)
+- BHR Bahrein – QAT Catar: ≈ 9 km
+- DNK Dinamarca – SWE Suécia: ≈ 5 km
+- EGY Egito – JOR Jordânia: ≈ 7 km
+- GBR Reino Unido – USA Estados Unidos: ≈ 7 km
+- GRD Granada – VCT São Vicente e Granadinas: ≈ 8 km
+- ITA Itália – MCO Mônaco: ≈ 8 km
+- MAR Marrocos – MRT Mauritânia: ≈ 4 km
+- MYS Malásia – SGP Singapura: ≈ 5 km
+- NAM Namíbia – ZWE Zimbábue: ≈ 1 km
+- CHN China – TWN Taiwan: ≈ 8 km
+- CYP Chipre – CYN República Turca de Chipre do Norte: ≈ 1 km
+- VGB Ilhas Virgens Britânicas – VIR Ilhas Virgens Americanas: ≈ 7 km

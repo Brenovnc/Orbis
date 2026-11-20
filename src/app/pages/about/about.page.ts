@@ -54,6 +54,12 @@ interface Source {
             <li>{{ i18n.t(key) }}</li>
           }
         </ul>
+        <h3 class="mt-3 text-sm font-semibold">{{ i18n.t('about.borders.title') }}</h3>
+        <ul class="mt-1 list-disc space-y-1 pl-5 text-sm">
+          @for (key of borders; track key) {
+            <li>{{ i18n.t(key) }}</li>
+          }
+        </ul>
         <h3 class="mt-3 text-sm font-semibold">{{ i18n.t('about.maps.title') }}</h3>
         <p class="mt-1 text-sm">{{ i18n.t('about.maps.text') }}</p>
       </section>
@@ -104,8 +110,18 @@ export class AboutPage {
     'about.how.1',
     'about.how.2',
     'about.how.3',
+    'about.how.challenges',
+    'about.how.silhouettes',
+    'about.how.neighbors',
+    'about.how.trail',
+    'about.how.proximity',
     'about.how.4',
     'about.how.5',
+  ];
+  protected readonly borders: StringKey[] = [
+    'about.borders.1',
+    'about.borders.2',
+    'about.borders.3',
   ];
   protected readonly criteria: StringKey[] = [
     'about.criteria.1',

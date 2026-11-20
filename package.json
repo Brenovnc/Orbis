@@ -10,7 +10,8 @@
     "lint": "ng lint",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "data": "node scripts/build-data.mjs"
+    "data": "node scripts/build-data.mjs",
+    "data:proximity": "node scripts/proximity.mjs"
   },
   "private": true,
   "packageManager": "npm@11.19.1",

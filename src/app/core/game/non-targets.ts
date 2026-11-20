@@ -4,9 +4,9 @@ import { normalizeAnswer } from './answers';
 /** Why a typed name is a real place but not an answer. The page turns it into a message. */
 export type Explanation =
   /** A territory with an administering country: "Greenland is a territory of Denmark". */
-  | { kind: 'territory'; name: LocalizedText; country: LocalizedText }
+  | { kind: 'territory'; name: LocalizedText; country: LocalizedText; countryId: string }
   /** A part of a country: "England is part of the United Kingdom". */
-  | { kind: 'part'; name: LocalizedText; country: LocalizedText }
+  | { kind: 'part'; name: LocalizedText; country: LocalizedText; countryId: string }
   /** Not administered by any of the countries (Antarctica, Kosovo...). */
   | { kind: 'unlisted'; name: LocalizedText };
 
@@ -38,14 +38,16 @@ export function buildNonTargetIndex(
 
   for (const part of data.parts) {
     const country = data.countryPhrases[part.country];
-    add(partNames(part), { kind: 'part', name: part.name, country });
+    add(partNames(part), { kind: 'part', name: part.name, country, countryId: part.country });
   }
   for (const territory of territories) {
     if (targetIds.has(territory.id)) continue;
-    const country = territory.administeredBy && data.countryPhrases[territory.administeredBy];
-    const explanation: Explanation = country
-      ? { kind: 'territory', name: territory.name, country }
-      : { kind: 'unlisted', name: territory.name };
+    const countryId = territory.administeredBy;
+    const country = countryId && data.countryPhrases[countryId];
+    const explanation: Explanation =
+      countryId && country
+        ? { kind: 'territory', name: territory.name, country, countryId }
+        : { kind: 'unlisted', name: territory.name };
     byId.set(territory.id, explanation);
     add(
       [territory.name.pt, territory.name.en, ...territory.aliases.pt, ...territory.aliases.en],
@@ -78,4 +80,12 @@ export function territoryWords(
 /** The explanation for a typed text, or null when it is not a known non-target. */
 export function explainNonTarget(raw: string, index: NonTargetIndex): Explanation | null {
   return index.explanations.get(normalizeAnswer(raw)) ?? null;
+}
+
+/** The country to suggest for a place that is not an answer, if that country is one. */
+export function suggestedCountryId(
+  why: Explanation,
+  targetIds: ReadonlySet<string>,
+): string | null {
+  return why.kind !== 'unlisted' && targetIds.has(why.countryId) ? why.countryId : null;
 }

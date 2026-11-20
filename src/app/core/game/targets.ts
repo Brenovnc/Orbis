@@ -78,6 +78,17 @@ export function buildBrazilTargets(states: BrazilState[]): Target[] {
   }));
 }
 
+/** Keeps only the targets of one continent (world map); null keeps them all. */
+export const inContinent = (targets: Target[], continent: Continent | null): Target[] =>
+  continent ? targets.filter((target) => target.group === continent) : targets;
+
+/**
+ * The time limit on a continent: the world's limit in the same proportion as the number of
+ * targets, in whole minutes, never under 2.
+ */
+export const continentMinutes = (worldMinutes: number, part: number, whole: number): number =>
+  Math.max(2, Math.round((worldMinutes * part) / whole));
+
 /** Capital games can only ask about places that have a capital (Antarctica, Hong Kong... do not). */
 export const withCapitals = (targets: Target[]): Target[] =>
   targets.filter((target) => target.place.capitals.length > 0);

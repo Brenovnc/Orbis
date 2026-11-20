@@ -1,6 +1,11 @@
 import nonTargetsJson from '../../../../public/data/non-targets.json';
 import { NonTargetsData } from '../data/geo-data.models';
-import { Explanation, buildNonTargetIndex, explainNonTarget } from './non-targets';
+import {
+  Explanation,
+  buildNonTargetIndex,
+  explainNonTarget,
+  suggestedCountryId,
+} from './non-targets';
 import { territories, worldTargets } from './test-targets';
 import { TypingGame } from './typing-game';
 
@@ -100,5 +105,27 @@ describe('names that are also the start of a non-target', () => {
   it('still makes "Congo" wait, between two targets', () => {
     expect(typed('Congo', false)).toBe('pending');
     expect(typed('Congo', true)).toBe('pending');
+  });
+});
+
+describe('suggesting the country of a place that is not an answer', () => {
+  const index = buildNonTargetIndex(territories, data, targetIds(false));
+  const countryIds = targetIds(false);
+  const suggest = (text: string) => {
+    const why = explainNonTarget(text, index);
+    return why && suggestedCountryId(why, countryIds);
+  };
+
+  it('suggests the administering country, or the country a part belongs to', () => {
+    expect(suggest('Groenlândia')).toBe('DNK');
+    expect(suggest('Escócia')).toBe('GBR');
+    expect(suggest('Gibraltar')).toBe('GBR');
+  });
+
+  it('suggests nothing for places no country administers, or when it is not a target', () => {
+    expect(suggest('Kosovo')).toBeNull();
+    expect(suggest('Antártida')).toBeNull();
+    const why = explainNonTarget('Groenlândia', index) as Explanation;
+    expect(suggestedCountryId(why, new Set(['BRA']))).toBeNull();
   });
 });

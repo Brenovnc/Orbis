@@ -7,6 +7,8 @@ export interface RecordEntry {
   elapsedMs: number;
   /** Wrong clicks; only click games have it (records from before it existed do not). */
   errors?: number;
+  /** Guesses spent; only the Trail and Proximity games have it, and there fewer is better. */
+  guesses?: number;
   date: string;
 }
 
@@ -22,7 +24,14 @@ export interface RecordOutcome {
  */
 export function isBetter(candidate: RecordEntry, best: RecordEntry | null): boolean {
   if (!best) return candidate.found > 0;
+  // Games with a different number of questions each time (Neighbors) compare the share right.
+  if (candidate.total !== best.total) {
+    return candidate.found * best.total > best.found * candidate.total;
+  }
   if (candidate.found !== best.found) return candidate.found > best.found;
+  if (candidate.guesses !== undefined && candidate.guesses !== best.guesses) {
+    return candidate.guesses < (best.guesses ?? Infinity);
+  }
   if (candidate.errors !== undefined) {
     const bestErrors = best.errors ?? Infinity;
     if (candidate.errors !== bestErrors) return candidate.errors < bestErrors;
@@ -39,9 +48,13 @@ export function recordKey(options: {
   layer: string;
   territories: boolean;
   durationMs: number | null;
+  /** Continent chosen on the world map; null (or none) = the whole map. */
+  continent?: string | null;
 }): string {
   const limit = options.durationMs === null ? 'free' : `${Math.round(options.durationMs / 1000)}s`;
-  return `record:${options.gameId}:${options.layer}:${options.territories ? 'terr' : 'core'}:${limit}`;
+  const base = `record:${options.gameId}:${options.layer}:${options.territories ? 'terr' : 'core'}:${limit}`;
+  // The whole map keeps the original key, so records from before the continents still count.
+  return options.continent ? `${base}:${options.continent}` : base;
 }
 
 /** Best result per mode, kept only in this browser. */

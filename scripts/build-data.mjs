@@ -5,6 +5,8 @@ import { mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { buildBrazil } from './brazil.mjs';
+import { buildProximity } from './proximity.mjs';
+import { buildSilhouetteExclusions } from './silhouettes.mjs';
 import { buildWorld } from './world.mjs';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -36,14 +38,31 @@ writeJson('regions-br.json', brazil.regions);
 writeJson('flags/attributions.json', [...world.flagAttributions, ...brazil.flagAttributions]);
 writeJson('meta.json', { generatedAt: new Date().toISOString().slice(0, 10) });
 
-writeFileSync(join(root, 'scripts', 'data-report.md'), renderReport(world, brazil));
+const proximity = buildProximity(outDir, decisions);
+const silhouettes = buildSilhouetteExclusions(outDir);
+writeFileSync(
+  join(root, 'scripts', 'data-report.md'),
+  renderReport(world, brazil, proximity.closePairs, silhouettes),
+);
 console.log(
   `Pronto: ${world.countries.length} países, ${world.territories.length} territórios, ${brazil.states.length} UFs.`,
 );
 console.log('Relatório em scripts/data-report.md');
 
-function renderReport(world, brazil) {
+function renderReport(world, brazil, closePairs, silhouettes) {
   const list = (items) => (items.length ? items.map((i) => `- ${i}`).join('\n') : '- (nenhum)');
+  const names = new Map(
+    [...world.countries, ...world.territories, ...brazil.states].map((x) => [x.id, x.name.pt]),
+  );
+  const noSilhouette = [...silhouettes.world, ...silhouettes.brazil].map((s) => {
+    const why = [
+      s.reasons.includes('area') &&
+        `área de ${s.areaKm2} km² (menos de ${silhouettes.minAreaKm2} km²)`,
+      s.reasons.includes('points') &&
+        `${s.points} pontos no contorno (menos de ${silhouettes.minPoints})`,
+    ].filter(Boolean);
+    return `${s.id} ${names.get(s.id) ?? '(sem alvo)'}: ${why.join('; ')}`;
+  });
   const multiCapital = [...world.countries, ...world.territories, ...brazil.states]
     .filter((x) => x.capitals.length > 1)
     .map((x) => `${x.id}: ${x.capitals.map((c) => c.name.pt).join(', ')}`);
@@ -116,5 +135,11 @@ ${list(report.disambiguated)}
 
 ## Apelidos de países removidos por ambiguidade
 ${list([...amb.placeNames.removed, ...report.brazilAmbiguous.ambiguousNames.removed])}
+
+## Fora das Silhuetas (contorno degenerado na resolução do mapa; não são sorteados)
+${list(noSilhouette)}
+
+## Pares a menos de 10 km que não são vizinhos (candidatos a extraNeighbors em decisions.json)
+${list(closePairs)}
 `;
 }

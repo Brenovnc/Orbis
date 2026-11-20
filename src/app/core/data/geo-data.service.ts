@@ -1,16 +1,21 @@
 import { Injectable, computed, signal } from '@angular/core';
 import type { GeometryCollection, Topology } from 'topojson-specification';
+import { NeighborsData, ProximityData } from './proximity';
 import {
   BrazilRegion,
   BrazilState,
   Country,
   NonTargetsData,
   Place,
+  SilhouetteExclusions,
   Territory,
   WorldUnitProperties,
 } from './geo-data.models';
 
 export type BrazilTopology = Topology<{ states: GeometryCollection<{ id: string }> }>;
+
+/** The distance files: world with territories off, world with them on, Brazilian states. */
+export type ProximityFile = 'world' | 'world-territories' | 'brazil';
 
 export type WorldTopology = Topology<{
   units: GeometryCollection<WorldUnitProperties>;
@@ -25,6 +30,12 @@ export class GeoDataService {
   readonly territories = signal<Territory[]>([]);
   readonly nonTargets = signal<NonTargetsData | null>(null);
   readonly error = signal(false);
+  /** Land borders; only downloaded by the games that use them. */
+  readonly neighbors = signal<NeighborsData | null>(null);
+  /** Places with no outline worth guessing; only downloaded by the Silhouettes game. */
+  readonly silhouetteExcluded = signal<SilhouetteExclusions | null>(null);
+  /** Distances between places; each file only downloaded when the Proximity game needs it. */
+  readonly proximity = signal<Partial<Record<ProximityFile, ProximityData>>>({});
 
   // Brazil's files are only downloaded when the Brazil map is used.
   readonly brazil = signal<BrazilTopology | null>(null);
@@ -78,6 +89,46 @@ export class GeoDataService {
         this.loadingBrazil = undefined;
       });
     return this.loadingBrazil;
+  }
+
+  private loadingNeighbors?: Promise<void>;
+
+  loadNeighbors(): Promise<void> {
+    this.loadingNeighbors ??= getJson<NeighborsData>('data/neighbors.json')
+      .then((data) => this.neighbors.set(data))
+      .catch(() => {
+        this.error.set(true);
+        this.loadingNeighbors = undefined;
+      });
+    return this.loadingNeighbors;
+  }
+
+  private loadingSilhouettes?: Promise<void>;
+
+  loadSilhouetteExclusions(): Promise<void> {
+    this.loadingSilhouettes ??= getJson<SilhouetteExclusions>('data/silhouette-excluded.json')
+      .then((data) => this.silhouetteExcluded.set(data))
+      .catch(() => {
+        this.error.set(true);
+        this.loadingSilhouettes = undefined;
+      });
+    return this.loadingSilhouettes;
+  }
+
+  private readonly loadingProximity = new Map<ProximityFile, Promise<void>>();
+
+  loadProximity(file: ProximityFile): Promise<void> {
+    let loading = this.loadingProximity.get(file);
+    if (!loading) {
+      loading = getJson<ProximityData>(`data/proximity-${file}.json`)
+        .then((data) => this.proximity.update((all) => ({ ...all, [file]: data })))
+        .catch(() => {
+          this.error.set(true);
+          this.loadingProximity.delete(file);
+        });
+      this.loadingProximity.set(file, loading);
+    }
+    return loading;
   }
 
   place(id: string): Country | Territory | undefined {

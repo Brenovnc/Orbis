@@ -12,6 +12,31 @@ export const STRINGS = {
   'home.map': { pt: 'Mapa', en: 'Map' },
   'home.world': { pt: 'Mundo', en: 'World' },
   'home.brazil': { pt: 'Brasil', en: 'Brazil' },
+  'home.continent': { pt: 'Região do mapa', en: 'Part of the map' },
+  'home.continentAll': { pt: 'Mundo todo', en: 'Whole world' },
+  'home.group.map': { pt: 'Mapa', en: 'Map' },
+  'home.group.challenges': { pt: 'Desafios', en: 'Challenges' },
+  'home.soon': { pt: 'em breve', en: 'soon' },
+  'game.silhuetas.title': { pt: 'Silhuetas', en: 'Silhouettes' },
+  'game.silhuetas.desc': {
+    pt: 'Descubra o lugar só pelo contorno.',
+    en: 'Name the place from its outline alone.',
+  },
+  'game.vizinhos.title': { pt: 'Vizinhos', en: 'Neighbors' },
+  'game.vizinhos.desc': {
+    pt: 'Digite todos os vizinhos de um lugar.',
+    en: 'Type every neighbor of a place.',
+  },
+  'game.trilha.title': { pt: 'Trilha', en: 'Trail' },
+  'game.trilha.desc': {
+    pt: 'Chegue de um lugar a outro por fronteiras.',
+    en: 'Get from one place to another across borders.',
+  },
+  'game.proximidade.title': { pt: 'Proximidade', en: 'Proximity' },
+  'game.proximidade.desc': {
+    pt: 'Ache o lugar secreto pela distância.',
+    en: 'Find the secret place by distance.',
+  },
   'home.inProgress': { pt: '● Partida em andamento', en: '● Game in progress' },
   'home.record': { pt: 'Recorde: {record}', en: 'Record: {record}' },
   'home.settings': { pt: 'Configurações', en: 'Settings' },
@@ -68,7 +93,161 @@ export const STRINGS = {
     en: 'Find the state from its flag.',
   },
 
+  'game.br.silhuetas.title': { pt: 'Silhuetas', en: 'Silhouettes' },
+  'game.br.silhuetas.desc': {
+    pt: 'Descubra o estado só pelo contorno.',
+    en: 'Name the state from its outline alone.',
+  },
+  'game.br.trilha.title': { pt: 'Trilha', en: 'Trail' },
+  'game.br.trilha.desc': {
+    pt: 'Chegue de um estado a outro por fronteiras.',
+    en: 'Get from one state to another across borders.',
+  },
+  'game.br.proximidade.title': { pt: 'Proximidade', en: 'Proximity' },
+  'game.br.proximidade.desc': {
+    pt: 'Ache o estado secreto pela distância.',
+    en: 'Find the secret state by distance.',
+  },
+  'game.br.vizinhos.title': { pt: 'Vizinhos', en: 'Neighbors' },
+  'game.br.vizinhos.desc': {
+    pt: 'Digite todos os estados vizinhos de um estado.',
+    en: 'Type every state that borders a state.',
+  },
+
+  // Neighbors game
+  'neighbors.placeholder': { pt: 'Digite um vizinho…', en: 'Type a neighbor…' },
+  'neighbors.placeholder.states': {
+    pt: 'Digite um estado vizinho…',
+    en: 'Type a neighboring state…',
+  },
+  'neighbors.round': { pt: 'Rodada {n}/{total}', en: 'Round {n}/{total}' },
+  'neighbors.of': { pt: 'Vizinhos de', en: 'Neighbors of' },
+  'neighbors.giveUpRound': { pt: 'Desistir da rodada', en: 'Give up the round' },
+  'neighbors.next': { pt: 'Próxima rodada ▸', en: 'Next round ▸' },
+  'neighbors.finish': { pt: 'Ver resultado ▸', en: 'See result ▸' },
+  'neighbors.missed': {
+    pt: 'Faltaram {n}: estão tracejados no mapa.',
+    en: '{n} missed: they are dashed on the map.',
+  },
+  'neighbors.notNeighbor': {
+    pt: '{name} não faz fronteira com {subject}.',
+    en: '{name} does not border {subject}.',
+  },
+  'neighbors.isSubject': {
+    pt: '{name} é o lugar da rodada: digite os vizinhos dele.',
+    en: '{name} is the place of this round: type its neighbors.',
+  },
+  'neighbors.via': {
+    pt: '{b}: {a} e {b} fazem fronteira por meio do território {territory}.',
+    en: '{b}: {a} and {b} share a border through the territory {territory}.',
+  },
+
+  'game.trilha-dificil.title': { pt: 'Trilha difícil', en: 'Hard trail' },
+  'game.trilha-dificil.desc': {
+    pt: 'Chegue ao destino sem passar por um lugar proibido.',
+    en: 'Reach the destination without crossing a forbidden place.',
+  },
+  'game.br.trilha-dificil.title': { pt: 'Trilha difícil', en: 'Hard trail' },
+  'game.br.trilha-dificil.desc': {
+    pt: 'Chegue ao estado destino sem passar por um proibido.',
+    en: 'Reach the destination state without crossing a forbidden one.',
+  },
+  'home.fewBorders': {
+    pt: 'Poucas fronteiras terrestres na {continent}',
+    en: 'Few land borders in {continent}',
+  },
+
+  // Trail game
+  'trail.placeholder': { pt: 'Digite o próximo lugar…', en: 'Type the next place…' },
+  'trail.placeholder.states': { pt: 'Digite o próximo estado…', en: 'Type the next state…' },
+  'trail.goal': { pt: 'Chegue de {a} a {b}', en: 'Get from {a} to {b}' },
+  'trail.goalHard': {
+    pt: '{a} → {b}, sem passar por {x}',
+    en: '{a} → {b}, without crossing {x}',
+  },
+  'trail.undo': { pt: 'Desfazer', en: 'Undo' },
+  'trail.minSteps': { pt: 'Caminho mínimo: {n} passos', en: 'Shortest path: {n} steps' },
+  'trail.yours': { pt: 'Trilha: {path}', en: 'Trail: {path}' },
+  'trail.notBorder': {
+    pt: '{name} não faz fronteira com {last}. Chute gasto.',
+    en: '{name} does not border {last}. Guess spent.',
+  },
+  'trail.forbidden': {
+    pt: '{name} é o lugar proibido! Chute gasto.',
+    en: '{name} is the forbidden place! Guess spent.',
+  },
+  'trail.inTrail': { pt: '{name} já está na trilha.', en: '{name} is already on the trail.' },
+  'trail.best': { pt: 'Um caminho mínimo:', en: 'A shortest path:' },
+
+  // Silhouettes game
+  'silhouette.which': { pt: 'Que lugar é este?', en: 'Which place is this?' },
+  'silhouette.which.states': { pt: 'Que estado é este?', en: 'Which state is this?' },
+  'silhouette.placeholder': { pt: 'Digite o país…', en: 'Type the country…' },
+  'silhouette.placeholder.states': { pt: 'Digite o estado…', en: 'Type the state…' },
+  'silhouette.aria': {
+    pt: 'Contorno do lugar a identificar',
+    en: 'Outline of the place to identify',
+  },
+  'silhouette.scale': { pt: 'Fora de escala', en: 'Not to scale' },
+  'frame.accuracyTyped': {
+    pt: 'Precisão: {pct}% ({found} de {attempts} respostas)',
+    en: 'Accuracy: {pct}% ({found} of {attempts} answers)',
+  },
+
+  // Proximity game
+  'proximity.goal': { pt: 'Ache o lugar secreto', en: 'Find the secret place' },
+  'proximity.goal.states': { pt: 'Ache o estado secreto', en: 'Find the secret state' },
+  'proximity.placeholder': { pt: 'Digite um lugar…', en: 'Type a place…' },
+  'proximity.placeholder.states': { pt: 'Digite um estado…', en: 'Type a state…' },
+  'proximity.closest': {
+    pt: 'mais perto: {name} ({distance})',
+    en: 'closest: {name} ({distance})',
+  },
+  'proximity.result': {
+    pt: '{name}: {distance} · siga para {dir}',
+    en: '{name}: {distance} · head {dir}',
+  },
+  'proximity.repeat': {
+    pt: 'Você já chutou {name}: {distance}.',
+    en: 'You already guessed {name}: {distance}.',
+  },
+  'proximity.found': { pt: 'Achou! {name}', en: 'Found it! {name}' },
+  'proximity.neighbor': { pt: 'vizinho', en: 'neighbor' },
+  'proximity.km': { pt: '≈ {km} km', en: '≈ {km} km' },
+  'proximity.direction': { pt: 'direção {dir}', en: 'direction {dir}' },
+  // 16 compass points, clockwise from north, separated by spaces.
+  'proximity.compass': {
+    pt: 'N NNE NE ENE L ESE SE SSE S SSO SO OSO O ONO NO NNO',
+    en: 'N NNE NE ENE E ESE SE SSE S SSW SW WSW W WNW NW NNW',
+  },
+  'proximity.guesses': { pt: 'Seus chutes', en: 'Your guesses' },
+  'proximity.none': {
+    pt: 'Nenhum chute ainda. Digite um lugar e aperte Enter.',
+    en: 'No guesses yet. Type a place and press Enter.',
+  },
+  'proximity.secret': { pt: 'Lugar secreto:', en: 'Secret place:' },
+  'proximity.secret.states': { pt: 'Estado secreto:', en: 'Secret state:' },
+  'proximity.note': {
+    pt: 'Distâncias aproximadas, entre as fronteiras mais próximas.',
+    en: 'Approximate distances, between the nearest borders.',
+  },
+  'frame.end.proximity.complete': {
+    pt: 'Você achou o lugar secreto!',
+    en: 'You found the secret place!',
+  },
+  'frame.end.proximity.gaveup': { pt: 'Partida encerrada', en: 'Game over' },
+
   // Top bar and frame
+  'bar.guesses': { pt: 'Chutes', en: 'Guesses' },
+  'frame.end.trail.complete': { pt: 'Você chegou ao destino!', en: 'You reached the destination!' },
+  'frame.end.trail.guesses': { pt: 'Acabaram os chutes', en: 'Out of guesses' },
+  'frame.end.trail.gaveup': { pt: 'Partida encerrada', en: 'Game over' },
+  'frame.guess1': { pt: '1 chute', en: '1 guess' },
+  'frame.guessesN': { pt: '{n} chutes', en: '{n} guesses' },
+  'frame.yourRecordGuesses': {
+    pt: 'Seu recorde: {guesses} em {time}',
+    en: 'Your record: {guesses} in {time}',
+  },
   'bar.back': { pt: 'Voltar ao menu', en: 'Back to menu' },
   'bar.time': { pt: 'Tempo', en: 'Time' },
   'bar.hits': { pt: 'Acertos', en: 'Correct' },
@@ -129,6 +308,7 @@ export const STRINGS = {
     pt: '{name} não está entre os 195 países deste jogo',
     en: '{name} is not among the 195 countries in this game',
   },
+  'typing.explain.try': { pt: 'Tente {name}.', en: 'Try {name}.' },
   'typing.miss': { pt: 'Não encontrei. Tente de novo.', en: 'Not found. Try again.' },
   'click.whereIs': { pt: 'Onde fica', en: 'Where is' },
   'click.capitalOf': { pt: 'De qual país é a capital', en: 'Which country has the capital' },
@@ -205,6 +385,7 @@ export const STRINGS = {
   'map.zoomIn': { pt: 'Aproximar', en: 'Zoom in' },
   'map.zoomOut': { pt: 'Afastar', en: 'Zoom out' },
   'map.reset': { pt: 'Ver o mundo inteiro', en: 'See the whole world' },
+  'map.resetContinent': { pt: 'Ver o continente inteiro', en: 'See the whole continent' },
 
   // Settings
   'settings.title': { pt: 'Configurações', en: 'Settings' },
@@ -229,8 +410,8 @@ export const STRINGS = {
   },
   'settings.learn': { pt: 'Modo aprender', en: 'Learn mode' },
   'settings.learn.hint': {
-    pt: 'Ao errar um clique, mostra o nome e os dados do lugar clicado.',
-    en: 'After a wrong click, shows the name and facts of the place you clicked.',
+    pt: 'Ao errar um clique ou uma resposta, mostra o nome e os dados do lugar escolhido.',
+    en: 'After a wrong click or answer, shows the name and facts of the place you chose.',
   },
   'settings.hover.hint': {
     pt: 'Realça o lugar sob o cursor.',
@@ -255,16 +436,20 @@ export const STRINGS = {
     en: 'Reveal the answer after mistakes',
   },
   'settings.reveal.hint': {
-    pt: 'Nos jogos de clicar: quantos cliques errados na mesma pergunta antes de mostrar a resposta.',
-    en: 'In click games: how many wrong clicks on one question before the answer is shown.',
+    pt: 'Nos jogos de clicar e nas Silhuetas: quantos erros na mesma pergunta antes de mostrar a resposta.',
+    en: 'In click games and Silhouettes: how many mistakes on one question before the answer is shown.',
   },
   'settings.never': { pt: 'Nunca', en: 'Never' },
   'settings.timer': { pt: 'Cronômetro', en: 'Timer' },
   'settings.timer.hint': {
-    pt: 'Ligado, a partida tem tempo limite; desligado, o tempo apenas conta para cima.',
-    en: 'On, the game has a time limit; off, the clock just counts up.',
+    pt: 'Ligado, a partida tem tempo limite; desligado, o tempo apenas conta para cima. Na Trilha e na Proximidade o tempo sempre só conta para cima.',
+    en: 'On, the game has a time limit; off, the clock just counts up. In Trail and Proximity the clock always just counts up.',
   },
   'settings.durationWorld': { pt: 'Duração no Mundo (min)', en: 'Time limit, World (min)' },
+  'settings.durationContinent': {
+    pt: 'Num continente, a duração do Mundo é ajustada em proporção ao número de lugares (mínimo de 2 min).',
+    en: 'On a continent, the World time limit is scaled to its number of places (at least 2 min).',
+  },
   'settings.durationBrazil': { pt: 'Duração no Brasil (min)', en: 'Time limit, Brazil (min)' },
   'settings.territories': { pt: 'Incluir territórios', en: 'Include territories' },
   'settings.territories.hint': {
@@ -309,8 +494,8 @@ export const STRINGS = {
   },
   'about.how.title': { pt: 'Como jogar', en: 'How to play' },
   'about.how.1': {
-    pt: 'Escolha o mapa (Mundo ou Brasil) e um dos cinco jogos no menu.',
-    en: 'Pick the map (World or Brazil) and one of the five games in the menu.',
+    pt: 'Escolha o mapa (Mundo ou Brasil) e, no Mundo, a região (o mundo todo ou um continente). Depois escolha um jogo do grupo Mapa ou dos Desafios.',
+    en: 'Pick the map (World or Brazil) and, for the World, the region (the whole world or one continent). Then pick a game from the Map group or the Challenges.',
   },
   'about.how.2': {
     pt: 'Digitar: escreva o máximo de nomes que lembrar antes do tempo acabar; o que você acerta acende no mapa. Vale português ou inglês, sem se preocupar com acentos. Se um nome for o começo de outro (como Irã e Iraque), aperte Enter para confirmar.',
@@ -319,6 +504,26 @@ export const STRINGS = {
   'about.how.3': {
     pt: 'Clicar: a pista (nome, capital ou bandeira) fica na barra superior e você clica no lugar certo. Use "Pular" se não souber.',
     en: 'Clicking: the clue (name, capital or flag) is in the top bar and you click the right place. Use "Skip" if you do not know.',
+  },
+  'about.how.challenges': {
+    pt: 'Nos Desafios você também responde digitando. Digitar um lugar que não vale como resposta (como Groenlândia ou Inglaterra) não custa nada: o jogo explica o porquê.',
+    en: 'In the Challenges you also answer by typing. Typing a place that is not a valid answer (like Greenland or England) costs nothing: the game explains why.',
+  },
+  'about.how.silhouettes': {
+    pt: 'Silhuetas: aparece só o contorno de um lugar, fora de escala, e você digita o nome. O contorno é só o território do próprio lugar (a Dinamarca aparece sem a Groenlândia). Ao acertar, ele acende no mapa.',
+    en: 'Silhouettes: only the outline of a place is shown, not to scale, and you type its name. The outline is only the place’s own land (Denmark without Greenland). When you get it right, it lights up on the map.',
+  },
+  'about.how.neighbors': {
+    pt: 'Vizinhos: um lugar fica destacado no mapa e você digita todos os vizinhos terrestres dele. "Desistir da rodada" mostra os que faltaram.',
+    en: 'Neighbors: a place is highlighted on the map and you type all of its land neighbors. "Give up the round" shows the ones you missed.',
+  },
+  'about.how.trail': {
+    pt: 'Trilha: vá da origem ao destino digitando um lugar por vez, sempre vizinho do último. Cada lugar digitado gasta um chute, mesmo o que não faz fronteira; "Desfazer" tira o último passo. Na Trilha difícil há um lugar proibido e o mapa não mostra as fronteiras.',
+    en: 'Trail: go from the origin to the destination by typing one place at a time, always a neighbor of the last one. Every place typed spends a guess, even one that does not border it; "Undo" removes the last step. The Hard trail adds a forbidden place and the map shows no borders.',
+  },
+  'about.how.proximity': {
+    pt: 'Proximidade: ache o lugar secreto. Cada chute mostra a distância até ele, uma seta na direção dele e uma cor no mapa, de quente (perto) a frio (longe).',
+    en: 'Proximity: find the secret place. Each guess shows how far it is, an arrow pointing towards it and a color on the map, from hot (near) to cold (far).',
   },
   'about.how.4': {
     pt: 'Arraste para mover o mapa e use a roda do mouse, a pinça ou o toque duplo para aproximar. Ilhas e países pequenos têm uma área de toque maior.',
@@ -344,6 +549,19 @@ export const STRINGS = {
   'about.criteria.4': {
     pt: 'Brasil: 26 estados e o Distrito Federal, agrupados nas cinco regiões do IBGE.',
     en: 'Brazil: 26 states and the Federal District, grouped in the five IBGE regions.',
+  },
+  'about.borders.title': { pt: 'Vizinhança e distâncias', en: 'Neighbors and distances' },
+  'about.borders.1': {
+    pt: 'Vizinhos são lugares com fronteira terrestre: as formas compartilham um trecho de borda no mapa (encostar num ponto só não conta). Um lugar dentro de outro conta, como o Vaticano e a Itália. Algumas fronteiras reais que o mapa simplificado perde foram repostas à mão, como Espanha e Marrocos (Ceuta e Melilla).',
+    en: 'Neighbors are places with a land border: their shapes share a stretch of border on the map (touching at a single point does not count). A place inside another counts, like the Vatican and Italy. A few real borders that the simplified map loses were added back by hand, like Spain and Morocco (Ceuta and Melilla).',
+  },
+  'about.borders.2': {
+    pt: 'Com territórios desligados, um território vale como o país que o administra: a França faz fronteira com o Brasil pela Guiana Francesa, e o jogo explica isso. Na Trilha, essa fronteira só vale se o território estiver no mesmo continente do país (Gibraltar vale; a Guiana Francesa não).',
+    en: 'With territories off, a territory counts as the country that administers it: France borders Brazil through French Guiana, and the game explains it. In the Trail, such a border only counts if the territory is on the same continent as the country (Gibraltar does; French Guiana does not).',
+  },
+  'about.borders.3': {
+    pt: 'Na Proximidade, a distância é a menor entre as bordas dos dois lugares, medida sobre o globo com as fronteiras simplificadas do mapa. É aproximada (erro de algumas dezenas de km), por isso aparece arredondada para dezenas de km, e vizinhos aparecem como "vizinho".',
+    en: 'In Proximity, the distance is the shortest one between the borders of the two places, measured on the globe with the map’s simplified borders. It is approximate (off by a few tens of km), so it is rounded to tens of km, and neighbors are shown as "neighbor".',
   },
   'about.maps.title': { pt: 'Projeção do mapa', en: 'Map projection' },
   'about.maps.text': {

@@ -231,6 +231,9 @@ export class SettingsPanelService {
                     (change)="setDuration('brazil', $any($event.target))"
                   />
                 </label>
+                <p class="col-span-2 text-xs text-ink-muted">
+                  {{ i18n.t('settings.durationContinent') }}
+                </p>
               </div>
             }
           </div>

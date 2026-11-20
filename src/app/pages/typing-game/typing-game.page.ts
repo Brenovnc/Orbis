@@ -62,7 +62,7 @@ import { FEEDBACK_ICON, GamePage, NewGameOptions } from '../game-page';
             (input)="onInput(answer)"
             (keydown.enter)="onEnter(answer)"
           />
-          <p class="h-5 w-full truncate text-xs md:text-sm" aria-live="polite">
+          <p class="bar-line h-5 truncate text-xs md:text-sm" aria-live="polite">
             @if (feedback(); as f) {
               <span class="font-sans font-medium">{{ icon[f.kind] }} {{ f.text }}</span>
             }

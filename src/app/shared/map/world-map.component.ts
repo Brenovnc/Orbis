@@ -16,6 +16,7 @@ import { select } from 'd3-selection';
 import { ZoomBehavior, ZoomTransform, zoom, zoomIdentity } from 'd3-zoom';
 import type { Geometry, MultiLineString, Position } from 'geojson';
 import { feature, mesh } from 'topojson-client';
+import { CONTINENT_FRAMES } from '../../core/data/continent-frames';
 import { BrazilTopology, GeoDataService } from '../../core/data/geo-data.service';
 import { WorldUnitProperties } from '../../core/data/geo-data.models';
 import { I18nService } from '../../core/i18n/i18n.service';
@@ -37,6 +38,8 @@ const GRATICULE = geoGraticule()
   ])
   .step([10, 10])();
 const MAX_ZOOM = 80; // enough to see the Vatican
+/** Share of the screen a chosen continent fills (the rest is under the bars and the menu). */
+const CONTINENT_FILL = 0.8;
 /** How far (as a share of the map height) it can be dragged past its top and bottom edges. */
 const VERTICAL_SLACK = 0.25;
 
@@ -197,6 +200,12 @@ export class WorldMapComponent {
     return !ready && !this.geo.error();
   });
   protected readonly error = this.geo.error;
+  /** The reset button goes back to the chosen continent, or to the whole world. */
+  protected readonly resetLabel = computed(() =>
+    this.i18n.t(
+      this.state.layer() === 'world' && this.state.continent() ? 'map.resetContinent' : 'map.reset',
+    ),
+  );
 
   protected readonly shapes = computed<Shape[]>(() => {
     const world = this.geo.world();
@@ -274,6 +283,9 @@ export class WorldMapComponent {
   protected readonly missedShapes = computed(() =>
     this.shapes().filter((s) => this.state.missed().has(s.id)),
   );
+  protected readonly focusShapes = computed(() =>
+    this.shapes().filter((s) => this.state.focus().has(s.id)),
+  );
   protected readonly pulseShapes = computed(() =>
     this.shapes().filter((s) => this.state.pulse().includes(s.id)),
   );
@@ -319,9 +331,10 @@ export class WorldMapComponent {
       this.setUpView();
     });
 
-    // Switching projection (settings) starts again from the initial view.
+    // Switching projection (settings) or continent starts again from the initial view.
     effect(() => {
       this.view();
+      this.state.continent();
       untracked(() => this.setUpView());
     });
   }
@@ -351,6 +364,40 @@ export class WorldMapComponent {
     this.updateUnit();
   }
 
+  /** The camera on the chosen continent, or null when the whole world is shown. */
+  private continentView(): ZoomTransform | null {
+    const continent = this.state.layer() === 'world' ? this.state.continent() : null;
+    const { width, height } = this.svg().nativeElement.getBoundingClientRect();
+    if (!continent || !width || !height) return null;
+    const { continuous, width: w, height: h, projection } = this.view();
+    const [west, south, east, north] = CONTINENT_FRAMES[continent];
+    // Patterson's x grows with longitude, so a window past 180° (Oceania) continues on the next
+    // copy of the map. The rounded map is drawn once and stops at 180°.
+    const lastLon = continuous ? east : Math.min(east, 180);
+    let [x0, y0, x1, y1] = [Infinity, Infinity, -Infinity, -Infinity];
+    for (let i = 0; i <= 4; i++) {
+      for (let j = 0; j <= 4; j++) {
+        const lon = west + ((lastLon - west) * i) / 4;
+        const xy = projection([lon, south + ((north - south) * j) / 4]);
+        if (!xy) continue;
+        const x = xy[0] + (lon > 180 ? w : 0);
+        [x0, y0, x1, y1] = [
+          Math.min(x0, x),
+          Math.min(y0, xy[1]),
+          Math.max(x1, x),
+          Math.max(y1, xy[1]),
+        ];
+      }
+    }
+    // Part of the screen is under the bars and panels, so the window fills only most of it.
+    const unit = Math.min(width / w, height / h);
+    const k = CONTINENT_FILL * Math.min(width / unit / (x1 - x0), height / unit / (y1 - y0));
+    const zoom = Math.min(MAX_ZOOM, Math.max(1, k));
+    return zoomIdentity
+      .translate(w / 2 - (zoom * (x0 + x1)) / 2, h / 2 - (zoom * (y0 + y1)) / 2)
+      .scale(zoom);
+  }
+
   /**
    * On a phone held upright the whole world is a thin strip, so the map opens zoomed in on
    * the Atlantic (the Americas, Europe and Africa). The "whole world" button zooms out.
@@ -358,6 +405,8 @@ export class WorldMapComponent {
   private initialView(): ZoomTransform {
     const { width: w, height: h, projection } = this.view();
     const { width, height } = this.svg().nativeElement.getBoundingClientRect();
+    const continent = this.continentView();
+    if (continent) return continent;
     if (!width || !height || this.state.layer() === 'brazil') return zoomIdentity;
     const tallness = (height / width) * (w / h);
     if (tallness < 1.4) return zoomIdentity;
@@ -408,7 +457,10 @@ export class WorldMapComponent {
 
   protected resetZoom(): void {
     if (this.zoomBehavior) {
-      this.zoomBehavior.transform(select(this.svg().nativeElement), zoomIdentity);
+      this.zoomBehavior.transform(
+        select(this.svg().nativeElement),
+        this.continentView() ?? zoomIdentity,
+      );
     }
   }
 }

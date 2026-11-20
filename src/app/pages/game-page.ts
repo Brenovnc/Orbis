@@ -1,14 +1,27 @@
 import { DestroyRef, computed, effect, inject, signal, untracked } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmOptions, ConfirmService, LeaveGuarded } from '../core/confirm/confirm.service';
-import { Layer, WorldUnitProperties } from '../core/data/geo-data.models';
+import { Continent, Layer, WorldUnitProperties } from '../core/data/geo-data.models';
 import { GeoDataService } from '../core/data/geo-data.service';
-import { Explanation, NonTargetIndex, buildNonTargetIndex } from '../core/game/non-targets';
+import {
+  Explanation,
+  NonTargetIndex,
+  buildNonTargetIndex,
+  explainNonTarget,
+  suggestedCountryId,
+} from '../core/game/non-targets';
 import { PlayableGame, SavedGame } from '../core/game/playable-game';
 import { RecordOutcome, RecordsService, recordKey } from '../core/game/records.service';
 import { SavedGameStore } from '../core/game/saved-game.store';
-import { Target, buildBrazilTargets, buildWorldTargets, withCapitals } from '../core/game/targets';
-import { GameId } from '../core/games';
+import {
+  Target,
+  buildBrazilTargets,
+  buildWorldTargets,
+  continentMinutes,
+  inContinent,
+  withCapitals,
+} from '../core/game/targets';
+import { GameId, usesCapitals } from '../core/games';
 import { formatClock } from '../core/labels';
 import { I18nService } from '../core/i18n/i18n.service';
 import { SettingsService } from '../core/settings.service';
@@ -30,13 +43,14 @@ export const FEEDBACK_ICON: Record<Feedback['kind'], string> = {
 
 const TICK_MS = 250;
 const SAVE_EVERY_MS = 2000;
-const CAPITAL_GAMES: GameId[] = ['digitar-capitais', 'clicar-capital'];
 /** A place at least this big is named at zoom 1; smaller ones need more zoom (see `minZoom`). */
 const LABEL_AREA_KM2: Record<Layer, number> = { world: 1_500_000, brazil: 150_000 };
 
 export interface NewGameOptions {
   saved: SavedGame | null;
   targets: Target[];
+  /** Every target of the map, before the continent filter (answers may lie outside it). */
+  pool: Target[];
   territories: boolean;
   durationMs: number | null;
 }
@@ -60,6 +74,9 @@ export abstract class GamePage<G extends PlayableGame> implements LeaveGuarded {
   private readonly route = inject(ActivatedRoute).snapshot.data;
   protected readonly gameId = this.route['game'] as GameId;
   protected readonly layer = (this.route['layer'] ?? 'world') as Layer;
+  /** Continent chosen in the menu, fixed for this game (Brazil has no filter). */
+  protected readonly continent: Continent | null =
+    this.layer === 'world' ? this.mapState.continent() : null;
 
   protected readonly game = signal<G | null>(null);
   protected readonly record = signal<RecordOutcome | null>(null);
@@ -96,6 +113,41 @@ export abstract class GamePage<G extends PlayableGame> implements LeaveGuarded {
 
   protected abstract createGame(options: NewGameOptions): G;
 
+  /** False for games that end some other way (the Trail game has a limit of guesses). */
+  protected usesTimer(): boolean {
+    return true;
+  }
+
+  /** The targets a game may ask about; the rest of the map stays valid as typed answers. */
+  protected askable(targets: Target[]): Target[] {
+    return targets;
+  }
+
+  /** Data a game needs besides the map's; loaded before the game starts. */
+  protected loadExtra(): Promise<void> {
+    return Promise.resolve();
+  }
+
+  /** Markers a game adds to those of found and missed places. */
+  protected extraMarkers(): MapMarker[] {
+    return [];
+  }
+
+  /** Names a game adds to those of found places (shown under the same setting). */
+  protected extraLabels(): MapLabel[] {
+    return [];
+  }
+
+  /** A name on the map over a place; small places need more zoom to show it. */
+  protected mapLabel(target: Target, text: string): MapLabel {
+    return {
+      id: target.id,
+      point: target.place.labelPoint,
+      text,
+      minZoom: Math.max(1, Math.sqrt(LABEL_AREA_KM2[this.layer] / target.place.areaKm2)),
+    };
+  }
+
   /** Click games give tiny places a bigger invisible click area. */
   protected enlargesTinyPlaces(): boolean {
     return false;
@@ -123,7 +175,9 @@ export abstract class GamePage<G extends PlayableGame> implements LeaveGuarded {
 
     this.mapState.setLayer(this.layer);
     const loaded = this.layer === 'brazil' ? this.geo.loadBrazil() : this.geo.loadWorld();
-    void loaded.then(() => this.start(this.saved.get(this.gameId, this.layer)));
+    void Promise.all([loaded, this.loadExtra()]).then(() =>
+      this.start(this.saved.get(this.gameId, this.layer, this.continent)),
+    );
 
     // The map mirrors the game: found places lit, shown or missed ones hatched.
     effect(() => {
@@ -151,7 +205,7 @@ export abstract class GamePage<G extends PlayableGame> implements LeaveGuarded {
       }
       this.mapState.found.set(foundUnits);
       this.mapState.missed.set(missedUnits);
-      this.mapState.markers.set(markers);
+      this.mapState.markers.set([...markers, ...this.extraMarkers()]);
       this.mapState.hitAreas.set(hitAreas);
     });
 
@@ -164,16 +218,12 @@ export abstract class GamePage<G extends PlayableGame> implements LeaveGuarded {
         return;
       }
       const found = game.found();
-      this.mapState.labels.set(
-        game.targets
+      this.mapState.labels.set([
+        ...game.targets
           .filter((target) => found.has(target.id))
-          .map((target): MapLabel => ({
-            id: target.id,
-            point: target.place.labelPoint,
-            text: this.labelFor(target),
-            minZoom: Math.max(1, Math.sqrt(LABEL_AREA_KM2[this.layer] / target.place.areaKm2)),
-          })),
-      );
+          .map((target) => this.mapLabel(target, this.labelFor(target))),
+        ...this.extraLabels(),
+      ]);
     });
 
     // Resting the mouse on a place already found reopens its info card (touch uses tapping).
@@ -197,22 +247,30 @@ export abstract class GamePage<G extends PlayableGame> implements LeaveGuarded {
     // Territories only exist on the world map.
     const territories =
       this.layer === 'world' && (saved?.territories ?? settings.includeTerritories);
-    let targets: Target[];
+    let all: Target[];
     if (this.layer === 'brazil') {
-      targets = buildBrazilTargets(this.geo.states());
+      all = buildBrazilTargets(this.geo.states());
     } else {
       const world = this.geo.world();
       if (!world) return;
       const units = world.objects.units.geometries.map((g) => g.properties as WorldUnitProperties);
-      targets = buildWorldTargets(this.geo.countries(), this.geo.territories(), units, territories);
+      all = buildWorldTargets(this.geo.countries(), this.geo.territories(), units, territories);
     }
     // Capital games can only ask about places that have a capital.
-    if (CAPITAL_GAMES.includes(this.gameId)) targets = withCapitals(targets);
-    const durationMs = saved
-      ? saved.durationMs
-      : settings.timerEnabled
-        ? settings.durationMinutes[this.layer] * 60_000
-        : null;
+    if (usesCapitals(this.gameId)) all = withCapitals(all);
+    const targets = this.askable(inContinent(all, this.continent));
+    // On a continent the time limit shrinks in proportion to its share of the world's targets.
+    const settingsDurationMs =
+      !settings.timerEnabled || !this.usesTimer()
+        ? null
+        : (this.continent
+            ? continentMinutes(
+                settings.durationMinutes.world,
+                targets.length,
+                this.askable(all).length,
+              )
+            : settings.durationMinutes[this.layer]) * 60_000;
+    const durationMs = saved ? saved.durationMs : settingsDurationMs;
 
     this.finalized = false;
     this.record.set(null);
@@ -221,18 +279,15 @@ export abstract class GamePage<G extends PlayableGame> implements LeaveGuarded {
     this.mapState.select(null);
     this.mapState.selectable.set(true);
     this.lastTick = Date.now();
-    this.game.set(this.createGame({ saved, targets, territories, durationMs }));
-    if (saved && this.rulesChanged(saved)) {
+    this.game.set(this.createGame({ saved, targets, pool: all, territories, durationMs }));
+    if (saved && this.rulesChanged(saved, settingsDurationMs)) {
       this.say('info', this.i18n.t('game.rulesKept'), 8000);
     }
   }
 
   /** True when a resumed game keeps rules that differ from the current settings. */
-  private rulesChanged(saved: SavedGame): boolean {
+  private rulesChanged(saved: SavedGame, settingsDuration: number | null): boolean {
     const settings = this.settings.value();
-    const settingsDuration = settings.timerEnabled
-      ? settings.durationMinutes[this.layer] * 60_000
-      : null;
     // Older saves lack some rules: those cannot be compared.
     const differs = <T>(savedValue: T | undefined, current: T) =>
       savedValue !== undefined && savedValue !== current;
@@ -259,7 +314,7 @@ export abstract class GamePage<G extends PlayableGame> implements LeaveGuarded {
   }
 
   /** Says why a place is not an answer. It never counts as a hit or an error. */
-  protected explain(why: Explanation): void {
+  protected explain(why: Explanation, suggest?: Target): void {
     const name = this.i18n.name(why.name);
     const text =
       why.kind === 'unlisted'
@@ -268,7 +323,28 @@ export abstract class GamePage<G extends PlayableGame> implements LeaveGuarded {
             name,
             country: this.i18n.name(why.country),
           });
-    this.say('info', text, 6000);
+    const hint = suggest
+      ? ` ${this.i18n.t('typing.explain.try', { name: this.i18n.name(suggest.place.name) })}`
+      : '';
+    this.say('info', text + hint, 6000);
+  }
+
+  /**
+   * For games that let any place of the map be typed: when `raw` names a real place that is not
+   * an answer, explains it (and suggests its country if that is one of `pool`). Free: it counts
+   * as neither a guess nor an error. Returns whether it explained.
+   */
+  protected explainTyped(raw: string, pool: Target[], suggestCountry: boolean): boolean {
+    const why = this.nonTargets && explainNonTarget(raw, this.nonTargets);
+    if (!why) return false;
+    const id = suggestCountry
+      ? suggestedCountryId(why, new Set(pool.map((target) => target.id)))
+      : null;
+    this.explain(
+      why,
+      pool.find((target) => target.id === id),
+    );
+    return true;
   }
 
   protected say(kind: Feedback['kind'], text: string, ms = 3500): void {
@@ -313,7 +389,7 @@ export abstract class GamePage<G extends PlayableGame> implements LeaveGuarded {
     this.sinceSave = 0;
     const game = this.game();
     if (game && game.status() !== 'finished' && game.hasProgress()) {
-      this.saved.save(game.snapshot());
+      this.saved.save(game.snapshot(), this.continent);
     }
   }
 
@@ -322,12 +398,13 @@ export abstract class GamePage<G extends PlayableGame> implements LeaveGuarded {
     const result = game.result();
     if (game.status() !== 'finished' || !result || this.finalized) return;
     this.finalized = true;
-    this.saved.clear(this.gameId, this.layer);
+    this.saved.clear(this.gameId, this.layer, this.continent);
     const key = recordKey({
       gameId: this.gameId,
       layer: this.layer,
       territories: game.territories,
       durationMs: game.durationMs,
+      continent: this.continent,
     });
     this.record.set(
       this.records.submit(key, {
@@ -335,6 +412,7 @@ export abstract class GamePage<G extends PlayableGame> implements LeaveGuarded {
         total: result.total,
         elapsedMs: result.elapsedMs,
         errors: result.errors,
+        guesses: result.guesses,
         date: new Date().toISOString().slice(0, 10),
       }),
     );
@@ -391,7 +469,7 @@ export abstract class GamePage<G extends PlayableGame> implements LeaveGuarded {
   }
 
   protected replay(): void {
-    this.saved.clear(this.gameId, this.layer);
+    this.saved.clear(this.gameId, this.layer, this.continent);
     this.start(null);
   }
 
@@ -417,7 +495,7 @@ export abstract class GamePage<G extends PlayableGame> implements LeaveGuarded {
   confirmLeave(): boolean {
     const game = this.game();
     if (game && game.status() !== 'finished' && !game.hasProgress()) {
-      this.saved.clear(this.gameId, this.layer);
+      this.saved.clear(this.gameId, this.layer, this.continent);
     }
     return true;
   }

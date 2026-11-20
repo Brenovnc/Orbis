@@ -123,6 +123,41 @@
       "why": "Chipre do Norte: reconhecido só pela Turquia, se administra; vira alvo só com territórios ligados (decidido pelo autor)."
     }
   },
+  "extraNeighbors": {
+    "_leia": "Fronteiras terrestres reais que a simplificação do mapa perde. Entram nos grafos de vizinhança (e valem 0 km) quando os dois ids existem no grafo: com territórios desligados, Macau é a própria China e a linha é ignorada.",
+    "list": [
+      {
+        "a": "ESP",
+        "b": "MAR",
+        "why": "Ceuta e Melilla, cidades espanholas no norte da África, têm fronteira terrestre com o Marrocos; são pequenas demais para sobreviver à simplificação do mapa."
+      },
+      {
+        "a": "BWA",
+        "b": "ZMB",
+        "why": "Botswana e Zâmbia têm uma fronteira real de poucas dezenas de metros no rio Zambeze, em Kazungula; o mapa simplificado a deixa como uma fresta de cerca de 1 km."
+      },
+      {
+        "a": "CHN",
+        "b": "MAC",
+        "why": "Macau tem fronteira terrestre com a China continental (Zhuhai); a faixa de terra é estreita demais para o mapa simplificado."
+      }
+    ]
+  },
+  "trailExcludedBorders": {
+    "_leia": "Fronteiras que a Trilha não usa e que o script não consegue distinguir sozinho, porque o mapa não separa a área do país. Regra geral da Trilha: fronteira que existe só por um território vale apenas se o território estiver no mesmo continente do país (Guiana Francesa e Saint-Martin já ficam de fora pelo script).",
+    "list": [
+      {
+        "a": "CYP",
+        "b": "GBR",
+        "why": "A fronteira só existe pelas bases soberanas britânicas de Akrotiri e Dhekelia, em outro continente que o Reino Unido (decisão do autor)."
+      },
+      {
+        "a": "CYN",
+        "b": "GBR",
+        "why": "Mesmo caso de Chipre: com territórios ligados, o Chipre do Norte só toca o Reino Unido pelas bases de Akrotiri e Dhekelia."
+      }
+    ]
+  },
   "nameChoice": {
     "_leia": "Por padrão o nome é o rótulo do Wikidata (pt-br, senão pt; en). Aqui se escolhe OUTRA grafia quando o rótulo tem erro ou foge do uso comum. O script só aceita grafias que já existem nas fontes (rótulos e apelidos do Wikidata, nomes do Natural Earth); as demais continuam aceitas como resposta.",
     "CHN": {
