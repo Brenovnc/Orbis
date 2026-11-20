@@ -46,12 +46,16 @@ circle {
   --land-paint: var(--color-land-muted);
 }
 
+.land.is-outside {
+  --land-paint: var(--color-land-outside);
+}
+
 .land.is-found {
   --land-paint: var(--color-found);
 }
 
 .land.is-missed {
-  --land-paint: url(#missed-hatch);
+  --land-paint: var(--color-missed);
 }
 
 .land.is-selected {
@@ -63,11 +67,34 @@ circle {
   --land-paint: var(--heat);
 }
 
-/* Found = solid dark outline; missed = dashed outline. Shape and pattern, not only color. */
+/* Trail: origin, destination and guesses; `--trail` comes from data-trail (see styles.css). */
+.land[data-trail] {
+  --land-paint: var(--trail);
+}
+
+/* Hidden map (Trail): only the painted shapes stay; hidden ones can be neither seen nor clicked. */
+svg.is-hidden .land:not(.is-shown) {
+  visibility: hidden;
+}
+
+/* The lakes still cut the shown shapes, but their outline would draw the hidden coasts. */
+svg.is-hidden .lakes {
+  stroke: none;
+}
+
+/* Found = dark green outline; missed = terracotta outline. Lightness differs too, not only hue. */
 .found-outline {
   fill: none;
   stroke: var(--color-found-edge);
   stroke-width: 1.5px;
+  stroke-linejoin: round;
+  pointer-events: none;
+}
+
+.heat-outline {
+  fill: none;
+  stroke: var(--color-heat-edge);
+  stroke-width: 1.8px;
   stroke-linejoin: round;
   pointer-events: none;
 }
@@ -80,12 +107,81 @@ circle {
   pointer-events: none;
 }
 
+/* Missed places: solid terracotta fill (the land's own, see .is-missed) and this continuous outline. */
 .missed-outline {
   fill: none;
   stroke: var(--color-missed-edge);
-  stroke-width: 1.3px;
-  stroke-dasharray: 4 3;
+  stroke-width: 1.5px;
+  stroke-linejoin: round;
+  stroke-linecap: round;
   pointer-events: none;
+}
+
+/* A cross over the forbidden place of the Trail; keeps its size on screen like the names do. */
+.forbidden-mark {
+  font:
+    700 20px var(--font-sans),
+    sans-serif;
+  fill: var(--color-missed-edge);
+  stroke: rgb(255 255 255 / 0.9);
+  stroke-width: 3px;
+  paint-order: stroke;
+  stroke-linejoin: round;
+  pointer-events: none;
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: scale(calc(1 / (var(--unit, 1) * var(--k, 1))));
+}
+
+/*
+ * Trail outlines, one pattern per color: solid for the shortest path, dashed for a detour, dotted
+ * for a guess of no use; origin and destination get a thick line, the hint outline a plain one.
+ */
+.trail-outline {
+  fill: none;
+  stroke: var(--trail-edge);
+  stroke-width: 1.8px;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  pointer-events: none;
+}
+
+.trail-outline[data-trail='end'] {
+  stroke-width: 2.4px;
+}
+
+.trail-outline[data-trail='detour'] {
+  stroke-dasharray: 6 3.5;
+  stroke-linecap: butt;
+}
+
+/* Zero-length dashes with round caps are dots. */
+.trail-outline[data-trail='far'] {
+  stroke-width: 2.6px;
+  stroke-dasharray: 0 4.5;
+}
+
+/* Thick enough to stand out from the borders on the easy level, where the map is shown. */
+.trail-outline[data-trail='hint'] {
+  stroke-width: 2.4px;
+}
+
+.route-halo,
+.route-outline {
+  fill: none;
+  stroke-linejoin: round;
+  pointer-events: none;
+}
+
+.route-halo {
+  stroke: rgb(255 255 255 / 0.9);
+  stroke-width: 5px;
+}
+
+.route-outline {
+  stroke: var(--color-trail-route);
+  stroke-width: 2.4px;
+  stroke-dasharray: 7 4;
 }
 
 /* Rings for places too small to see; they scale back down as the map zooms in. */
@@ -112,10 +208,15 @@ circle {
   stroke: var(--color-border);
 }
 
+.marker.is-trail {
+  fill: var(--trail);
+  stroke: var(--trail-edge);
+  stroke-width: 2px;
+}
+
 .marker.is-missed {
-  fill: var(--color-land);
+  fill: var(--color-missed);
   stroke: var(--color-missed-edge);
-  stroke-dasharray: 3 2;
 }
 
 svg.is-selectable .marker {
@@ -191,6 +292,7 @@ svg.is-selectable .marker {
 .coast,
 .borders,
 .found-outline,
+.heat-outline,
 .selected-outline {
   stroke-linecap: round;
 }
@@ -221,7 +323,15 @@ svg.is-selectable .land:not(.is-neutral) {
 
 /* By class, not :hover, so every copy of the map (and both sides of 180°) light up together. */
 svg.is-selectable:not(.no-hover)
-  .land.is-hovered:not(.is-neutral, .is-selected, .is-found, .is-missed, [data-heat]) {
+  .land.is-hovered:not(
+    .is-neutral,
+    .is-outside,
+    .is-selected,
+    .is-found,
+    .is-missed,
+    [data-heat],
+    [data-trail]
+  ) {
   --land-paint: var(--color-land-hover);
 }
 

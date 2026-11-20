@@ -15,7 +15,7 @@ interface Group {
 /**
  * Everything to find, grouped by continent (or by region on the Brazil map). Found places show their name with a discreet hint
  * (the capital, or the country in the capitals game). Places not found yet are empty slots so
- * the gaps are visible; with `reveal` (end screen) they show their name, marked with a dashed
+ * the gaps are visible; with `reveal` (end screen) they show their name, marked with a terracotta
  * outline and a cross so they stand out without relying on color.
  */
 @Component({
@@ -46,9 +46,8 @@ interface Group {
                   class="flex max-w-full items-baseline gap-1.5 rounded-md border px-2 py-0.5 text-left text-sm hover:bg-accent-soft"
                   [class.border-line]="item.found"
                   [class.bg-white]="item.found"
-                  [class.border-dashed]="!item.found"
                   [class.border-missed-edge]="!item.found"
-                  [class.bg-land]="!item.found"
+                  [class.bg-missed]="!item.found"
                   (click)="picked.emit(item.target)"
                 >
                   <span aria-hidden="true" class="text-xs">{{ item.found ? '✓' : '✗' }}</span>

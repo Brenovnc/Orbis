@@ -14,9 +14,9 @@ export const STRINGS = {
   'home.brazil': { pt: 'Brasil', en: 'Brazil' },
   'home.continent': { pt: 'Região do mapa', en: 'Part of the map' },
   'home.continentAll': { pt: 'Mundo todo', en: 'Whole world' },
+  'home.groups': { pt: 'Tipo de jogo', en: 'Kind of game' },
   'home.group.map': { pt: 'Mapa', en: 'Map' },
   'home.group.challenges': { pt: 'Desafios', en: 'Challenges' },
-  'home.soon': { pt: 'em breve', en: 'soon' },
   'game.silhuetas.title': { pt: 'Silhuetas', en: 'Silhouettes' },
   'game.silhuetas.desc': {
     pt: 'Descubra o lugar só pelo contorno.',
@@ -126,8 +126,8 @@ export const STRINGS = {
   'neighbors.next': { pt: 'Próxima rodada ▸', en: 'Next round ▸' },
   'neighbors.finish': { pt: 'Ver resultado ▸', en: 'See result ▸' },
   'neighbors.missed': {
-    pt: 'Faltaram {n}: estão tracejados no mapa.',
-    en: '{n} missed: they are dashed on the map.',
+    pt: 'Faltaram {n}: estão em terracota no mapa.',
+    en: '{n} missed: they are terracotta on the map.',
   },
   'neighbors.notNeighbor': {
     pt: '{name} não faz fronteira com {subject}.',
@@ -142,42 +142,89 @@ export const STRINGS = {
     en: '{b}: {a} and {b} share a border through the territory {territory}.',
   },
 
-  'game.trilha-dificil.title': { pt: 'Trilha difícil', en: 'Hard trail' },
-  'game.trilha-dificil.desc': {
-    pt: 'Chegue ao destino sem passar por um lugar proibido.',
-    en: 'Reach the destination without crossing a forbidden place.',
-  },
-  'game.br.trilha-dificil.title': { pt: 'Trilha difícil', en: 'Hard trail' },
-  'game.br.trilha-dificil.desc': {
-    pt: 'Chegue ao estado destino sem passar por um proibido.',
-    en: 'Reach the destination state without crossing a forbidden one.',
-  },
   'home.fewBorders': {
     pt: 'Poucas fronteiras terrestres na {continent}',
     en: 'Few land borders in {continent}',
   },
 
   // Trail game
-  'trail.placeholder': { pt: 'Digite o próximo lugar…', en: 'Type the next place…' },
-  'trail.placeholder.states': { pt: 'Digite o próximo estado…', en: 'Type the next state…' },
+  'trail.hardFallback': {
+    pt: 'Nível Difícil indisponível na {continent}: jogando no Normal',
+    en: 'Hard level not available in {continent}: playing on Normal',
+  },
+  'trail.placeholder': { pt: 'Digite um lugar…', en: 'Type a place…' },
+  'trail.placeholder.states': { pt: 'Digite um estado…', en: 'Type a state…' },
   'trail.goal': { pt: 'Chegue de {a} a {b}', en: 'Get from {a} to {b}' },
   'trail.goalHard': {
     pt: '{a} → {b}, sem passar por {x}',
     en: '{a} → {b}, without crossing {x}',
   },
-  'trail.undo': { pt: 'Desfazer', en: 'Undo' },
   'trail.minSteps': { pt: 'Caminho mínimo: {n} passos', en: 'Shortest path: {n} steps' },
-  'trail.yours': { pt: 'Trilha: {path}', en: 'Trail: {path}' },
-  'trail.notBorder': {
-    pt: '{name} não faz fronteira com {last}. Chute gasto.',
-    en: '{name} does not border {last}. Guess spent.',
+  'trail.near': { pt: '{name}: num caminho mínimo', en: '{name}: on a shortest path' },
+  'trail.detour': {
+    pt: '{name}: dá para passar por ele, mas é desvio',
+    en: '{name}: you can go through it, but it is a detour',
+  },
+  'trail.far': {
+    pt: '{name}: por ele a trilha não fecha com os chutes da partida',
+    en: '{name}: the trail cannot close through it with this game’s guesses',
+  },
+  'trail.island': {
+    pt: '{name} não tem fronteira terrestre. Chute gasto.',
+    en: '{name} has no land border. Guess spent.',
   },
   'trail.forbidden': {
     pt: '{name} é o lugar proibido! Chute gasto.',
     en: '{name} is the forbidden place! Guess spent.',
   },
-  'trail.inTrail': { pt: '{name} já está na trilha.', en: '{name} is already on the trail.' },
+  'trail.repeat': { pt: 'Você já chutou {name}.', en: 'You already guessed {name}.' },
+  'trail.isOrigin': {
+    pt: '{name} é a origem: já está na trilha.',
+    en: '{name} is the origin: it is already on the trail.',
+  },
+  'trail.isDestination': {
+    pt: '{name} é o destino: já está na trilha.',
+    en: '{name} is the destination: it is already on the trail.',
+  },
+  'trail.via': {
+    pt: ' (fronteira com {a} pelo território {territory})',
+    en: ' (it borders {a} through the territory {territory})',
+  },
+  'trail.hint.outline': { pt: 'Próximo contorno', en: 'Next outline' },
+  'trail.hint.outline.title': {
+    pt: 'Dica: mostra o contorno (sem nome) de um lugar que falta num caminho mínimo',
+    en: 'Hint: shows the outline (no name) of a place still missing on a shortest path',
+  },
+  'trail.hint.outline.none': {
+    pt: 'Nenhum contorno a mostrar',
+    en: 'No outline left to show',
+  },
+  'trail.hint.outline.shown': {
+    pt: 'Contorno revelado no mapa.',
+    en: 'Outline shown on the map.',
+  },
+  'trail.hint.map': { pt: 'Revelar mapa', en: 'Reveal map' },
+  'trail.hint.map.title': {
+    pt: 'Dica: mostra os contornos e as fronteiras do mundo todo até o fim da partida',
+    en: 'Hint: shows the outlines and borders of the whole world until the game ends',
+  },
+  'trail.guesses': { pt: 'Seus chutes', en: 'Your guesses' },
+  'trail.none': {
+    pt: 'Nenhum chute ainda. Digite um lugar e aperte Enter.',
+    en: 'No guesses yet. Type a place and press Enter.',
+  },
+  'trail.color.near': { pt: 'num caminho mínimo', en: 'on a shortest path' },
+  'trail.color.detour': { pt: 'desvio possível', en: 'possible detour' },
+  'trail.color.far': { pt: 'não fecha a trilha', en: 'cannot close the trail' },
   'trail.best': { pt: 'Um caminho mínimo:', en: 'A shortest path:' },
+  'trail.yours': { pt: 'Seu caminho:', en: 'Your trail:' },
+  'trail.legend.yours': { pt: 'Seu caminho (preenchido)', en: 'Your trail (filled)' },
+  'trail.legend.best': {
+    pt: 'Um caminho mínimo (contorno tracejado)',
+    en: 'A shortest path (dashed outline)',
+  },
+  'trail.legend.ends': { pt: 'Origem e destino', en: 'Origin and destination' },
+  'trail.legend.forbidden': { pt: 'Lugar proibido', en: 'Forbidden place' },
 
   // Silhouettes game
   'silhouette.which': { pt: 'Que lugar é este?', en: 'Which place is this?' },
@@ -227,6 +274,7 @@ export const STRINGS = {
   },
   'proximity.secret': { pt: 'Lugar secreto:', en: 'Secret place:' },
   'proximity.secret.states': { pt: 'Estado secreto:', en: 'Secret state:' },
+  'proximity.legend': { pt: 'longe → perto', en: 'far → near' },
   'proximity.note': {
     pt: 'Distâncias aproximadas, entre as fronteiras mais próximas.',
     en: 'Approximate distances, between the nearest borders.',
@@ -248,6 +296,7 @@ export const STRINGS = {
     pt: 'Seu recorde: {guesses} em {time}',
     en: 'Your record: {guesses} in {time}',
   },
+  'frame.hinted': { pt: 'com dica', en: 'with hints' },
   'bar.back': { pt: 'Voltar ao menu', en: 'Back to menu' },
   'bar.time': { pt: 'Tempo', en: 'Time' },
   'bar.hits': { pt: 'Acertos', en: 'Correct' },
@@ -313,6 +362,9 @@ export const STRINGS = {
   'click.whereIs': { pt: 'Onde fica', en: 'Where is' },
   'click.capitalOf': { pt: 'De qual país é a capital', en: 'Which country has the capital' },
   'click.whichFlag': { pt: 'De qual país é esta bandeira?', en: 'Which country has this flag?' },
+  'flag.enlarge': { pt: 'Toque para ampliar', en: 'Tap to enlarge' },
+  'flag.close': { pt: 'Fechar a bandeira', en: 'Close the flag' },
+  'flag.enlargeClick': { pt: 'Clique para ampliar', en: 'Click to enlarge' },
   'click.flagAlt': { pt: 'Bandeira a identificar', en: 'Flag to identify' },
   'click.capitalOfState': { pt: 'De qual estado é a capital', en: 'Which state has the capital' },
   'click.whichFlagState': {
@@ -426,20 +478,24 @@ export const STRINGS = {
     en: 'Options marked "next game" change the rules and apply from the next game; the others apply at once.',
   },
   'settings.hover': { pt: 'Destaque ao passar o mouse', en: 'Highlight on hover' },
+  'settings.trailLevel': { pt: 'Nível da Trilha', en: 'Trail level' },
+  'settings.trailLevel.hint': {
+    pt: 'Fácil: mapa visível. Normal: mapa escondido. Difícil: mapa escondido, um lugar proibido e menos chutes.',
+    en: 'Easy: the map is shown. Normal: the map is hidden. Hard: hidden map, a forbidden place and fewer guesses.',
+  },
   'settings.names': { pt: 'Nomes dos acertados no mapa', en: 'Names of found places on the map' },
   'settings.names.hint': {
     pt: 'Escreve o nome sobre o lugar acertado (mais nomes aparecem ao aproximar).',
     en: 'Writes the name over each found place (more names appear as you zoom in).',
   },
   'settings.reveal': {
-    pt: 'Revelar a resposta após erros',
-    en: 'Reveal the answer after mistakes',
+    pt: 'Tentativas por pergunta',
+    en: 'Attempts per question',
   },
   'settings.reveal.hint': {
-    pt: 'Nos jogos de clicar e nas Silhuetas: quantos erros na mesma pergunta antes de mostrar a resposta.',
-    en: 'In click games and Silhouettes: how many mistakes on one question before the answer is shown.',
+    pt: 'Nos jogos de clicar e nas Silhuetas: ao esgotar as tentativas, a resposta é revelada e conta como erro.',
+    en: 'In click games and Silhouettes: when the attempts run out, the answer is revealed and counts as a mistake.',
   },
-  'settings.never': { pt: 'Nunca', en: 'Never' },
   'settings.timer': { pt: 'Cronômetro', en: 'Timer' },
   'settings.timer.hint': {
     pt: 'Ligado, a partida tem tempo limite; desligado, o tempo apenas conta para cima. Na Trilha e na Proximidade o tempo sempre só conta para cima.',
@@ -502,24 +558,24 @@ export const STRINGS = {
     en: 'Typing: write as many names as you can before time runs out; what you get right lights up on the map. Portuguese or English both work, accents do not matter. If one name is the beginning of another (like Iran and Iraq), press Enter to confirm.',
   },
   'about.how.3': {
-    pt: 'Clicar: a pista (nome, capital ou bandeira) fica na barra superior e você clica no lugar certo. Use "Pular" se não souber.',
-    en: 'Clicking: the clue (name, capital or flag) is in the top bar and you click the right place. Use "Skip" if you do not know.',
+    pt: 'Clicar: a pista (nome, capital ou bandeira) fica na barra superior e você clica no lugar certo. Use "Pular" se não souber. Cada pergunta tem um número de tentativas (nas Configurações); ao esgotá-las, a resposta é revelada no mapa e conta como erro.',
+    en: 'Clicking: the clue (name, capital or flag) is in the top bar and you click the right place. Use "Skip" if you do not know. Each question has a number of attempts (in Settings); when they run out, the answer is revealed on the map and counts as a mistake.',
   },
   'about.how.challenges': {
     pt: 'Nos Desafios você também responde digitando. Digitar um lugar que não vale como resposta (como Groenlândia ou Inglaterra) não custa nada: o jogo explica o porquê.',
     en: 'In the Challenges you also answer by typing. Typing a place that is not a valid answer (like Greenland or England) costs nothing: the game explains why.',
   },
   'about.how.silhouettes': {
-    pt: 'Silhuetas: aparece só o contorno de um lugar, fora de escala, e você digita o nome. O contorno é só o território do próprio lugar (a Dinamarca aparece sem a Groenlândia). Ao acertar, ele acende no mapa.',
-    en: 'Silhouettes: only the outline of a place is shown, not to scale, and you type its name. The outline is only the place’s own land (Denmark without Greenland). When you get it right, it lights up on the map.',
+    pt: 'Silhuetas: aparece só o contorno de um lugar, fora de escala, e você digita o nome. O contorno é só o território do próprio lugar (a Dinamarca aparece sem a Groenlândia). Ao acertar, ele acende no mapa; ao esgotar as tentativas, a resposta é revelada e conta como erro.',
+    en: 'Silhouettes: only the outline of a place is shown, not to scale, and you type its name. The outline is only the place’s own land (Denmark without Greenland). When you get it right, it lights up on the map; when the attempts run out, the answer is revealed and counts as a mistake.',
   },
   'about.how.neighbors': {
     pt: 'Vizinhos: um lugar fica destacado no mapa e você digita todos os vizinhos terrestres dele. "Desistir da rodada" mostra os que faltaram.',
     en: 'Neighbors: a place is highlighted on the map and you type all of its land neighbors. "Give up the round" shows the ones you missed.',
   },
   'about.how.trail': {
-    pt: 'Trilha: vá da origem ao destino digitando um lugar por vez, sempre vizinho do último. Cada lugar digitado gasta um chute, mesmo o que não faz fronteira; "Desfazer" tira o último passo. Na Trilha difícil há um lugar proibido e o mapa não mostra as fronteiras.',
-    en: 'Trail: go from the origin to the destination by typing one place at a time, always a neighbor of the last one. Every place typed spends a guess, even one that does not border it; "Undo" removes the last step. The Hard trail adds a forbidden place and the map shows no borders.',
+    pt: 'Trilha: a origem e o destino já vêm dados. Digite, em qualquer ordem, os lugares que os ligam por fronteiras terrestres; você vence quando seus chutes formam um caminho ligado de um ao outro. Cada lugar novo gasta um chute. A cor de cada chute diz se ele está num caminho mínimo (verde, ✓), se é um desvio que ainda cabe nos chutes da partida (laranja, ~) ou se não ajuda (vermelho, ✗). No Fácil o mapa aparece inteiro; no Normal só aparecem a origem, o destino e seus chutes; o Difícil também tem um lugar proibido e menos chutes. As dicas "Próximo contorno" e "Revelar mapa" não gastam chutes, mas o recorde fica marcado "com dica". O nível fica nas Configurações.',
+    en: 'Trail: the origin and the destination are given. Type, in any order, the places that link them by land borders; you win when your guesses form a connected path from one to the other. Each new place spends a guess. The color of each guess tells whether it is on a shortest path (green, ✓), a detour that still fits the game’s guesses (orange, ~) or of no help (red, ✗). On Easy the whole map is shown; on Normal only the origin, the destination and your guesses; Hard also has a forbidden place and fewer guesses. The "Next outline" and "Reveal map" hints spend no guesses, but the record is marked "with hints". The level is in Settings.',
   },
   'about.how.proximity': {
     pt: 'Proximidade: ache o lugar secreto. Cada chute mostra a distância até ele, uma seta na direção dele e uma cor no mapa, de quente (perto) a frio (longe).',

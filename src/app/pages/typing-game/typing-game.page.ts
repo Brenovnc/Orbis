@@ -76,7 +76,7 @@ import { FEEDBACK_ICON, GamePage, NewGameOptions } from '../game-page';
           [mode]="mode()"
           [layer]="layer"
           [reveal]="true"
-          (picked)="showInfo($event)"
+          (picked)="pick($event)"
         />
       </app-game-frame>
 
@@ -90,7 +90,7 @@ import { FEEDBACK_ICON, GamePage, NewGameOptions } from '../game-page';
             [found]="g.found()"
             [mode]="mode()"
             [layer]="layer"
-            (picked)="showInfo($event)"
+            (picked)="pick($event)"
           />
         </aside>
       }

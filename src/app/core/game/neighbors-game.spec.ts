@@ -1,7 +1,7 @@
 import neighborsJson from '../../../../public/data/neighbors.json';
 import { NeighborsData } from '../data/proximity';
 import { NEIGHBOR_ROUNDS, NeighborsGame } from './neighbors-game';
-import { worldTargets } from './test-targets';
+import { seededRandom, worldTargets } from './test-targets';
 
 const data = neighborsJson as NeighborsData;
 const pool = worldTargets(false);
@@ -13,6 +13,7 @@ function game(askable = pool, extra: { random?: () => number; rounds?: number } 
     graph: data.world.territoriesOff,
     via: data.world.via,
     tolerance: 1,
+    random: seededRandom(),
     territories: false,
     durationMs: null,
     ...extra,

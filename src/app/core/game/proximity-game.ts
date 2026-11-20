@@ -81,7 +81,7 @@ export class ProximityGame implements PlayableGame {
     return new Set(id && this.guessed().includes(id) ? [id] : []);
   });
   readonly foundCount = computed(() => this.found().size);
-  /** Nothing is shown before the end; then the shared page hatches the secret if missed. */
+  /** Nothing is shown before the end; then the shared page paints the secret if missed. */
   readonly revealed = computed<ReadonlySet<string>>(() => new Set());
 
   private readonly byId: Map<string, Target>;

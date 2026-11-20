@@ -4,7 +4,8 @@
   #svg
   class="block h-full w-full touch-none select-none"
   [class.is-selectable]="state.selectable()"
-  [class.no-hover]="!settings.value().hoverHighlight || state.coastOnly()"
+  [class.is-hidden]="state.hidden()"
+  [class.no-hover]="!settings.value().hoverHighlight || state.hidden()"
   [attr.viewBox]="viewBox()"
   preserveAspectRatio="xMidYMid meet"
   role="img"
@@ -13,19 +14,6 @@
   (pointerover)="onPointerOver($event)"
   (pointerleave)="state.hover(null)"
 >
-  <defs>
-    <!-- Diagonal hatching marks missed places without relying on color alone. -->
-    <pattern
-      id="missed-hatch"
-      width="5"
-      height="5"
-      patternUnits="userSpaceOnUse"
-      patternTransform="rotate(45)"
-    >
-      <rect width="5" height="5" fill="#f6efd9" />
-      <rect width="2" height="5" fill="#c9693b" />
-    </pattern>
-  </defs>
   <g #layer>
     <!-- One copy of the world, or three side by side when the map repeats sideways. -->
     @for (offset of copies(); track offset) {
@@ -49,46 +37,66 @@
       <path
         class="land"
         [class.is-neutral]="shape.neutral"
+        [class.is-outside]="outsideIds().has(shape.id)"
         [class.is-found]="state.found().has(shape.id)"
         [class.is-missed]="state.missed().has(shape.id)"
         [class.is-selected]="shape.id === state.selectedId() || state.focus().has(shape.id)"
         [class.is-hovered]="shape.id === state.hoveredId()"
+        [class.is-shown]="shownIds().has(shape.id)"
         [attr.data-heat]="state.heat().get(shape.id) ?? null"
+        [attr.data-trail]="state.trailPaint().get(shape.id) ?? null"
         [attr.d]="shape.d"
         [attr.data-id]="shape.id"
       />
     }
     <path class="lakes" [attr.d]="lakesPath()" />
-    <path class="coast" [attr.d]="coastPath()" />
-    @if (!state.coastOnly()) {
+    @if (!state.hidden()) {
+      <path class="coast" [attr.d]="coastPath()" />
       <path class="borders" [attr.d]="bordersPath()" />
     }
     @if (view().sphere) {
       <!-- The rounded edge of the map, over the land so the grid and Antarctica end cleanly. -->
       <path class="sphere-edge" [attr.d]="spherePath()" />
     }
-    @for (shape of foundShapes(); track shape.id) {
-      <path class="found-outline" [attr.d]="shape.outline" />
+    <!-- Found and missed places get one outline path each (the fill is the land path's own color); hatching and dashes made the map crawl. -->
+    <path class="found-outline" [attr.d]="foundOutlines()" />
+    <path class="heat-outline" [attr.d]="heatOutlines()" />
+    <path class="missed-outline" [attr.d]="missedOutlines()" />
+    <!-- Trail: one path per color, each with its own line pattern, so color is never the only cue. -->
+    @for (group of trailOutlines(); track group.kind) {
+      <path class="trail-outline" [attr.data-trail]="group.kind" [attr.d]="group.d" />
     }
-    @for (shape of missedShapes(); track shape.id) {
-      <path class="missed-outline" [attr.d]="shape.outline" />
-    }
+    <!-- A shortest path at the end of the Trail: dashed line over a light halo, readable on any fill. -->
+    <path class="route-halo" [attr.d]="routeOutline()" />
+    <path class="route-outline" [attr.d]="routeOutline()" />
     @for (shape of focusShapes(); track shape.id) {
       <path class="focus-outline" [attr.d]="shape.outline" />
     }
     @for (marker of markers(); track marker.id) {
-      <circle
-        class="marker"
-        [class.is-found]="marker.kind === 'found'"
-        [class.is-missed]="marker.kind === 'missed'"
-        [class.is-focus]="marker.kind === 'focus'"
-        [class.is-heat]="marker.kind === 'heat'"
-        [attr.data-heat]="marker.heat ?? null"
-        [attr.cx]="marker.x"
-        [attr.cy]="marker.y"
-        r="4.5"
-        [attr.data-id]="marker.id"
-      />
+      @if (marker.kind === 'forbidden') {
+        <!-- The forbidden place of the Trail: a cross over its terracotta fill. -->
+        <g
+          [attr.transform]="'translate(' + marker.x + ' ' + marker.y + ')'"
+          class="map-label-anchor"
+        >
+          <text class="forbidden-mark" text-anchor="middle" dominant-baseline="central">✗</text>
+        </g>
+      } @else {
+        <circle
+          class="marker"
+          [class.is-found]="marker.kind === 'found'"
+          [class.is-missed]="marker.kind === 'missed'"
+          [class.is-focus]="marker.kind === 'focus'"
+          [class.is-heat]="marker.kind === 'heat'"
+          [class.is-trail]="marker.kind === 'trail'"
+          [attr.data-heat]="marker.heat ?? null"
+          [attr.data-trail]="marker.trail ?? null"
+          [attr.cx]="marker.x"
+          [attr.cy]="marker.y"
+          r="4.5"
+          [attr.data-id]="marker.id"
+        />
+      }
     }
     @for (area of hitAreas(); track area.id) {
       <!-- Invisible bigger target around tiny places, so a finger or mouse can hit them. -->

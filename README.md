@@ -4,7 +4,17 @@ Minigames didáticos de geografia para aprender e se desafiar: países, capitais
 
 O site é 100% estático: sem backend, sem banco e sem contas. Tudo o que o jogador salva (configurações, partida em andamento, recordes) fica no `localStorage` do próprio navegador.
 
-<!-- PRINTS: adicionar aqui as imagens (menu no desktop, jogo de digitar, jogo de clicar, Brasil no celular). Sugestão: pasta docs/prints/. -->
+|                  Menu (desktop)                  |               Digitar países                |
+| :----------------------------------------------: | :-----------------------------------------: |
+| ![Menu no desktop](docs/prints/menu-desktop.png) | ![Jogo de digitar](docs/prints/digitar.png) |
+
+|           Clicar pela bandeira            |               Desafio: Silhuetas                |
+| :---------------------------------------: | :---------------------------------------------: |
+| ![Jogo de clicar](docs/prints/clicar.png) | ![Silhuetas](docs/prints/desafio-silhuetas.png) |
+
+|                                     Brasil no celular                                     |
+| :---------------------------------------------------------------------------------------: |
+| <img src="docs/prints/brasil-celular.png" alt="Estados do Brasil no celular" width="260"> |
 
 ## O que tem
 
@@ -12,9 +22,14 @@ O site é 100% estático: sem backend, sem banco e sem contas. Tudo o que o joga
 - **Por continente:** no Mundo, joga-se o mundo todo ou um continente; o mapa enquadra a região escolhida.
 - **Nove jogos em cada mapa, em dois grupos:**
   - **Mapa:** digitar países (ou estados), digitar capitais, clicar pelo nome, clicar pela capital e clicar pela bandeira.
-  - **Desafios:** Silhuetas, Vizinhos, Trilha (níveis Normal e Difícil, duas entradas no menu) e Proximidade.
+  - **Desafios:** Silhuetas, Vizinhos, Trilha (níveis Fácil, Normal e Difícil, escolhidos nas configurações) e Proximidade.
 - **Português e inglês**, com troca na hora; ao digitar valem os dois idiomas.
-- **Celular como prioridade:** zoom por pinça, toque duplo para aproximar e áreas de toque ampliadas para microestados e ilhas.
+- **Celular como prioridade:** zoom por pinça, toque duplo para aproximar, áreas de toque ampliadas para microestados e ilhas e menu com abas "Mapa" e "Desafios" para cobrir pouco do mapa.
+- **Câmera:** ao revelar uma resposta, começar uma rodada do Vizinhos ou tocar num item de lista, o mapa vai suavemente até o lugar (salta direto com "movimento reduzido"). Nunca se move sozinho a cada acerto no jogo de digitar.
+- **Fora da região:** o que está fora do continente escolhido (ou, no Brasil, os países vizinhos) fica num tom apagado, sem destaque nem clique.
+- **Bandeiras:** a pista do jogo de clicar pela bandeira é um cartão flutuante; tocar ou clicar numa bandeira a amplia.
+- **Proximidade:** escala de uma cor, do amarelo-dourado (longe, escurecido para não se confundir com a cor da terra) ao vermelho-escuro (perto), com contorno em todo lugar chutado e legenda no canto. O contorno fica só na parte principal do lugar (a mesma regra do enquadramento da câmera): ilhas e territórios distantes continuam pintados, sem contorno.
+- **Trilha:** chutes em verde, laranja e vermelho, diferentes também na claridade (testados com simulação de protanopia e deuteranopia), cada um com seu ícone na lista (✓, ~, ✗) e seu contorno no mapa (contínuo, tracejado, pontilhado); origem e destino em azul.
 - **Configurações:** atalhos Fácil / Normal / Difícil, cronômetro, tolerância de grafia, sons (gerados por código) e mais.
 - **Aba Sobre** dentro do site, com fontes, critérios e habilidades da BNCC.
 
@@ -55,20 +70,24 @@ Depois de regenerar os dados, confira o relatório `scripts/data-report.md` (con
 
 - **Digitar** (países/estados e capitais): digite o máximo possível antes de o tempo acabar. Acertos acendem no mapa e na lista por continente (ou região do Brasil). Vale português ou inglês, sem se preocupar com acentos, maiúsculas, hífens ou espaços.
   - O nome (ou apelido) inteiro e exato conta na hora. Se ele também é o começo do nome de outro lugar ainda não acertado ("Irã" → "Iraque"), confirme com **Enter**. O Enter também perdoa erros leves de grafia, mas recusa se o erro servir para dois lugares (Gâmbia/Zâmbia).
-- **Clicar** (nome, capital ou bandeira): a pergunta fica na barra superior e você clica no lugar certo. Há placar de acertos e erros, botão **Pular**, modo aprender (ao errar mostra o lugar clicado) e revelação da resposta após N erros.
+- **Clicar** (nome, capital ou bandeira): a pergunta fica na barra superior e você clica no lugar certo. Há placar de acertos e erros, botão **Pular**, modo aprender (ao errar mostra o lugar clicado) e revelação da resposta ao esgotar as N tentativas por pergunta (1, 2, 3 ou 5; vale como erro).
 - Pausar, Reiniciar e Desistir ficam sempre na barra superior; sair com progresso pede confirmação.
 
 ### Desafios
 
 Todos se respondem digitando, com a mesma regra dos jogos de digitar (dois idiomas, Enter para confirmar e perdoar grafia). Digitar um lugar que não é alvo (Groenlândia, Inglaterra...) não custa nada: o jogo explica o porquê. No mapa do Brasil, todos usam os estados.
 
-- **Silhuetas:** aparece só o contorno de um país (ou estado), sozinho, grande e **fora de escala**, numa projeção centrada nele. O contorno é só a terra do próprio lugar: a Dinamarca aparece sem a Groenlândia e a França sem a Guiana Francesa; com territórios ligados, cada território tem a própria silhueta. Ilhas muito pequenas em relação à parte principal ficam de fora (o Havaí, as Canárias). Lugares cujo contorno é degenerado na resolução dos mapas não são sorteados (veja abaixo), e o total da partida já desconta esses lugares. Digite o nome; errar com outro lugar real conta erro. Pular, revelar após N erros e modo aprender funcionam como nos jogos de clicar. Ao acertar, o lugar acende no mapa e o cartão abre.
-- **Vizinhos:** um lugar fica destacado no mapa e você digita todos os vizinhos terrestres dele; cada acerto acende. **Desistir da rodada** mostra os que faltaram (tracejados). São 10 rodadas (menos, se a região tiver menos lugares com vizinhos); o placar soma os vizinhos acertados.
-- **Trilha:** chegue da origem ao destino digitando um lugar por vez; cada um precisa fazer fronteira com o último da trilha. Todo lugar real digitado com Enter gasta um chute, mesmo um que não faz fronteira (esse não entra na trilha). **Desfazer** tira o último passo, mas não devolve o chute. A barra mostra desde o início quantos passos tem o caminho mínimo; no fim, o mapa mostra um caminho mínimo. Chutes: passos mínimos + 4.
-- **Trilha difícil:** a mesma coisa, mas com um lugar proibido ("sem passar por X") e o mapa só com o litoral, sem linhas de fronteira. Chutes: passos mínimos sem o proibido + 2. Digitar o proibido gasta o chute.
+- **Silhuetas:** aparece só o contorno de um país (ou estado), sozinho, grande e **fora de escala**, numa projeção centrada nele. O contorno é só a terra do próprio lugar: a Dinamarca aparece sem a Groenlândia e a França sem a Guiana Francesa; com territórios ligados, cada território tem a própria silhueta. Ilhas muito pequenas em relação à parte principal ficam de fora (o Havaí, as Canárias). Lugares cujo contorno é degenerado na resolução dos mapas não são sorteados (veja abaixo), e o total da partida já desconta esses lugares. Digite o nome; errar com outro lugar real conta erro. Pular, revelar ao esgotar as tentativas e modo aprender funcionam como nos jogos de clicar. Ao acertar, o lugar acende no mapa e o cartão abre.
+- **Vizinhos:** um lugar fica destacado no mapa e você digita todos os vizinhos terrestres dele; cada acerto acende. **Desistir da rodada** mostra os que faltaram (em terracota). São 10 rodadas (menos, se a região tiver menos lugares com vizinhos); o placar soma os vizinhos acertados.
+- **Trilha:** origem e destino já vêm dados (do continente escolhido, ligados por terra, caminho mínimo de 3 a 8 passos). Digite, em qualquer ordem, os lugares que os ligam: você vence quando os chutes, junto com origem e destino, contêm um caminho ligado de um ao outro (de qualquer tamanho) e perde se os chutes acabarem antes. Todo lugar real digitado pela primeira vez gasta um chute, inclusive ilhas e o proibido; repetir, digitar a origem ou o destino, texto que não é lugar e lugares que não são alvo não gastam. A barra mostra desde o início quantos passos tem o caminho mínimo.
+  - **Cores**, calculadas pelo total de chutes da partida (nunca mudam durante o jogo): **verde ✓** se o lugar está num caminho mínimo; **laranja ~** se há um caminho da origem ao destino passando por ele, sem repetir lugar, cujo número de lugares intermediários cabe no total de chutes; **vermelho ✗** nos demais (ilhas, lugares sem ligação por terra, becos sem saída e o proibido). No Difícil, tudo é calculado evitando o proibido.
+  - **Níveis** (configuração "Nível da Trilha", que os atalhos Fácil/Normal/Difícil ajustam): **Fácil** mostra o mapa com fronteiras; **Normal** esconde o mapa (só aparecem a água, a origem, o destino e os chutes, todos com o nome escrito); **Difícil** esconde o mapa e tem um lugar proibido ("sem passar por X"), mostrado desde o início. Chutes: passos mínimos + 4 (Fácil e Normal) ou passos mínimos sem o proibido + 2 (Difícil).
+  - **Dicas** (sem limite e sem gastar chute): **Próximo contorno** mostra só o contorno de um lugar que falta num caminho mínimo (no caminho que aproveita os verdes já chutados, o lugar colado à parte já ligada à origem ou, se não houver, à ligada ao destino); **Revelar mapa** (Normal e Difícil) mostra o mapa inteiro até o fim. No celular, as dicas ficam no menu "⋯". Usar dica marca a partida "com dica".
+  - **Fim:** o mapa inteiro aparece, com o caminho do jogador preenchido e um caminho mínimo contornado (tracejado), e uma legenda.
+  - **Recordes** separados por nível; uma partida sem dica sempre vence uma com dica e, entre iguais, vence a de menos chutes. Recordes e partidas salvas da Trilha e da Trilha difícil de antes dos níveis continuam valendo como Normal e Difícil.
 - **Proximidade:** ache um lugar secreto. Cada chute mostra a distância até ele, uma seta com a direção e uma cor de quente (perto) a frio (longe) no mapa; a lista de chutes fica ordenada por distância (botão **Lista**). Sem limite de chutes; o recorde é achar com menos chutes.
 
-Na Trilha e na Proximidade o cronômetro só conta para cima. Vizinhos e Trilha ficam desabilitados no menu numa região sem fronteiras terrestres suficientes (por exemplo, na Oceania), com uma explicação curta.
+Na Trilha e na Proximidade o cronômetro só conta para cima. Vizinhos e Trilha ficam desabilitados no menu numa região sem fronteiras terrestres suficientes (por exemplo, na Oceania), com uma explicação curta. A Trilha no nível Difícil, onde nenhum lugar pode ser proibido (na América do Norte), não fica desabilitada: roda no nível Normal, com um aviso no início, e o recorde é gravado como Normal. Na Trilha, origem e destino mostram o nome sempre; os demais lugares seguem a mesma regra por área dos "nomes no mapa" (os pequenos só com zoom).
 
 ### Configurações
 
@@ -80,9 +99,10 @@ Menu → **Configurações**. Tudo é salvo só neste navegador; o que muda as r
 | Tolerância de grafia        | alta      | normal                      | nenhuma                     |
 | Cartão de informações       | sim       | sim                         | não                         |
 | Modo aprender               | sim       | sim                         | não                         |
-| Revelar após erros          | 2         | 3                           | nunca                       |
+| Tentativas por pergunta     | 3         | 3                           | 1                           |
 | Destaque ao passar o mouse  | sim       | sim                         | não                         |
 | Nomes dos acertados no mapa | sim       | não                         | não                         |
+| Nível da Trilha             | Fácil     | Normal                      | Difícil                     |
 
 "Personalizar" mostra cada chave. Idioma, projeção do mapa, **Sons** (desligados por padrão) e **Incluir territórios** (desligado por padrão) são preferências à parte e não mudam com os atalhos. No mapa do Brasil a opção de territórios fica desativada, com uma explicação, porque lá os alvos são só os estados.
 

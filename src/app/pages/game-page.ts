@@ -21,7 +21,7 @@ import {
   inContinent,
   withCapitals,
 } from '../core/game/targets';
-import { GameId, usesCapitals } from '../core/games';
+import { GameId, hasTimeLimit, usesCapitals } from '../core/games';
 import { formatClock } from '../core/labels';
 import { I18nService } from '../core/i18n/i18n.service';
 import { SettingsService } from '../core/settings.service';
@@ -32,6 +32,8 @@ import { SettingsPanelService } from '../shared/settings-panel/settings-panel.co
 export interface Feedback {
   kind: 'hit' | 'duplicate' | 'miss' | 'info';
   text: string;
+  /** Replaces the icon of the kind (the Trail marks its guesses with ✓, ~ or ✗). */
+  icon?: string;
 }
 
 export const FEEDBACK_ICON: Record<Feedback['kind'], string> = {
@@ -115,7 +117,7 @@ export abstract class GamePage<G extends PlayableGame> implements LeaveGuarded {
 
   /** False for games that end some other way (the Trail game has a limit of guesses). */
   protected usesTimer(): boolean {
-    return true;
+    return hasTimeLimit(this.gameId);
   }
 
   /** The targets a game may ask about; the rest of the map stays valid as typed answers. */
@@ -136,6 +138,23 @@ export abstract class GamePage<G extends PlayableGame> implements LeaveGuarded {
   /** Names a game adds to those of found places (shown under the same setting). */
   protected extraLabels(): MapLabel[] {
     return [];
+  }
+
+  /** Names written on the map: those of found places, when the setting is on. */
+  protected mapLabels(game: G): MapLabel[] {
+    if (!this.settings.value().showNames) return [];
+    const found = game.found();
+    return [
+      ...game.targets
+        .filter((target) => found.has(target.id))
+        .map((target) => this.mapLabel(target, this.labelFor(target))),
+      ...this.extraLabels(),
+    ];
+  }
+
+  /** The game id in the record key; a game with levels keeps one record per level. */
+  protected recordId(): string {
+    return this.gameId;
   }
 
   /** A name on the map over a place; small places need more zoom to show it. */
@@ -179,7 +198,7 @@ export abstract class GamePage<G extends PlayableGame> implements LeaveGuarded {
       this.start(this.saved.get(this.gameId, this.layer, this.continent)),
     );
 
-    // The map mirrors the game: found places lit, shown or missed ones hatched.
+    // The map mirrors the game: found places lit, shown or missed ones in terracotta.
     effect(() => {
       const game = this.game();
       if (!game) return;
@@ -209,21 +228,10 @@ export abstract class GamePage<G extends PlayableGame> implements LeaveGuarded {
       this.mapState.hitAreas.set(hitAreas);
     });
 
-    // Names of found places on the map (setting). Small places need more zoom to show.
+    // Names on the map. Small places need more zoom to show.
     effect(() => {
       const game = this.game();
-      if (!game) return;
-      if (!this.settings.value().showNames) {
-        this.mapState.labels.set([]);
-        return;
-      }
-      const found = game.found();
-      this.mapState.labels.set([
-        ...game.targets
-          .filter((target) => found.has(target.id))
-          .map((target) => this.mapLabel(target, this.labelFor(target))),
-        ...this.extraLabels(),
-      ]);
+      if (game) this.mapState.labels.set(this.mapLabels(game));
     });
 
     // Resting the mouse on a place already found reopens its info card (touch uses tapping).
@@ -296,7 +304,8 @@ export abstract class GamePage<G extends PlayableGame> implements LeaveGuarded {
       (this.layer === 'world' && saved.territories !== settings.includeTerritories) ||
       differs(saved.tolerance, settings.typoTolerance) ||
       differs(saved.revealAfterErrors, settings.revealAfterErrors) ||
-      differs(saved.learnMode, settings.learnMode)
+      differs(saved.learnMode, settings.learnMode) ||
+      differs(saved.trailLevel, settings.trailLevel)
     );
   }
 
@@ -347,8 +356,8 @@ export abstract class GamePage<G extends PlayableGame> implements LeaveGuarded {
     return true;
   }
 
-  protected say(kind: Feedback['kind'], text: string, ms = 3500): void {
-    this.feedback.set({ kind, text });
+  protected say(kind: Feedback['kind'], text: string, ms = 3500, icon?: string): void {
+    this.feedback.set({ kind, text, icon });
     this.later(() => this.feedback.set(null), ms);
   }
 
@@ -400,7 +409,7 @@ export abstract class GamePage<G extends PlayableGame> implements LeaveGuarded {
     this.finalized = true;
     this.saved.clear(this.gameId, this.layer, this.continent);
     const key = recordKey({
-      gameId: this.gameId,
+      gameId: this.recordId(),
       layer: this.layer,
       territories: game.territories,
       durationMs: game.durationMs,
@@ -413,6 +422,7 @@ export abstract class GamePage<G extends PlayableGame> implements LeaveGuarded {
         elapsedMs: result.elapsedMs,
         errors: result.errors,
         guesses: result.guesses,
+        hinted: result.hinted,
         date: new Date().toISOString().slice(0, 10),
       }),
     );
@@ -504,6 +514,19 @@ export abstract class GamePage<G extends PlayableGame> implements LeaveGuarded {
     this.infoTarget.set(target);
     // Lights the place up so it is easy to see where it is.
     this.pulseUnits([target]);
+  }
+
+  /** Sends the camera to the places (the main shape of each). Never moves on its own at a hit. */
+  protected focusOn(targets: Target[]): void {
+    this.mapState.flyTo(
+      targets.map((t) => (t.unitIds.includes(t.id) ? t.id : t.unitIds[0])).filter(Boolean),
+    );
+  }
+
+  /** A click on an item of a list: the info card, and the camera goes to the place. */
+  protected pick(target: Target): void {
+    this.showInfo(target);
+    this.focusOn([target]);
   }
 
   protected closeInfo(): void {

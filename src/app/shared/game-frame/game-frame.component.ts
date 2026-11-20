@@ -17,6 +17,16 @@ import { GameResult, GameStatus } from '../../core/game/typing-game';
 import { formatClock } from '../../core/labels';
 import { TopBarComponent } from '../top-bar/top-bar.component';
 
+/** An item a game adds to the phone "⋯" menu. */
+export interface MoreAction {
+  id: string;
+  label: string;
+  /** Path of a 20×20 stroked icon. */
+  icon: string;
+  title?: string;
+  disabled?: boolean;
+}
+
 const ICON = {
   pause: 'M7 4v12M13 4v12',
   play: 'M6 4l10 6-10 6z',
@@ -28,7 +38,7 @@ const ICON = {
 /**
  * The frame shared by every game: top bar with time, score and progress, the pause / give up /
  * restart actions, the pause card and the end screen. The game puts its question in the default
- * slot, a button of its own next to Pause in the `gameAction` slot (Undo, Next round...) and the
+ * slot, a button of its own next to Pause in the `gameAction` slot (Next round, hints...) and the
  * full answer list for the end screen in the `end` slot.
  */
 @Component({
@@ -127,9 +137,28 @@ const ICON = {
                 (click)="moreOpen.set(false)"
               ></button>
               <div
-                class="absolute top-full right-0 z-30 mt-1 flex w-40 flex-col rounded-xl bg-panel-solid p-1 shadow-panel"
+                class="absolute top-full right-0 z-30 mt-1 flex w-48 flex-col rounded-xl bg-panel-solid p-1 shadow-panel"
                 role="menu"
               >
+                @for (action of moreActions(); track action.id) {
+                  <button
+                    type="button"
+                    role="menuitem"
+                    class="action-btn justify-start px-3 text-left text-sm hover:bg-black/5 disabled:opacity-40"
+                    [disabled]="action.disabled"
+                    [title]="action.title ?? ''"
+                    (click)="moreOpen.set(false); moreAction.emit(action.id)"
+                  >
+                    <svg
+                      viewBox="0 0 20 20"
+                      class="size-4 shrink-0 fill-none stroke-current stroke-2"
+                      aria-hidden="true"
+                    >
+                      <path [attr.d]="action.icon" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    {{ action.label }}
+                  </button>
+                }
                 <button
                   type="button"
                   role="menuitem"
@@ -212,6 +241,7 @@ const ICON = {
 
     @if (status() === 'finished' && result(); as r) {
       <section
+        data-map-cover
         class="fixed inset-x-0 bottom-0 z-20 flex animate-panel-in flex-col rounded-t-2xl bg-panel-solid shadow-panel md:inset-x-auto md:top-36 md:right-3 md:bottom-36 md:w-[26rem] md:rounded-2xl"
         [class]="collapsed() ? 'md:bottom-auto' : 'h-[58dvh] md:h-auto'"
         [attr.aria-label]="i18n.t('frame.result')"
@@ -230,6 +260,9 @@ const ICON = {
             }}</strong>
             <span class="text-sm text-ink-muted">
               {{ i18n.t('frame.in') }} {{ elapsed() }}{{ errorsText(r.errors) }}
+              @if (r.hinted) {
+                · {{ i18n.t('frame.hinted') }}
+              }
             </span>
           </p>
           @if (accuracy(r); as text) {
@@ -290,6 +323,12 @@ export class GameFrameComponent {
   readonly ownEndTitle = input<string>();
   /** The errors were wrong answers typed, not wrong clicks (Silhouettes). */
   readonly typed = input(false);
+  /**
+   * The game's own buttons as items of the phone "⋯" menu, for those that do not fit next to
+   * Pause (on larger screens the game shows them in the `gameAction` slot).
+   */
+  readonly moreActions = input<MoreAction[]>([]);
+  readonly moreAction = output<string>();
   readonly skip = output<void>();
 
   readonly menu = output<void>();
@@ -353,10 +392,11 @@ export class GameFrameComponent {
       time: formatClock(best.elapsedMs, 'up'),
     };
     if (best.guesses !== undefined) {
-      return this.i18n.t('frame.yourRecordGuesses', {
+      const text = this.i18n.t('frame.yourRecordGuesses', {
         guesses: this.guessesLabel(best.guesses),
         time: values.time,
       });
+      return best.hinted ? `${text} · ${this.i18n.t('frame.hinted')}` : text;
     }
     if (best.errors === undefined) return this.i18n.t('frame.yourRecord', values);
     return this.i18n.t('frame.yourRecordErrors', {

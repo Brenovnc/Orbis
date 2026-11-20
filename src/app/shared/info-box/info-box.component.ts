@@ -10,6 +10,7 @@ import {
 import { Place } from '../../core/data/geo-data.models';
 import { GeoDataService, isState, isTerritory } from '../../core/data/geo-data.service';
 import { I18nService } from '../../core/i18n/i18n.service';
+import { ZoomableFlagComponent } from '../flag/zoomable-flag.component';
 
 /**
  * Facts about a place, in a fixed spot that never covers the middle of the map
@@ -18,10 +19,12 @@ import { I18nService } from '../../core/i18n/i18n.service';
  */
 @Component({
   selector: 'app-info-box',
+  imports: [ZoomableFlagComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class:
       'fixed inset-x-0 bottom-0 z-30 block md:inset-x-auto md:bottom-4 md:left-4 md:w-96 animate-panel-in',
+    'data-map-cover': '',
     '(mouseenter)': 'paused.set(true)',
     '(mouseleave)': 'paused.set(false)',
     '(focusin)': 'paused.set(true)',
@@ -35,10 +38,11 @@ import { I18nService } from '../../core/i18n/i18n.service';
       [attr.aria-label]="i18n.t('info.about', { name: name() })"
     >
       <div class="flex items-start gap-3">
-        <img
+        <app-zoomable-flag
+          class="shrink-0"
           [src]="'data/' + p.flag"
           [alt]="i18n.t('info.flag', { name: name() })"
-          class="h-9 w-auto shrink-0 rounded-sm ring-1 ring-black/15 md:h-11"
+          imgClass="h-9 w-auto rounded-sm ring-1 ring-black/15 md:h-11"
         />
         <div class="min-w-0 flex-1">
           <h2 class="font-serif text-xl leading-tight font-semibold md:text-2xl">

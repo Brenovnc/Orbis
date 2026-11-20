@@ -5,6 +5,9 @@ import { readStore, writeStore } from './storage';
 /** continuous = rectangular map that repeats sideways; natural-earth = classic rounded map. */
 export type MapProjection = 'continuous' | 'natural-earth';
 
+/** Trail: easy shows the map; normal hides it; hard also forbids a place and gives fewer guesses. */
+export type TrailLevel = 'easy' | 'normal' | 'hard';
+
 export interface Settings {
   language: Lang;
   mapProjection: MapProjection;
@@ -18,12 +21,16 @@ export interface Settings {
   infoBox: boolean;
   /** After a wrong click, show the name and facts of the place that was clicked. */
   learnMode: boolean;
-  /** In click games, show the answer after this many wrong clicks on one question (0 = never). */
+  /**
+   * Attempts per question in click games and Silhouettes (1, 2, 3 or 5): after this many wrong
+   * answers the answer is revealed. The name is kept so saved settings and games still load.
+   */
   revealAfterErrors: number;
   /** Highlight the place under the mouse. */
   hoverHighlight: boolean;
   /** Write the name of found places on the map. */
   showNames: boolean;
+  trailLevel: TrailLevel;
 }
 
 export const DEFAULT_SETTINGS: Settings = {
@@ -39,6 +46,7 @@ export const DEFAULT_SETTINGS: Settings = {
   revealAfterErrors: 3,
   hoverHighlight: true,
   showNames: false,
+  trailLevel: 'normal',
 };
 
 export type Preset = 'easy' | 'normal' | 'hard';
@@ -54,6 +62,7 @@ export type PresetValues = Pick<
   | 'revealAfterErrors'
   | 'hoverHighlight'
   | 'showNames'
+  | 'trailLevel'
 >;
 
 export const PRESETS: Record<Preset, PresetValues> = {
@@ -63,9 +72,10 @@ export const PRESETS: Record<Preset, PresetValues> = {
     typoTolerance: 2,
     infoBox: true,
     learnMode: true,
-    revealAfterErrors: 2,
+    revealAfterErrors: 3,
     hoverHighlight: true,
     showNames: true,
+    trailLevel: 'easy',
   },
   normal: {
     timerEnabled: true,
@@ -76,6 +86,7 @@ export const PRESETS: Record<Preset, PresetValues> = {
     revealAfterErrors: 3,
     hoverHighlight: true,
     showNames: false,
+    trailLevel: 'normal',
   },
   hard: {
     timerEnabled: true,
@@ -83,9 +94,10 @@ export const PRESETS: Record<Preset, PresetValues> = {
     typoTolerance: 0,
     infoBox: false,
     learnMode: false,
-    revealAfterErrors: 0,
+    revealAfterErrors: 1,
     hoverHighlight: false,
     showNames: false,
+    trailLevel: 'hard',
   },
 };
 
@@ -127,6 +139,8 @@ function load(): Settings {
   return {
     ...DEFAULT_SETTINGS,
     ...stored,
+    // The old "never" (0) no longer exists.
+    revealAfterErrors: stored.revealAfterErrors || DEFAULT_SETTINGS.revealAfterErrors,
     durationMinutes: { ...DEFAULT_SETTINGS.durationMinutes, ...stored.durationMinutes },
   };
 }

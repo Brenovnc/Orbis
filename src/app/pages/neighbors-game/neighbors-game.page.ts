@@ -143,6 +143,9 @@ export class NeighborsGamePage extends GamePage<NeighborsGame> {
       const game = this.game();
       if (!game || game.subjects.length === 0) return;
       this.mapState.focus.set(new Set(game.subject().unitIds));
+      // A new round: the camera frames the place and its neighbors.
+      const places = [game.subject(), ...untracked(() => game.neighbors())];
+      untracked(() => this.focusOn(places));
     });
 
     // Clicking a neighbor already found (or shown) reopens its info card; never gives answers away.

@@ -1,6 +1,7 @@
 import { Layer } from '../data/geo-data.models';
 import { NeighborsData } from '../data/proximity';
 import { ChallengeId } from '../games';
+import { TrailLevel } from '../settings.service';
 import { Graph, countPuzzles } from './trail-graph';
 
 /** A game that depends on land borders needs at least this many places or routes to be fun. */
@@ -18,23 +19,42 @@ export function borderGraph(
   id: ChallengeId,
 ): Graph {
   if (layer === 'brazil') return data.brazil;
-  const trail = id === 'trilha' || id === 'trilha-dificil';
+  const trail = id === 'trilha';
   if (territories) return trail ? data.world.trailTerritories : data.world.territoriesOn;
   return trail ? data.world.trail : data.world.territoriesOff;
 }
 
 /**
- * Whether a game can be played among these places (the chosen continent, or the whole map):
- * Neighbors needs 5 places with a neighbor, the Trail 5 valid origin–destination pairs.
- * Games that do not use borders are always available.
+ * The level the Trail really runs at: the hard level needs a place that can be forbidden, so
+ * where there is none (North America) it falls back to normal.
  */
-export function hasEnoughBorders(id: ChallengeId, askableIds: string[], graph: Graph): boolean {
+export function playableTrailLevel(
+  level: TrailLevel,
+  askableIds: string[],
+  graph: Graph,
+): TrailLevel {
+  return level === 'hard' && !hasEnoughBorders('trilha', askableIds, graph, true)
+    ? 'normal'
+    : level;
+}
+
+/**
+ * Whether a game can be played among these places (the chosen continent, or the whole map):
+ * Neighbors needs 5 places with a neighbor, the Trail 5 valid origin–destination pairs (on the
+ * hard level, pairs with a place that can be forbidden). Games that do not use borders are
+ * always available.
+ */
+export function hasEnoughBorders(
+  id: ChallengeId,
+  askableIds: string[],
+  graph: Graph,
+  hardTrail = false,
+): boolean {
   switch (id) {
     case 'vizinhos':
       return askableIds.filter((place) => graph[place]?.length).length >= MIN_PLAYABLE;
     case 'trilha':
-    case 'trilha-dificil':
-      return countPuzzles(askableIds, graph, id === 'trilha-dificil', MIN_PLAYABLE) >= MIN_PLAYABLE;
+      return countPuzzles(askableIds, graph, hardTrail, MIN_PLAYABLE) >= MIN_PLAYABLE;
     default:
       return true;
   }

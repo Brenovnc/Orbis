@@ -32,9 +32,8 @@ const gameRoutes = (layer: Layer): Routes =>
     loadComponent: id.startsWith('digitar') ? typingGame : clickGame,
   }));
 
-/** The challenges that are playable already; the others only show in the menu. */
 const challengeRoutes = (layer: Layer): Routes =>
-  CHALLENGES.filter((challenge) => challenge.ready).map(({ id }) => ({
+  CHALLENGES.map(({ id }) => ({
     path: layer === 'world' ? `jogo/${id}` : `jogo/brasil/${id}`,
     title: layer === 'world' ? `game.${id}.title` : `game.br.${id}.title`,
     data: { game: id, layer },
@@ -57,5 +56,8 @@ export const routes: Routes = [
   ...gameRoutes('brazil'),
   ...challengeRoutes('world'),
   ...challengeRoutes('brazil'),
+  // The hard Trail used to have its own menu entry; now it is a level of the Trail.
+  { path: 'jogo/trilha-dificil', redirectTo: 'jogo/trilha' },
+  { path: 'jogo/brasil/trilha-dificil', redirectTo: 'jogo/brasil/trilha' },
   { path: '**', redirectTo: '' },
 ];

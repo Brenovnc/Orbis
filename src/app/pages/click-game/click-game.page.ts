@@ -6,6 +6,7 @@ import { territoryWords } from '../../core/game/non-targets';
 import { Target } from '../../core/game/targets';
 import { ClickGameId } from '../../core/games';
 import { GameFrameComponent } from '../../shared/game-frame/game-frame.component';
+import { FlagCardComponent } from '../../shared/flag/flag-card.component';
 import { InfoBoxComponent } from '../../shared/info-box/info-box.component';
 import { TargetListComponent } from '../../shared/target-list/target-list.component';
 import { FEEDBACK_ICON, GamePage, NewGameOptions } from '../game-page';
@@ -19,7 +20,7 @@ const CLUES: Record<ClickGameId, ClueKind> = {
 /** Click games: the clue is in the top bar and the player clicks the right place on the map. */
 @Component({
   selector: 'app-click-game-page',
-  imports: [GameFrameComponent, TargetListComponent, InfoBoxComponent],
+  imports: [GameFrameComponent, TargetListComponent, InfoBoxComponent, FlagCardComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '(window:pagehide)': 'save()',
@@ -45,7 +46,7 @@ const CLUES: Record<ClickGameId, ClueKind> = {
         (settings)="openSettings()"
       >
         <div
-          class="mx-auto flex max-w-3xl flex-col items-center"
+          class="mx-auto flex w-full max-w-3xl flex-col items-center"
           [class.animate-shake]="shaking()"
           (animationend)="shaking.set(false)"
         >
@@ -73,15 +74,10 @@ const CLUES: Record<ClickGameId, ClueKind> = {
                 </p>
               }
               @case ('flag') {
-                <p class="inline-flex items-center gap-3">
-                  <span class="text-base text-ink-muted md:text-2xl">{{
-                    i18n.t(layer === 'brazil' ? 'click.whichFlagState' : 'click.whichFlag')
-                  }}</span>
-                  <img
-                    [src]="'data/' + asked.place.flag"
-                    [alt]="i18n.t('click.flagAlt')"
-                    class="h-9 w-auto rounded-sm shadow ring-1 ring-black/15 md:h-14"
-                  />
+                <p
+                  class="max-w-44 text-center text-sm leading-tight text-ink-muted md:max-w-none md:text-2xl"
+                >
+                  {{ i18n.t(layer === 'brazil' ? 'click.whichFlagState' : 'click.whichFlag') }}
                 </p>
               }
             }
@@ -102,9 +98,16 @@ const CLUES: Record<ClickGameId, ClueKind> = {
           mode="countries"
           [layer]="layer"
           [reveal]="true"
-          (picked)="showInfo($event)"
+          (picked)="pick($event)"
         />
       </app-game-frame>
+
+      @if (g.clue === 'flag' && g.status() !== 'finished' && g.current(); as asked) {
+        <app-flag-card
+          class="fixed top-36 left-1/2 z-10 w-[min(11rem,42vw)] -translate-x-1/2 md:top-44 md:left-4 md:w-80 md:translate-x-0"
+          [src]="'data/' + asked.place.flag"
+        />
+      }
 
       @if (infoPlace(); as place) {
         <app-info-box [place]="place" (closed)="closeInfo()" />
@@ -223,6 +226,7 @@ export class ClickGamePage extends GamePage<ClickGame> {
         this.wrong(clicked, false);
         this.pulseUnits([outcome.asked]);
         this.infoTarget.set(outcome.asked);
+        this.focusOn([outcome.asked]);
         break;
       case 'ignored':
         return;

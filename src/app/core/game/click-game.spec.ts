@@ -1,6 +1,6 @@
 import { ClickGame, ClickGameConfig } from './click-game';
 import { withCapitals } from './targets';
-import { worldTargets } from './test-targets';
+import { seededRandom, worldTargets } from './test-targets';
 
 function newGame(overrides: Partial<ClickGameConfig> = {}) {
   return new ClickGame({
@@ -9,6 +9,7 @@ function newGame(overrides: Partial<ClickGameConfig> = {}) {
     targets: worldTargets(false),
     territories: false,
     durationMs: 15 * 60_000,
+    random: seededRandom(),
     revealAfterErrors: 3,
     learnMode: true,
     ...overrides,
@@ -111,7 +112,14 @@ describe('ClickGame skip and reveal', () => {
     expect(game.click('PER').kind).toBe('wrong');
   });
 
-  it('never reveals when the limit is 0', () => {
+  it('reveals on the first mistake with 1 attempt', () => {
+    const game = newGame({ revealAfterErrors: 1 });
+    ask(game, 'BRA');
+    expect(game.click('ARG').kind).toBe('revealed');
+    expect(game.errors()).toBe(1);
+  });
+
+  it('keeps the rule of an old save that never reveals (0)', () => {
     const game = newGame({ revealAfterErrors: 0 });
     ask(game, 'BRA');
     for (let i = 0; i < 10; i++) expect(game.click('ARG').kind).toBe('wrong');

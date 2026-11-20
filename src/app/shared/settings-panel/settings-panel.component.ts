@@ -198,6 +198,26 @@ export class SettingsPanelService {
                 (changed)="settings.update({ typoTolerance: $any(+$event) })"
               />
             </div>
+            <div class="py-2">
+              <span class="block text-sm font-medium"
+                >{{ i18n.t('settings.trailLevel') }}
+                @if (duringGame()) {
+                  <span
+                    class="ml-1.5 rounded bg-black/5 px-1.5 py-0.5 align-middle text-[0.65rem] font-medium text-ink-muted"
+                    >{{ i18n.t('settings.nextGame') }}</span
+                  >
+                }
+              </span>
+              <span class="mb-1.5 block text-xs text-ink-muted">{{
+                i18n.t('settings.trailLevel.hint')
+              }}</span>
+              <app-segmented
+                [label]="i18n.t('settings.trailLevel')"
+                [options]="trailLevels()"
+                [value]="s().trailLevel"
+                (changed)="settings.update({ trailLevel: $any($event) })"
+              />
+            </div>
             <app-switch
               [label]="i18n.t('settings.timer')"
               [tag]="nextGameTag()"
@@ -275,8 +295,12 @@ export class SettingsPanelComponent {
     { value: 'hard', label: this.i18n.t('settings.hard') },
     { value: 'custom', label: this.i18n.t('settings.custom') },
   ]);
+  protected readonly trailLevels = computed<SegmentedOption[]>(() => [
+    { value: 'easy', label: this.i18n.t('settings.easy') },
+    { value: 'normal', label: this.i18n.t('settings.normal') },
+    { value: 'hard', label: this.i18n.t('settings.hard') },
+  ]);
   protected readonly revealOptions = computed<SegmentedOption[]>(() => [
-    { value: 0, label: this.i18n.t('settings.never') },
     ...[1, 2, 3, 5].map((n) => ({ value: n, label: String(n) })),
   ]);
   protected readonly typoOptions = computed<SegmentedOption[]>(() =>

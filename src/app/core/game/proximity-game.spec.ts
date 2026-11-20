@@ -6,7 +6,7 @@ import { BrazilState } from '../data/geo-data.models';
 import { ProximityData, distanceKm } from '../data/proximity';
 import { ProximityGame, ProximityGameConfig, heatLevel } from './proximity-game';
 import { buildBrazilTargets, inContinent } from './targets';
-import { worldTargets } from './test-targets';
+import { seededRandom, worldTargets } from './test-targets';
 
 const world = worldProximityJson as ProximityData;
 const pool = worldTargets(false);
@@ -21,6 +21,7 @@ function game(extra: Partial<ProximityGameConfig> = {}) {
     data: world,
     tolerance: 1,
     territories: false,
+    random: seededRandom(),
     ...extra,
   });
 }
@@ -149,6 +150,7 @@ describe('ProximityGame', () => {
       data: brazilProximityJson as ProximityData,
       tolerance: 1,
       territories: false,
+      random: seededRandom(),
     });
     const minas = g.submit('minas gerais');
     if (minas.kind !== 'guess') throw new Error('expected a guess');

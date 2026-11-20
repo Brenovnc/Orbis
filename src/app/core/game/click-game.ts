@@ -27,7 +27,7 @@ export interface ClickGameConfig {
   targets: Target[];
   territories: boolean;
   durationMs: number | null;
-  /** Wrong clicks on one question before the answer is shown; 0 = never. */
+  /** Attempts per question: the answer is shown at this many wrong clicks (0 = never, old saves only). */
   revealAfterErrors: number;
   /** After a wrong click, tell the player which place was clicked. */
   learnMode: boolean;

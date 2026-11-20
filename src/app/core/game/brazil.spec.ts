@@ -7,6 +7,7 @@ import { AnswerMode } from './answers';
 import { ClickGame } from './click-game';
 import { SavedGameStore } from './saved-game.store';
 import { buildBrazilTargets, withCapitals } from './targets';
+import { seededRandom } from './test-targets';
 import { TypingGame } from './typing-game';
 
 const states = statesJson as unknown as BrazilState[];
@@ -109,6 +110,7 @@ describe('click games on the Brazil map', () => {
       durationMs: null,
       revealAfterErrors: 0,
       learnMode: true,
+      random: seededRandom(),
     });
     expect(game.queue().length).toBe(27);
     const asked = game.current()!;

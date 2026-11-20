@@ -1,0 +1,14 @@
+{
+  "name": "Orbis",
+  "short_name": "Orbis",
+  "description": "Minigames de geografia no mapa.",
+  "lang": "pt-BR",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#b9dcef",
+  "theme_color": "#1f5f8b",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

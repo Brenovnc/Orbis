@@ -1,6 +1,7 @@
 import type { Signal } from '@angular/core';
 import { Layer } from '../data/geo-data.models';
 import { GameId } from '../games';
+import type { TrailLevel } from '../settings.service';
 import { TypoTolerance } from './answers';
 import { Target } from './targets';
 import type { TrailPuzzle } from './trail-graph';
@@ -18,6 +19,8 @@ export interface GameResult {
   errors?: number;
   /** Guesses spent (Trail and Proximity games only; it is the score there). */
   guesses?: number;
+  /** A hint was used (Trail only). */
+  hinted?: boolean;
 }
 
 /** What is saved in the browser so a reload continues where the player stopped. */
@@ -54,10 +57,17 @@ export interface SavedGame {
   /** Rounds already played. */
   results?: { id: string; found: number; total: number }[];
   // Trail game only:
+  /** Level the game was started with; saves from before the levels have none (= normal). */
+  trailLevel?: TrailLevel;
   puzzle?: TrailPuzzle;
-  /** The trail so far, origin first. */
+  /** Places guessed, in the order typed. */
+  chosen?: string[];
+  /** Places whose outline the "next outline" hint showed. */
+  outlines?: string[];
+  /** The "reveal map" hint was used. */
+  mapShown?: boolean;
+  /** Older saves only: the trail typed in order, origin first. */
   trail?: string[];
-  guesses?: number;
   // Proximity game only:
   secret?: string;
   /** Ids guessed, in order. */

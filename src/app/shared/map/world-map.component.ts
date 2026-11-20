@@ -10,20 +10,30 @@ import {
   untracked,
   viewChild,
 } from '@angular/core';
-import { GeoProjection, geoConicEqualArea, geoGraticule, geoNaturalEarth1, geoPath } from 'd3-geo';
+import {
+  GeoProjection,
+  geoArea,
+  geoConicEqualArea,
+  geoGraticule,
+  geoNaturalEarth1,
+  geoPath,
+} from 'd3-geo';
 import { geoPatterson } from 'd3-geo-projection';
+import { interpolateZoom } from 'd3-interpolate';
 import { select } from 'd3-selection';
-import { ZoomBehavior, ZoomTransform, zoom, zoomIdentity } from 'd3-zoom';
-import type { Geometry, MultiLineString, Position } from 'geojson';
+import { ZoomBehavior, ZoomTransform, zoom, zoomIdentity, zoomTransform } from 'd3-zoom';
+import type { Feature, Geometry, MultiLineString, Position } from 'geojson';
 import { feature, mesh } from 'topojson-client';
 import { CONTINENT_FRAMES } from '../../core/data/continent-frames';
 import { BrazilTopology, GeoDataService } from '../../core/data/geo-data.service';
 import { WorldUnitProperties } from '../../core/data/geo-data.models';
+import { buildWorldTargets } from '../../core/game/targets';
 import { I18nService } from '../../core/i18n/i18n.service';
 import { MapProjection, SettingsService } from '../../core/settings.service';
-import { MapMarker, MapStateService } from './map-state.service';
+import { MapMarker, MapStateService, TrailPaint } from './map-state.service';
 
 const WIDTH = 960;
+const TRAIL_PAINTS: TrailPaint[] = ['hint', 'far', 'detour', 'near', 'end'];
 const SPHERE = { type: 'Sphere' } as const;
 
 /**
@@ -40,6 +50,13 @@ const GRATICULE = geoGraticule()
 const MAX_ZOOM = 80; // enough to see the Vatican
 /** Share of the screen a chosen continent fills (the rest is under the bars and the menu). */
 const CONTINENT_FILL = 0.8;
+/** Share of the free screen a place fills when the camera flies to it, and the zoom limit. */
+const FOCUS_FILL = 0.5;
+const FOCUS_MAX_ZOOM = 14;
+/** Height under the bars at the top of the screen, in px. */
+const TOP_INSET = 130;
+/** A piece of a place counts for its frame only if it is at least this big next to the biggest. */
+const MAIN_PART = 0.25;
 /** How far (as a share of the map height) it can be dragged past its top and bottom edges. */
 const VERTICAL_SLACK = 0.25;
 
@@ -156,6 +173,20 @@ function ringsOf(geometry: Geometry): Position[][] {
   return [];
 }
 
+/**
+ * The main parts of a place: the polygons that are at least `MAIN_PART` of the biggest one. Far
+ * islands and exclaves (Alaska, Chukotka, Guiana, overseas territories) are left out.
+ */
+function mainParts(geometry: Geometry): Geometry[] {
+  const polygons: Geometry[] =
+    geometry.type === 'MultiPolygon'
+      ? geometry.coordinates.map((coordinates) => ({ type: 'Polygon', coordinates }))
+      : [geometry];
+  const areas = polygons.map((g) => geoArea({ type: 'Feature', properties: {}, geometry: g }));
+  const biggest = Math.max(...areas);
+  return polygons.filter((_, i) => areas[i] >= biggest * MAIN_PART);
+}
+
 /** Group used for borders: with territories off, a territory belongs to its country. */
 const borderKey = (p: WorldUnitProperties) => p.country ?? p.id;
 /** On the Brazil map the states replace Brazil's own shape, so its border and coast are left out. */
@@ -179,6 +210,8 @@ export class WorldMapComponent {
   private readonly svg = viewChild.required<ElementRef<SVGSVGElement>>('svg');
   private readonly layer = viewChild.required<ElementRef<SVGGElement>>('layer');
   private zoomBehavior?: ZoomBehavior<SVGSVGElement, unknown>;
+  /** Frame id of the camera flight in progress (see `flyToUnits`). */
+  private flight: number | null = null;
 
   protected readonly view = computed(() => {
     const brazil = this.geo.brazil();
@@ -233,6 +266,29 @@ export class WorldMapComponent {
     return [...worldShapes, ...stateShapes];
   });
 
+  /**
+   * Land that is not part of the game right now, shown in a much duller tone: the countries
+   * outside the chosen continent, or on the Brazil map every country but Brazil's own shape.
+   * It can be neither clicked nor highlighted.
+   */
+  protected readonly outsideIds = computed<ReadonlySet<string>>(() => {
+    const world = this.geo.world();
+    if (!world) return new Set();
+    const units = world.objects.units.geometries.map((g) => g.properties as WorldUnitProperties);
+    if (this.state.layer() === 'brazil') {
+      return new Set(units.filter((u) => borderKey(u) !== 'BRA').map((u) => u.id));
+    }
+    const continent = this.state.continent();
+    if (!continent) return new Set();
+    const targets = buildWorldTargets(
+      this.geo.countries(),
+      this.geo.territories(),
+      units,
+      this.settings.value().includeTerritories,
+    );
+    return new Set(targets.filter((t) => t.group !== continent).flatMap((t) => t.unitIds));
+  });
+
   protected readonly lakesPath = computed(() => {
     const world = this.geo.world();
     if (!world || this.state.layer() === 'brazil') return '';
@@ -277,11 +333,65 @@ export class WorldMapComponent {
   });
 
   // Outlines drawn on top of the borders so they are never hidden by neighbours.
-  protected readonly foundShapes = computed(() =>
-    this.shapes().filter((s) => this.state.found().has(s.id)),
+  protected readonly foundOutlines = computed(() =>
+    this.shapes()
+      .filter((s) => this.state.found().has(s.id))
+      .map((s) => s.outline)
+      .join(' '),
   );
-  protected readonly missedShapes = computed(() =>
-    this.shapes().filter((s) => this.state.missed().has(s.id)),
+  /**
+   * Every guessed place in the Proximity game gets a solid outline, whatever its color, but only
+   * around its main part: islands and distant territories stay painted, with no outline.
+   */
+  protected readonly heatOutlines = computed(() => {
+    const path = this.view().path;
+    const features = this.featureById();
+    return [...this.state.heat().keys()]
+      .flatMap((id) => {
+        const geometry = features.get(id)?.geometry;
+        if (!geometry) return [];
+        const rings = mainParts(geometry).flatMap(ringsOf);
+        return path(withoutSeams(rings)) ?? [];
+      })
+      .join(' ');
+  });
+  protected readonly missedOutlines = computed(() =>
+    this.shapes()
+      .filter((s) => this.state.missed().has(s.id))
+      .map((s) => s.outline)
+      .join(' '),
+  );
+  /** Trail: one outline path per paint (origin and destination, each guess color, hints). */
+  protected readonly trailOutlines = computed(() => {
+    const paint = this.state.trailPaint();
+    const byPaint: Record<TrailPaint, string[]> = {
+      end: [],
+      near: [],
+      detour: [],
+      far: [],
+      hint: [],
+    };
+    for (const shape of this.shapes()) {
+      const kind = paint.get(shape.id);
+      if (kind) byPaint[kind].push(shape.outline);
+    }
+    return TRAIL_PAINTS.map((kind) => ({ kind, d: byPaint[kind].join(' ') }));
+  });
+  protected readonly routeOutline = computed(() =>
+    this.shapes()
+      .filter((s) => this.state.route().has(s.id))
+      .map((s) => s.outline)
+      .join(' '),
+  );
+  /** Shapes drawn on the hidden map: everything the game paints. */
+  protected readonly shownIds = computed<ReadonlySet<string>>(
+    () =>
+      new Set([
+        ...this.state.trailPaint().keys(),
+        ...this.state.found(),
+        ...this.state.missed(),
+        ...this.state.focus(),
+      ]),
   );
   protected readonly focusShapes = computed(() =>
     this.shapes().filter((s) => this.state.focus().has(s.id)),
@@ -324,11 +434,21 @@ export class WorldMapComponent {
             (!(event as MouseEvent).ctrlKey || event.type === 'wheel') &&
             !(event as MouseEvent).button,
         )
+        // The user taking the map in hand (drag, wheel, pinch) stops a flight.
+        .on('start', (event) => event.sourceEvent && this.stopFlight())
         .on('zoom', (event) => this.applyTransform(event.transform))
         // Only at the end of a zoom or drag, so the labels are not recalculated all the time.
-        .on('end', (event) => this.state.zoom.set(event.transform.k));
+        .on('end', (event) => {
+          if (this.flight === null) this.state.zoom.set(event.transform.k);
+        });
       select(this.svg().nativeElement).call(this.zoomBehavior);
       this.setUpView();
+    });
+
+    // The games ask the camera to go to a place (a revealed answer, a new round, a list click).
+    effect(() => {
+      const request = this.state.cameraRequest();
+      if (request) untracked(() => this.flyToUnits(request.ids));
     });
 
     // Switching projection (settings) or continent starts again from the initial view.
@@ -362,6 +482,115 @@ export class WorldMapComponent {
     // Lets markers and click areas keep the same size on screen at any zoom (see the CSS).
     layer.style.setProperty('--k', String(k));
     this.updateUnit();
+  }
+
+  /** Shapes by id, to measure the places the camera flies to. */
+  private readonly featureById = computed(() => {
+    const map = new Map<string, Feature<Geometry>>();
+    const world = this.geo.world();
+    const brazil = this.geo.brazil();
+    if (this.state.layer() === 'brazil' && brazil) {
+      for (const f of feature(brazil, brazil.objects.states).features) map.set(f.properties.id, f);
+    } else if (world) {
+      for (const f of feature(world, world.objects.units).features) map.set(f.properties.id, f);
+    }
+    return map;
+  });
+
+  /**
+   * Frame (in map units) of the main part of the places: the pieces much smaller than the biggest
+   * one (Alaska, Chukotka, Guiana, far islands) are left out, so a country is framed as it looks.
+   */
+  private frameOf(ids: readonly string[]): [number, number, number, number] | null {
+    const path = this.view().path;
+    let [x0, y0, x1, y1] = [Infinity, Infinity, -Infinity, -Infinity];
+    for (const id of ids) {
+      const shape = this.featureById().get(id);
+      if (!shape) continue;
+      for (const g of mainParts(shape.geometry)) {
+        const [[ax, ay], [bx, by]] = path.bounds({ type: 'Feature', properties: {}, geometry: g });
+        if (![ax, ay, bx, by].every(Number.isFinite)) continue;
+        [x0, y0, x1, y1] = [Math.min(x0, ax), Math.min(y0, ay), Math.max(x1, bx), Math.max(y1, by)];
+      }
+    }
+    return x0 <= x1 ? [x0, y0, x1, y1] : null;
+  }
+
+  /** Flies the camera to the places: smoothly, or in one jump when the user asks for less motion. */
+  private flyToUnits(ids: readonly string[]): void {
+    // One frame later, so panels that open together with the request are already in place.
+    requestAnimationFrame(() => this.flyToFrame(ids));
+  }
+
+  /** Height at the bottom covered by a full-width panel (end screen, info card, list on phones). */
+  private coveredBottom(): number {
+    let covered = 0;
+    for (const element of document.querySelectorAll('[data-map-cover]')) {
+      const box = element.getBoundingClientRect();
+      if (box.width >= innerWidth * 0.9) covered = Math.max(covered, innerHeight - box.top);
+    }
+    return covered;
+  }
+
+  private flyToFrame(ids: readonly string[]): void {
+    const behavior = this.zoomBehavior;
+    const frame = this.frameOf(ids);
+    const rect = this.svg().nativeElement.getBoundingClientRect();
+    if (!behavior || !frame || !rect.width || !rect.height) return;
+    const { continuous, width: w, height: h } = this.view();
+    const unit = Math.min(rect.width / w, rect.height / h);
+    const [x0, y0, x1, y1] = frame;
+    // The free part of the screen: under the bars at the top, above any panel at the bottom.
+    const freeHeight = Math.max(rect.height - TOP_INSET - this.coveredBottom(), rect.height / 4);
+    const fit = Math.min(
+      rect.width / unit / Math.max(x1 - x0, 1),
+      freeHeight / unit / Math.max(y1 - y0, 1),
+    );
+    const k = Math.min(FOCUS_MAX_ZOOM, Math.max(1, FOCUS_FILL * fit));
+    const svg = select(this.svg().nativeElement);
+    const from = zoomTransform(this.svg().nativeElement);
+    let cx = (x0 + x1) / 2;
+    // On the repeating map, go to the copy of the place that is nearest to where the camera is.
+    if (continuous) cx += w * Math.round(((w / 2 - from.x) / from.k - cx) / w);
+    const cy = (y0 + y1) / 2;
+    const down = (TOP_INSET + freeHeight / 2 - rect.height / 2) / unit;
+    const target = zoomIdentity.translate(w / 2 - k * cx, h / 2 + down - k * cy).scale(k);
+
+    this.stopFlight();
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      behavior.transform(svg, target);
+      this.state.zoom.set(k);
+      return;
+    }
+    const center = (t: ZoomTransform): [number, number, number] => [
+      (w / 2 - t.x) / t.k,
+      (h / 2 - t.y) / t.k,
+      w / t.k,
+    ];
+    const way = interpolateZoom(center(from), center(target));
+    const duration = Math.min(1200, Math.max(500, way.duration));
+    const start = performance.now();
+    const step = (now: number) => {
+      const p = Math.min(1, (now - start) / duration);
+      // Ease in and out.
+      const eased = p < 0.5 ? 4 * p ** 3 : 1 - (-2 * p + 2) ** 3 / 2;
+      const [x, y, size] = way(eased);
+      const scale = w / size;
+      const frameTransform = zoomIdentity.translate(w / 2 - scale * x, h / 2 - scale * y);
+      behavior.transform(svg, frameTransform.scale(scale));
+      if (p < 1) {
+        this.flight = requestAnimationFrame(step);
+      } else {
+        this.flight = null;
+        this.state.zoom.set(scale);
+      }
+    };
+    this.flight = requestAnimationFrame(step);
+  }
+
+  private stopFlight(): void {
+    if (this.flight !== null) cancelAnimationFrame(this.flight);
+    this.flight = null;
   }
 
   /** The camera on the chosen continent, or null when the whole world is shown. */
@@ -446,7 +675,9 @@ export class WorldMapComponent {
     const target = (event.target as Element).closest('[data-id]');
     const id = target?.getAttribute('data-id') ?? null;
     const shape = id ? this.shapes().find((s) => s.id === id) : undefined;
-    const placeId = shape && !shape.neutral ? shape.id : null;
+    const hidden = shape && this.state.hidden() && !this.shownIds().has(shape.id);
+    const placeId =
+      shape && !shape.neutral && !hidden && !this.outsideIds().has(shape.id) ? shape.id : null;
     this.state.select(placeId);
     this.state.registerClick(placeId);
   }

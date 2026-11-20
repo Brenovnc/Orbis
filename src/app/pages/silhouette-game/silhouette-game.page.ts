@@ -84,7 +84,7 @@ import { FEEDBACK_ICON, GamePage, NewGameOptions } from '../game-page';
           mode="countries"
           [layer]="layer"
           [reveal]="true"
-          (picked)="showInfo($event)"
+          (picked)="pick($event)"
         />
       </app-game-frame>
 
@@ -248,6 +248,7 @@ export class SilhouetteGamePage extends GamePage<SilhouetteGame> {
   private reveal(target: Target, card: boolean): void {
     this.lastShown.set(target);
     this.pulseUnits([target]);
+    this.focusOn([target]);
     if (card) this.infoTarget.set(target);
   }
 }

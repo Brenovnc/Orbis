@@ -100,7 +100,7 @@ import { FEEDBACK_ICON, GamePage, NewGameOptions } from '../game-page';
               <button
                 type="button"
                 class="ml-1 font-semibold underline hover:text-accent"
-                (click)="showInfo(secret)"
+                (click)="pick(secret)"
               >
                 {{ nameOf(secret) }}
               </button>
@@ -115,6 +115,7 @@ import { FEEDBACK_ICON, GamePage, NewGameOptions } from '../game-page';
 
       @if (g.status() === 'playing' && listOpen()) {
         <aside
+          data-map-cover
           class="fixed inset-x-0 bottom-0 z-10 h-[40dvh] animate-panel-in overflow-y-auto rounded-t-2xl bg-panel p-3 shadow-panel backdrop-blur-md md:inset-x-auto md:top-36 md:right-3 md:bottom-36 md:h-auto md:w-80 md:rounded-2xl"
           [attr.aria-label]="i18n.t('proximity.guesses')"
         >
@@ -126,6 +127,27 @@ import { FEEDBACK_ICON, GamePage, NewGameOptions } from '../game-page';
             [ngTemplateOutletContext]="{ $implicit: g }"
           />
         </aside>
+      }
+
+      @if (g.status() === 'playing') {
+        <!-- Small legend in the corner; on phones it rides above the guess list when that is open. -->
+        <div
+          class="pointer-events-none fixed left-3 z-10 flex flex-col gap-0.5 rounded-md bg-panel px-2 py-1 text-xs text-ink-muted shadow-panel"
+          [class.bottom-3]="!listOpen()"
+          [class.max-md:bottom-[calc(40dvh+0.5rem)]]="listOpen()"
+          [class.md:bottom-3]="listOpen()"
+          aria-hidden="true"
+        >
+          <span class="flex">
+            @for (level of legendLevels; track level) {
+              <span
+                class="h-2.5 w-5 bg-(--heat) ring-1 ring-heat-edge"
+                [attr.data-heat]="level"
+              ></span>
+            }
+          </span>
+          <span>{{ i18n.t('proximity.legend') }}</span>
+        </div>
       }
 
       @if (infoPlace(); as place) {
@@ -141,7 +163,7 @@ import { FEEDBACK_ICON, GamePage, NewGameOptions } from '../game-page';
             <button
               type="button"
               class="flex w-full items-center gap-2 rounded-md px-1.5 py-1 text-left text-sm hover:bg-accent-soft"
-              (click)="showInfo(guess.target)"
+              (click)="pick(guess.target)"
             >
               @if (guess.sector === null) {
                 <span
@@ -190,6 +212,8 @@ import { FEEDBACK_ICON, GamePage, NewGameOptions } from '../game-page';
 })
 export class ProximityGamePage extends GamePage<ProximityGame> {
   protected readonly icon = FEEDBACK_ICON;
+  /** Far to near, the order of the legend strip. */
+  protected readonly legendLevels = [5, 4, 3, 2, 1, 0];
   protected readonly listOpen = signal(window.matchMedia('(min-width: 768px)').matches);
   protected readonly prompt = () =>
     this.i18n.t(this.layer === 'brazil' ? 'proximity.placeholder.states' : 'proximity.placeholder');
@@ -212,6 +236,14 @@ export class ProximityGamePage extends GamePage<ProximityGame> {
 
   constructor() {
     super();
+
+    // When the game is over, the camera shows where the secret was.
+    effect(() => {
+      const game = this.game();
+      if (game?.status() !== 'finished' || !game.secret) return;
+      const secret = game.secret;
+      untracked(() => this.focusOn([secret]));
+    });
 
     // Each guess is painted from hot (neighbour) to cold (far away); the secret is lit as found.
     effect(() => {
@@ -237,10 +269,6 @@ export class ProximityGamePage extends GamePage<ProximityGame> {
       const element = this.input();
       if (element && this.game()?.status() === 'playing') element.nativeElement.focus();
     });
-  }
-
-  protected override usesTimer(): boolean {
-    return false;
   }
 
   /** Each map (and the territories rule) has its own distances file. */

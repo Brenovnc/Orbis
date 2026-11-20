@@ -7,19 +7,47 @@
   --color-land: #f6efd9;
   --color-land-hover: #ecdca9;
   --color-land-muted: #e4ddc8;
+  /* Outside the chosen region: relative luminance 0.38, against 0.86 for land and 0.68 for ocean. */
+  --color-land-outside: #a9a595;
   --color-border: #3d3a34;
   --color-selected: #e39b2d;
   --color-selected-edge: #7a4a06;
   --color-found: #3a9d8c;
   --color-found-edge: #0d4a40;
+  /*
+   * Missed, revealed and forbidden places: solid terracotta between the cream land (L* 94) and the
+   * found green (L* 59), at L* 78. Gaps of at least 13 L* from both, also under protanopia and
+   * deuteranopia. The outline is a darker terracotta, always continuous.
+   */
+  --color-missed: #eeb48c;
   --color-missed-edge: #8a3412;
-  /* Proximity: hot (0, neighbour) to cold (5, far away); cold end kept apart from the ocean. */
-  --color-heat-0: #b2182b;
-  --color-heat-1: #e2553a;
-  --color-heat-2: #f39c4f;
-  --color-heat-3: #c9b8dc;
-  --color-heat-4: #8c8fc9;
-  --color-heat-5: #5a5f9e;
+  /*
+   * Proximity: one color from golden yellow (5, far away) to dark red (0, neighbour). The far end
+   * is darkened so it stays apart from the land (CIELAB distance 46, 27 before) even with no outline;
+   * steps are at least 17 apart. Every guessed place also gets an outline, so the palest step is
+   * not mistaken for plain land.
+   */
+  --color-heat-0: #6e0d12;
+  --color-heat-1: #b32619;
+  --color-heat-2: #dc5a26;
+  --color-heat-3: #ee8f38;
+  --color-heat-4: #f4b640;
+  --color-heat-5: #ebcb62;
+  --color-heat-edge: #3b1208;
+  /*
+   * Trail: green, orange and red guesses, told apart by lightness too (medium, light, dark), so
+   * they stay distinct with protanopia and deuteranopia (CIEDE2000 ≥ 24 between any two in
+   * simulation). Origin and destination are blue, a hue those keep. Each also has a line pattern.
+   */
+  --color-trail-near: #0f9b82;
+  --color-trail-near-edge: #04463a;
+  --color-trail-detour: #f7b541;
+  --color-trail-detour-edge: #7a4a06;
+  --color-trail-far: #9b1c1c;
+  --color-trail-far-edge: #2b0606;
+  --color-trail-end: #5468c8;
+  --color-trail-end-edge: #1c2766;
+  --color-trail-route: #1d2730;
 
   --color-ink: #1d2730;
   --color-ink-muted: #4c5a66;
@@ -158,6 +186,29 @@ body {
 }
 [data-heat='5'] {
   --heat: var(--color-heat-5);
+}
+
+/* Any element with data-trail (map shape, outline, list swatch) gets its Trail colors. */
+[data-trail='end'] {
+  --trail: var(--color-trail-end);
+  --trail-edge: var(--color-trail-end-edge);
+}
+[data-trail='near'] {
+  --trail: var(--color-trail-near);
+  --trail-edge: var(--color-trail-near-edge);
+}
+[data-trail='detour'] {
+  --trail: var(--color-trail-detour);
+  --trail-edge: var(--color-trail-detour-edge);
+}
+[data-trail='far'] {
+  --trail: var(--color-trail-far);
+  --trail-edge: var(--color-trail-far-edge);
+}
+/* An outline shown by the hint: no color, only the shape. */
+[data-trail='hint'] {
+  --trail: var(--color-land);
+  --trail-edge: var(--color-ink);
 }
 
 :focus-visible {

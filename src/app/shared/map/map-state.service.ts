@@ -3,13 +3,21 @@ import { PlayableContinent, isPlayableContinent } from '../../core/data/continen
 import { Layer, LonLat } from '../../core/data/geo-data.models';
 import { readStore, writeStore } from '../../core/storage';
 
+/**
+ * How the Trail paints a place: origin and destination (`end`), a guess by its color, or an
+ * outline shown by the hint (`hint`).
+ */
+export type TrailPaint = 'end' | 'near' | 'detour' | 'far' | 'hint';
+
 /** A ring drawn on a place too small to see as a shape (Vatican, Tuvalu...). */
 export interface MapMarker {
   id: string;
   point: LonLat;
-  kind: 'found' | 'missed' | 'focus' | 'heat';
+  kind: 'found' | 'missed' | 'focus' | 'heat' | 'trail' | 'forbidden';
   /** Heat level (0-5) of a `heat` marker. */
   heat?: number;
+  /** Paint of a `trail` marker. */
+  trail?: TrailPaint;
 }
 
 /** A name written on the map over a found place. */
@@ -45,7 +53,7 @@ export class MapStateService {
 
   /** Shapes already found: filled, with a dark outline. */
   readonly found = signal<ReadonlySet<string>>(NONE);
-  /** Shapes missed at the end of a game: hatched, with a dashed outline. */
+  /** Shapes missed at the end of a game: solid terracotta, with a continuous outline. */
   readonly missed = signal<ReadonlySet<string>>(NONE);
   /** Shapes that just changed: briefly pulsing outline. */
   readonly pulse = signal<readonly string[]>([]);
@@ -61,8 +69,15 @@ export class MapStateService {
   readonly hitAreas = signal<readonly MapMarker[]>([]);
   /** Shapes painted from hot (0, neighbour) to cold (5, far away): the Proximity guesses. */
   readonly heat = signal<ReadonlyMap<string, number>>(new Map());
-  /** Only the coast is drawn: no border lines, no highlight under the mouse (Hard Trail). */
-  readonly coastOnly = signal(false);
+  /** Trail: how each shape is painted (origin and destination, guesses, outline hints). */
+  readonly trailPaint = signal<ReadonlyMap<string, TrailPaint>>(new Map());
+  /** Trail, at the end: shapes of a shortest path, outlined. */
+  readonly route = signal<ReadonlySet<string>>(NONE);
+  /**
+   * Hidden map (Trail): only the water and the shapes the game paints are drawn. No other coast,
+   * no borders, no highlight under the mouse, and hidden shapes cannot be clicked.
+   */
+  readonly hidden = signal(false);
   /** Every click on a place, even on the same one twice in a row (`n` tells them apart). */
   readonly lastClick = signal<{ id: string | null; n: number } | null>(null);
   private clickCount = 0;
@@ -73,6 +88,15 @@ export class MapStateService {
   readonly zoom = signal(1);
   /** Mouse double click zooms in. Click games turn it off: two quick answers are not a zoom. */
   readonly doubleClickZoom = signal(true);
+
+  /** A request for the camera to fly to some places (shape ids); `n` tells repeats apart. */
+  readonly cameraRequest = signal<{ ids: readonly string[]; n: number } | null>(null);
+  private cameraCount = 0;
+
+  /** Asks the map to move smoothly until these shapes fill a comfortable part of the screen. */
+  flyTo(ids: readonly string[]): void {
+    if (ids.length > 0) this.cameraRequest.set({ ids, n: ++this.cameraCount });
+  }
 
   setLayer(layer: Layer): void {
     this.layer.set(layer);
@@ -112,6 +136,9 @@ export class MapStateService {
     this.hoveredId.set(null);
     this.labels.set([]);
     this.doubleClickZoom.set(true);
-    this.coastOnly.set(false);
+    this.trailPaint.set(new Map());
+    this.route.set(NONE);
+    this.hidden.set(false);
+    this.cameraRequest.set(null);
   }
 }

@@ -28,6 +28,18 @@ describe('SettingsService', () => {
     }
   });
 
+  it('sets the Trail level with the shortcuts', () => {
+    const settings = TestBed.inject(SettingsService);
+    expect(settings.value().trailLevel).toBe('normal');
+    for (const preset of ['easy', 'normal', 'hard'] as const) {
+      settings.applyPreset(preset);
+      expect(settings.value().trailLevel).toBe(preset);
+    }
+    // Changing only the Trail level is a customization.
+    settings.update({ trailLevel: 'easy' });
+    expect(settings.preset()).toBeNull();
+  });
+
   it('leaves language, map, sounds and territories alone when a shortcut is applied', () => {
     const settings = TestBed.inject(SettingsService);
     settings.update({
@@ -52,6 +64,20 @@ describe('SettingsService', () => {
     expect(settings.preset()).toBeNull();
     settings.update({ revealAfterErrors: PRESETS.easy.revealAfterErrors });
     expect(settings.preset()).toBe('easy');
+  });
+
+  it('gives 3 attempts per question in easy and normal and 1 in hard', () => {
+    expect(PRESETS.easy.revealAfterErrors).toBe(3);
+    expect(PRESETS.normal.revealAfterErrors).toBe(3);
+    expect(PRESETS.hard.revealAfterErrors).toBe(1);
+  });
+
+  it('turns the old "never" (0) in a saved setting into 3 attempts', () => {
+    localStorage.setItem('orbis:v1:settings', JSON.stringify({ revealAfterErrors: 0 }));
+    expect(TestBed.inject(SettingsService).value().revealAfterErrors).toBe(3);
+    localStorage.setItem('orbis:v1:settings', JSON.stringify({ revealAfterErrors: 5 }));
+    TestBed.resetTestingModule();
+    expect(TestBed.inject(SettingsService).value().revealAfterErrors).toBe(5);
   });
 
   it('keeps the shortcuts different from each other', () => {

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import type { TrailLevel } from '../settings.service';
 import { readStore, writeStore } from '../storage';
 
 export interface RecordEntry {
@@ -9,6 +10,8 @@ export interface RecordEntry {
   errors?: number;
   /** Guesses spent; only the Trail and Proximity games have it, and there fewer is better. */
   guesses?: number;
+  /** A hint was used (Trail only). */
+  hinted?: boolean;
   date: string;
 }
 
@@ -19,8 +22,9 @@ export interface RecordOutcome {
 }
 
 /**
- * More found wins. Then, in click games, fewer errors (an old record without the count loses
- * to any new one). Then the faster time. Typing games have no errors and skip that step.
+ * More found wins. Then, in the Trail, a game without hints beats one with hints. Then fewer
+ * guesses (Trail, Proximity), or in click games fewer errors (an old record without the count
+ * loses to any new one). Then the faster time. Typing games have no errors and skip that step.
  */
 export function isBetter(candidate: RecordEntry, best: RecordEntry | null): boolean {
   if (!best) return candidate.found > 0;
@@ -29,6 +33,7 @@ export function isBetter(candidate: RecordEntry, best: RecordEntry | null): bool
     return candidate.found * best.total > best.found * candidate.total;
   }
   if (candidate.found !== best.found) return candidate.found > best.found;
+  if (!!candidate.hinted !== !!best.hinted) return !candidate.hinted;
   if (candidate.guesses !== undefined && candidate.guesses !== best.guesses) {
     return candidate.guesses < (best.guesses ?? Infinity);
   }
@@ -56,6 +61,13 @@ export function recordKey(options: {
   // The whole map keeps the original key, so records from before the continents still count.
   return options.continent ? `${base}:${options.continent}` : base;
 }
+
+/**
+ * The Trail keeps one record per level. Normal and hard keep the keys of the old "Trail" and
+ * "Hard trail" menu entries, so records from before the levels still count.
+ */
+export const trailRecordId = (level: TrailLevel): string =>
+  level === 'normal' ? 'trilha' : level === 'hard' ? 'trilha-dificil' : 'trilha-facil';
 
 /** Best result per mode, kept only in this browser. */
 @Injectable({ providedIn: 'root' })
