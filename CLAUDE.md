@@ -2,7 +2,7 @@
 
 - O dono do projeto é iniciante no Claude Code.
 - NUNCA execute comandos git (init, add, commit, tag, branch, checkout, reset, push etc.) nem nada no GitHub. O controle de versão é do dono. Você pode e deve criar e editar arquivos como o .gitignore.
-- Tudo é LOCAL. Não configure publicação nem hospedagem.
+- O site é publicado na Vercel a partir da branch main, com a configuração no vercel.json. Não configure outra publicação nem hospedagem.
 - Faça só o que foi pedido e pare. Não adicione funcionalidades fora do escopo. Se faltar uma decisão que mude comportamento ou visual, pergunte.
 - Código simples, legível e bem formatado, sem abstrações desnecessárias; comentários só onde o "porquê" não for óbvio.
 - Ao fim de cada tarefa: confirme que build, lint e testes passam e dê um relatório CURTO (o que mudou, como verificar, pendências). Sem tutoriais.
