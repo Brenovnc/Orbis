@@ -4,7 +4,8 @@ import { I18nService } from '../../core/i18n/i18n.service';
 /**
  * Semi-transparent bar with the question in large serif type. The question is projected as
  * content, so each game decides what it shows (a name, a capital, a flag, an input). Elements
- * marked with the `actions` attribute go in a second row of buttons (pause, give up...).
+ * marked with the `actions` attribute go in a second row of buttons (pause, give up...), and an
+ * answer too wide for the middle column (choices) goes between the two, marked with `answers`.
  *
  * Three columns with sides of the same width keep the question centered on the whole screen,
  * and every size is fixed, so nothing moves when the game is paused or the clock changes.
@@ -14,6 +15,7 @@ import { I18nService } from '../../core/i18n/i18n.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <header
+      data-map-cover-top
       class="fixed inset-x-0 top-0 z-20 border-b border-line bg-white/65 pt-[env(safe-area-inset-top)] backdrop-blur-md"
     >
       <div
@@ -121,6 +123,8 @@ import { I18nService } from '../../core/i18n/i18n.service';
           }
         </dl>
       </div>
+
+      <ng-content select="[answers]" />
 
       <!-- Fixed height even when empty (end of game), so the bar never changes size. -->
       <div class="flex min-h-10 items-center justify-center gap-1 px-3 pb-1 md:pb-1.5">

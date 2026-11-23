@@ -10,13 +10,15 @@ import { NeighborsGame } from '../../core/game/neighbors-game';
 import { Target } from '../../core/game/targets';
 import { GameFrameComponent } from '../../shared/game-frame/game-frame.component';
 import { InfoBoxComponent } from '../../shared/info-box/info-box.component';
+import { OutOfPlayCardComponent } from '../../shared/out-of-play/out-of-play-card.component';
+import { OutOfPlayKeyComponent } from '../../shared/out-of-play/out-of-play-key.component';
 import { MapMarker } from '../../shared/map/map-state.service';
 import { FEEDBACK_ICON, GamePage, NewGameOptions } from '../game-page';
 
 /** Neighbors game: a place is highlighted and the player types every land neighbor of it. */
 @Component({
   selector: 'app-neighbors-game-page',
-  imports: [GameFrameComponent, InfoBoxComponent],
+  imports: [GameFrameComponent, InfoBoxComponent, OutOfPlayCardComponent, OutOfPlayKeyComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '(window:pagehide)': 'save()',
@@ -68,7 +70,7 @@ import { FEEDBACK_ICON, GamePage, NewGameOptions } from '../game-page';
               (input)="submit(answer, false)"
               (keydown.enter)="submit(answer, true)"
             />
-            <p class="bar-line h-5 truncate font-sans text-xs md:text-sm" aria-live="polite">
+            <p class="bar-line bar-feedback truncate font-sans" aria-live="polite">
               @if (feedback(); as f) {
                 <span class="font-medium">{{ icon[f.kind] }} {{ f.text }}</span>
               }
@@ -118,10 +120,14 @@ import { FEEDBACK_ICON, GamePage, NewGameOptions } from '../game-page';
             </li>
           }
         </ol>
+        <app-out-of-play-key end class="mt-3 block" />
       </app-game-frame>
 
       @if (infoPlace(); as place) {
-        <app-info-box [place]="place" (closed)="closeInfo()" />
+        <app-info-box [place]="place" [note]="infoNote()" (closed)="closeInfo()" />
+      }
+      @if (outOfPlayCard(); as card) {
+        <app-out-of-play-card [name]="card.name" [kind]="card.kind" (closed)="closeInfo()" />
       }
     }
   `,

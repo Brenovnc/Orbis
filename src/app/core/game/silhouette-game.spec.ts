@@ -17,6 +17,7 @@ const only = (...ids: string[]) => pool.filter((target) => ids.includes(target.i
 
 function game(askable = only('BRA'), extra: Partial<SilhouetteGameConfig> = {}) {
   return new SilhouetteGame({
+    mode: 'typing',
     pool,
     targets: askable,
     tolerance: 1,
@@ -96,6 +97,7 @@ describe('SilhouetteGame', () => {
   it('works with the states of Brazil', () => {
     const states = buildBrazilTargets(statesJson as unknown as BrazilState[]);
     const g = new SilhouetteGame({
+      mode: 'typing',
       layer: 'brazil',
       pool: states,
       targets: states.filter((s) => s.id === 'SP'),

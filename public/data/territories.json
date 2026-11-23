@@ -34,6 +34,7 @@
   "administeredBy": "NLD",
   "claimedBy": [],
   "statusNote": null,
+  "targetNote": null,
   "labelPoint": [
    -69.973,
    12.517
@@ -77,6 +78,7 @@
   "administeredBy": "GBR",
   "claimedBy": [],
   "statusNote": null,
+  "targetNote": null,
   "labelPoint": [
    -63.026,
    18.243
@@ -128,6 +130,7 @@
   "administeredBy": "FIN",
   "claimedBy": [],
   "statusNote": null,
+  "targetNote": null,
   "labelPoint": [
    19.87,
    60.156
@@ -169,6 +172,7 @@
   "administeredBy": "USA",
   "claimedBy": [],
   "statusNote": null,
+  "targetNote": null,
   "labelPoint": [
    -170.747,
    -14.327
@@ -196,8 +200,12 @@
   "administeredBy": null,
   "claimedBy": [],
   "statusNote": {
-   "pt": "Não é administrada por nenhum país. Neste jogo, só é alvo com territórios ligados.",
-   "en": "Not administered by any country. In this game it is a target only with territories on."
+   "pt": "Não é administrada por nenhum país.",
+   "en": "Not administered by any country."
+  },
+  "targetNote": {
+   "pt": "Neste jogo, só é alvo com territórios ligados.",
+   "en": "In this game it is a target only with territories on."
   },
   "labelPoint": [
    35.885,
@@ -244,6 +252,7 @@
   "administeredBy": "FRA",
   "claimedBy": [],
   "statusNote": null,
+  "targetNote": null,
   "labelPoint": [
    69.122,
    -49.304
@@ -270,6 +279,7 @@
   "administeredBy": "NLD",
   "claimedBy": [],
   "statusNote": null,
+  "targetNote": null,
   "labelPoint": [
    -63.133,
    17.544
@@ -321,6 +331,7 @@
   "administeredBy": "FRA",
   "claimedBy": [],
   "statusNote": null,
+  "targetNote": null,
   "labelPoint": [
    -62.833,
    17.902
@@ -377,6 +388,7 @@
   "administeredBy": "GBR",
   "claimedBy": [],
   "statusNote": null,
+  "targetNote": null,
   "labelPoint": [
    -64.764,
    32.297
@@ -401,6 +413,7 @@
   "administeredBy": "NOR",
   "claimedBy": [],
   "statusNote": null,
+  "targetNote": null,
   "labelPoint": [
    3.414,
    -54.415
@@ -446,6 +459,7 @@
   "administeredBy": "AUS",
   "claimedBy": [],
   "statusNote": null,
+  "targetNote": null,
   "labelPoint": [
    96.83,
    -12.16
@@ -485,6 +499,7 @@
   "administeredBy": "NZL",
   "claimedBy": [],
   "statusNote": null,
+  "targetNote": null,
   "labelPoint": [
    -159.786,
    -21.216
@@ -531,6 +546,7 @@
   "administeredBy": "NLD",
   "claimedBy": [],
   "statusNote": null,
+  "targetNote": null,
   "labelPoint": [
    -68.921,
    12.145
@@ -576,6 +592,7 @@
   "administeredBy": "AUS",
   "claimedBy": [],
   "statusNote": null,
+  "targetNote": null,
   "labelPoint": [
    105.673,
    -10.491
@@ -619,6 +636,7 @@
   "administeredBy": "GBR",
   "claimedBy": [],
   "statusNote": null,
+  "targetNote": null,
   "labelPoint": [
    -81.241,
    19.32
@@ -690,8 +708,12 @@
    }
   ],
   "statusNote": {
-   "pt": "Não é membro da ONU. Governa-se de forma independente, mas seu reconhecimento como país é contestado. Neste jogo, só é alvo com territórios ligados.",
-   "en": "Not a UN member. It governs itself, but its recognition as a country is disputed. In this game it is a target only with territories on."
+   "pt": "Não é membro da ONU. Governa-se de forma independente, mas seu reconhecimento como país é contestado.",
+   "en": "Not a UN member. It governs itself, but its recognition as a country is disputed."
+  },
+  "targetNote": {
+   "pt": "Neste jogo, só é alvo com territórios ligados.",
+   "en": "In this game it is a target only with territories on."
   },
   "labelPoint": [
    33.692,
@@ -738,8 +760,12 @@
    }
   ],
   "statusNote": {
-   "pt": "Território em disputa. Neste jogo, não conta como parte de nenhum país e só é alvo com territórios ligados.",
-   "en": "Disputed territory. In this game it does not count as part of any country and is a target only with territories on."
+   "pt": "Território em disputa.",
+   "en": "Disputed territory."
+  },
+  "targetNote": {
+   "pt": "Neste jogo, não conta como parte de nenhum país e só é alvo com territórios ligados.",
+   "en": "In this game it does not count as part of any country and is a target only with territories on."
   },
   "labelPoint": [
    -12.63,
@@ -795,6 +821,7 @@
    }
   ],
   "statusNote": null,
+  "targetNote": null,
   "labelPoint": [
    -58.739,
    -51.609
@@ -866,6 +893,7 @@
   "administeredBy": "DNK",
   "claimedBy": [],
   "statusNote": null,
+  "targetNote": null,
   "labelPoint": [
    -7.058,
    62.186
@@ -919,6 +947,7 @@
   "administeredBy": "GBR",
   "claimedBy": [],
   "statusNote": null,
+  "targetNote": null,
   "labelPoint": [
    -2.562,
    49.464
@@ -967,6 +996,7 @@
    }
   ],
   "statusNote": null,
+  "targetNote": null,
   "labelPoint": [
    -5.347,
    36.129
@@ -1010,6 +1040,7 @@
   "administeredBy": "FRA",
   "claimedBy": [],
   "statusNote": null,
+  "targetNote": null,
   "labelPoint": [
    -61.434,
    16.299
@@ -1055,6 +1086,7 @@
   "administeredBy": "DNK",
   "claimedBy": [],
   "statusNote": null,
+  "targetNote": null,
   "labelPoint": [
    -39.335,
    74.319
@@ -1093,6 +1125,7 @@
   "administeredBy": "FRA",
   "claimedBy": [],
   "statusNote": null,
+  "targetNote": null,
   "labelPoint": [
    -53.068,
    3.999
@@ -1138,6 +1171,7 @@
   "administeredBy": "USA",
   "claimedBy": [],
   "statusNote": null,
+  "targetNote": null,
   "labelPoint": [
    144.704,
    13.354
@@ -1170,6 +1204,7 @@
   "administeredBy": "CHN",
   "claimedBy": [],
   "statusNote": null,
+  "targetNote": null,
   "labelPoint": [
    114.098,
    22.449
@@ -1203,6 +1238,7 @@
   "administeredBy": "AUS",
   "claimedBy": [],
   "statusNote": null,
+  "targetNote": null,
   "labelPoint": [
    73.505,
    -53.103
@@ -1245,6 +1281,7 @@
   "administeredBy": "GBR",
   "claimedBy": [],
   "statusNote": null,
+  "targetNote": null,
   "labelPoint": [
    -4.53,
    54.221
@@ -1283,6 +1320,7 @@
   "administeredBy": "GBR",
   "claimedBy": [],
   "statusNote": null,
+  "targetNote": null,
   "labelPoint": [
    71.348,
    -6.191
@@ -1332,6 +1370,7 @@
   "administeredBy": "GBR",
   "claimedBy": [],
   "statusNote": null,
+  "targetNote": null,
   "labelPoint": [
    -2.09,
    49.221
@@ -1384,8 +1423,12 @@
    }
   ],
   "statusNote": {
-   "pt": "Não é membro da ONU. Governa-se de forma independente, mas seu reconhecimento como país é contestado. Neste jogo, só é alvo com territórios ligados.",
-   "en": "Not a UN member. It governs itself, but its recognition as a country is disputed. In this game it is a target only with territories on."
+   "pt": "Não é membro da ONU. Governa-se de forma independente, mas seu reconhecimento como país é contestado.",
+   "en": "Not a UN member. It governs itself, but its recognition as a country is disputed."
+  },
+  "targetNote": {
+   "pt": "Neste jogo, só é alvo com territórios ligados.",
+   "en": "In this game it is a target only with territories on."
   },
   "labelPoint": [
    20.861,
@@ -1419,6 +1462,7 @@
   "administeredBy": "CHN",
   "claimedBy": [],
   "statusNote": null,
+  "targetNote": null,
   "labelPoint": [
    113.556,
    22.13
@@ -1459,6 +1503,7 @@
   "administeredBy": "FRA",
   "claimedBy": [],
   "statusNote": null,
+  "targetNote": null,
   "labelPoint": [
    -63.049,
    18.081
@@ -1503,6 +1548,7 @@
   "administeredBy": "USA",
   "claimedBy": [],
   "statusNote": null,
+  "targetNote": null,
   "labelPoint": [
    145.734,
    15.188
@@ -1556,6 +1602,7 @@
   "administeredBy": "GBR",
   "claimedBy": [],
   "statusNote": null,
+  "targetNote": null,
   "labelPoint": [
    -62.188,
    16.737
@@ -1610,6 +1657,7 @@
   "administeredBy": "FRA",
   "claimedBy": [],
   "statusNote": null,
+  "targetNote": null,
   "labelPoint": [
    -61.056,
    14.712
@@ -1664,6 +1712,7 @@
    }
   ],
   "statusNote": null,
+  "targetNote": null,
   "labelPoint": [
    45.151,
    -12.775
@@ -1706,6 +1755,7 @@
   "administeredBy": "FRA",
   "claimedBy": [],
   "statusNote": null,
+  "targetNote": null,
   "labelPoint": [
    165.084,
    -21.065
@@ -1749,6 +1799,7 @@
   "administeredBy": "AUS",
   "claimedBy": [],
   "statusNote": null,
+  "targetNote": null,
   "labelPoint": [
    167.955,
    -29.033
@@ -1787,6 +1838,7 @@
   "administeredBy": "NZL",
   "claimedBy": [],
   "statusNote": null,
+  "targetNote": null,
   "labelPoint": [
    -169.863,
    -19.046
@@ -1827,6 +1879,7 @@
   "administeredBy": "GBR",
   "claimedBy": [],
   "statusNote": null,
+  "targetNote": null,
   "labelPoint": [
    -128.318,
    -24.365
@@ -1882,6 +1935,7 @@
   "administeredBy": "USA",
   "claimedBy": [],
   "statusNote": null,
+  "targetNote": null,
   "labelPoint": [
    -66.481,
    18.235
@@ -1926,6 +1980,7 @@
   "administeredBy": "FRA",
   "claimedBy": [],
   "statusNote": null,
+  "targetNote": null,
   "labelPoint": [
    -149.462,
    -17.628
@@ -1973,6 +2028,7 @@
   "administeredBy": "FRA",
   "claimedBy": [],
   "statusNote": null,
+  "targetNote": null,
   "labelPoint": [
    55.536,
    -21.113
@@ -2038,6 +2094,7 @@
    }
   ],
   "statusNote": null,
+  "targetNote": null,
   "labelPoint": [
    -31.063,
    -55.683
@@ -2064,6 +2121,7 @@
   "administeredBy": "GBR",
   "claimedBy": [],
   "statusNote": null,
+  "targetNote": null,
   "labelPoint": [
    -5.713,
    -15.95
@@ -2118,6 +2176,7 @@
   "administeredBy": "NOR",
   "claimedBy": [],
   "statusNote": null,
+  "targetNote": null,
   "labelPoint": [
    18.081,
    78.778
@@ -2158,8 +2217,12 @@
   "administeredBy": null,
   "claimedBy": [],
   "statusNote": {
-   "pt": "Não é membro da ONU. Governa-se de forma independente, mas seu reconhecimento como país é contestado. Neste jogo, só é alvo com territórios ligados.",
-   "en": "Not a UN member. It governs itself, but its recognition as a country is disputed. In this game it is a target only with territories on."
+   "pt": "Não é membro da ONU. Governa-se de forma independente, mas seu reconhecimento como país é contestado.",
+   "en": "Not a UN member. It governs itself, but its recognition as a country is disputed."
+  },
+  "targetNote": {
+   "pt": "Neste jogo, só é alvo com territórios ligados.",
+   "en": "In this game it is a target only with territories on."
   },
   "labelPoint": [
    46.732,
@@ -2216,6 +2279,7 @@
   "administeredBy": "FRA",
   "claimedBy": [],
   "statusNote": null,
+  "targetNote": null,
   "labelPoint": [
    -56.332,
    47.04
@@ -2256,6 +2320,7 @@
   "administeredBy": "NLD",
   "claimedBy": [],
   "statusNote": null,
+  "targetNote": null,
   "labelPoint": [
    -63.07,
    18.041
@@ -2298,6 +2363,7 @@
   "administeredBy": "GBR",
   "claimedBy": [],
   "statusNote": null,
+  "targetNote": null,
   "labelPoint": [
    -71.753,
    21.817
@@ -2329,6 +2395,7 @@
   "administeredBy": "NZL",
   "claimedBy": [],
   "statusNote": null,
+  "targetNote": null,
   "labelPoint": [
    -172.486,
    -8.562
@@ -2407,8 +2474,12 @@
    }
   ],
   "statusNote": {
-   "pt": "Não é membro da ONU. Governa-se de forma independente, mas seu reconhecimento como país é contestado. Neste jogo, só é alvo com territórios ligados.",
-   "en": "Not a UN member. It governs itself, but its recognition as a country is disputed. In this game it is a target only with territories on."
+   "pt": "Não é membro da ONU. Governa-se de forma independente, mas seu reconhecimento como país é contestado.",
+   "en": "Not a UN member. It governs itself, but its recognition as a country is disputed."
+  },
+  "targetNote": {
+   "pt": "Neste jogo, só é alvo com territórios ligados.",
+   "en": "In this game it is a target only with territories on."
   },
   "labelPoint": [
    120.868,
@@ -2437,6 +2508,7 @@
   "administeredBy": "USA",
   "claimedBy": [],
   "statusNote": null,
+  "targetNote": null,
   "labelPoint": [
    -169.538,
    16.727
@@ -2479,6 +2551,7 @@
   "administeredBy": "GBR",
   "claimedBy": [],
   "statusNote": null,
+  "targetNote": null,
   "labelPoint": [
    -64.637,
    18.427
@@ -2521,6 +2594,7 @@
   "administeredBy": "USA",
   "claimedBy": [],
   "statusNote": null,
+  "targetNote": null,
   "labelPoint": [
    -64.779,
    17.747
@@ -2563,6 +2637,7 @@
   "administeredBy": "FRA",
   "claimedBy": [],
   "statusNote": null,
+  "targetNote": null,
   "labelPoint": [
    -178.137,
    -14.286

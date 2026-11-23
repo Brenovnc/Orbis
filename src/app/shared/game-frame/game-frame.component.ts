@@ -1,7 +1,9 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  DestroyRef,
   ElementRef,
+  afterNextRender,
   computed,
   effect,
   inject,
@@ -12,7 +14,7 @@ import {
 } from '@angular/core';
 import { I18nService } from '../../core/i18n/i18n.service';
 import { StringKey } from '../../core/i18n/strings';
-import { RecordEntry, RecordOutcome } from '../../core/game/records.service';
+import { RecordEntry, RecordLevel, RecordOutcome } from '../../core/game/records.service';
 import { GameResult, GameStatus } from '../../core/game/typing-game';
 import { formatClock } from '../../core/labels';
 import { TopBarComponent } from '../top-bar/top-bar.component';
@@ -38,8 +40,10 @@ const ICON = {
 /**
  * The frame shared by every game: top bar with time, score and progress, the pause / give up /
  * restart actions, the pause card and the end screen. The game puts its question in the default
- * slot, a button of its own next to Pause in the `gameAction` slot (Next round, hints...) and the
- * full answer list for the end screen in the `end` slot.
+ * slot, choices that need the whole width of the bar in the `answers` slot, a button of its own
+ * next to Pause in the `gameAction` slot (Next round, hints...), the full answer list for the end
+ * screen in the `end` slot and a help popover for its header in the `endHelp` slot. The X of the end
+ * screen leaves the map in view, and a button in the bar brings the screen back.
  */
 @Component({
   selector: 'app-game-frame',
@@ -57,6 +61,7 @@ const ICON = {
       (settings)="settings.emit()"
     >
       <ng-content />
+      <ng-content select="[answers]" ngProjectAs="[answers]" />
       @if (status() !== 'finished') {
         <div actions class="contents">
           <button
@@ -91,7 +96,7 @@ const ICON = {
               >
                 <path [attr.d]="icon.list" stroke-linecap="round" />
               </svg>
-              {{ i18n.t('frame.list') }}
+              {{ listLabel() }}
             </button>
           }
           @if (skippable()) {
@@ -224,11 +229,30 @@ const ICON = {
           </div>
         </div>
       }
+      @if (status() === 'finished' && closed()) {
+        <button
+          actions
+          #reopen
+          type="button"
+          class="action-btn justify-center px-3 hover:bg-black/5 md:text-[0.8125rem]"
+          (click)="closed.set(false)"
+        >
+          <svg
+            viewBox="0 0 20 20"
+            class="size-4 fill-none stroke-current stroke-2"
+            aria-hidden="true"
+          >
+            <path [attr.d]="icon.list" stroke-linecap="round" />
+          </svg>
+          {{ i18n.t('frame.seeResult') }}
+        </button>
+      }
     </app-top-bar>
 
     @if (status() === 'paused') {
       <section
-        class="fixed top-36 left-1/2 z-20 w-[min(92vw,20rem)] -translate-x-1/2 animate-panel-in rounded-2xl bg-panel-solid p-4 text-center shadow-panel md:top-40"
+        class="fixed left-1/2 z-20 w-[min(92vw,20rem)] -translate-x-1/2 animate-panel-in rounded-2xl bg-panel-solid p-4 text-center shadow-panel"
+        [class]="tallBar() ? 'top-64 md:top-68' : 'top-36 md:top-40'"
         [attr.aria-label]="i18n.t('frame.paused')"
       >
         <h2 class="font-serif text-xl font-semibold">{{ i18n.t('frame.paused') }}</h2>
@@ -239,41 +263,66 @@ const ICON = {
       </section>
     }
 
-    @if (status() === 'finished' && result(); as r) {
+    @if (status() === 'finished' && !closed() && result(); as r) {
       <section
         data-map-cover
-        class="fixed inset-x-0 bottom-0 z-20 flex animate-panel-in flex-col rounded-t-2xl bg-panel-solid shadow-panel md:inset-x-auto md:top-36 md:right-3 md:bottom-36 md:w-[26rem] md:rounded-2xl"
-        [class]="collapsed() ? 'md:bottom-auto' : 'h-[58dvh] md:h-auto'"
+        [style.--bar-bottom.px]="barBottom()"
+        class="fixed inset-x-0 bottom-0 z-20 flex h-[58dvh] max-h-[calc(100dvh-var(--bar-bottom,9rem)-0.625rem)] animate-panel-in flex-col rounded-t-2xl bg-panel-solid shadow-panel md:inset-x-auto md:top-[calc(var(--bar-bottom,9rem)+0.625rem)] md:right-3 md:bottom-36 md:h-auto md:max-h-none md:w-[26rem] md:rounded-2xl"
         [attr.aria-label]="i18n.t('frame.result')"
       >
         <div class="shrink-0 border-b border-line p-4 pb-3">
-          <h2
-            #endTitle
-            tabindex="-1"
-            class="font-serif text-2xl leading-tight font-semibold outline-none"
-          >
-            {{ title() }}
-          </h2>
-          <p class="mt-1 text-lg">
-            <strong class="tabular-nums">{{
-              r.guesses === undefined ? r.found + '/' + r.total : guessesLabel(r.guesses)
-            }}</strong>
-            <span class="text-sm text-ink-muted">
-              {{ i18n.t('frame.in') }} {{ elapsed() }}{{ errorsText(r.errors) }}
-              @if (r.hinted) {
-                · {{ i18n.t('frame.hinted') }}
-              }
-            </span>
-          </p>
+          <div class="flex items-start gap-1">
+            <h2
+              #endTitle
+              tabindex="-1"
+              class="min-w-0 flex-1 font-serif text-2xl leading-tight font-semibold outline-none"
+            >
+              {{ title() }}
+            </h2>
+            <div class="-mt-2 -mr-2 flex shrink-0">
+              <ng-content select="[endHelp]" />
+              <button
+                type="button"
+                class="grid size-11 place-items-center rounded-full text-ink-muted hover:bg-black/5"
+                [attr.aria-label]="i18n.t('frame.closeResult')"
+                [title]="i18n.t('frame.closeResult')"
+                (click)="closed.set(true)"
+              >
+                <svg
+                  viewBox="0 0 20 20"
+                  class="size-4 fill-none stroke-current stroke-2"
+                  aria-hidden="true"
+                >
+                  <path d="m5 5 10 10M15 5 5 15" stroke-linecap="round" />
+                </svg>
+              </button>
+            </div>
+          </div>
+          @if (hasScore()) {
+            <p class="mt-1 text-lg">
+              <strong class="tabular-nums">{{
+                r.guesses === undefined ? r.found + '/' + r.total : guessesLabel(r.guesses)
+              }}</strong>
+              <span class="text-sm text-ink-muted">
+                {{ r.guesses === undefined ? i18n.t('frame.in') : '·' }}
+                {{ elapsed() }}{{ errorsText(r.errors) }}
+                @if (r.hinted) {
+                  · {{ i18n.t('frame.hinted') }}
+                }
+              </span>
+            </p>
+          }
           @if (accuracy(r); as text) {
             <p class="text-sm text-ink-muted">{{ text }}</p>
           }
           @if (record(); as rec) {
             <p class="mt-0.5 text-sm">
               @if (rec.isNew) {
-                <span class="font-semibold">{{ i18n.t('frame.newRecord') }}</span>
+                <span class="font-semibold">{{
+                  i18n.t('frame.newRecord', { level: levelName(rec.level) })
+                }}</span>
               } @else if (rec.best; as best) {
-                <span class="text-ink-muted">{{ recordText(best) }}</span>
+                <span class="text-ink-muted">{{ recordText(best, rec.level) }}</span>
               }
             </p>
           }
@@ -284,21 +333,11 @@ const ICON = {
             <button type="button" class="btn-secondary" (click)="menu.emit()">
               {{ i18n.t('frame.menu') }}
             </button>
-            <button
-              type="button"
-              class="btn-secondary ml-auto"
-              [attr.aria-expanded]="!collapsed()"
-              (click)="collapsed.set(!collapsed())"
-            >
-              {{ i18n.t(collapsed() ? 'frame.seeList' : 'frame.seeMap') }}
-            </button>
           </div>
         </div>
-        @if (!collapsed()) {
-          <div class="min-h-0 flex-1 overflow-y-auto p-3">
-            <ng-content select="[end]" />
-          </div>
-        }
+        <div class="min-h-0 flex-1 overflow-y-auto p-3">
+          <ng-content select="[end]" />
+        </div>
       </section>
     }
   `,
@@ -314,6 +353,8 @@ export class GameFrameComponent {
   readonly listOpen = input(false);
   /** Show the "Lista" button (typing games). */
   readonly hasList = input(false);
+  /** Name of the list on its button: "Países", "Capitais", "Estados" or "Chutes". */
+  readonly listLabel = input('');
   /** Show the "Pular" button (click games), and whether there is another question to go to. */
   readonly skippable = input(false);
   readonly canSkip = input(true);
@@ -321,6 +362,8 @@ export class GameFrameComponent {
   readonly errors = input<number>();
   /** Title of the end screen, for a game that has its own (Proximity). */
   readonly ownEndTitle = input<string>();
+  /** Off, the end screen leaves out the line of the score and the time (a Trail given up). */
+  readonly hasScore = input(true);
   /** The errors were wrong answers typed, not wrong clicks (Silhouettes). */
   readonly typed = input(false);
   /**
@@ -329,6 +372,8 @@ export class GameFrameComponent {
    */
   readonly moreActions = input<MoreAction[]>([]);
   readonly moreAction = output<string>();
+  /** Something sits under the bar (the `answers` slot, a notice), so the pause card goes lower. */
+  readonly tallBar = input(false);
   readonly skip = output<void>();
 
   readonly menu = output<void>();
@@ -341,10 +386,14 @@ export class GameFrameComponent {
 
   protected readonly i18n = inject(I18nService);
   protected readonly icon = ICON;
-  protected readonly collapsed = signal(false);
+  /** The end screen was closed to see the map. */
+  protected readonly closed = signal(false);
   /** The "⋯" menu with restart and give up (phones only). */
   protected readonly moreOpen = signal(false);
+  /** Where the bar ends (px from the top): the end screen starts just under it, whatever its height. */
+  protected readonly barBottom = signal(144);
   private readonly endTitle = viewChild<ElementRef<HTMLElement>>('endTitle');
+  private readonly reopen = viewChild<ElementRef<HTMLButtonElement>>('reopen');
 
   protected readonly title = computed(() => {
     const result = this.result();
@@ -385,14 +434,20 @@ export class GameFrameComponent {
     });
   }
 
-  protected recordText(best: RecordEntry): string {
+  protected levelName(level: RecordLevel): string {
+    return this.i18n.t(level === 'custom' ? 'settings.customLevel' : `settings.${level}`);
+  }
+
+  protected recordText(best: RecordEntry, level: RecordLevel): string {
     const values = {
+      level: this.levelName(level),
       found: best.found,
       total: best.total,
       time: formatClock(best.elapsedMs, 'up'),
     };
     if (best.guesses !== undefined) {
       const text = this.i18n.t('frame.yourRecordGuesses', {
+        level: values.level,
         guesses: this.guessesLabel(best.guesses),
         time: values.time,
       });
@@ -408,11 +463,25 @@ export class GameFrameComponent {
   protected readonly elapsed = computed(() => formatClock(this.result()?.elapsedMs ?? 0, 'up'));
 
   constructor() {
+    // The bar is taller when it holds a field and a line (typing, Trail...): measure it.
+    const host = inject<ElementRef<HTMLElement>>(ElementRef).nativeElement;
+    const destroyRef = inject(DestroyRef);
+    afterNextRender(() => {
+      const bar = host.querySelector('[data-map-cover-top]');
+      if (!bar) return;
+      const measure = () => this.barBottom.set(Math.ceil(bar.getBoundingClientRect().bottom));
+      const observer = new ResizeObserver(measure);
+      observer.observe(bar);
+      measure();
+      destroyRef.onDestroy(() => observer.disconnect());
+    });
     // Moves focus to the result so screen readers announce it.
     effect(() => this.endTitle()?.nativeElement.focus());
-    // The menu does not stay open once the game is over.
+    effect(() => this.reopen()?.nativeElement.focus());
     effect(() => {
+      // The menu does not stay open once the game is over, nor the end screen closed in a new one.
       if (this.status() === 'finished') this.moreOpen.set(false);
+      else this.closed.set(false);
     });
   }
 }

@@ -167,9 +167,25 @@ describe('records', () => {
       layer: 'world',
       territories: false,
       durationMs: 900_000,
+      level: 'normal' as const,
     };
     expect(recordKey(base)).not.toBe(recordKey({ ...base, territories: true }));
-    expect(recordKey(base)).not.toBe(recordKey({ ...base, durationMs: null }));
     expect(recordKey(base)).not.toBe(recordKey({ ...base, gameId: 'digitar-capitais' }));
+    expect(recordKey(base)).not.toBe(recordKey({ ...base, level: 'hard' }));
+    expect(recordKey(base)).not.toBe(recordKey({ ...base, level: 'custom' }));
+  });
+
+  it('keys on the time limit only for custom games', () => {
+    const base = {
+      gameId: 'digitar-paises',
+      layer: 'world',
+      territories: false,
+      durationMs: 900_000,
+    };
+    const normal = { ...base, level: 'normal' as const };
+    expect(recordKey(normal)).toBe(recordKey({ ...normal, durationMs: null }));
+    const custom = { ...base, level: 'custom' as const };
+    expect(recordKey(custom)).not.toBe(recordKey({ ...custom, durationMs: null }));
+    expect(recordKey(custom)).not.toBe(recordKey({ ...custom, durationMs: 600_000 }));
   });
 });

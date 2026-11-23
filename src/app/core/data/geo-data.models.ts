@@ -48,6 +48,8 @@ export interface Territory extends Omit<Country, 'iso2'> {
   administeredBy: string | null;
   /** Explains the status of places without an administering country. */
   statusNote: LocalizedText | null;
+  /** Says whether it is a target of the game; hidden when the card already says it is not asked. */
+  targetNote?: LocalizedText | null;
 }
 
 /** A part of a country that is not a place of its own (England): only explains a typed answer. */
@@ -80,6 +82,15 @@ export interface NonTargetsData {
   parts: CountryPart[];
   /** A country as it reads in a sentence ("da Dinamarca" / "Denmark"); see decisions.json. */
   countryPhrases: Record<string, LocalizedText>;
+  /** Map areas with no country and no territory (Bir Tawil...): only a name, for the info card. */
+  unplaced: UnplacedArea[];
+}
+
+/** An area of the world map that is never a target; `id` is its map shape id. */
+export interface UnplacedArea {
+  id: string;
+  wikidata: string;
+  name: LocalizedText;
 }
 
 /** Federative unit of Brazil (states.json). `id` is the abbreviation, e.g. "SP". */

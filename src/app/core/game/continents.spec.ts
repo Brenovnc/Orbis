@@ -35,10 +35,19 @@ describe('continents', () => {
 });
 
 describe('records and saved games by continent', () => {
-  const base = { gameId: 'clicar-nome', layer: 'world', territories: false, durationMs: null };
+  const base = {
+    gameId: 'clicar-nome',
+    layer: 'world',
+    territories: false,
+    durationMs: null,
+    level: 'normal' as const,
+  };
 
-  it('keeps the old record key for the whole world and a separate one per continent', () => {
+  it('keeps a separate record for the whole world and for each continent', () => {
     expect(recordKey({ ...base, continent: null })).toBe(recordKey(base));
+    expect(recordKey({ ...base, continent: null })).not.toBe(
+      recordKey({ ...base, continent: 'asia' }),
+    );
     expect(recordKey({ ...base, continent: 'europe' })).not.toBe(recordKey(base));
     expect(recordKey({ ...base, continent: 'europe' })).not.toBe(
       recordKey({ ...base, continent: 'asia' }),

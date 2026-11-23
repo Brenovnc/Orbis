@@ -1,10 +1,11 @@
 import { Injectable, computed, signal } from '@angular/core';
 import type { GeometryCollection, Topology } from 'topojson-specification';
-import { NeighborsData, ProximityData } from './proximity';
+import { CrossingsData, NeighborsData, ProximityData } from './proximity';
 import {
   BrazilRegion,
   BrazilState,
   Country,
+  Layer,
   NonTargetsData,
   Place,
   SilhouetteExclusions,
@@ -16,6 +17,12 @@ export type BrazilTopology = Topology<{ states: GeometryCollection<{ id: string 
 
 /** The distance files: world with territories off, world with them on, Brazilian states. */
 export type ProximityFile = 'world' | 'world-territories' | 'brazil';
+
+/** Each map (and, on the world, the territories rule) has its own distances file. */
+export function proximityFile(layer: Layer, territories: boolean): ProximityFile {
+  if (layer === 'brazil') return 'brazil';
+  return territories ? 'world-territories' : 'world';
+}
 
 export type WorldTopology = Topology<{
   units: GeometryCollection<WorldUnitProperties>;
@@ -32,9 +39,11 @@ export class GeoDataService {
   readonly error = signal(false);
   /** Land borders; only downloaded by the games that use them. */
   readonly neighbors = signal<NeighborsData | null>(null);
+  /** Sea crossings of the Trail; downloaded with the borders. */
+  readonly crossings = signal<CrossingsData | null>(null);
   /** Places with no outline worth guessing; only downloaded by the Silhouettes game. */
   readonly silhouetteExcluded = signal<SilhouetteExclusions | null>(null);
-  /** Distances between places; each file only downloaded when the Proximity game needs it. */
+  /** Distances between places; each file only downloaded when a game needs it. */
   readonly proximity = signal<Partial<Record<ProximityFile, ProximityData>>>({});
 
   // Brazil's files are only downloaded when the Brazil map is used.
@@ -94,8 +103,14 @@ export class GeoDataService {
   private loadingNeighbors?: Promise<void>;
 
   loadNeighbors(): Promise<void> {
-    this.loadingNeighbors ??= getJson<NeighborsData>('data/neighbors.json')
-      .then((data) => this.neighbors.set(data))
+    this.loadingNeighbors ??= Promise.all([
+      getJson<NeighborsData>('data/neighbors.json'),
+      getJson<CrossingsData>('data/trail-crossings.json'),
+    ])
+      .then(([neighbors, crossings]) => {
+        this.neighbors.set(neighbors);
+        this.crossings.set(crossings);
+      })
       .catch(() => {
         this.error.set(true);
         this.loadingNeighbors = undefined;

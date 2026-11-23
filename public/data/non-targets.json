@@ -92,5 +92,47 @@
    "pt": "dos Estados Unidos",
    "en": "the United States"
   }
- }
+ },
+ "unplaced": [
+  {
+   "id": "CNM",
+   "wikidata": "Q116970",
+   "name": {
+    "pt": "Linha Verde",
+    "en": "United Nations Buffer Zone in Cyprus"
+   }
+  },
+  {
+   "id": "SPI",
+   "wikidata": "Q1031467",
+   "name": {
+    "pt": "Campo de gelo do sul da Patagónia",
+    "en": "Southern Patagonian Ice Field"
+   }
+  },
+  {
+   "id": "BRT",
+   "wikidata": "Q620634",
+   "name": {
+    "pt": "Bir Tawil",
+    "en": "Bir Tawil"
+   }
+  },
+  {
+   "id": "PGA",
+   "wikidata": "Q215664",
+   "name": {
+    "pt": "Ilhas Spratly",
+    "en": "Spratly Islands"
+   }
+  },
+  {
+   "id": "SCR",
+   "wikidata": "Q628716",
+   "name": {
+    "pt": "Recife de Masinloc",
+    "en": "Scarborough Shoal"
+   }
+  }
+ ]
 }

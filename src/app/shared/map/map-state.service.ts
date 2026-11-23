@@ -1,6 +1,9 @@
 import { Injectable, signal } from '@angular/core';
 import { PlayableContinent, isPlayableContinent } from '../../core/data/continent-frames';
 import { Layer, LonLat } from '../../core/data/geo-data.models';
+import { Crossing } from '../../core/data/proximity';
+import { OutOfPlayKind } from '../../core/game/targets';
+import type { MapBorders } from '../../core/settings.service';
 import { readStore, writeStore } from '../../core/storage';
 
 /**
@@ -8,6 +11,32 @@ import { readStore, writeStore } from '../../core/storage';
  * outline shown by the hint (`hint`).
  */
 export type TrailPaint = 'end' | 'near' | 'detour' | 'far' | 'hint';
+
+/** A sea crossing of a trail, in the color of a guess. */
+export interface SeaTrail {
+  crossing: Crossing;
+  paint: 'near' | 'detour' | 'far';
+}
+
+/** A numbered dot on a place of the trail shown at the end of the Trail (1 = the origin). */
+export interface StepMark {
+  /** Changes when the trail changes, so the numbers appear again, one after the other. */
+  key: string;
+  /** The place (target id). */
+  id: string;
+  n: number;
+  /** The label point of the place and the shapes it is made of. */
+  point: LonLat;
+  unitIds: readonly string[];
+  /** Area of the place (km²): where two tags overlap, the smaller place gives way. */
+  area: number;
+  /** Written in the tag, after the number. */
+  name: string;
+  /** Same color as the dot of the place in the timeline. */
+  paint: TrailPaint;
+  /** The number, the place and what it is, as text. */
+  label: string;
+}
 
 /** A ring drawn on a place too small to see as a shape (Vatican, Tuvalu...). */
 export interface MapMarker {
@@ -60,6 +89,14 @@ export class MapStateService {
   readonly markers = signal<readonly MapMarker[]>([]);
   /** The place a round is about (Neighbors): amber fill and a steady outline. */
   readonly focus = signal<ReadonlySet<string>>(NONE);
+  /**
+   * Land that is no target of the game being played (Antarctica, Kosovo...), by shape id and why:
+   * it is painted apart, with a continuous outline. Empty outside games.
+   */
+  readonly outOfPlay = signal<ReadonlyMap<string, OutOfPlayKind>>(new Map());
+  /** The last click on such an area (`n` tells repeats apart); the game answers with a card. */
+  readonly outOfPlayClick = signal<{ id: string; n: number } | null>(null);
+  private outOfPlayCount = 0;
   /** Shapes just clicked wrongly: briefly shown with a dashed outline. */
   readonly wrong = signal<readonly string[]>([]);
   /**
@@ -71,13 +108,29 @@ export class MapStateService {
   readonly heat = signal<ReadonlyMap<string, number>>(new Map());
   /** Trail: how each shape is painted (origin and destination, guesses, outline hints). */
   readonly trailPaint = signal<ReadonlyMap<string, TrailPaint>>(new Map());
-  /** Trail, at the end: shapes of a shortest path, outlined. */
-  readonly route = signal<ReadonlySet<string>>(NONE);
+  /** Trail, at the end: the numbered dots of the trail shown (the player's or a shortest one). */
+  readonly steps = signal<readonly StepMark[]>([]);
+  /**
+   * Trail, at the end: the places (target and shape ids) that are only in the player's trail, and
+   * whether they are faded, so that the map shows a shortest path alone.
+   */
+  readonly yoursOnly = signal<ReadonlySet<string>>(NONE);
+  readonly yoursOnlyFaded = signal(false);
+  /** Trail, at the end: the place the pointer or focus is on in the timeline. */
+  readonly stepHover = signal<{ id: string; unitIds: readonly string[] } | null>(null);
+  /** Trail: the sea crossings shown discreetly, and those the trails take. */
+  readonly seaLines = signal<readonly Crossing[]>([]);
+  readonly seaTrail = signal<readonly SeaTrail[]>([]);
   /**
    * Hidden map (Trail): only the water and the shapes the game paints are drawn. No other coast,
    * no borders, no highlight under the mouse, and hidden shapes cannot be clicked.
    */
   readonly hidden = signal(false);
+  /**
+   * 'coast' (typing games and Neighbors): the land is one piece with no borders inside, and only the
+   * shapes the game paints stand out; the others can be neither highlighted nor clicked.
+   */
+  readonly borders = signal<MapBorders>('all');
   /** Every click on a place, even on the same one twice in a row (`n` tells them apart). */
   readonly lastClick = signal<{ id: string | null; n: number } | null>(null);
   private clickCount = 0;
@@ -89,13 +142,19 @@ export class MapStateService {
   /** Mouse double click zooms in. Click games turn it off: two quick answers are not a zoom. */
   readonly doubleClickZoom = signal(true);
 
-  /** A request for the camera to fly to some places (shape ids); `n` tells repeats apart. */
-  readonly cameraRequest = signal<{ ids: readonly string[]; n: number } | null>(null);
+  /**
+   * A request for the camera to fly to some places (shape ids); `n` tells repeats apart. `manual`
+   * marks what the player asked for (a click on a list item): the "Off" camera setting only
+   * stops the moves the game makes by itself.
+   */
+  readonly cameraRequest = signal<{ ids: readonly string[]; n: number; manual: boolean } | null>(
+    null,
+  );
   private cameraCount = 0;
 
   /** Asks the map to move smoothly until these shapes fill a comfortable part of the screen. */
-  flyTo(ids: readonly string[]): void {
-    if (ids.length > 0) this.cameraRequest.set({ ids, n: ++this.cameraCount });
+  flyTo(ids: readonly string[], manual = false): void {
+    if (ids.length > 0) this.cameraRequest.set({ ids, n: ++this.cameraCount, manual });
   }
 
   setLayer(layer: Layer): void {
@@ -120,6 +179,11 @@ export class MapStateService {
     this.lastClick.set({ id, n: ++this.clickCount });
   }
 
+  /** A click on an area out of play: not an answer, so it is not a click of the game. */
+  registerOutOfPlayClick(id: string): void {
+    this.outOfPlayClick.set({ id, n: ++this.outOfPlayCount });
+  }
+
   /** Clears everything a game drew on the map. */
   reset(): void {
     this.selectable.set(false);
@@ -132,13 +196,21 @@ export class MapStateService {
     this.markers.set([]);
     this.wrong.set([]);
     this.hitAreas.set([]);
+    this.outOfPlay.set(new Map());
+    this.outOfPlayClick.set(null);
     this.lastClick.set(null);
     this.hoveredId.set(null);
     this.labels.set([]);
     this.doubleClickZoom.set(true);
     this.trailPaint.set(new Map());
-    this.route.set(NONE);
+    this.steps.set([]);
+    this.yoursOnly.set(NONE);
+    this.yoursOnlyFaded.set(false);
+    this.stepHover.set(null);
+    this.seaLines.set([]);
+    this.seaTrail.set([]);
     this.hidden.set(false);
+    this.borders.set('all');
     this.cameraRequest.set(null);
   }
 }

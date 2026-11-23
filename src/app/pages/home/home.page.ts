@@ -1,5 +1,8 @@
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { ConfirmService } from '../../core/confirm/confirm.service';
+import { durationOf, matchingPreset } from '../../core/game/game-options';
+import { levelNotes } from '../../core/game/level-notes';
 import { CONTINENT_CHOICES, isPlayableContinent } from '../../core/data/continent-frames';
 import { GeoDataService } from '../../core/data/geo-data.service';
 import { WorldUnitProperties } from '../../core/data/geo-data.models';
@@ -10,8 +13,13 @@ import {
   inContinent,
   withCapitals,
 } from '../../core/game/targets';
-import { borderGraph, hasEnoughBorders, playableTrailLevel } from '../../core/game/availability';
-import { RecordsService, recordKey, trailRecordId } from '../../core/game/records.service';
+import {
+  borderGraph,
+  canForbid,
+  hasEnoughBorders,
+  withCrossings,
+} from '../../core/game/availability';
+import { RecordsService, recordKey, recordLevel } from '../../core/game/records.service';
 import { SavedGameStore } from '../../core/game/saved-game.store';
 import {
   CHALLENGES,
@@ -24,16 +32,17 @@ import {
 import { I18nService } from '../../core/i18n/i18n.service';
 import { StringKey } from '../../core/i18n/strings';
 import { formatClock } from '../../core/labels';
-import { SettingsService } from '../../core/settings.service';
+import { PRESETS, Preset, PresetValues, SettingsService } from '../../core/settings.service';
 import { MapStateService } from '../../shared/map/map-state.service';
 import { MenuItemComponent } from '../../shared/menu-item/menu-item.component';
+import { PlayDialogComponent, PlayRequest } from '../../shared/play-dialog/play-dialog.component';
 import { GameIconComponent, GameIconName } from '../../shared/ui/game-icon.component';
 import { SettingsPanelService } from '../../shared/settings-panel/settings-panel.component';
 
 /** Home: the map stays full screen and the menu is a small panel floating over it. */
 @Component({
   selector: 'app-home-page',
-  imports: [GameIconComponent, MenuItemComponent, RouterLink],
+  imports: [GameIconComponent, MenuItemComponent, PlayDialogComponent, RouterLink],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <nav
@@ -150,10 +159,10 @@ import { SettingsPanelService } from '../../shared/settings-panel/settings-panel
               [hard]="item.hard"
               [title]="item.title"
               [description]="item.description"
-              [link]="item.link"
               [inProgress]="item.inProgress"
               [inProgressText]="i18n.t('home.inProgress')"
               [record]="item.record"
+              (chosen)="playing.set(item.id)"
             />
           </li>
         }
@@ -175,16 +184,23 @@ import { SettingsPanelService } from '../../shared/settings-panel/settings-panel
               [hard]="item.hard"
               [title]="item.title"
               [description]="item.description"
-              [link]="item.link"
               [inProgress]="item.inProgress"
               [inProgressText]="i18n.t('home.inProgress')"
               [record]="item.record"
               [disabledReason]="item.disabledReason"
+              (chosen)="playing.set(item.id)"
             />
           </li>
         }
       </ul>
     </nav>
+
+    <app-play-dialog
+      [request]="request()"
+      (started)="start($event)"
+      (resumed)="resume()"
+      (closed)="playing.set(null)"
+    />
   `,
 })
 export class HomePage {
@@ -193,7 +209,10 @@ export class HomePage {
   private readonly saved = inject(SavedGameStore);
   private readonly geo = inject(GeoDataService);
   private readonly records = inject(RecordsService);
-  private readonly rules = inject(SettingsService).value;
+  private readonly confirm = inject(ConfirmService);
+  private readonly router = inject(Router);
+  private readonly settingsService = inject(SettingsService);
+  private readonly rules = this.settingsService.value;
   protected readonly mapState = inject(MapStateService);
   protected readonly continents = CONTINENT_CHOICES;
   protected readonly layers = [
@@ -206,6 +225,8 @@ export class HomePage {
     { id: 'map', label: 'home.group.map' },
     { id: 'challenges', label: 'home.group.challenges' },
   ] as const;
+  /** The game whose start dialog is open. */
+  protected readonly playing = signal<GameId | null>(null);
   protected readonly layer = this.mapState.layer;
   protected readonly continent = this.mapState.continent;
 
@@ -247,7 +268,10 @@ export class HomePage {
     };
   });
 
-  /** Why each challenge that needs land borders is off here (Oceania, for instance). */
+  /**
+   * Why each challenge that needs land borders is off here (Oceania, for instance). The Trail is
+   * only off when not even the sea crossings help: they are turned on in its start dialog.
+   */
   private readonly blocked = computed(() => {
     const data = this.geo.neighbors();
     const { region } = this.places();
@@ -256,21 +280,51 @@ export class HomePage {
     if (!data || region.length === 0) return blocked;
     const ids = region.map((target) => target.id);
     for (const { id } of CHALLENGES) {
-      const graph = borderGraph(data, this.layer(), this.territories(), id);
+      const graph =
+        id === 'trilha'
+          ? this.trailGraph().withSea
+          : borderGraph(data, this.layer(), this.territories(), id);
       if (!hasEnoughBorders(id, ids, graph)) blocked.set(id, 'home.fewBorders');
     }
     return blocked;
   });
 
-  /** The Trail level a new game would run at (hard falls back to normal where it is impossible). */
-  private readonly trailLevel = computed(() => {
+  /** The Trail's sea crossings only exist on the world map. */
+  private readonly crossings = computed(
+    () => this.layer() === 'world' && this.rules().trailCrossings,
+  );
+
+  /** The Trail's graph: the one a game would use now, and the one with every sea crossing. */
+  private readonly trailGraph = computed(() => {
     const data = this.geo.neighbors();
-    const level = this.rules().trailLevel;
-    if (!data) return level;
-    const ids = this.places().region.map((target) => target.id);
-    const graph = borderGraph(data, this.layer(), this.territories(), 'trilha');
-    return playableTrailLevel(level, ids, graph);
+    const crossings = this.geo.crossings();
+    if (!data || !crossings) return { current: {}, withSea: {} };
+    const land = borderGraph(data, this.layer(), this.territories(), 'trilha');
+    if (this.layer() === 'brazil') return { current: land, withSea: land };
+    const region = this.activeContinent() && this.places().region.map((target) => target.id);
+    const withSea = withCrossings(land, crossings, this.territories(), region);
+    return { current: this.crossings() ? withSea : land, withSea };
   });
+
+  /** The Trail can only be played here with the sea crossings, and they are off. */
+  private readonly needsCrossings = computed(() => {
+    const ids = this.places().region.map((target) => target.id);
+    return (
+      !!this.geo.neighbors() &&
+      ids.length > 0 &&
+      !hasEnoughBorders('trilha', ids, this.trailGraph().current)
+    );
+  });
+
+  /** Where no place can be forbidden, Trail games run without any. */
+  private readonly canForbid = computed(
+    () =>
+      !this.geo.neighbors() ||
+      canForbid(
+        this.places().region.map((target) => target.id),
+        this.trailGraph().current,
+      ),
+  );
 
   protected readonly items = computed(() => {
     const layer = this.layer();
@@ -287,9 +341,8 @@ export class HomePage {
         hard: !!hard,
         title: this.i18n.t(`${key}.title`),
         description: this.i18n.t(`${key}.desc`),
-        link: layer === 'brazil' ? ['/jogo', 'brasil', id] : ['/jogo', id],
         inProgress: this.saved.has(id, layer, continent),
-        record: this.record(id),
+        record: this.record(id, this.rules()),
         disabledReason: reason,
       };
     };
@@ -306,15 +359,89 @@ export class HomePage {
     this.mapState.setContinent(isPlayableContinent(value) ? value : null);
   }
 
-  /** The record of the mode the current settings would start (same rules as a new game). */
-  private record(id: GameId): string {
+  /** The dialog of the game picked in the menu. */
+  protected readonly request = computed<PlayRequest | null>(() => {
+    const id = this.playing();
+    const game = [...GAMES, ...CHALLENGES].find((item) => item.id === id);
+    if (!id || !game) return null;
+    const layer = this.layer();
+    const continent = this.activeContinent();
+    const place = { continent: continent ? this.i18n.continent(continent) : '' };
+    const noForbidden =
+      id === 'trilha' && continent && !this.canForbid() && !this.needsCrossings()
+        ? this.i18n.t('play.trailFallback', place)
+        : '';
+    const levels = (['easy', 'normal', 'hard'] as const).map((level) => {
+      const values = PRESETS[level];
+      const notes = levelNotes(id, values, {
+        layer,
+        minutes: this.minutes(id, values),
+        canForbid: this.canForbid(),
+      }).map(({ icon, key, params }) => ({ icon, text: this.i18n.t(key, params) }));
+      return {
+        level,
+        notes,
+        record: this.record(id, values),
+        warning: values.trailForbidden !== 'none' ? noForbidden : '',
+      };
+    });
+    return {
+      id,
+      layer,
+      icon: game.icon,
+      title: this.i18n.t(`game.${layer === 'brazil' ? 'br.' : ''}${id}.title`),
+      levels,
+      selected: matchingPreset(id, layer, this.rules()) ?? 'custom',
+      hasSaved: this.saved.has(id, layer, continent),
+      crossings: id === 'trilha' && layer === 'world',
+      blocked:
+        id === 'trilha' && this.needsCrossings() ? this.i18n.t('play.needsCrossings', place) : '',
+      noForbidden,
+    };
+  });
+
+  /** "Start": a level sets its options first; "custom" plays with the current ones. */
+  protected async start(choice: Preset | 'custom'): Promise<void> {
+    const id = this.playing();
+    if (!id) return;
+    if (this.saved.has(id, this.layer(), this.activeContinent())) {
+      const discard = await this.confirm.ask({
+        title: this.i18n.t('play.discard.title'),
+        message: this.i18n.t('play.discard.message'),
+        confirmLabel: this.i18n.t('play.discard.ok'),
+        cancelLabel: this.i18n.t('confirm.keepPlaying'),
+      });
+      if (!discard) return;
+    }
+    this.playing.set(null);
+    if (choice !== 'custom') this.settingsService.applyPreset(choice);
+    this.saved.clear(id, this.layer(), this.activeContinent());
+    this.open(id);
+  }
+
+  protected resume(): void {
+    const id = this.playing();
+    this.playing.set(null);
+    if (id) this.open(id);
+  }
+
+  private open(id: GameId): void {
+    void this.router.navigate(this.layer() === 'brazil' ? ['/jogo', 'brasil', id] : ['/jogo', id]);
+  }
+
+  /** The record with these options, in the short form the menu shows; empty when there is none. */
+  private record(id: GameId, values: PresetValues): string {
+    const trail =
+      id === 'trilha' ? { canForbid: this.canForbid(), crossings: this.crossings() } : undefined;
+    const minutes = this.minutes(id, values);
     const best = this.records.get(
       recordKey({
-        gameId: id === 'trilha' ? trailRecordId(this.trailLevel()) : id,
+        gameId: id,
         layer: this.layer(),
         territories: this.territories(),
-        durationMs: this.durationMs(id),
+        durationMs: minutes === null ? null : minutes * 60_000,
         continent: this.activeContinent(),
+        ...recordLevel(id, this.layer(), values, trail),
       }),
     );
     if (!best) return '';
@@ -338,20 +465,20 @@ export class HomePage {
     return this.i18n.t('home.record', { record: parts.join(' · ') });
   }
 
-  /** The time limit a new game would have (a continent gets a share of the world's). */
-  private durationMs(id: GameId): number | null {
-    const rules = this.rules();
-    if (!rules.timerEnabled || !hasTimeLimit(id)) return null;
-    if (!this.activeContinent() || !this.geo.world()) {
-      return rules.durationMinutes[this.layer()] * 60_000;
-    }
+  /**
+   * The time limit, in minutes, a new game would have (a continent gets a share of the world's);
+   * null without one.
+   */
+  private minutes(id: GameId, values: PresetValues): number | null {
+    if (!values.timerEnabled || !hasTimeLimit(id)) return null;
+    const minutes = durationOf(id, this.layer(), values);
+    if (!this.activeContinent() || !this.geo.world()) return minutes;
     const { all, region, allCapitals, regionCapitals } = this.places();
     const capitals = usesCapitals(id);
-    const minutes = continentMinutes(
-      rules.durationMinutes.world,
+    return continentMinutes(
+      minutes,
       capitals ? regionCapitals : region.length,
       capitals ? allCapitals : all.length,
     );
-    return minutes * 60_000;
   }
 }

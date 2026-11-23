@@ -10,7 +10,7 @@ import {
   viewChild,
 } from '@angular/core';
 import { I18nService } from '../../core/i18n/i18n.service';
-import { Preset, Settings, SettingsService } from '../../core/settings.service';
+import { SettingsService } from '../../core/settings.service';
 import { SoundService } from '../../core/sound.service';
 import { MapStateService } from '../map/map-state.service';
 import { SegmentedComponent, SegmentedOption } from '../ui/segmented.component';
@@ -30,8 +30,8 @@ export class SettingsPanelService {
 }
 
 /**
- * Settings panel: a native <dialog> (focus stays inside, Esc closes) styled as a small card
- * over the map. Changes are saved at once, in this browser.
+ * Settings panel, with the general preferences (the difficulty is chosen when a game starts): a
+ * native <dialog> (focus stays inside, Esc closes) styled as a small card over the map. Changes are saved at once, in this browser.
  */
 @Component({
   selector: 'app-settings-panel',
@@ -95,6 +95,19 @@ export class SettingsPanelService {
         <p class="mt-1 text-xs text-ink-muted">{{ i18n.t('settings.projection.hint') }}</p>
       </section>
 
+      <section class="mt-3">
+        <h3 class="mb-1 text-xs font-semibold tracking-wide text-ink-muted uppercase">
+          {{ i18n.t('settings.camera') }}
+        </h3>
+        <app-segmented
+          [label]="i18n.t('settings.camera')"
+          [options]="cameraModes()"
+          [value]="s().camera"
+          (changed)="settings.update({ camera: $any($event) })"
+        />
+        <p class="mt-1 text-xs text-ink-muted">{{ i18n.t('settings.camera.hint') }}</p>
+      </section>
+
       <section class="mt-3 divide-y divide-line">
         <app-switch
           [label]="i18n.t('settings.territories')"
@@ -116,152 +129,9 @@ export class SettingsPanelService {
         />
       </section>
 
-      <section class="mt-3 border-t border-line pt-3">
-        <h3 class="mb-1 text-xs font-semibold tracking-wide text-ink-muted uppercase">
-          {{ i18n.t('settings.level') }}
-        </h3>
-        <app-segmented
-          [label]="i18n.t('settings.level')"
-          [options]="levels()"
-          [value]="selectedLevel()"
-          (changed)="chooseLevel($any($event))"
-        />
-        <p class="mt-1 text-xs text-ink-muted">{{ i18n.t('settings.level.hint') }}</p>
-
-        @if (showCustom()) {
-          <div class="mt-2 divide-y divide-line rounded-xl border border-line px-3">
-            <app-switch
-              [label]="i18n.t('settings.infoBox')"
-              [hint]="i18n.t('settings.infoBox.hint')"
-              [checked]="s().infoBox"
-              (changed)="settings.update({ infoBox: $event })"
-            />
-            <app-switch
-              [label]="i18n.t('settings.learn')"
-              [tag]="nextGameTag()"
-              [hint]="i18n.t('settings.learn.hint')"
-              [checked]="s().learnMode"
-              (changed)="settings.update({ learnMode: $event })"
-            />
-            <!-- No cursor on touch screens, so there is nothing to highlight. -->
-            <div class="[@media(hover:none)]:hidden">
-              <app-switch
-                [label]="i18n.t('settings.hover')"
-                [hint]="i18n.t('settings.hover.hint')"
-                [checked]="s().hoverHighlight"
-                (changed)="settings.update({ hoverHighlight: $event })"
-              />
-            </div>
-            <app-switch
-              [label]="i18n.t('settings.names')"
-              [hint]="i18n.t('settings.names.hint')"
-              [checked]="s().showNames"
-              (changed)="settings.update({ showNames: $event })"
-            />
-            <div class="py-2">
-              <span class="block text-sm font-medium"
-                >{{ i18n.t('settings.reveal') }}
-                @if (duringGame()) {
-                  <span
-                    class="ml-1.5 rounded bg-black/5 px-1.5 py-0.5 align-middle text-[0.65rem] font-medium text-ink-muted"
-                    >{{ i18n.t('settings.nextGame') }}</span
-                  >
-                }
-              </span>
-              <span class="mb-1.5 block text-xs text-ink-muted">{{
-                i18n.t('settings.reveal.hint')
-              }}</span>
-              <app-segmented
-                [label]="i18n.t('settings.reveal')"
-                [options]="revealOptions()"
-                [value]="s().revealAfterErrors"
-                (changed)="settings.update({ revealAfterErrors: +$event })"
-              />
-            </div>
-            <div class="py-2">
-              <span class="block text-sm font-medium"
-                >{{ i18n.t('settings.typo') }}
-                @if (duringGame()) {
-                  <span
-                    class="ml-1.5 rounded bg-black/5 px-1.5 py-0.5 align-middle text-[0.65rem] font-medium text-ink-muted"
-                    >{{ i18n.t('settings.nextGame') }}</span
-                  >
-                }
-              </span>
-              <span class="mb-1.5 block text-xs text-ink-muted">{{
-                i18n.t('settings.typo.hint')
-              }}</span>
-              <app-segmented
-                [label]="i18n.t('settings.typo')"
-                [options]="typoOptions()"
-                [value]="s().typoTolerance"
-                (changed)="settings.update({ typoTolerance: $any(+$event) })"
-              />
-            </div>
-            <div class="py-2">
-              <span class="block text-sm font-medium"
-                >{{ i18n.t('settings.trailLevel') }}
-                @if (duringGame()) {
-                  <span
-                    class="ml-1.5 rounded bg-black/5 px-1.5 py-0.5 align-middle text-[0.65rem] font-medium text-ink-muted"
-                    >{{ i18n.t('settings.nextGame') }}</span
-                  >
-                }
-              </span>
-              <span class="mb-1.5 block text-xs text-ink-muted">{{
-                i18n.t('settings.trailLevel.hint')
-              }}</span>
-              <app-segmented
-                [label]="i18n.t('settings.trailLevel')"
-                [options]="trailLevels()"
-                [value]="s().trailLevel"
-                (changed)="settings.update({ trailLevel: $any($event) })"
-              />
-            </div>
-            <app-switch
-              [label]="i18n.t('settings.timer')"
-              [tag]="nextGameTag()"
-              [hint]="i18n.t('settings.timer.hint')"
-              [checked]="s().timerEnabled"
-              (changed)="settings.update({ timerEnabled: $event })"
-            />
-            @if (s().timerEnabled) {
-              <div class="grid grid-cols-2 gap-3 py-2">
-                <label class="text-xs text-ink-muted">
-                  {{ i18n.t('settings.durationWorld') }}
-                  <input
-                    type="number"
-                    min="1"
-                    max="60"
-                    inputmode="numeric"
-                    class="mt-1 block w-full rounded-lg border border-line bg-white px-2 py-1.5 text-sm text-ink"
-                    [value]="s().durationMinutes.world"
-                    (change)="setDuration('world', $any($event.target))"
-                  />
-                </label>
-                <label class="text-xs text-ink-muted">
-                  {{ i18n.t('settings.durationBrazil') }}
-                  <input
-                    type="number"
-                    min="1"
-                    max="60"
-                    inputmode="numeric"
-                    class="mt-1 block w-full rounded-lg border border-line bg-white px-2 py-1.5 text-sm text-ink"
-                    [value]="s().durationMinutes.brazil"
-                    (change)="setDuration('brazil', $any($event.target))"
-                  />
-                </label>
-                <p class="col-span-2 text-xs text-ink-muted">
-                  {{ i18n.t('settings.durationContinent') }}
-                </p>
-              </div>
-            }
-          </div>
-        }
-        @if (duringGame()) {
-          <p class="mt-3 text-xs text-ink-muted">{{ i18n.t('settings.nextGame.note') }}</p>
-        }
-      </section>
+      @if (duringGame()) {
+        <p class="mt-3 text-xs text-ink-muted">{{ i18n.t('settings.nextGame.note') }}</p>
+      }
     </dialog>
   `,
 })
@@ -289,31 +159,11 @@ export class SettingsPanelComponent {
     { value: 'continuous', label: this.i18n.t('settings.continuous') },
     { value: 'natural-earth', label: this.i18n.t('settings.naturalEarth') },
   ]);
-  protected readonly levels = computed<SegmentedOption[]>(() => [
-    { value: 'easy', label: this.i18n.t('settings.easy') },
-    { value: 'normal', label: this.i18n.t('settings.normal') },
-    { value: 'hard', label: this.i18n.t('settings.hard') },
-    { value: 'custom', label: this.i18n.t('settings.custom') },
-  ]);
-  protected readonly trailLevels = computed<SegmentedOption[]>(() => [
-    { value: 'easy', label: this.i18n.t('settings.easy') },
-    { value: 'normal', label: this.i18n.t('settings.normal') },
-    { value: 'hard', label: this.i18n.t('settings.hard') },
-  ]);
-  protected readonly revealOptions = computed<SegmentedOption[]>(() => [
-    ...[1, 2, 3, 5].map((n) => ({ value: n, label: String(n) })),
-  ]);
-  protected readonly typoOptions = computed<SegmentedOption[]>(() =>
-    ([0, 1, 2] as const).map((n) => ({ value: n, label: this.i18n.t(`settings.typo.${n}`) })),
-  );
-
-  private readonly customOpen = signal(false);
-  /** The individual options show when "Customize" was chosen or no shortcut matches. */
-  protected readonly showCustom = computed(
-    () => this.customOpen() || this.settings.preset() === null,
-  );
-  protected readonly selectedLevel = computed(() =>
-    this.showCustom() ? 'custom' : this.settings.preset(),
+  protected readonly cameraModes = computed<SegmentedOption[]>(() =>
+    (['zoom', 'center', 'off'] as const).map((mode) => ({
+      value: mode,
+      label: this.i18n.t(`settings.camera.${mode}`),
+    })),
   );
 
   constructor() {
@@ -329,25 +179,8 @@ export class SettingsPanelComponent {
     this.panel.open.set(false);
   }
 
-  protected chooseLevel(level: Preset | 'custom'): void {
-    if (level === 'custom') {
-      this.customOpen.set(true);
-      return;
-    }
-    this.customOpen.set(false);
-    this.settings.applyPreset(level);
-  }
-
   protected setSounds(on: boolean): void {
     this.settings.update({ sounds: on });
     if (on) this.sound.preview(); // lets the player hear what was just turned on
-  }
-
-  protected setDuration(layer: keyof Settings['durationMinutes'], input: HTMLInputElement): void {
-    const minutes = Math.min(60, Math.max(1, Math.round(Number(input.value)) || 1));
-    input.value = String(minutes);
-    this.settings.update({
-      durationMinutes: { ...this.settings.value().durationMinutes, [layer]: minutes },
-    });
   }
 }

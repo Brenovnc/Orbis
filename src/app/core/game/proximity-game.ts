@@ -1,6 +1,7 @@
 import { computed, signal } from '@angular/core';
 import { Layer } from '../data/geo-data.models';
 import { ProximityData, directionSector, distanceKm } from '../data/proximity';
+import type { ProximityClues } from '../settings.service';
 import { TypoTolerance, buildIndex, matchAnswer } from './answers';
 import { FinishReason, GameResult, GameStatus, PlayableGame, SavedGame } from './playable-game';
 import { Target } from './targets';
@@ -45,6 +46,8 @@ export interface ProximityGameConfig {
   /** Places the secret is taken from (the chosen continent). */
   askable: Target[];
   data: ProximityData;
+  /** What each guess tells. */
+  clues: ProximityClues;
   tolerance: TypoTolerance;
   territories: boolean;
   /** For tests: a deterministic random source. */
@@ -54,13 +57,14 @@ export interface ProximityGameConfig {
 
 /**
  * Rules of the Proximity game: find a secret place by guessing; each guess tells how far it is
- * from the secret and in which direction the secret lies. No limit of guesses or time; fewer
- * guesses is better. No UI in here.
+ * from the secret and in which direction the secret lies (or less: see `clues`). No limit of
+ * guesses or time; fewer guesses is better. No UI in here.
  */
 export class ProximityGame implements PlayableGame {
   readonly gameId = 'proximidade' as const;
   readonly layer: Layer;
   readonly territories: boolean;
+  readonly clues: ProximityClues;
   readonly durationMs = null;
   readonly total = 1;
   /** Null only when there is no data to play with. */
@@ -76,6 +80,8 @@ export class ProximityGame implements PlayableGame {
   readonly guesses = computed(() => this.guessed().map((id) => this.describe(id)));
   /** The guesses from nearest to farthest (the secret first, once found). */
   readonly ranked = computed(() => [...this.guesses()].sort((a, b) => this.rank(a) - this.rank(b)));
+  /** The best guess so far: the nearest (with only colors, the list order tells it too). */
+  readonly best = computed<ProximityGuess | undefined>(() => this.ranked()[0]);
   readonly found = computed<ReadonlySet<string>>(() => {
     const id = this.secret?.id;
     return new Set(id && this.guessed().includes(id) ? [id] : []);
@@ -93,6 +99,7 @@ export class ProximityGame implements PlayableGame {
     this.layer = config.layer ?? 'world';
     this.territories = config.territories;
     this.data = config.data;
+    this.clues = config.saved?.proximityClues ?? config.clues;
     this.tolerance = config.tolerance;
     // Only places with distances can be played (the data always cover the whole map).
     const known = new Set(config.data.ids);
@@ -161,7 +168,7 @@ export class ProximityGame implements PlayableGame {
     if (this.guessed().includes(id)) return { kind: 'repeat', guess: this.describe(id) };
 
     const guess = this.describe(id);
-    const closest = this.guesses().every((other) => guess.km < other.km);
+    const closest = this.guesses().every((other) => this.rank(guess) < this.rank(other));
     this.guessed.update((guessed) => [...guessed, id]);
     const won = id === secret.id;
     if (won) this.finish('complete');
@@ -198,6 +205,7 @@ export class ProximityGame implements PlayableGame {
       elapsedMs: this.elapsedMs(),
       durationMs: null,
       tolerance: this.tolerance,
+      proximityClues: this.clues,
       secret: this.secret?.id,
       guessed: [...this.guessed()],
     };

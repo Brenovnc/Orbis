@@ -150,6 +150,23 @@ export async function buildWorld({ outDir, decisions, report }) {
 
   const upperFirst = (s) => s && s.charAt(0).toUpperCase() + s.slice(1);
 
+  // Areas that belong to no country and are never a target (Bir Tawil, the Spratly Islands...):
+  // only their names, which the info card shows when one is clicked.
+  const unplacedQid = new Map(
+    units
+      .filter((u) => !u.country && !u.territory)
+      .map((u) => [u.code, decisions.unitWikidata[u.code]?.item ?? u.p.WIKIDATAID]),
+  );
+  checkAllUsed('unitWikidata', Object.keys(decisions.unitWikidata), (k) => unplacedQid.has(k));
+  const unplacedEntities = await wd.getEntities([...unplacedQid.values()]);
+  const unplaced = [...unplacedQid].map(([id, qid]) => {
+    const entity = unplacedEntities[qid];
+    const en = wd.label(entity, ['en', 'mul']);
+    if (!en) throw new Error(`Área sem nome em inglês no Wikidata: ${id} (${qid})`);
+    const pt = wd.label(entity, ['pt-br', 'pt', 'mul']) ?? en;
+    return { id, wikidata: qid, name: { pt: upperFirst(pt), en: upperFirst(en) } };
+  });
+
   // decisionKey: "BRA" for a place, "capital:BRA" for its capital(s).
   const names = (entity, what, { decisionKey, naturalEarthPt, naturalEarthEn } = {}) => {
     // "mul" is Wikidata's label for names written the same way in many languages.
@@ -324,6 +341,9 @@ export async function buildWorld({ outDir, decisions, report }) {
       administeredBy: main.country,
       claimedBy: claimedBy(entity, main.country),
       statusNote: decisions.territoryStatus[id] ? pickLangs(decisions.territoryStatus[id]) : null,
+      targetNote: decisions.territoryStatus[id]?.target
+        ? pickLangs(decisions.territoryStatus[id].target)
+        : null,
       labelPoint: labelPoint(main),
     });
   }
@@ -480,7 +500,7 @@ export async function buildWorld({ outDir, decisions, report }) {
     countries,
     territories,
     flagAttributions,
-    nonTargets: { parts: decisions.countryParts.list, countryPhrases },
+    nonTargets: { parts: decisions.countryParts.list, countryPhrases, unplaced },
   };
 }
 

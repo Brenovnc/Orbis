@@ -9,7 +9,18 @@
   --color-land-muted: #e4ddc8;
   /* Outside the chosen region: relative luminance 0.38, against 0.86 for land and 0.68 for ocean. */
   --color-land-outside: #a9a595;
+  /*
+   * Out of play (areas that are no target: Antarctica, Kosovo...): a solid, neutral sand gray at
+   * L* 82, between the cream land (94) and the outside tone (66). CIEDE2000 distance to the land,
+   * the outside tone, found, missed and the ocean: at least 11 with normal vision and with
+   * protanopia and deuteranopia simulated, and 23 or more to the amber selection and heat colors.
+   * It always has a continuous gray outline and a "Fora do jogo" key at the end of the game.
+   */
+  --color-out-of-play: #cfcbc9;
+  --color-out-of-play-edge: #5f5a52;
   --color-border: #3d3a34;
+  /* Outlines of the places around a silhouette: light gray, only context. */
+  --color-surroundings: #a3abb2;
   --color-selected: #e39b2d;
   --color-selected-edge: #7a4a06;
   --color-found: #3a9d8c;
@@ -47,7 +58,6 @@
   --color-trail-far-edge: #2b0606;
   --color-trail-end: #5468c8;
   --color-trail-end-edge: #1c2766;
-  --color-trail-route: #1d2730;
 
   --color-ink: #1d2730;
   --color-ink-muted: #4c5a66;
@@ -125,6 +135,23 @@
   pointer-events: none;
   @media (width >= 48rem) {
     width: 100%;
+  }
+}
+
+/*
+ * The hit/miss line under the answer field, used with `bar-line`. Its text sits in the middle of a
+ * line box with room above and below, so it never touches the field or the buttons. The negative
+ * margin cancels the gap the bar's column leaves above it, so the room is the same on both sides.
+ */
+@utility bar-feedback {
+  height: 1.5rem;
+  margin-top: -0.125rem;
+  font-size: 0.75rem;
+  line-height: 1.5rem;
+  @media (width >= 48rem) {
+    height: 1.75rem;
+    font-size: 0.875rem;
+    line-height: 1.75rem;
   }
 }
 

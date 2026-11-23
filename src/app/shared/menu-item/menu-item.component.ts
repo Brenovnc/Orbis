@@ -1,12 +1,11 @@
 import { NgTemplateOutlet } from '@angular/common';
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { GameIconComponent, GameIconName } from '../ui/game-icon.component';
 
-/** One game in the home menu: a link, or a dimmed non-link with the reason when not playable. */
+/** One game in the home menu: a button that opens the start dialog, or a dimmed non-button with the reason when not playable. */
 @Component({
   selector: 'app-menu-item',
-  imports: [GameIconComponent, NgTemplateOutlet, RouterLink],
+  imports: [GameIconComponent, NgTemplateOutlet],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     @if (disabledReason(); as reason) {
@@ -18,7 +17,12 @@ import { GameIconComponent, GameIconName } from '../ui/game-icon.component';
         </span>
       </div>
     } @else {
-      <a class="item hover:bg-accent-soft" [routerLink]="link()">
+      <button
+        type="button"
+        class="item w-full text-left hover:bg-accent-soft"
+        aria-haspopup="dialog"
+        (click)="chosen.emit()"
+      >
         <ng-container [ngTemplateOutlet]="iconBox" />
         <span class="min-w-0">
           <span class="block font-medium">{{ title() }}</span>
@@ -31,7 +35,7 @@ import { GameIconComponent, GameIconName } from '../ui/game-icon.component';
             <span class="block text-xs text-ink-muted tabular-nums">{{ record() }}</span>
           }
         </span>
-      </a>
+      </button>
     }
     <ng-template #iconBox>
       <span
@@ -64,10 +68,10 @@ export class MenuItemComponent {
   readonly hard = input(false);
   readonly title = input.required<string>();
   readonly description = input('');
-  readonly link = input.required<string[]>();
   readonly inProgress = input(false);
   readonly inProgressText = input('');
   readonly record = input('');
   /** Why the game cannot be played here; empty when it can. */
   readonly disabledReason = input('');
+  readonly chosen = output<void>();
 }

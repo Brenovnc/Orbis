@@ -147,18 +147,73 @@ export const STRINGS = {
     en: 'Few land borders in {continent}',
   },
 
+  // Difficulty dialog
+  'play.levels': { pt: 'Dificuldade', en: 'Difficulty' },
+  'play.close': { pt: 'Fechar', en: 'Close' },
+  'play.start': { pt: 'Começar', en: 'Start' },
+  'play.continue': { pt: 'Continuar partida', en: 'Resume game' },
+  'play.startNew': { pt: 'Começar nova partida', en: 'Start a new game' },
+  'play.discardNote': {
+    pt: 'A partida salva será descartada.',
+    en: 'The saved game will be discarded.',
+  },
+  'play.discard.title': { pt: 'Descartar a partida salva?', en: 'Discard the saved game?' },
+  'play.discard.message': {
+    pt: 'Começar uma nova partida apaga a que está em andamento.',
+    en: 'Starting a new game deletes the one in progress.',
+  },
+  'play.discard.ok': { pt: 'Descartar e começar', en: 'Discard and start' },
+  'play.custom.desc': {
+    pt: 'Ajuste cada opção deste jogo',
+    en: 'Adjust each option of this game',
+  },
+  'play.back': { pt: 'Voltar', en: 'Back' },
+  'play.needsCrossings': {
+    pt: 'Há poucas fronteiras terrestres na {continent}: ligue as travessias para jogar.',
+    en: 'There are few land borders in {continent}: turn on the sea crossings to play.',
+  },
+  'play.trailFallback': {
+    pt: 'Na {continent} nenhum país pode ser proibido: a partida roda sem proibidos.',
+    en: 'No country can be forbidden in {continent}: the game runs without any.',
+  },
+  // Items of a level: a few words each, next to an icon.
+  'level.noTime': { pt: 'Sem limite de tempo', en: 'No time limit' },
+  'level.time': { pt: '{n} min', en: '{n} min' },
+  'level.attempt1': { pt: '1 tentativa', en: '1 attempt' },
+  'level.attemptsN': { pt: '{n} tentativas', en: '{n} attempts' },
+  'level.spareGuesses': { pt: '{n} chutes extras', en: '{n} extra guesses' },
+  'level.typo.0': { pt: 'Digitação exata', en: 'Exact spelling' },
+  'level.typo.1': { pt: 'Tolera erros leves', en: 'Forgives small typos' },
+  'level.typo.2': { pt: 'Tolera erros', en: 'Forgives typos' },
+  'level.choices': { pt: '4 alternativas', en: '4 choices' },
+  'level.names': { pt: 'Nomes no mapa', en: 'Names on the map' },
+  'level.noNames': { pt: 'Sem nomes', en: 'No names' },
+  'level.learn': { pt: 'Modo aprender', en: 'Learn mode' },
+  'level.noLearn': { pt: 'Sem modo aprender', en: 'No learn mode' },
+  'level.surroundings': { pt: 'Arredores', en: 'Surroundings' },
+  'level.hints': { pt: 'Continente e dicas', en: 'Continent and hints' },
+  'level.hints.states': { pt: 'Região e dicas', en: 'Region and hints' },
+  'level.noHints': { pt: 'Sem dicas', en: 'No hints' },
+  'level.forbidden.none': { pt: 'Sem proibidos', en: 'None forbidden' },
+  'level.forbidden.sometimes': { pt: 'Às vezes 1 proibido', en: 'Sometimes 1 forbidden' },
+  'level.forbidden.always': { pt: '1 a 3 proibidos', en: '1 to 3 forbidden' },
+  'level.clues.distance-direction': { pt: 'Distância e direção', en: 'Distance and direction' },
+  'level.clues.distance': { pt: 'Só distância', en: 'Distance only' },
+  'level.clues.color': { pt: 'Só cor', en: 'Color only' },
+  'level.borders.all': { pt: 'Com fronteiras', en: 'With borders' },
+  'level.borders.coast': { pt: 'Sem fronteiras', en: 'No borders' },
+  'level.mapShown': { pt: 'Mapa visível', en: 'Map shown' },
+  'level.mapHidden': { pt: 'Mapa escondido', en: 'Map hidden' },
+
   // Trail game
-  'trail.hardFallback': {
-    pt: 'Nível Difícil indisponível na {continent}: jogando no Normal',
-    en: 'Hard level not available in {continent}: playing on Normal',
+  'trail.noForbidden': {
+    pt: 'Na {continent}, a partida roda sem proibidos',
+    en: 'In {continent}, the game has no forbidden places',
   },
   'trail.placeholder': { pt: 'Digite um lugar…', en: 'Type a place…' },
   'trail.placeholder.states': { pt: 'Digite um estado…', en: 'Type a state…' },
   'trail.goal': { pt: 'Chegue de {a} a {b}', en: 'Get from {a} to {b}' },
-  'trail.goalHard': {
-    pt: '{a} → {b}, sem passar por {x}',
-    en: '{a} → {b}, without crossing {x}',
-  },
+  'trail.without': { pt: 'Sem passar por {x}', en: 'Without crossing {x}' },
   'trail.minSteps': { pt: 'Caminho mínimo: {n} passos', en: 'Shortest path: {n} steps' },
   'trail.near': { pt: '{name}: num caminho mínimo', en: '{name}: on a shortest path' },
   'trail.detour': {
@@ -174,8 +229,8 @@ export const STRINGS = {
     en: '{name} has no land border. Guess spent.',
   },
   'trail.forbidden': {
-    pt: '{name} é o lugar proibido! Chute gasto.',
-    en: '{name} is the forbidden place! Guess spent.',
+    pt: '{name} é um lugar proibido! Chute gasto.',
+    en: '{name} is a forbidden place! Guess spent.',
   },
   'trail.repeat': { pt: 'Você já chutou {name}.', en: 'You already guessed {name}.' },
   'trail.isOrigin': {
@@ -203,12 +258,21 @@ export const STRINGS = {
     pt: 'Contorno revelado no mapa.',
     en: 'Outline shown on the map.',
   },
+  'trail.hint.outline.sea': {
+    pt: 'Contorno revelado: travessia com {a}.',
+    en: 'Outline shown: sea crossing to {a}.',
+  },
   'trail.hint.map': { pt: 'Revelar mapa', en: 'Reveal map' },
   'trail.hint.map.title': {
     pt: 'Dica: mostra os contornos e as fronteiras do mundo todo até o fim da partida',
     en: 'Hint: shows the outlines and borders of the whole world until the game ends',
   },
   'trail.guesses': { pt: 'Seus chutes', en: 'Your guesses' },
+  'trail.guessesN': { pt: 'Seus chutes ({n})', en: 'Your guesses ({n})' },
+  'trail.help': {
+    pt: 'O que significam as cores e os símbolos',
+    en: 'What the colors and symbols mean',
+  },
   'trail.none': {
     pt: 'Nenhum chute ainda. Digite um lugar e aperte Enter.',
     en: 'No guesses yet. Type a place and press Enter.',
@@ -216,15 +280,35 @@ export const STRINGS = {
   'trail.color.near': { pt: 'num caminho mínimo', en: 'on a shortest path' },
   'trail.color.detour': { pt: 'desvio possível', en: 'possible detour' },
   'trail.color.far': { pt: 'não fecha a trilha', en: 'cannot close the trail' },
-  'trail.best': { pt: 'Um caminho mínimo:', en: 'A shortest path:' },
-  'trail.yours': { pt: 'Seu caminho:', en: 'Your trail:' },
+  'trail.solution': { pt: 'Uma solução possível', en: 'A possible solution' },
+  'trail.seeBest': { pt: 'Ver um caminho mínimo', en: 'See a shortest path' },
+  'trail.stepsCompared': {
+    pt: 'O mínimo tinha {n} passos; você usou {m}.',
+    en: 'The shortest had {n} steps; you used {m}.',
+  },
+  'trail.bySea': { pt: 'por mar', en: 'by sea' },
+  'trail.yours': { pt: 'Seu caminho', en: 'Your trail' },
+  'trail.madeShortest': { pt: 'Você fez um caminho mínimo', en: 'You made a shortest path' },
   'trail.legend.yours': { pt: 'Seu caminho (preenchido)', en: 'Your trail (filled)' },
-  'trail.legend.best': {
-    pt: 'Um caminho mínimo (contorno tracejado)',
-    en: 'A shortest path (dashed outline)',
+  'trail.legend.timeline': {
+    pt: 'Linha do tempo: da origem (em cima) ao destino. Toque num lugar para vê-lo no mapa.',
+    en: 'Timeline: from the origin (top) to the destination. Tap a place to see it on the map.',
+  },
+  'trail.legend.wave': { pt: 'Trecho por mar', en: 'Stretch by sea' },
+  'trail.legend.numbers': {
+    pt: 'Números: a ordem do caminho (1 = origem)',
+    en: 'Numbers: the order of the trail (1 = origin)',
+  },
+  'trail.legend.faded': {
+    pt: 'Apagado: só no seu caminho, enquanto o caminho mínimo está aberto',
+    en: 'Faded: only in your trail, while the shortest path is open',
   },
   'trail.legend.ends': { pt: 'Origem e destino', en: 'Origin and destination' },
+  'trail.end.origin': { pt: 'origem', en: 'origin' },
+  'trail.end.destination': { pt: 'destino', en: 'destination' },
+  'trail.legend.sea': { pt: 'travessia marítima', en: 'sea crossing' },
   'trail.legend.forbidden': { pt: 'Lugar proibido', en: 'Forbidden place' },
+  'trail.legend.forbiddenMany': { pt: 'Lugares proibidos', en: 'Forbidden places' },
 
   // Silhouettes game
   'silhouette.which': { pt: 'Que lugar é este?', en: 'Which place is this?' },
@@ -236,6 +320,45 @@ export const STRINGS = {
     en: 'Outline of the place to identify',
   },
   'silhouette.scale': { pt: 'Fora de escala', en: 'Not to scale' },
+  'silhouette.surroundings': { pt: 'Com os arredores', en: 'With its surroundings' },
+  'silhouette.surroundings.aria': {
+    pt: 'Contorno do lugar a identificar, com os contornos dos lugares ao redor',
+    en: 'Outline of the place to identify, with the outlines of the places around it',
+  },
+  'silhouette.in': { pt: 'Na {place}', en: 'In {place}' },
+  'silhouette.in.region': { pt: 'Na região {place}', en: 'In the {place}' },
+  'silhouette.choices': { pt: 'Alternativas', en: 'Choices' },
+  'silhouette.wrongChoice': { pt: 'Errada:', en: 'Wrong:' },
+  'silhouette.hint': { pt: 'Dica', en: 'Hint' },
+  'silhouette.hints': { pt: 'Dicas desta pergunta', en: 'Hints for this question' },
+  'silhouette.hint.next.surroundings': {
+    pt: 'Próxima dica: os arredores',
+    en: 'Next hint: the surroundings',
+  },
+  'silhouette.hint.next.neighbors': {
+    pt: 'Próxima dica: os vizinhos',
+    en: 'Next hint: the neighbors',
+  },
+  'silhouette.hint.next.letters': {
+    pt: 'Próxima dica: a primeira letra e o número de letras',
+    en: 'Next hint: the first letter and the number of letters',
+  },
+  'silhouette.hint.none': {
+    pt: 'Todas as dicas desta pergunta já foram usadas',
+    en: 'Every hint for this question has been used',
+  },
+  'silhouette.hint.surroundings': { pt: 'Arredores', en: 'Surroundings' },
+  'silhouette.hint.borders': { pt: 'Faz fronteira com', en: 'It borders' },
+  'silhouette.hint.nearest': {
+    pt: 'Sem fronteira terrestre · mais perto de',
+    en: 'No land border · closest to',
+  },
+  'silhouette.hint.letters': { pt: 'Primeira letra', en: 'First letter' },
+  'silhouette.hint.lettersValue': {
+    pt: 'Letra {letter}, {n} letras',
+    en: 'Letter {letter}, {n} letters',
+  },
+  'silhouette.hints.title': { pt: 'Dicas', en: 'Hints' },
   'frame.accuracyTyped': {
     pt: 'Precisão: {pct}% ({found} de {attempts} respostas)',
     en: 'Accuracy: {pct}% ({found} of {attempts} answers)',
@@ -250,14 +373,25 @@ export const STRINGS = {
     pt: 'mais perto: {name} ({distance})',
     en: 'closest: {name} ({distance})',
   },
+  // Only the color as a clue: the warmest guess, with no distance.
+  'proximity.hottest': { pt: 'mais quente: {name}', en: 'hottest: {name}' },
   'proximity.result': {
     pt: '{name}: {distance} · siga para {dir}',
     en: '{name}: {distance} · head {dir}',
   },
+  // {clue}: the distance, or how hot it is in words.
+  'proximity.result.clue': { pt: '{name}: {clue}', en: '{name}: {clue}' },
   'proximity.repeat': {
-    pt: 'Você já chutou {name}: {distance}.',
-    en: 'You already guessed {name}: {distance}.',
+    pt: 'Você já chutou {name}: {clue}.',
+    en: 'You already guessed {name}: {clue}.',
   },
+  // The heat scale in words, from neighbor (0) to far away (5).
+  'proximity.heat.0': { pt: 'fervendo', en: 'boiling' },
+  'proximity.heat.1': { pt: 'muito quente', en: 'very hot' },
+  'proximity.heat.2': { pt: 'quente', en: 'hot' },
+  'proximity.heat.3': { pt: 'morno', en: 'warm' },
+  'proximity.heat.4': { pt: 'frio', en: 'cold' },
+  'proximity.heat.5': { pt: 'gelado', en: 'freezing' },
   'proximity.found': { pt: 'Achou! {name}', en: 'Found it! {name}' },
   'proximity.neighbor': { pt: 'vizinho', en: 'neighbor' },
   'proximity.km': { pt: '≈ {km} km', en: '≈ {km} km' },
@@ -275,6 +409,9 @@ export const STRINGS = {
   'proximity.secret': { pt: 'Lugar secreto:', en: 'Secret place:' },
   'proximity.secret.states': { pt: 'Estado secreto:', en: 'Secret state:' },
   'proximity.legend': { pt: 'longe → perto', en: 'far → near' },
+  'proximity.nearest': { pt: 'mais perto', en: 'closest' },
+  'proximity.warmest': { pt: 'mais quente', en: 'hottest' },
+  'proximity.help': { pt: 'Sobre as distâncias', en: 'About the distances' },
   'proximity.note': {
     pt: 'Distâncias aproximadas, entre as fronteiras mais próximas.',
     en: 'Approximate distances, between the nearest borders.',
@@ -288,13 +425,13 @@ export const STRINGS = {
   // Top bar and frame
   'bar.guesses': { pt: 'Chutes', en: 'Guesses' },
   'frame.end.trail.complete': { pt: 'Você chegou ao destino!', en: 'You reached the destination!' },
-  'frame.end.trail.guesses': { pt: 'Acabaram os chutes', en: 'Out of guesses' },
-  'frame.end.trail.gaveup': { pt: 'Partida encerrada', en: 'Game over' },
+  'frame.end.trail.guesses': { pt: 'Seus chutes acabaram', en: 'You ran out of guesses' },
+  'frame.end.trail.gaveup': { pt: 'Você desistiu', en: 'You gave up' },
   'frame.guess1': { pt: '1 chute', en: '1 guess' },
   'frame.guessesN': { pt: '{n} chutes', en: '{n} guesses' },
   'frame.yourRecordGuesses': {
-    pt: 'Seu recorde: {guesses} em {time}',
-    en: 'Your record: {guesses} in {time}',
+    pt: 'Seu recorde no nível {level}: {guesses} em {time}',
+    en: 'Your {level} record: {guesses} in {time}',
   },
   'frame.hinted': { pt: 'com dica', en: 'with hints' },
   'bar.back': { pt: 'Voltar ao menu', en: 'Back to menu' },
@@ -305,7 +442,9 @@ export const STRINGS = {
   'bar.more': { pt: 'Mais ações', en: 'More actions' },
   'frame.pause': { pt: 'Pausar', en: 'Pause' },
   'frame.resume': { pt: 'Continuar', en: 'Resume' },
-  'frame.list': { pt: 'Lista', en: 'List' },
+  'frame.listCountries': { pt: 'Países', en: 'Countries' },
+  'frame.listCapitals': { pt: 'Capitais', en: 'Capitals' },
+  'frame.listStates': { pt: 'Estados', en: 'States' },
   'frame.skip': { pt: 'Pular', en: 'Skip' },
   'frame.restart': { pt: 'Reiniciar', en: 'Restart' },
   'frame.giveUp': { pt: 'Desistir', en: 'Give up' },
@@ -318,14 +457,17 @@ export const STRINGS = {
   'frame.in': { pt: 'em', en: 'in' },
   'frame.error1': { pt: '1 erro', en: '1 error' },
   'frame.errorsN': { pt: '{n} erros', en: '{n} errors' },
-  'frame.newRecord': { pt: '★ Novo recorde!', en: '★ New record!' },
+  'frame.newRecord': {
+    pt: '★ Novo recorde no nível {level}!',
+    en: '★ New {level} record!',
+  },
   'frame.yourRecord': {
-    pt: 'Seu recorde: {found}/{total} em {time}',
-    en: 'Your record: {found}/{total} in {time}',
+    pt: 'Seu recorde no nível {level}: {found}/{total} em {time}',
+    en: 'Your {level} record: {found}/{total} in {time}',
   },
   'frame.yourRecordErrors': {
-    pt: 'Seu recorde: {found}/{total}, {errors}, em {time}',
-    en: 'Your record: {found}/{total}, {errors}, in {time}',
+    pt: 'Seu recorde no nível {level}: {found}/{total}, {errors}, em {time}',
+    en: 'Your {level} record: {found}/{total}, {errors}, in {time}',
   },
   'frame.accuracy': {
     pt: 'Precisão: {pct}% ({found} de {attempts} cliques)',
@@ -333,8 +475,8 @@ export const STRINGS = {
   },
   'frame.playAgain': { pt: 'Jogar de novo', en: 'Play again' },
   'frame.menu': { pt: 'Menu', en: 'Menu' },
-  'frame.seeMap': { pt: 'Ver mapa', en: 'See map' },
-  'frame.seeList': { pt: 'Ver lista', en: 'See list' },
+  'frame.seeResult': { pt: 'Ver resultado', en: 'See result' },
+  'frame.closeResult': { pt: 'Fechar resultado', en: 'Close result' },
 
   // Games
   'typing.placeholder.countries': { pt: 'Digite um país…', en: 'Type a country…' },
@@ -384,6 +526,10 @@ export const STRINGS = {
   },
   'click.notThat': { pt: 'Não é esse. Tente de novo.', en: "That's not it. Try again." },
   'click.itWas': { pt: 'Era: {name}', en: 'It was: {name}' },
+  'list.close': { pt: 'Fechar lista', en: 'Close list' },
+  'list.toggleGroup': { pt: 'Mostrar ou esconder o grupo', en: 'Show or hide the group' },
+  'list.foldAll': { pt: 'Recolher tudo', en: 'Collapse all' },
+  'list.unfoldAll': { pt: 'Expandir tudo', en: 'Expand all' },
   'list.found': { pt: 'Acertou:', en: 'Found:' },
   'list.missed': { pt: 'Faltou:', en: 'Missed:' },
   'list.countOf': { pt: '{found} de {total}', en: '{found} of {total}' },
@@ -407,6 +553,21 @@ export const STRINGS = {
   },
   'confirm.keepPlaying': { pt: 'Continuar jogando', en: 'Keep playing' },
 
+  // Areas out of play (land that is no target)
+  'outOfPlay.legend': { pt: 'Fora do jogo', en: 'Out of play' },
+  'outOfPlay.territories': {
+    pt: '{name}: não está entre os 195 países do jogo · entra com a opção Territórios',
+    en: '{name}: not among the 195 countries of the game · included with the Territories option',
+  },
+  'outOfPlay.unlisted': {
+    pt: '{name}: não está entre os 195 países do jogo',
+    en: '{name}: not among the 195 countries of the game',
+  },
+  'outOfPlay.never': {
+    pt: '{name}: não faz parte de nenhum modo do jogo',
+    en: '{name}: not part of any game mode',
+  },
+
   // Info card
   'info.about': { pt: 'Informações sobre {name}', en: 'Information about {name}' },
   'info.flag': { pt: 'Bandeira: {name}', en: 'Flag: {name}' },
@@ -418,6 +579,16 @@ export const STRINGS = {
   'info.area': { pt: 'Área', en: 'Area' },
   'info.region': { pt: 'Região', en: 'Region' },
   'info.abbr': { pt: 'Sigla', en: 'Abbreviation' },
+  'info.notAsked': { pt: 'Não é perguntado neste jogo', en: 'Not asked in this game' },
+  'info.notAsked.why': {
+    pt: 'Não é perguntado neste jogo: {why}',
+    en: 'Not asked in this game: {why}',
+  },
+  'info.notAsked.noCapital': { pt: 'sem capital', en: 'no capital' },
+  'info.notAsked.outline': {
+    pt: 'contorno pequeno demais para as Silhuetas',
+    en: 'outline too small for Silhouettes',
+  },
   'info.claimedBy': { pt: 'Reivindicado por', en: 'Claimed by' },
   'continent.africa': { pt: 'África', en: 'Africa' },
   'continent.antarctica': { pt: 'Antártida', en: 'Antarctica' },
@@ -442,16 +613,12 @@ export const STRINGS = {
   // Settings
   'settings.title': { pt: 'Configurações', en: 'Settings' },
   'settings.close': { pt: 'Fechar configurações', en: 'Close settings' },
-  'settings.level': { pt: 'Dificuldade', en: 'Difficulty' },
-  'settings.level.hint': {
-    pt: 'Ajusta várias opções de uma vez.',
-    en: 'Adjusts several options at once.',
-  },
   'settings.easy': { pt: 'Fácil', en: 'Easy' },
-  'settings.normal': { pt: 'Normal', en: 'Normal' },
+  'settings.normal': { pt: 'Médio', en: 'Medium' },
   'settings.hard': { pt: 'Difícil', en: 'Hard' },
   'settings.custom': { pt: 'Personalizar', en: 'Customize' },
-  'settings.options': { pt: 'Opções', en: 'Options' },
+  // The level named in the record phrases ("Seu recorde no nível Personalizado").
+  'settings.customLevel': { pt: 'Personalizado', en: 'Custom' },
   'settings.infoBox': {
     pt: 'Cartão de informações',
     en: 'Information card',
@@ -474,14 +641,47 @@ export const STRINGS = {
     en: 'next game',
   },
   'settings.nextGame.note': {
-    pt: 'Opções marcadas com "próxima partida" mudam as regras e valem a partir da próxima partida; as demais valem na hora.',
-    en: 'Options marked "next game" change the rules and apply from the next game; the others apply at once.',
+    pt: 'A opção marcada com "próxima partida" muda as regras e vale a partir da próxima partida; as demais valem na hora.',
+    en: 'The option marked "next game" changes the rules and applies from the next game; the others apply at once.',
   },
   'settings.hover': { pt: 'Destaque ao passar o mouse', en: 'Highlight on hover' },
   'settings.trailLevel': { pt: 'Nível da Trilha', en: 'Trail level' },
   'settings.trailLevel.hint': {
-    pt: 'Fácil: mapa visível. Normal: mapa escondido. Difícil: mapa escondido, um lugar proibido e menos chutes.',
-    en: 'Easy: the map is shown. Normal: the map is hidden. Hard: hidden map, a forbidden place and fewer guesses.',
+    pt: 'Fácil: mapa visível. Médio: mapa escondido. Difícil: mapa escondido e menos chutes.',
+    en: 'Easy: the map is shown. Medium: the map is hidden. Hard: hidden map and fewer guesses.',
+  },
+  'settings.trailForbidden': { pt: 'Proibidos na Trilha', en: 'Forbidden places in the Trail' },
+  'settings.trailForbidden.hint': {
+    pt: 'Lugares por onde a trilha não pode passar. Às vezes: 1, em cerca de um terço das partidas. Sempre: de 1 a 3.',
+    en: 'Places the trail may not cross. Sometimes: 1, in about a third of the games. Always: 1 to 3.',
+  },
+  'settings.trailForbidden.none': { pt: 'Nenhum', en: 'None' },
+  'settings.trailForbidden.sometimes': { pt: 'Às vezes', en: 'Sometimes' },
+  'settings.trailForbidden.always': { pt: 'Sempre', en: 'Always' },
+  'settings.trailCrossings': { pt: 'Travessias entre ilhas', en: 'Sea crossings' },
+  'settings.trailCrossings.hint': {
+    pt: 'A Trilha também pode passar por mar entre ilhas e o continente.',
+    en: 'The Trail can also cross the sea between islands and the continent.',
+  },
+  'settings.silhouetteMode': { pt: 'Modo das Silhuetas', en: 'Silhouettes mode' },
+  'settings.silhouetteMode.hint': {
+    pt: 'Alternativas: escolha entre 4 nomes, com os arredores à vista. Com dicas: digite o nome, com o continente (ou a região) à vista e até 3 dicas. Sem dicas: digite só pelo contorno.',
+    en: 'Choices: pick one of 4 names, with the surroundings shown. With hints: type the name, with the continent (or region) shown and up to 3 hints. No hints: type from the outline alone.',
+  },
+  'settings.silhouetteMode.choices': { pt: 'Alternativas', en: 'Choices' },
+  'settings.silhouetteMode.hints': { pt: 'Com dicas', en: 'With hints' },
+  'settings.silhouetteMode.typing': { pt: 'Sem dicas', en: 'No hints' },
+  'settings.mapBorders': { pt: 'Fronteiras no mapa', en: 'Borders on the map' },
+  'settings.mapBorders.hint': {
+    pt: 'Só o litoral: a terra aparece inteira, sem fronteiras; cada acerto aparece no lugar certo.',
+    en: 'Coast only: the land is shown in one piece, with no borders; each answer lights up in its place.',
+  },
+  'settings.mapBorders.all': { pt: 'Todas', en: 'All' },
+  'settings.mapBorders.coast': { pt: 'Só o litoral', en: 'Coast only' },
+  'settings.proximityClues': { pt: 'Pistas', en: 'Clues' },
+  'settings.proximityClues.hint': {
+    pt: 'O que cada chute mostra. A cor no mapa aparece sempre; em "Só cor", a lista diz em palavras se está quente ou frio.',
+    en: 'What each guess shows. The color on the map is always there; with "Color only", the list says in words how hot or cold it is.',
   },
   'settings.names': { pt: 'Nomes dos acertados no mapa', en: 'Names of found places on the map' },
   'settings.names.hint': {
@@ -493,20 +693,19 @@ export const STRINGS = {
     en: 'Attempts per question',
   },
   'settings.reveal.hint': {
-    pt: 'Nos jogos de clicar e nas Silhuetas: ao esgotar as tentativas, a resposta é revelada e conta como erro.',
-    en: 'In click games and Silhouettes: when the attempts run out, the answer is revealed and counts as a mistake.',
+    pt: 'Ao esgotar as tentativas, a resposta é revelada e conta como erro.',
+    en: 'When the attempts run out, the answer is revealed and counts as a mistake.',
   },
   'settings.timer': { pt: 'Cronômetro', en: 'Timer' },
   'settings.timer.hint': {
-    pt: 'Ligado, a partida tem tempo limite; desligado, o tempo apenas conta para cima. Na Trilha e na Proximidade o tempo sempre só conta para cima.',
-    en: 'On, the game has a time limit; off, the clock just counts up. In Trail and Proximity the clock always just counts up.',
+    pt: 'Ligado, a partida tem tempo limite; desligado, o tempo apenas conta para cima.',
+    en: 'On, the game has a time limit; off, the clock just counts up.',
   },
-  'settings.durationWorld': { pt: 'Duração no Mundo (min)', en: 'Time limit, World (min)' },
+  'settings.duration': { pt: 'Duração (min)', en: 'Time limit (min)' },
   'settings.durationContinent': {
-    pt: 'Num continente, a duração do Mundo é ajustada em proporção ao número de lugares (mínimo de 2 min).',
-    en: 'On a continent, the World time limit is scaled to its number of places (at least 2 min).',
+    pt: 'Vale para o mundo todo; num continente, é ajustada em proporção ao número de lugares (mínimo de 2 min).',
+    en: 'For the whole world; on a continent it is scaled to its number of places (at least 2 min).',
   },
-  'settings.durationBrazil': { pt: 'Duração no Brasil (min)', en: 'Time limit, Brazil (min)' },
   'settings.territories': { pt: 'Incluir territórios', en: 'Include territories' },
   'settings.territories.hint': {
     pt: 'Desligado, só os 195 países valem e cada território conta como parte do país que o administra. Ligado, Groenlândia, Guiana Francesa, Antártida e outros viram alvos próprios.',
@@ -535,6 +734,14 @@ export const STRINGS = {
     pt: 'O contínuo (projeção Patterson) se repete na horizontal, sem cortar o Pacífico; o arredondado (projeção Natural Earth) é o mapa-múndi clássico.',
     en: 'Continuous (Patterson projection) repeats sideways without cutting the Pacific; rounded (Natural Earth projection) is the classic world map.',
   },
+  'settings.camera': { pt: 'Câmera', en: 'Camera' },
+  'settings.camera.hint': {
+    pt: 'O que o mapa faz sozinho ao mostrar um lugar. Clicar num item da lista sempre leva até ele.',
+    en: 'What the map does on its own when it shows a place. Clicking a list item always takes you there.',
+  },
+  'settings.camera.zoom': { pt: 'Aproximar', en: 'Zoom in' },
+  'settings.camera.center': { pt: 'Só centralizar', en: 'Center only' },
+  'settings.camera.off': { pt: 'Desligada', en: 'Off' },
   'settings.continuous': { pt: 'Contínuo', en: 'Continuous' },
   'settings.naturalEarth': {
     pt: 'Arredondado',
@@ -554,40 +761,40 @@ export const STRINGS = {
     en: 'Pick the map (World or Brazil) and, for the World, the region (the whole world or one continent). Then pick a game from the Map group or the Challenges.',
   },
   'about.how.2': {
-    pt: 'Digitar: escreva o máximo de nomes que lembrar antes do tempo acabar; o que você acerta acende no mapa. Vale português ou inglês, sem se preocupar com acentos. Se um nome for o começo de outro (como Irã e Iraque), aperte Enter para confirmar.',
-    en: 'Typing: write as many names as you can before time runs out; what you get right lights up on the map. Portuguese or English both work, accents do not matter. If one name is the beginning of another (like Iran and Iraq), press Enter to confirm.',
+    pt: 'Digitar: escreva o máximo de nomes que lembrar antes do tempo acabar; o que você acerta acende no mapa. Vale português ou inglês, sem se preocupar com acentos. Se um nome for o começo de outro (como Irã e Iraque), aperte Enter para confirmar. No Difícil, o mapa não mostra as fronteiras: só o litoral e o que você já acertou.',
+    en: 'Typing: write as many names as you can before time runs out; what you get right lights up on the map. Portuguese or English both work, accents do not matter. If one name is the beginning of another (like Iran and Iraq), press Enter to confirm. On Hard, the map shows no borders: only the coast and what you already got right.',
   },
   'about.how.3': {
-    pt: 'Clicar: a pista (nome, capital ou bandeira) fica na barra superior e você clica no lugar certo. Use "Pular" se não souber. Cada pergunta tem um número de tentativas (nas Configurações); ao esgotá-las, a resposta é revelada no mapa e conta como erro.',
-    en: 'Clicking: the clue (name, capital or flag) is in the top bar and you click the right place. Use "Skip" if you do not know. Each question has a number of attempts (in Settings); when they run out, the answer is revealed on the map and counts as a mistake.',
+    pt: 'Clicar: a pista (nome, capital ou bandeira) fica na barra superior e você clica no lugar certo. Use "Pular" se não souber. Cada pergunta tem um número de tentativas (conforme a dificuldade); ao esgotá-las, a resposta é revelada no mapa e conta como erro.',
+    en: 'Clicking: the clue (name, capital or flag) is in the top bar and you click the right place. Use "Skip" if you do not know. Each question has a number of attempts (set by the difficulty); when they run out, the answer is revealed on the map and counts as a mistake.',
   },
   'about.how.challenges': {
-    pt: 'Nos Desafios você também responde digitando. Digitar um lugar que não vale como resposta (como Groenlândia ou Inglaterra) não custa nada: o jogo explica o porquê.',
-    en: 'In the Challenges you also answer by typing. Typing a place that is not a valid answer (like Greenland or England) costs nothing: the game explains why.',
+    pt: 'Nos Desafios você também responde digitando (menos nas Silhuetas no Fácil, com alternativas). Digitar um lugar que não vale como resposta (como Groenlândia ou Inglaterra) não custa nada: o jogo explica o porquê.',
+    en: 'In the Challenges you also answer by typing (except in Silhouettes on Easy, with choices). Typing a place that is not a valid answer (like Greenland or England) costs nothing: the game explains why.',
   },
   'about.how.silhouettes': {
-    pt: 'Silhuetas: aparece só o contorno de um lugar, fora de escala, e você digita o nome. O contorno é só o território do próprio lugar (a Dinamarca aparece sem a Groenlândia). Ao acertar, ele acende no mapa; ao esgotar as tentativas, a resposta é revelada e conta como erro.',
-    en: 'Silhouettes: only the outline of a place is shown, not to scale, and you type its name. The outline is only the place’s own land (Denmark without Greenland). When you get it right, it lights up on the map; when the attempts run out, the answer is revealed and counts as a mistake.',
+    pt: 'Silhuetas: descubra o lugar pelo contorno. No Fácil, você escolhe entre 4 alternativas e o contorno já vem com os arredores. No Médio, digita o nome com o continente (ou a região do Brasil) à vista e tem até 3 dicas por pergunta: arredores, vizinhos e primeira letra; no recorde, com os mesmos acertos, vence a partida com dica em menos perguntas. No Difícil, só o contorno, fora de escala e sem dicas. O mapa mostra só o litoral, sem fronteiras. O contorno é só o território do próprio lugar (a Dinamarca aparece sem a Groenlândia). Ao acertar, ele acende no mapa; ao esgotar as tentativas, a resposta é revelada e conta como erro.',
+    en: 'Silhouettes: name the place from its outline. On Easy, you pick one of 4 choices and the outline comes with its surroundings. On Medium, you type the name with the continent (or region of Brazil) shown and have up to 3 hints per question: surroundings, neighbors and first letter; in the record, with the same score, the game with hints in fewer questions wins. On Hard, only the outline, not to scale and with no hints. The map shows only the coast, with no borders. The outline is only the place’s own land (Denmark without Greenland). When you get it right, it lights up on the map; when the attempts run out, the answer is revealed and counts as a mistake.',
   },
   'about.how.neighbors': {
-    pt: 'Vizinhos: um lugar fica destacado no mapa e você digita todos os vizinhos terrestres dele. "Desistir da rodada" mostra os que faltaram.',
-    en: 'Neighbors: a place is highlighted on the map and you type all of its land neighbors. "Give up the round" shows the ones you missed.',
+    pt: 'Vizinhos: um lugar fica destacado no mapa e você digita todos os vizinhos terrestres dele. "Desistir da rodada" mostra os que faltaram. No Difícil, o mapa não mostra as fronteiras.',
+    en: 'Neighbors: a place is highlighted on the map and you type all of its land neighbors. "Give up the round" shows the ones you missed. On Hard, the map shows no borders.',
   },
   'about.how.trail': {
-    pt: 'Trilha: a origem e o destino já vêm dados. Digite, em qualquer ordem, os lugares que os ligam por fronteiras terrestres; você vence quando seus chutes formam um caminho ligado de um ao outro. Cada lugar novo gasta um chute. A cor de cada chute diz se ele está num caminho mínimo (verde, ✓), se é um desvio que ainda cabe nos chutes da partida (laranja, ~) ou se não ajuda (vermelho, ✗). No Fácil o mapa aparece inteiro; no Normal só aparecem a origem, o destino e seus chutes; o Difícil também tem um lugar proibido e menos chutes. As dicas "Próximo contorno" e "Revelar mapa" não gastam chutes, mas o recorde fica marcado "com dica". O nível fica nas Configurações.',
-    en: 'Trail: the origin and the destination are given. Type, in any order, the places that link them by land borders; you win when your guesses form a connected path from one to the other. Each new place spends a guess. The color of each guess tells whether it is on a shortest path (green, ✓), a detour that still fits the game’s guesses (orange, ~) or of no help (red, ✗). On Easy the whole map is shown; on Normal only the origin, the destination and your guesses; Hard also has a forbidden place and fewer guesses. The "Next outline" and "Reveal map" hints spend no guesses, but the record is marked "with hints". The level is in Settings.',
+    pt: 'Trilha: a origem e o destino já vêm dados. Digite, em qualquer ordem, os lugares que os ligam por fronteiras terrestres; você vence quando seus chutes formam um caminho ligado de um ao outro. Cada lugar novo gasta um chute. A cor de cada chute diz se ele está num caminho mínimo (verde, ✓), se é um desvio que ainda cabe nos chutes da partida (laranja, ~) ou se não ajuda (vermelho, ✗). No Fácil o mapa aparece inteiro; no Médio e no Difícil só aparecem a origem, o destino e seus chutes, e o Difícil dá menos chutes. Pode haver lugares proibidos, marcados com ✗: às vezes 1 no Médio, de 1 a 3 no Difícil. Com a opção "Travessias entre ilhas" (na janela de início da Trilha), a trilha também passa por mar. As dicas "Próximo contorno" e "Revelar mapa" não gastam chutes, mas o recorde fica marcado "com dica". O nível é escolhido ao começar a partida.',
+    en: 'Trail: the origin and the destination are given. Type, in any order, the places that link them by land borders; you win when your guesses form a connected path from one to the other. Each new place spends a guess. The color of each guess tells whether it is on a shortest path (green, ✓), a detour that still fits the game’s guesses (orange, ~) or of no help (red, ✗). On Easy the whole map is shown; on Medium and Hard only the origin, the destination and your guesses, and Hard gives fewer guesses. Some places may be forbidden, marked with ✗: sometimes 1 on Medium, 1 to 3 on Hard. With the "Sea crossings" option (in the Trail’s start window), the trail also crosses the sea. The "Next outline" and "Reveal map" hints spend no guesses, but the record is marked "with hints". The level is chosen when you start the game.',
   },
   'about.how.proximity': {
-    pt: 'Proximidade: ache o lugar secreto. Cada chute mostra a distância até ele, uma seta na direção dele e uma cor no mapa, de quente (perto) a frio (longe).',
-    en: 'Proximity: find the secret place. Each guess shows how far it is, an arrow pointing towards it and a color on the map, from hot (near) to cold (far).',
+    pt: 'Proximidade: ache o lugar secreto. Cada chute ganha uma cor no mapa, de quente (perto) a frio (longe). No Fácil, também aparecem a distância até ele e uma seta na direção dele; no Médio, só a distância; no Difícil, só a cor, escrita em palavras na lista (de "fervendo" a "gelado").',
+    en: 'Proximity: find the secret place. Each guess gets a color on the map, from hot (near) to cold (far). On Easy, you also see how far it is and an arrow pointing towards it; on Medium, only the distance; on Hard, only the color, put into words in the list (from "boiling" to "freezing").',
   },
   'about.how.4': {
     pt: 'Arraste para mover o mapa e use a roda do mouse, a pinça ou o toque duplo para aproximar. Ilhas e países pequenos têm uma área de toque maior.',
     en: 'Drag to move the map and use the mouse wheel, pinching or a double tap to zoom. Small islands and countries have a larger touch area.',
   },
   'about.how.5': {
-    pt: 'Em Configurações você escolhe Fácil, Normal ou Difícil, liga os sons, troca o idioma e o tipo de mapa (contínuo ou arredondado). A partida em andamento e os recordes ficam salvos neste navegador.',
-    en: 'In Settings you choose Easy, Normal or Hard, turn sounds on and switch the language and the map type (continuous or rounded). The game in progress and your records are saved in this browser.',
+    pt: 'Ao começar um jogo você escolhe Fácil, Médio, Difícil ou Personalizar (cada opção daquele jogo). Nas Configurações ficam o idioma, o tipo de mapa (contínuo ou arredondado), a câmera, os territórios e os sons. A partida em andamento e os recordes ficam salvos neste navegador.',
+    en: 'When you start a game you choose Easy, Medium, Hard or Customize (each option of that game). Settings has the language, the map type (continuous or rounded), the camera, the territories and the sounds. The game in progress and your records are saved in this browser.',
   },
   'about.criteria.title': { pt: 'Países e territórios', en: 'Countries and territories' },
   'about.criteria.1': {
@@ -618,6 +825,10 @@ export const STRINGS = {
   'about.borders.3': {
     pt: 'Na Proximidade, a distância é a menor entre as bordas dos dois lugares, medida sobre o globo com as fronteiras simplificadas do mapa. É aproximada (erro de algumas dezenas de km), por isso aparece arredondada para dezenas de km, e vizinhos aparecem como "vizinho".',
     en: 'In Proximity, the distance is the shortest one between the borders of the two places, measured on the globe with the map’s simplified borders. It is approximate (off by a few tens of km), so it is rounded to tens of km, and neighbors are shown as "neighbor".',
+  },
+  'about.borders.4': {
+    pt: 'Travessias da Trilha (opção): uma ilha se liga aos lugares a até 300 km de litoral a litoral; as que não têm nenhum, ao mais próximo. Duas massas continentais nunca se ligam por mar.',
+    en: 'Trail sea crossings (option): an island is linked to the places within 300 km, coast to coast; those with none, to the nearest one. Two continental masses are never linked by sea.',
   },
   'about.maps.title': { pt: 'Projeção do mapa', en: 'Map projection' },
   'about.maps.text': {

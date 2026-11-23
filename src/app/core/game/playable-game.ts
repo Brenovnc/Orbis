@@ -1,8 +1,15 @@
 import type { Signal } from '@angular/core';
 import { Layer } from '../data/geo-data.models';
 import { GameId } from '../games';
-import type { TrailLevel } from '../settings.service';
+import type {
+  MapBorders,
+  ProximityClues,
+  SilhouetteMode,
+  TrailForbidden,
+  TrailLevel,
+} from '../settings.service';
 import { TypoTolerance } from './answers';
+import type { PlayedLevel } from './records.service';
 import { Target } from './targets';
 import type { TrailPuzzle } from './trail-graph';
 
@@ -21,6 +28,16 @@ export interface GameResult {
   guesses?: number;
   /** A hint was used (Trail only). */
   hinted?: boolean;
+  /** Questions in which a hint was used (Silhouettes with hints only). */
+  hintedQuestions?: number;
+}
+
+/** The options of a Silhouettes question (mode with choices). */
+export interface ChoiceSet {
+  /** Ids in the order shown, the answer among them. */
+  options: string[];
+  /** Options already tried, all wrong. */
+  wrong: string[];
 }
 
 /** What is saved in the browser so a reload continues where the player stopped. */
@@ -33,8 +50,12 @@ export interface SavedGame {
   found: string[];
   elapsedMs: number;
   durationMs: number | null;
+  /** Level of the record, fixed when the game started (the game page adds it). */
+  playedLevel?: PlayedLevel;
   // Rules chosen when the game started; settings changed later wait for the next game.
   // Optional because older saves do not have them (the current settings are used then).
+  /** Typing games and Neighbors only (the game page adds it). */
+  mapBorders?: MapBorders;
   /** Typing games only. */
   tolerance?: TypoTolerance;
   /** Click games only. */
@@ -49,6 +70,12 @@ export interface SavedGame {
   errors?: number;
   /** Errors on the question being asked now. */
   currentErrors?: number;
+  // Silhouettes game only:
+  silhouetteMode?: SilhouetteMode;
+  /** Choices drawn for the questions still open, by id, so a reload never redraws them. */
+  choices?: Record<string, ChoiceSet>;
+  /** Hints used, by question. */
+  hintsUsed?: Record<string, number>;
   // Neighbors game only:
   /** The places asked, one per round. */
   subjects?: string[];
@@ -57,8 +84,10 @@ export interface SavedGame {
   /** Rounds already played. */
   results?: { id: string; found: number; total: number }[];
   // Trail game only:
-  /** Level the game was started with; saves from before the levels have none (= normal). */
+  /** Options the game was started with. */
   trailLevel?: TrailLevel;
+  trailForbidden?: TrailForbidden;
+  trailCrossings?: boolean;
   puzzle?: TrailPuzzle;
   /** Places guessed, in the order typed. */
   chosen?: string[];
@@ -66,9 +95,8 @@ export interface SavedGame {
   outlines?: string[];
   /** The "reveal map" hint was used. */
   mapShown?: boolean;
-  /** Older saves only: the trail typed in order, origin first. */
-  trail?: string[];
   // Proximity game only:
+  proximityClues?: ProximityClues;
   secret?: string;
   /** Ids guessed, in order. */
   guessed?: string[];

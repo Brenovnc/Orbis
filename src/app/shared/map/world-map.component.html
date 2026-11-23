@@ -5,7 +5,8 @@
   class="block h-full w-full touch-none select-none"
   [class.is-selectable]="state.selectable()"
   [class.is-hidden]="state.hidden()"
-  [class.no-hover]="!settings.value().hoverHighlight || state.hidden()"
+  [class.is-coast]="coastOnly()"
+  [class.no-hover]="!settings.value().hoverHighlight || state.hidden() || coastOnly()"
   [attr.viewBox]="viewBox()"
   preserveAspectRatio="xMidYMid meet"
   role="img"
@@ -33,12 +34,19 @@
       <path class="sphere" [attr.d]="spherePath()" />
       <path class="graticule" clip-path="url(#sphere-clip)" [attr.d]="graticulePath()" />
     }
+    @if (coastOnly()) {
+      <path class="land is-merged" [attr.d]="mergedLandPath()" />
+      <path class="merged-seam" [attr.d]="mergedSeamPath()" />
+    }
     @for (shape of shapes(); track shape.id) {
       <path
         class="land"
         [class.is-neutral]="shape.neutral"
         [class.is-outside]="outsideIds().has(shape.id)"
+        [class.is-out-of-play]="outOfPlayIds().has(shape.id)"
         [class.is-found]="state.found().has(shape.id)"
+        [class.is-yours-only]="state.yoursOnly().has(shape.id)"
+        [class.is-faded]="state.yoursOnlyFaded() && state.yoursOnly().has(shape.id)"
         [class.is-missed]="state.missed().has(shape.id)"
         [class.is-selected]="shape.id === state.selectedId() || state.focus().has(shape.id)"
         [class.is-hovered]="shape.id === state.hoveredId()"
@@ -53,24 +61,38 @@
     @if (!state.hidden()) {
       <path class="coast" [attr.d]="coastPath()" />
       <path class="borders" [attr.d]="bordersPath()" />
+      <!-- Out of play: continuous gray outline; a hidden map draws none, it would show the coasts. -->
+      <path class="missed-outline out-of-play-outline" [attr.d]="outOfPlayOutlines()" />
     }
+    <!-- Trail: all the sea crossings in one path. -->
+    <path class="sea-line" [attr.d]="seaPath()" />
     @if (view().sphere) {
       <!-- The rounded edge of the map, over the land so the grid and Antarctica end cleanly. -->
       <path class="sphere-edge" [attr.d]="spherePath()" />
     }
     <!-- Found and missed places get one outline path each (the fill is the land path's own color); hatching and dashes made the map crawl. -->
     <path class="found-outline" [attr.d]="foundOutlines()" />
+    <!-- Trail, at the end: the places only in the player's trail fade while a shortest path is shown. -->
+    <path
+      class="found-outline is-yours-only"
+      [class.is-faded]="state.yoursOnlyFaded()"
+      [attr.d]="yoursOnlyOutlines()"
+    />
     <path class="heat-outline" [attr.d]="heatOutlines()" />
     <path class="missed-outline" [attr.d]="missedOutlines()" />
     <!-- Trail: one path per color, each with its own line pattern, so color is never the only cue. -->
     @for (group of trailOutlines(); track group.kind) {
       <path class="trail-outline" [attr.data-trail]="group.kind" [attr.d]="group.d" />
     }
-    <!-- A shortest path at the end of the Trail: dashed line over a light halo, readable on any fill. -->
-    <path class="route-halo" [attr.d]="routeOutline()" />
-    <path class="route-outline" [attr.d]="routeOutline()" />
+    @for (group of seaTrails(); track group.paint) {
+      <path class="sea-trail is-edge" [attr.data-trail]="group.paint" [attr.d]="group.d" />
+      <path class="sea-trail" [attr.data-trail]="group.paint" [attr.d]="group.d" />
+    }
     @for (shape of focusShapes(); track shape.id) {
       <path class="focus-outline" [attr.d]="shape.outline" />
+    }
+    @for (shape of stepHoverShapes(); track shape.id) {
+      <path class="focus-outline is-step" [attr.d]="shape.outline" />
     }
     @for (marker of markers(); track marker.id) {
       @if (marker.kind === 'forbidden') {
@@ -89,6 +111,7 @@
           [class.is-focus]="marker.kind === 'focus'"
           [class.is-heat]="marker.kind === 'heat'"
           [class.is-trail]="marker.kind === 'trail'"
+          [class.is-faded]="state.yoursOnlyFaded() && state.yoursOnly().has(marker.id)"
           [attr.data-heat]="marker.heat ?? null"
           [attr.data-trail]="marker.trail ?? null"
           [attr.cx]="marker.x"
@@ -112,6 +135,41 @@
       <!-- Name of a found place; the group is placed on the map, the text keeps its size. -->
       <g [attr.transform]="'translate(' + label.x + ' ' + label.y + ')'" class="map-label-anchor">
         <text class="map-label" text-anchor="middle">{{ label.text }}</text>
+      </g>
+    }
+    @for (mark of stepMarks(); track mark.key) {
+      <!-- Trail, at the end: a tag "1 Zâmbia", the order of the trail and the name in one. Fixed size on screen. -->
+      <g [attr.transform]="'translate(' + mark.x + ' ' + mark.y + ')'" class="map-label-anchor">
+        <g class="step-scale" [style.--dy.px]="mark.dy">
+          <g
+            class="step-pop"
+            [class.is-hover]="state.stepHover()?.id === mark.id"
+            [attr.data-trail]="mark.paint"
+            [style.animation-delay.ms]="mark.delay"
+          >
+            <title>{{ mark.label }}</title>
+            <rect
+              class="step-tag"
+              [attr.x]="-mark.width / 2"
+              y="-11"
+              [attr.width]="mark.width"
+              height="22"
+              rx="11"
+            />
+            <circle class="step-dot" [attr.cx]="-mark.width / 2 + 11" r="9" />
+            <text
+              class="step-number"
+              text-anchor="middle"
+              dominant-baseline="central"
+              [attr.x]="-mark.width / 2 + 11"
+            >
+              {{ mark.n }}
+            </text>
+            <text class="step-name" dominant-baseline="central" [attr.x]="-mark.width / 2 + 25">
+              {{ mark.name }}
+            </text>
+          </g>
+        </g>
       </g>
     }
     @for (shape of wrongShapes(); track shape.id) {

@@ -11,11 +11,27 @@ export type GameIconName =
   | 'route'
   | 'radar'
   | 'settings'
-  | 'info';
+  | 'info'
+  | 'clock'
+  | 'target'
+  | 'eye'
+  | 'eye-off'
+  | 'lightbulb'
+  | 'tag'
+  | 'graduation-cap'
+  | 'map'
+  | 'ban'
+  | 'compass'
+  | 'ruler'
+  | 'palette'
+  | 'list-checks'
+  | 'a-large-small'
+  | 'arrow-left';
 
 /**
  * Icons from Lucide (ISC license, see DATA_SOURCES.md): the SVG shapes copied as they are, without
- * the library. The nine games and the menu's "settings" and "info". `hard` adds the difficulty badge (a flame) in the corner.
+ * the library. The nine games, the menu's "settings" and "info", and the items of the start
+ * dialog. `hard` adds the difficulty badge (a flame) in the corner.
  */
 @Component({
   selector: 'app-game-icon',
@@ -96,6 +112,103 @@ export type GameIconName =
           <circle cx="6" cy="19" r="3" />
           <path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15" />
           <circle cx="18" cy="5" r="3" />
+        }
+        @case ('clock') {
+          <circle cx="12" cy="12" r="10" />
+          <path d="M12 6v6l4 2" />
+        }
+        @case ('target') {
+          <circle cx="12" cy="12" r="10" />
+          <circle cx="12" cy="12" r="6" />
+          <circle cx="12" cy="12" r="2" />
+        }
+        @case ('eye') {
+          <path
+            d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"
+          />
+          <circle cx="12" cy="12" r="3" />
+        }
+        @case ('eye-off') {
+          <path
+            d="M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49"
+          />
+          <path d="M14.084 14.158a3 3 0 0 1-4.242-4.242" />
+          <path
+            d="M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143"
+          />
+          <path d="m2 2 20 20" />
+        }
+        @case ('lightbulb') {
+          <path
+            d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"
+          />
+          <path d="M9 18h6" />
+          <path d="M10 22h4" />
+        }
+        @case ('a-large-small') {
+          <path d="M21 14h-5" />
+          <path d="M16 16v-3.5a2.5 2.5 0 0 1 5 0V16" />
+          <path d="M4.5 13h6" />
+          <path d="m3 16 4.5-9 4.5 9" />
+        }
+        @case ('tag') {
+          <path
+            d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"
+          />
+          <circle cx="7.5" cy="7.5" r=".5" fill="currentColor" />
+        }
+        @case ('graduation-cap') {
+          <path
+            d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"
+          />
+          <path d="M22 10v6" />
+          <path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5" />
+        }
+        @case ('map') {
+          <path
+            d="M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0z"
+          />
+          <path d="M15 5.764v15" />
+          <path d="M9 3.236v15" />
+        }
+        @case ('ban') {
+          <circle cx="12" cy="12" r="10" />
+          <path d="M4.929 4.929 19.07 19.071" />
+        }
+        @case ('compass') {
+          <circle cx="12" cy="12" r="10" />
+          <path
+            d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z"
+          />
+        }
+        @case ('ruler') {
+          <path
+            d="M21.3 15.3a2.4 2.4 0 0 1 0 3.4l-2.6 2.6a2.4 2.4 0 0 1-3.4 0L2.7 8.7a2.41 2.41 0 0 1 0-3.4l2.6-2.6a2.41 2.41 0 0 1 3.4 0Z"
+          />
+          <path d="m14.5 12.5 2-2" />
+          <path d="m11.5 9.5 2-2" />
+          <path d="m8.5 6.5 2-2" />
+          <path d="m17.5 15.5 2-2" />
+        }
+        @case ('palette') {
+          <path
+            d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z"
+          />
+          <circle cx="13.5" cy="6.5" r=".5" fill="currentColor" />
+          <circle cx="17.5" cy="10.5" r=".5" fill="currentColor" />
+          <circle cx="6.5" cy="12.5" r=".5" fill="currentColor" />
+          <circle cx="8.5" cy="7.5" r=".5" fill="currentColor" />
+        }
+        @case ('list-checks') {
+          <path d="M13 5h8" />
+          <path d="M13 12h8" />
+          <path d="M13 19h8" />
+          <path d="m3 17 2 2 4-4" />
+          <path d="m3 7 2 2 4-4" />
+        }
+        @case ('arrow-left') {
+          <path d="m12 19-7-7 7-7" />
+          <path d="M19 12H5" />
         }
         @case ('radar') {
           <path d="M19.07 4.93A10 10 0 0 0 6.99 3.34" />

@@ -1,6 +1,6 @@
 # Relatório da geração de dados (gerado automaticamente)
 
-Gerado em 2026-11-15 por `npm run data`.
+Gerado em 2026-11-23 por `npm run data`.
 
 ## Contagens
 - Membros da ONU encontrados: 193
@@ -200,7 +200,6 @@ Gerado em 2026-11-15 por `npm run data`.
 - BHR Bahrein – QAT Catar: ≈ 9 km
 - DNK Dinamarca – SWE Suécia: ≈ 5 km
 - EGY Egito – JOR Jordânia: ≈ 7 km
-- GBR Reino Unido – USA Estados Unidos: ≈ 7 km
 - GRD Granada – VCT São Vicente e Granadinas: ≈ 8 km
 - ITA Itália – MCO Mônaco: ≈ 8 km
 - MAR Marrocos – MRT Mauritânia: ≈ 4 km
@@ -209,3 +208,50 @@ Gerado em 2026-11-15 por `npm run data`.
 - CHN China – TWN Taiwan: ≈ 8 km
 - CYP Chipre – CYN República Turca de Chipre do Norte: ≈ 1 km
 - VGB Ilhas Virgens Britânicas – VIR Ilhas Virgens Americanas: ≈ 7 km
+
+## Travessias da Trilha só pela garantia (nenhum lugar dentro do limite de distância)
+- territórios desligados: AUS Austrália – NZL Nova Zelândia, ≈ 626 km
+- territórios desligados: COM Comores – MDG Madagascar, ≈ 391 km
+- territórios desligados: COM Comores – SYC Seicheles, ≈ 340 km
+- territórios desligados: CPV Cabo Verde – SEN Senegal, ≈ 588 km
+- territórios desligados: FJI Fiji – TON Tonga, ≈ 460 km
+- territórios desligados: FJI Fiji – TUV Tuvalu, ≈ 748 km
+- territórios desligados: FSM Micronésia – MHL Ilhas Marshall, ≈ 563 km
+- territórios desligados: FSM Micronésia – PLW Palau, ≈ 407 km
+- territórios desligados: IND Índia – MDV Maldivas, ≈ 427 km
+- territórios desligados: ISL Islândia – NOR Noruega, ≈ 570 km
+- territórios desligados: KIR Kiribati – MHL Ilhas Marshall, ≈ 344 km
+- territórios desligados: KIR Kiribati – TUV Tuvalu, ≈ 345 km
+- territórios desligados: MDG Madagascar – MUS Maurício, ≈ 865 km
+- territórios desligados: MHL Ilhas Marshall – NRU Nauru, ≈ 596 km
+- territórios desligados: TON Tonga – WSM Samoa, ≈ 380 km
+- territórios ligados: ARG Argentina – FLK Ilhas Malvinas, ≈ 350 km
+- territórios ligados: ATA Antártida – BVT Ilha Bouvet, ≈ 1736 km
+- territórios ligados: ATA Antártida – CHL Chile, ≈ 832 km
+- territórios ligados: ATA Antártida – SGS Ilhas Geórgia do Sul e Sandwich do Sul, ≈ 839 km
+- territórios ligados: ATF Terras Austrais e Antárticas Francesas – HMD Ilha Heard e Ilhas McDonald, ≈ 430 km
+- territórios ligados: ATF Terras Austrais e Antárticas Francesas – ZAF África do Sul, ≈ 1058 km
+- territórios ligados: AUS Austrália – NZL Nova Zelândia, ≈ 626 km
+- territórios ligados: BMU Bermudas – USA Estados Unidos, ≈ 1041 km
+- territórios ligados: CCK Ilhas Cocos – IDN Indonésia, ≈ 951 km
+- territórios ligados: COK Ilhas Cook – KIR Kiribati, ≈ 434 km
+- territórios ligados: COM Comores – SYC Seicheles, ≈ 340 km
+- territórios ligados: CPV Cabo Verde – SEN Senegal, ≈ 588 km
+- territórios ligados: CXR Ilha Christmas – IDN Indonésia, ≈ 348 km
+- territórios ligados: FSM Micronésia – GUM Guam, ≈ 754 km
+- territórios ligados: FSM Micronésia – MHL Ilhas Marshall, ≈ 563 km
+- territórios ligados: FSM Micronésia – PLW Palau, ≈ 407 km
+- territórios ligados: IND Índia – MDV Maldivas, ≈ 427 km
+- territórios ligados: IOT Território Britânico do Oceano Índico – MDV Maldivas, ≈ 536 km
+- territórios ligados: KIR Kiribati – MHL Ilhas Marshall, ≈ 344 km
+- territórios ligados: KIR Kiribati – PYF Polinésia Francesa, ≈ 574 km
+- territórios ligados: KIR Kiribati – TUV Tuvalu, ≈ 345 km
+- territórios ligados: KIR Kiribati – UMI Ilhas Menores Distantes dos Estados Unidos, ≈ 373 km
+- territórios ligados: LBR Libéria – SHN Santa Helena, ≈ 1542 km
+- territórios ligados: MDG Madagascar – REU Reunião, ≈ 677 km
+- territórios ligados: MHL Ilhas Marshall – NRU Nauru, ≈ 596 km
+- territórios ligados: NCL Nova Caledônia – NFK Ilha Norfolk, ≈ 705 km
+- territórios ligados: NIU Niue – TON Tonga, ≈ 425 km
+- territórios ligados: PCN Ilhas Pitcairn – PYF Polinésia Francesa, ≈ 1039 km
+- territórios ligados: TUV Tuvalu – WLF Wallis e Futuna, ≈ 577 km
+- territórios ligados: WLF Wallis e Futuna – WSM Samoa, ≈ 367 km

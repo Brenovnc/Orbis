@@ -67,6 +67,45 @@ export function buildWorldTargets(
   }));
 }
 
+/**
+ * Why a map area is not part of the game: `territories` = of no country, a target of this game
+ * when that option is on; `unlisted` = of no country, and not a target of this game even then;
+ * `game` = a place of the game in use (a country, or a territory with the option on) that this game
+ * does not ask about; `never` = not a target in any mode.
+ */
+export type OutOfPlayKind = 'territories' | 'unlisted' | 'game' | 'never';
+
+/**
+ * The map areas that no target of the game lights up (Antarctica, Kosovo, Bir Tawil...), by shape
+ * id. They are real land that is neither to be found nor a wrong answer, so the map paints them
+ * apart. Pass the targets this game has on the whole map (before the continent filter), and those
+ * it would have with territories on.
+ */
+export function outOfPlayUnits(
+  units: WorldUnitProperties[],
+  targets: Target[],
+  targetsWithTerritories: Target[],
+  includeTerritories: boolean,
+): Map<string, OutOfPlayKind> {
+  const lit = new Set(targets.flatMap((target) => target.unitIds));
+  const litWithTerritories = new Set(targetsWithTerritories.flatMap((target) => target.unitIds));
+  const kindOf = (unit: WorldUnitProperties): OutOfPlayKind => {
+    if (!unit.country && !unit.territory) return 'never';
+    if (unit.country || includeTerritories) return 'game';
+    return litWithTerritories.has(unit.id) ? 'territories' : 'unlisted';
+  };
+  return new Map(units.filter((unit) => !lit.has(unit.id)).map((unit) => [unit.id, kindOf(unit)]));
+}
+
+/**
+ * True when the area (a territory, if it has a place in the data) lies in another continent than
+ * the chosen one: it then keeps the tone of what is outside the region, not the one out of play.
+ */
+export const isOtherContinent = (
+  place: { continent: Continent } | undefined,
+  continent: Continent | null,
+): boolean => !!continent && !!place && place.continent !== continent;
+
 /** The 26 states and the Federal District, grouped by region. Each one is a single map shape. */
 export function buildBrazilTargets(states: BrazilState[]): Target[] {
   return states.map((state) => ({

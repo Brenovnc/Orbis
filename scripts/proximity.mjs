@@ -10,6 +10,8 @@ const RAD = Math.PI / 180;
 /** Rings are filled in with a point at least this often (km), so a border is not just its corners. */
 const SPACING_KM = 15;
 const EARTH_KM = 6371.0088;
+/** Decimals of the ends of a crossing (0.01° is about 1 km). */
+const POINT_DECIMALS = 2;
 /** Directions are kept as one of 16 compass sectors (one hex digit): 0 = north, 4 = east... */
 const SECTORS = 16;
 
@@ -47,6 +49,7 @@ export function buildProximity(outDir, decisions) {
   const continentOf = new Map([...countries, ...territories].map((p) => [p.id, p.continent]));
   const excluded = decisions.trailExcludedBorders.list;
   const trail = withoutBorders(trailGraph(core, territories, continentOf), excluded);
+  const trailTerritories = withoutBorders(withTerritories.neighbors, excluded);
 
   const neighborsFile = {
     world: {
@@ -59,7 +62,7 @@ export function buildProximity(outDir, decisions) {
       trail,
       // The Trail with territories on: each territory is a place of its own, so only the borders
       // excluded by hand (a territory the map does not separate) are dropped.
-      trailTerritories: withoutBorders(withTerritories.neighbors, excluded),
+      trailTerritories,
     },
     brazil: brazilNeighbors(brazilTopo, states),
   };
@@ -69,18 +72,23 @@ export function buildProximity(outDir, decisions) {
   const labelOf = new Map(
     [...countries, ...territories, ...states].map((p) => [p.id, p.labelPoint]),
   );
-  const ringsByNode = (node) => {
+  const linesByNode = (node, linesOf) => {
     const map = new Map();
     units.forEach((u, i) => {
       const id = node(u);
       if (!id) return;
       if (!map.has(id)) map.set(id, []);
-      map.get(id).push(...ringsOf(shapes[i].geometry));
+      map.get(id).push(...linesOf(i));
     });
     return map;
   };
+  const ringsByNode = (node) => linesByNode(node, (i) => ringsOf(shapes[i].geometry));
+  // With territories off, a distance is measured only on the country's own land: the pieces that
+  // are territories (Gibraltar, Virgin Islands...) are left out, while islands of the country
+  // itself (Sicily, Hawaii, Jan Mayen) count. Borders through a territory stay (neighbours: 0 km).
+  const ownLandNode = (u) => (u.territory ? null : coreNode(u));
   const files = {
-    'proximity-world.json': proximity(worldIds, ringsByNode(coreNode), labelOf, core.neighbors),
+    'proximity-world.json': proximity(worldIds, ringsByNode(ownLandNode), labelOf, core.neighbors),
     'proximity-world-territories.json': proximity(
       allIds,
       ringsByNode(territoryNode),
@@ -104,8 +112,168 @@ export function buildProximity(outDir, decisions) {
     writeFileSync(join(outDir, name), text + '\n');
     sizes[name] = text.length;
   }
+
+  // --- Sea crossings of the Trail game, with the same own-land rule for territories off.
+  const coasts = coastsOf(worldTopo, geometries);
+  const coastsByNode = (node) => linesByNode(node, (i) => coasts[i]);
+  // An excluded entry is a pair, or a place and all those of some continents.
+  const rules = {
+    ...decisions.trailCrossings,
+    excluded: [
+      ...excluded,
+      ...decisions.trailCrossings.excluded.flatMap(({ a, b, continents }) =>
+        continents
+          ? allIds
+              .filter((id) => continents.includes(continentOf.get(id)))
+              .map((id) => ({ a, b: id }))
+          : [{ a, b }],
+      ),
+    ],
+  };
+  const crossings = {
+    off: seaCrossings(
+      worldIds,
+      coastsByNode(ownLandNode),
+      trail,
+      // A border through a territory (Spain–United Kingdom: Gibraltar) does not make the United
+      // Kingdom part of the continent, nor does it join them in one island group.
+      withoutBorders(
+        trail,
+        Object.keys(core.via).map((key) => ({ a: key.slice(0, 3), b: key.slice(4) })),
+      ),
+      rules,
+    ),
+    on: seaCrossings(
+      allIds,
+      coastsByNode(territoryNode),
+      trailTerritories,
+      trailTerritories,
+      rules,
+    ),
+  };
+  const crossingsText = JSON.stringify(crossings);
+  writeFileSync(join(outDir, 'trail-crossings.json'), crossingsText + '\n');
+  sizes['trail-crossings.json'] = crossingsText.length;
+
   const names = new Map([...countries, ...territories, ...states].map((p) => [p.id, p.name.pt]));
-  return { neighbors: neighborsFile, sizes, closePairs: closePairs(files, names, neighborsFile) };
+  return {
+    neighbors: neighborsFile,
+    sizes,
+    closePairs: closePairs(files, names, neighborsFile),
+    crossings,
+    guaranteed: guaranteedCrossings(crossings, names),
+  };
+}
+
+/** The crossings that only exist so that no island is left alone, for the report. */
+function guaranteedCrossings(crossings, names) {
+  const label = { off: 'territórios desligados', on: 'territórios ligados' };
+  return Object.entries(crossings).flatMap(([rule, list]) =>
+    list
+      .filter((c) => c.guarantee)
+      .map(
+        (c) => `${label[rule]}: ${c.a} ${names.get(c.a)} – ${c.b} ${names.get(c.b)}, ≈ ${c.km} km`,
+      ),
+  );
+}
+
+/** The coast of each map shape: the lines that are not shared with another shape. */
+function coastsOf(topo, geometries) {
+  const arcsOf = (geometry) => (geometry.arcs ?? []).flat(Infinity).map((i) => (i < 0 ? ~i : i));
+  const uses = new Map();
+  for (const i of geometries.flatMap(arcsOf)) uses.set(i, (uses.get(i) ?? 0) + 1);
+  return geometries.map((geometry) => {
+    const arcs = arcsOf(geometry).filter((i) => uses.get(i) === 1);
+    return feature(topo, { type: 'MultiLineString', arcs: arcs.map((i) => [i]) }).geometry
+      .coordinates;
+  });
+}
+
+/** The places joined to each other by the edges of a graph, as lists of ids. */
+function connectedGroups(ids, graphOf) {
+  const seen = new Set();
+  const groups = [];
+  for (const id of ids) {
+    if (seen.has(id)) continue;
+    seen.add(id);
+    const group = [id];
+    // The group grows while it is walked: for-of keeps going until it is empty.
+    for (const place of group) {
+      for (const next of graphOf[place] ?? []) {
+        if (seen.has(next)) continue;
+        seen.add(next);
+        group.push(next);
+      }
+    }
+    groups.push(group);
+  }
+  return groups;
+}
+
+/**
+ * Sea crossings for the Trail game (rules in decisions.json, "trailCrossings"): an island (a small
+ * group of places joined by land) is linked to every place within `maxKm` of its coast, or, when
+ * there is none, to the nearest place outside its group (`guarantee`). An archipelago whose islands
+ * only link to each other also gets one to the nearest place outside it. Two continental masses are
+ * never linked. `from` and `to` are the [longitude, latitude] of the nearest points of both coasts.
+ */
+function seaCrossings(ids, coastById, borders, ownLand, rules) {
+  const key = (a, b) => (a < b ? `${a}|${b}` : `${b}|${a}`);
+  const skip = new Set(rules.excluded.map((e) => key(e.a, e.b)));
+  const parts = new Map(ids.map((id) => [id, (coastById.get(id) ?? []).map(dense)]));
+  const known = new Map();
+  const measure = (a, b) => {
+    const pair = key(a, b);
+    if (!known.has(pair)) {
+      const [first, second] = pair.split('|');
+      const { angle: best, from, to } = nearestPoints(parts.get(first), parts.get(second));
+      // A place with no coast is at no distance by sea.
+      const km = from ? Math.max(1, Math.round(best * EARTH_KM)) : Infinity;
+      known.set(pair, { a: first, b: second, km, from, to });
+    }
+    return known.get(pair);
+  };
+
+  const optionsOf = (group) =>
+    group.flatMap((a) =>
+      ids
+        .filter((b) => !group.includes(b) && !borders[a]?.includes(b) && !skip.has(key(a, b)))
+        .map((b) => measure(a, b)),
+    );
+
+  const result = new Map();
+  const add = (c) => result.set(key(c.a, c.b), c);
+  const addNearest = (group) => {
+    const nearest = optionsOf(group).reduce((best, c) => (c.km < best.km ? c : best));
+    add({ ...nearest, guarantee: true });
+  };
+
+  const islandGroups = connectedGroups(ids, ownLand).filter(
+    (group) => group.length <= rules.maxIslandGroup,
+  );
+  const islands = new Set(islandGroups.flat());
+  for (const group of islandGroups) {
+    const near = optionsOf(group).filter((c) => c.km <= rules.maxKm);
+    near.forEach(add);
+    if (!near.length) addNearest(group);
+  }
+  // Archipelagos: one link at a time, as each may join two of them.
+  for (;;) {
+    const linked = Object.fromEntries(ids.map((id) => [id, [...(borders[id] ?? [])]]));
+    for (const { a, b } of result.values()) {
+      linked[a].push(b);
+      linked[b].push(a);
+    }
+    const loose = connectedGroups(ids, linked).find((group) =>
+      group.every((id) => islands.has(id)),
+    );
+    if (!loose) break;
+    addNearest(loose);
+  }
+  return [...result.keys()].sort().map((pair) => {
+    const c = result.get(pair);
+    return { ...c, from: lonLat(c.from), to: lonLat(c.to) };
+  });
 }
 
 function addBorder(graphOf, a, b) {
@@ -280,8 +448,11 @@ function dense(ring) {
   return { points, center, radius };
 }
 
-/** Shortest distance (km) between the edges of two places, comparing their rings in order. */
-function minDistance(partsA, partsB) {
+const lonLat = ([x, y, z]) =>
+  [Math.atan2(y, x) / RAD, Math.asin(z) / RAD].map((n) => Number(n.toFixed(POINT_DECIMALS)));
+
+/** The nearest points of the edges of two places, the lines they are on and the angle (radians). */
+function nearestPoints(partsA, partsB) {
   const pairs = [];
   for (const a of partsA) {
     for (const b of partsB) {
@@ -290,18 +461,27 @@ function minDistance(partsA, partsB) {
   }
   pairs.sort((x, y) => x.bound - y.bound);
   let best = Infinity;
+  let [from, to] = [null, null];
+  let lines = [];
   for (const { a, b, bound } of pairs) {
     if (bound >= best) break; // the rest are all farther than what was already found
     for (const p of a.points) {
       for (const q of b.points) {
         const d = dot(p, q);
         // Compare by cosine first: the angle is only worked out for a new best.
-        if (best === Infinity || d > Math.cos(best)) best = angle(p, q);
+        if (best === Infinity || d > Math.cos(best)) {
+          best = angle(p, q);
+          [from, to] = [p, q];
+          lines = [a, b];
+        }
       }
     }
   }
-  return best * EARTH_KM;
+  return { angle: best, from, to, lines };
 }
+
+/** Shortest distance (km) between the edges of two places. */
+const minDistance = (partsA, partsB) => nearestPoints(partsA, partsB).angle * EARTH_KM;
 
 function bearing([lon1, lat1], [lon2, lat2]) {
   const dLon = (lon2 - lon1) * RAD;
@@ -351,11 +531,15 @@ if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
   const outDir = join(dirname(fileURLToPath(import.meta.url)), '..', 'public', 'data');
   if (!existsSync(join(outDir, 'world.topo.json'))) throw new Error('Rode npm run data antes.');
   const decisionsFile = join(outDir, '..', '..', 'scripts', 'decisions.json');
-  const { sizes, closePairs } = buildProximity(
+  const { sizes, closePairs, crossings, guaranteed } = buildProximity(
     outDir,
     readJson(dirname(decisionsFile), 'decisions.json'),
   );
   for (const [name, size] of Object.entries(sizes))
     console.log(`${name}: ${Math.round(size / 1024)} KB`);
+  console.log(
+    `Travessias: ${crossings.off.length} (territórios desligados), ${crossings.on.length} (ligados).`,
+  );
+  console.log(`Só pela garantia:\n${guaranteed.join('\n')}`);
   console.log(`Pares a menos de 10 km que não são vizinhos:\n${closePairs.join('\n')}`);
 }

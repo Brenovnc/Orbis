@@ -122,6 +122,7 @@ export class AboutPage {
     'about.borders.1',
     'about.borders.2',
     'about.borders.3',
+    'about.borders.4',
   ];
   protected readonly criteria: StringKey[] = [
     'about.criteria.1',

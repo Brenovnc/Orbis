@@ -50,6 +50,11 @@ circle {
   --land-paint: var(--color-land-outside);
 }
 
+/* Land that is no target (Antarctica, Kosovo...): solid sand gray. */
+.land.is-out-of-play {
+  --land-paint: var(--color-out-of-play);
+}
+
 .land.is-found {
   --land-paint: var(--color-found);
 }
@@ -74,6 +79,23 @@ circle {
 
 /* Hidden map (Trail): only the painted shapes stay; hidden ones can be neither seen nor clicked. */
 svg.is-hidden .land:not(.is-shown) {
+  visibility: hidden;
+}
+
+/* Land with no borders, in one piece; only its cut along 180° is stroked (see the component). */
+.land.is-merged {
+  stroke: none;
+}
+
+.merged-seam {
+  fill: none;
+  stroke: var(--color-land);
+  stroke-width: 0.8px;
+  pointer-events: none;
+}
+
+/* Over it, a shape in play only shows once the game paints it. */
+svg.is-coast .land:not(.is-merged, .is-shown, .is-outside, .is-out-of-play) {
   visibility: hidden;
 }
 
@@ -115,6 +137,11 @@ svg.is-hidden .lakes {
   stroke-linejoin: round;
   stroke-linecap: round;
   pointer-events: none;
+}
+
+/* Out of play: the missed outline's line (continuous, 1.5px) in a neutral gray. */
+.out-of-play-outline {
+  stroke: var(--color-out-of-play-edge);
 }
 
 /* A cross over the forbidden place of the Trail; keeps its size on screen like the names do. */
@@ -166,22 +193,133 @@ svg.is-hidden .lakes {
   stroke-width: 2.4px;
 }
 
-.route-halo,
-.route-outline {
+/*
+ * Sea crossings of the Trail: discreet, in the color of the text. Zoomed in, the dashes grow with
+ * the map: kept small, there would be thousands of them, most off screen, and the zoom would crawl.
+ */
+.sea-line {
+  stroke: var(--color-ink);
+  stroke-opacity: 0.4;
+  stroke-width: 1.2px;
+  stroke-dasharray: calc(4px * max(1, var(--k, 1) / 8));
+}
+
+/*
+ * A crossing the player's trail takes: the color of the guess inside its edge color, with the
+ * pattern of the outlines above.
+ */
+.sea-trail {
+  stroke: var(--trail);
+  stroke-width: 2.2px;
+  stroke-linecap: round;
+}
+
+.sea-trail.is-edge {
+  stroke: var(--trail-edge);
+  stroke-width: 4.4px;
+}
+
+.sea-trail[data-trail='detour'] {
+  stroke-dasharray: 6 7;
+}
+
+.sea-trail[data-trail='far'] {
+  stroke-dasharray: 0 7;
+}
+
+.sea-line,
+.sea-trail {
   fill: none;
   stroke-linejoin: round;
   pointer-events: none;
 }
 
-.route-halo {
-  stroke: rgb(255 255 255 / 0.9);
-  stroke-width: 5px;
+/*
+ * A place of the trail at the end of the Trail: a tag with the number in a dot (the color of the
+ * place's dot in the timeline) and the name, on a light ground. It keeps its size on screen at any
+ * zoom, like the names; `--dy` moves it clear of another tag. `--trail` comes from data-trail.
+ */
+.step-scale {
+  transform: scale(calc(1 / (var(--unit, 1) * var(--k, 1)))) translateY(var(--dy, 0px));
 }
 
-.route-outline {
-  stroke: var(--color-trail-route);
-  stroke-width: 2.4px;
-  stroke-dasharray: 7 4;
+.step-pop {
+  animation: step-in 220ms backwards;
+}
+
+.step-pop.is-hover {
+  transform: scale(1.2);
+}
+
+.step-tag,
+.step-dot {
+  stroke: var(--trail-edge);
+  stroke-width: 1.5px;
+}
+
+.step-tag {
+  fill: rgb(255 255 255 / 0.94);
+}
+
+.step-dot {
+  fill: var(--trail);
+}
+
+.step-number,
+.step-name {
+  font:
+    600 11px var(--font-sans),
+    sans-serif;
+  fill: var(--color-ink);
+}
+
+/* A dark edge around light digits: readable on the blue, the green and the orange alike. */
+.step-number {
+  font-weight: 700;
+  fill: #fff;
+  stroke: var(--trail-edge);
+  stroke-width: 2.5px;
+  paint-order: stroke;
+}
+
+@keyframes step-in {
+  from {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+}
+
+/* No sequence with reduced motion: every number is there at once. */
+@media (prefers-reduced-motion: reduce) {
+  .step-pop {
+    animation: none;
+  }
+}
+
+/* The place under the pointer in the timeline: the focus outline, in ink and thicker. */
+.focus-outline.is-step {
+  stroke: var(--color-ink);
+  stroke-width: 3.2px;
+}
+
+/* Only in the player's trail while a shortest path is shown: faint, to see one trail at a time. */
+.land.is-yours-only {
+  transition-duration: 300ms;
+}
+
+.land.is-faded {
+  /* Mixed with the land, not see-through: the sea would show under a faded place. */
+  --land-paint: color-mix(in srgb, var(--color-found) 22%, var(--color-land));
+}
+
+.found-outline,
+.marker {
+  transition: opacity 300ms;
+}
+
+.found-outline.is-faded,
+.marker.is-faded {
+  opacity: 0.22;
 }
 
 /* Rings for places too small to see; they scale back down as the map zooms in. */
@@ -297,7 +435,7 @@ svg.is-selectable .marker {
   stroke-linecap: round;
 }
 
-svg.is-selectable .land:not(.is-neutral) {
+svg.is-selectable .land:not(.is-neutral, .is-merged) {
   cursor: pointer;
 }
 
@@ -326,6 +464,7 @@ svg.is-selectable:not(.no-hover)
   .land.is-hovered:not(
     .is-neutral,
     .is-outside,
+    .is-out-of-play,
     .is-selected,
     .is-found,
     .is-missed,

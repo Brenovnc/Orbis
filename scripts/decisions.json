@@ -123,6 +123,13 @@
       "why": "Chipre do Norte: reconhecido só pela Turquia, se administra; vira alvo só com territórios ligados (decidido pelo autor)."
     }
   },
+  "unitWikidata": {
+    "_leia": "Nome das áreas sem país e sem território (nunca são alvo), para o cartão que aparece ao clicar nelas. Vem do item do Wikidata ligado pelo Natural Earth; aqui fica só o item trocado quando esse link está errado.",
+    "PGA": {
+      "item": "Q215664",
+      "why": "O Natural Earth liga a unidade 'Spratly Is.' ao item da Ilha Wake (Q43296); o item das Ilhas Spratly foi achado pela busca do Wikidata."
+    }
+  },
   "extraNeighbors": {
     "_leia": "Fronteiras terrestres reais que a simplificação do mapa perde. Entram nos grafos de vizinhança (e valem 0 km) quando os dois ids existem no grafo: com territórios desligados, Macau é a própria China e a linha é ignorada.",
     "list": [
@@ -155,6 +162,25 @@
         "a": "CYN",
         "b": "GBR",
         "why": "Mesmo caso de Chipre: com territórios ligados, o Chipre do Norte só toca o Reino Unido pelas bases de Akrotiri e Dhekelia."
+      }
+    ]
+  },
+  "trailCrossings": {
+    "_leia": "Travessias marítimas da Trilha (opção 'Travessias entre ilhas'), calculadas por proximity.mjs em trail-crossings.json. 'Ilha' = lugar cujo grupo ligado por fronteiras terrestres no grafo da Trilha tem até maxIslandGroup lugares; fronteira que só existe por um território (Espanha–Reino Unido, por Gibraltar) não conta para formar o grupo. Uma ilha se liga a todo lugar a até maxKm entre as costas (só o litoral, nunca uma fronteira terrestre); sem nenhum, ao mais próximo fora do grupo (garantia). Um arquipélago cujas ilhas só se ligam entre si também ganha uma travessia de garantia para o lugar mais próximo fora dele. Duas massas continentais nunca se ligam. Com territórios desligados, a distância e os pontos de uma travessia são medidos só pela terra do próprio país: os pedaços que são territórios em territories.json (Gibraltar, Jersey, Porto Rico, Tokelau...) ficam de fora, e as ilhas do próprio país (Sicília, Havaí, Tasmânia) continuam valendo. Com territórios ligados cada território é um lugar próprio, então nada muda. As exclusões de trailExcludedBorders também valem aqui. excluded = pares (a, b), ou um lugar e todos os de alguns continentes (a, continents), que o script não consegue distinguir sozinho: só as áreas que o mapa não separa do país, e que por isso a regra dos territórios não alcança.",
+    "maxIslandGroup": 3,
+    "maxIslandGroupWhy": "Deixa como ilha os pares que dividem uma ilha ou arquipélago (Reino Unido e Irlanda, Haiti e República Dominicana) e fora dela as massas continentais, que têm dezenas de países.",
+    "maxKm": 300,
+    "maxKmWhy": "Alcança as travessias usuais entre ilhas vizinhas e o continente sem ligar lados opostos de um mar; definido pelo autor.",
+    "excluded": [
+      {
+        "a": "GBR",
+        "continents": ["asia"],
+        "why": "A distância só existe pelas bases soberanas britânicas de Akrotiri e Dhekelia, em Chipre, que o mapa não separa do Reino Unido e que não são um território de territories.json, então a regra dos territórios não as tira (valem nos dois modos; mesmo caso de trailExcludedBorders)."
+      },
+      {
+        "a": "UMI",
+        "continents": ["north-america", "south-america"],
+        "why": "Só com territórios ligados (desligados, UMI não é lugar). Perto das Américas, a distância só existe pela ilha de Navassa, no Caribe; as demais Ilhas Menores dos EUA ficam no Pacífico e o território conta como Oceania. Ligaria o Caribe ao Pacífico por um lugar só."
       }
     ]
   },
@@ -235,30 +261,54 @@
     "YEM": ["Aden"]
   },
   "territoryStatus": {
-    "_leia": "Nota de status mostrada na cartão de informações para territórios sem país administrador (obrigatória para eles). Quem reivindica cada um vem do Wikidata (P1336) e aparece à parte. Decidido pelo autor: nenhum deles conta como parte de um país com territórios desligados.",
+    "_leia": "Notas do cartão de informações de territórios sem país administrador (obrigatórias para eles). \"pt\"/\"en\" é o status (por que não é um país ou de quem é). \"target\" é a frase sobre ser ou não alvo do jogo: o cartão só a mostra quando não diz, por outra linha, que o lugar não é perguntado no jogo em andamento. Quem reivindica cada um vem do Wikidata (P1336) e aparece à parte. Decidido pelo autor: nenhum deles conta como parte de um país com territórios desligados.",
     "KOS": {
-      "pt": "Não é membro da ONU. Governa-se de forma independente, mas seu reconhecimento como país é contestado. Neste jogo, só é alvo com territórios ligados.",
-      "en": "Not a UN member. It governs itself, but its recognition as a country is disputed. In this game it is a target only with territories on."
+      "pt": "Não é membro da ONU. Governa-se de forma independente, mas seu reconhecimento como país é contestado.",
+      "en": "Not a UN member. It governs itself, but its recognition as a country is disputed.",
+      "target": {
+        "pt": "Neste jogo, só é alvo com territórios ligados.",
+        "en": "In this game it is a target only with territories on."
+      }
     },
     "SOL": {
-      "pt": "Não é membro da ONU. Governa-se de forma independente, mas seu reconhecimento como país é contestado. Neste jogo, só é alvo com territórios ligados.",
-      "en": "Not a UN member. It governs itself, but its recognition as a country is disputed. In this game it is a target only with territories on."
+      "pt": "Não é membro da ONU. Governa-se de forma independente, mas seu reconhecimento como país é contestado.",
+      "en": "Not a UN member. It governs itself, but its recognition as a country is disputed.",
+      "target": {
+        "pt": "Neste jogo, só é alvo com territórios ligados.",
+        "en": "In this game it is a target only with territories on."
+      }
     },
     "CYN": {
-      "pt": "Não é membro da ONU. Governa-se de forma independente, mas seu reconhecimento como país é contestado. Neste jogo, só é alvo com territórios ligados.",
-      "en": "Not a UN member. It governs itself, but its recognition as a country is disputed. In this game it is a target only with territories on."
+      "pt": "Não é membro da ONU. Governa-se de forma independente, mas seu reconhecimento como país é contestado.",
+      "en": "Not a UN member. It governs itself, but its recognition as a country is disputed.",
+      "target": {
+        "pt": "Neste jogo, só é alvo com territórios ligados.",
+        "en": "In this game it is a target only with territories on."
+      }
     },
     "TWN": {
-      "pt": "Não é membro da ONU. Governa-se de forma independente, mas seu reconhecimento como país é contestado. Neste jogo, só é alvo com territórios ligados.",
-      "en": "Not a UN member. It governs itself, but its recognition as a country is disputed. In this game it is a target only with territories on."
+      "pt": "Não é membro da ONU. Governa-se de forma independente, mas seu reconhecimento como país é contestado.",
+      "en": "Not a UN member. It governs itself, but its recognition as a country is disputed.",
+      "target": {
+        "pt": "Neste jogo, só é alvo com territórios ligados.",
+        "en": "In this game it is a target only with territories on."
+      }
     },
     "ESH": {
-      "pt": "Território em disputa. Neste jogo, não conta como parte de nenhum país e só é alvo com territórios ligados.",
-      "en": "Disputed territory. In this game it does not count as part of any country and is a target only with territories on."
+      "pt": "Território em disputa.",
+      "en": "Disputed territory.",
+      "target": {
+        "pt": "Neste jogo, não conta como parte de nenhum país e só é alvo com territórios ligados.",
+        "en": "In this game it does not count as part of any country and is a target only with territories on."
+      }
     },
     "ATA": {
-      "pt": "Não é administrada por nenhum país. Neste jogo, só é alvo com territórios ligados.",
-      "en": "Not administered by any country. In this game it is a target only with territories on."
+      "pt": "Não é administrada por nenhum país.",
+      "en": "Not administered by any country.",
+      "target": {
+        "pt": "Neste jogo, só é alvo com territórios ligados.",
+        "en": "In this game it is a target only with territories on."
+      }
     }
   },
   "editorialAliases": {

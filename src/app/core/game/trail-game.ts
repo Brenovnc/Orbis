@@ -1,7 +1,7 @@
 import { computed, signal } from '@angular/core';
 import { Layer } from '../data/geo-data.models';
 import { pairKey } from '../data/proximity';
-import type { TrailLevel } from '../settings.service';
+import type { TrailForbidden, TrailLevel } from '../settings.service';
 import { TypoTolerance, buildIndex, matchAnswer } from './answers';
 import { FinishReason, GameResult, GameStatus, PlayableGame, SavedGame } from './playable-game';
 import { Target } from './targets';
@@ -9,11 +9,14 @@ import {
   Graph,
   TrailColor,
   TrailDistances,
+  TrailHistory,
   TrailPuzzle,
   findPuzzle,
+  linkColor,
   nextOutline,
   trailColor,
   trailDistances,
+  trailGuesses,
   trailLink,
   trailPieces,
 } from './trail-graph';
@@ -34,6 +37,13 @@ export interface TrailGuess {
 
 export interface TrailGameConfig {
   level: TrailLevel;
+  forbidden: TrailForbidden;
+  /** False where no place can be forbidden: the game then has none, whatever `forbidden` says. */
+  canForbid: boolean;
+  /** The graph includes the sea crossings. */
+  crossings: boolean;
+  /** Last games of this map, to draw a different one. */
+  history?: TrailHistory;
   /** Defaults to the world map. */
   layer?: Layer;
   /** Everything that can be typed: the whole map. */
@@ -58,6 +68,10 @@ export interface TrailGameConfig {
 export class TrailGame implements PlayableGame {
   readonly gameId = 'trilha';
   readonly level: TrailLevel;
+  readonly forbidden: TrailForbidden;
+  readonly crossings: boolean;
+  /** True when it continues a saved game. */
+  readonly resumed: boolean;
   readonly layer: Layer;
   readonly territories: boolean;
   readonly durationMs = null;
@@ -84,6 +98,11 @@ export class TrailGame implements PlayableGame {
   readonly link = computed(() =>
     this.puzzle ? trailLink(this.graph, this.puzzle, this.chosen()) : null,
   );
+  /** The trail closed with as few steps as possible. */
+  readonly madeShortest = computed(() => {
+    const link = this.link();
+    return !!link && link.length === this.puzzle?.path.length;
+  });
   /**
    * What the player built, for the end: the trail that closed, or else the guesses joined to the
    * origin or to the destination.
@@ -113,10 +132,8 @@ export class TrailGame implements PlayableGame {
     const { origin, destination } = this.puzzle;
     return new Set(this.playerTrail().filter((id) => id !== origin && id !== destination));
   });
-  /** The forbidden place is shown from the start, like a missed place. */
-  readonly revealed = computed<ReadonlySet<string>>(
-    () => new Set(this.puzzle?.forbidden ? [this.puzzle.forbidden] : []),
-  );
+  /** The forbidden places are shown from the start, like missed places. */
+  readonly revealed = computed<ReadonlySet<string>>(() => new Set(this.puzzle?.forbidden));
 
   private readonly byId: Map<string, Target>;
   private readonly graph: Graph;
@@ -124,6 +141,7 @@ export class TrailGame implements PlayableGame {
   private readonly tolerance: TypoTolerance;
   private readonly index;
   private readonly distances: TrailDistances | null = null;
+  /** By place, or by pair of places (see `pairKey`). */
   private readonly colors = new Map<string, TrailColor>();
 
   constructor(config: TrailGameConfig) {
@@ -136,18 +154,23 @@ export class TrailGame implements PlayableGame {
     this.index = buildIndex(config.pool, 'countries');
 
     const saved = config.saved;
-    // Saves from before the levels have no level: they were the normal Trail.
-    this.level = saved ? (saved.trailLevel ?? 'normal') : config.level;
-    // Older saves kept the trail in order, origin first.
-    const chosen = saved?.chosen ?? saved?.trail?.slice(1) ?? [];
+    this.level = saved?.trailLevel ?? config.level;
+    this.forbidden = saved?.trailForbidden ?? config.forbidden;
+    this.crossings = config.crossings;
+    const chosen = saved?.chosen ?? [];
     const resume = saved?.puzzle && this.valid(saved.puzzle, chosen, saved.outlines ?? []);
+    this.resumed = !!resume;
     this.puzzle = resume
       ? (saved.puzzle as TrailPuzzle)
       : findPuzzle(
           config.askable.map((target) => target.id),
           config.graph,
-          this.level === 'hard',
-          config.random,
+          {
+            level: this.level,
+            forbidden: config.canForbid ? this.forbidden : 'none',
+            history: config.history,
+            random: config.random,
+          },
         );
     if (!this.puzzle) return;
     this.distances = trailDistances(this.graph, this.puzzle);
@@ -165,11 +188,14 @@ export class TrailGame implements PlayableGame {
    * changed since it was saved (a new `npm run data`). One already won or out of guesses cannot.
    */
   private valid(puzzle: TrailPuzzle, chosen: string[], outlines: string[]): boolean {
-    const known = (id: string | null) => !id || this.byId.has(id);
+    // Saves from before there could be several forbidden places.
+    if (!Array.isArray(puzzle.forbidden)) return false;
     const ends = [puzzle.origin, puzzle.destination];
+    const ids = [...ends, ...puzzle.forbidden, ...puzzle.path, ...chosen, ...outlines];
     return (
-      !!puzzle.forbidden === (this.level === 'hard') &&
-      [...ends, puzzle.forbidden, ...puzzle.path, ...chosen, ...outlines].every(known) &&
+      puzzle.guesses === trailGuesses(puzzle.steps, this.level) &&
+      ids.every((id) => this.byId.has(id)) &&
+      !puzzle.path.some((id) => puzzle.forbidden.includes(id)) &&
       puzzle.path.slice(1).every((id, n) => this.graph[puzzle.path[n]]?.includes(id)) &&
       new Set(chosen).size === chosen.length &&
       !chosen.some((id) => ends.includes(id)) &&
@@ -179,13 +205,12 @@ export class TrailGame implements PlayableGame {
   }
 
   /**
-   * Places of the base map painting: the forbidden place, and at the end the trail built (the
+   * Places of the base map painting: the forbidden places, and at the end the trail built (the
    * origin and destination are painted by the page, so they are not missed places here).
    */
   get targets(): Target[] {
     if (!this.puzzle) return [];
-    const ids = [...this.found()];
-    if (this.puzzle.forbidden) ids.push(this.puzzle.forbidden);
+    const ids = [...this.found(), ...this.puzzle.forbidden];
     return ids.flatMap((id) => this.byId.get(id) ?? []);
   }
 
@@ -205,7 +230,16 @@ export class TrailGame implements PlayableGame {
     return color;
   }
 
-  /** False for a place with no land border at all (an island country). */
+  /** The color of a link between two places, also worked out once. */
+  linkColorOf(a: string, b: string): TrailColor {
+    if (!this.puzzle) return 'far';
+    const key = pairKey(a, b);
+    const color = this.colors.get(key) ?? linkColor(this.graph, this.puzzle, a, b);
+    this.colors.set(key, color);
+    return color;
+  }
+
+  /** False for a place the graph links to no other (an island, without sea crossings). */
   hasBorders(id: string): boolean {
     return (this.graph[id]?.length ?? 0) > 0;
   }
@@ -217,7 +251,7 @@ export class TrailGame implements PlayableGame {
 
   /**
    * Checks a typed place. Every real place typed for the first time costs a guess, even one with
-   * no land border or the forbidden place. Repeats and the origin or destination cost nothing.
+   * no border or a forbidden one. Repeats and the origin or destination cost nothing.
    */
   submit(raw: string): TrailSubmit {
     const puzzle = this.puzzle;
@@ -287,6 +321,8 @@ export class TrailGame implements PlayableGame {
       durationMs: null,
       tolerance: this.tolerance,
       trailLevel: this.level,
+      trailForbidden: this.forbidden,
+      trailCrossings: this.crossings,
       puzzle: this.puzzle ?? undefined,
       chosen: [...this.chosen()],
       outlines: [...this.outlines()],

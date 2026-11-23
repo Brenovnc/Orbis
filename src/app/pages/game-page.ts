@@ -1,8 +1,8 @@
 import { DestroyRef, computed, effect, inject, signal, untracked } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmOptions, ConfirmService, LeaveGuarded } from '../core/confirm/confirm.service';
-import { Continent, Layer, WorldUnitProperties } from '../core/data/geo-data.models';
-import { GeoDataService } from '../core/data/geo-data.service';
+import { Continent, Layer, LocalizedText, WorldUnitProperties } from '../core/data/geo-data.models';
+import { GeoDataService, isState } from '../core/data/geo-data.service';
 import {
   Explanation,
   NonTargetIndex,
@@ -11,20 +11,30 @@ import {
   suggestedCountryId,
 } from '../core/game/non-targets';
 import { PlayableGame, SavedGame } from '../core/game/playable-game';
-import { RecordOutcome, RecordsService, recordKey } from '../core/game/records.service';
+import { durationOf, gameOptions } from '../core/game/game-options';
+import {
+  PlayedLevel,
+  RecordOutcome,
+  RecordsService,
+  recordKey,
+  recordLevel,
+} from '../core/game/records.service';
 import { SavedGameStore } from '../core/game/saved-game.store';
 import {
+  OutOfPlayKind,
   Target,
   buildBrazilTargets,
   buildWorldTargets,
   continentMinutes,
   inContinent,
+  outOfPlayUnits,
   withCapitals,
 } from '../core/game/targets';
 import { GameId, hasTimeLimit, usesCapitals } from '../core/games';
 import { formatClock } from '../core/labels';
 import { I18nService } from '../core/i18n/i18n.service';
-import { SettingsService } from '../core/settings.service';
+import { StringKey } from '../core/i18n/strings';
+import { MapBorders, SettingsService } from '../core/settings.service';
 import { SoundService } from '../core/sound.service';
 import { MapLabel, MapMarker, MapStateService } from '../shared/map/map-state.service';
 import { SettingsPanelService } from '../shared/settings-panel/settings-panel.component';
@@ -86,6 +96,20 @@ export abstract class GamePage<G extends PlayableGame> implements LeaveGuarded {
   protected readonly shaking = signal(false);
   protected readonly infoTarget = signal<Target | null>(null);
   protected readonly infoPlace = computed(() => this.infoTarget()?.place);
+  /** The info card's extra line: this game does not ask about the place, and why if known. */
+  protected readonly infoNote = computed(() => {
+    const out = this.mapState.outOfPlay();
+    if (!this.infoTarget()?.unitIds.some((id) => out.get(id) === 'game')) return '';
+    const why = this.notAskedReason();
+    return why
+      ? this.i18n.t('info.notAsked.why', { why: this.i18n.t(why) })
+      : this.i18n.t('info.notAsked');
+  });
+  /** The card of a click on an area of no country; never open together with the info card. */
+  protected readonly outOfPlayCard = signal<{
+    name: LocalizedText;
+    kind: Exclude<OutOfPlayKind, 'game'>;
+  } | null>(null);
 
   protected readonly clock = computed(() => {
     const game = this.game();
@@ -106,6 +130,10 @@ export abstract class GamePage<G extends PlayableGame> implements LeaveGuarded {
   });
 
   private finalized = false;
+  /** Where this game's record goes, fixed when it started (see PlayedLevel). */
+  private playedLevel: PlayedLevel = { level: 'custom' };
+  /** Borders on the map, fixed when the game started; undefined in games without that option. */
+  private mapBorders?: MapBorders;
   private lastTick = Date.now();
   private sinceSave = 0;
   private readonly timers = new Set<ReturnType<typeof setTimeout>>();
@@ -123,6 +151,11 @@ export abstract class GamePage<G extends PlayableGame> implements LeaveGuarded {
   /** The targets a game may ask about; the rest of the map stays valid as typed answers. */
   protected askable(targets: Target[]): Target[] {
     return targets;
+  }
+
+  /** Why some places are not asked in this game, in a few words. */
+  protected notAskedReason(): StringKey | null {
+    return usesCapitals(this.gameId) ? 'info.notAsked.noCapital' : null;
   }
 
   /** Data a game needs besides the map's; loaded before the game starts. */
@@ -152,9 +185,12 @@ export abstract class GamePage<G extends PlayableGame> implements LeaveGuarded {
     ];
   }
 
-  /** The game id in the record key; a game with levels keeps one record per level. */
-  protected recordId(): string {
-    return this.gameId;
+  /**
+   * The difficulty of the record of a game starting now, from the current settings (the Trail
+   * adds what it really runs with). Only read at the start: see `playedLevel`.
+   */
+  protected newPlayedLevel(): PlayedLevel {
+    return recordLevel(this.gameId, this.layer, this.settings.value());
   }
 
   /** A name on the map over a place; small places need more zoom to show it. */
@@ -234,6 +270,30 @@ export abstract class GamePage<G extends PlayableGame> implements LeaveGuarded {
       if (game) this.mapState.labels.set(this.mapLabels(game));
     });
 
+    // A click on land that is no target is no answer, so no error either: a card says what it is.
+    // A place of the game has its own info card (with `infoNote`), the rest a generic sentence.
+    effect(() => {
+      const click = this.mapState.outOfPlayClick();
+      if (!click) return;
+      untracked(() => {
+        const kind = this.mapState.outOfPlay().get(click.id);
+        const name = this.areaName(click.id);
+        if (kind === 'game') {
+          this.infoTarget.set(this.notAskedTarget(click.id));
+        } else if (kind && name) {
+          this.infoTarget.set(null);
+          this.outOfPlayCard.set({ name, kind });
+        } else {
+          return;
+        }
+        this.mapState.pulse.set([click.id]);
+        this.later(() => this.mapState.pulse.set([]), 1000);
+      });
+    });
+    effect(() => {
+      if (this.infoTarget()) this.outOfPlayCard.set(null);
+    });
+
     // Resting the mouse on a place already found reopens its info card (touch uses tapping).
     effect((onCleanup) => {
       const id = this.mapState.hoveredId();
@@ -258,28 +318,40 @@ export abstract class GamePage<G extends PlayableGame> implements LeaveGuarded {
     let all: Target[];
     if (this.layer === 'brazil') {
       all = buildBrazilTargets(this.geo.states());
+      const asked = this.askable(all);
+      const rest = all.filter((target) => !asked.includes(target));
+      this.mapState.outOfPlay.set(new Map(rest.map((target) => [target.id, 'game'])));
     } else {
       const world = this.geo.world();
       if (!world) return;
       const units = world.objects.units.geometries.map((g) => g.properties as WorldUnitProperties);
-      all = buildWorldTargets(this.geo.countries(), this.geo.territories(), units, territories);
+      const targetsOf = (on: boolean) => {
+        const list = buildWorldTargets(this.geo.countries(), this.geo.territories(), units, on);
+        // Capital games can only ask about places that have a capital.
+        return usesCapitals(this.gameId) ? withCapitals(list) : list;
+      };
+      all = targetsOf(territories);
+      // Land that is no target of this game is painted apart.
+      this.mapState.outOfPlay.set(
+        outOfPlayUnits(units, this.askable(all), this.askable(targetsOf(true)), territories),
+      );
     }
-    // Capital games can only ask about places that have a capital.
-    if (usesCapitals(this.gameId)) all = withCapitals(all);
     const targets = this.askable(inContinent(all, this.continent));
     // On a continent the time limit shrinks in proportion to its share of the world's targets.
+    const minutes = durationOf(this.gameId, this.layer, settings);
     const settingsDurationMs =
       !settings.timerEnabled || !this.usesTimer()
         ? null
         : (this.continent
-            ? continentMinutes(
-                settings.durationMinutes.world,
-                targets.length,
-                this.askable(all).length,
-              )
-            : settings.durationMinutes[this.layer]) * 60_000;
+            ? continentMinutes(minutes, targets.length, this.askable(all).length)
+            : minutes) * 60_000;
     const durationMs = saved ? saved.durationMs : settingsDurationMs;
 
+    this.mapBorders = gameOptions(this.gameId, settings).includes('mapBorders')
+      ? (saved?.mapBorders ?? settings.mapBorders)
+      : undefined;
+    // Silhouettes never show inner borders on the main map, so the shape cannot be looked up there.
+    this.mapState.borders.set(this.gameId === 'silhuetas' ? 'coast' : (this.mapBorders ?? 'all'));
     this.finalized = false;
     this.record.set(null);
     this.feedback.set(null);
@@ -288,6 +360,7 @@ export abstract class GamePage<G extends PlayableGame> implements LeaveGuarded {
     this.mapState.selectable.set(true);
     this.lastTick = Date.now();
     this.game.set(this.createGame({ saved, targets, pool: all, territories, durationMs }));
+    this.playedLevel = saved?.playedLevel ?? this.newPlayedLevel();
     if (saved && this.rulesChanged(saved, settingsDurationMs)) {
       this.say('info', this.i18n.t('game.rulesKept'), 8000);
     }
@@ -305,7 +378,12 @@ export abstract class GamePage<G extends PlayableGame> implements LeaveGuarded {
       differs(saved.tolerance, settings.typoTolerance) ||
       differs(saved.revealAfterErrors, settings.revealAfterErrors) ||
       differs(saved.learnMode, settings.learnMode) ||
-      differs(saved.trailLevel, settings.trailLevel)
+      differs(saved.trailLevel, settings.trailLevel) ||
+      differs(saved.trailForbidden, settings.trailForbidden) ||
+      (this.layer === 'world' && differs(saved.trailCrossings, settings.trailCrossings)) ||
+      differs(saved.silhouetteMode, settings.silhouetteMode) ||
+      differs(saved.mapBorders, settings.mapBorders) ||
+      differs(saved.proximityClues, settings.proximityClues)
     );
   }
 
@@ -398,7 +476,8 @@ export abstract class GamePage<G extends PlayableGame> implements LeaveGuarded {
     this.sinceSave = 0;
     const game = this.game();
     if (game && game.status() !== 'finished' && game.hasProgress()) {
-      this.saved.save(game.snapshot(), this.continent);
+      const { playedLevel, mapBorders } = this;
+      this.saved.save({ ...game.snapshot(), playedLevel, mapBorders }, this.continent);
     }
   }
 
@@ -409,22 +488,28 @@ export abstract class GamePage<G extends PlayableGame> implements LeaveGuarded {
     this.finalized = true;
     this.saved.clear(this.gameId, this.layer, this.continent);
     const key = recordKey({
-      gameId: this.recordId(),
+      gameId: this.gameId,
       layer: this.layer,
       territories: game.territories,
       durationMs: game.durationMs,
       continent: this.continent,
+      ...this.playedLevel,
     });
     this.record.set(
-      this.records.submit(key, {
-        found: result.found,
-        total: result.total,
-        elapsedMs: result.elapsedMs,
-        errors: result.errors,
-        guesses: result.guesses,
-        hinted: result.hinted,
-        date: new Date().toISOString().slice(0, 10),
-      }),
+      this.records.submit(
+        key,
+        {
+          found: result.found,
+          total: result.total,
+          elapsedMs: result.elapsedMs,
+          errors: result.errors,
+          guesses: result.guesses,
+          hinted: result.hinted,
+          hintedQuestions: result.hintedQuestions,
+          date: new Date().toISOString().slice(0, 10),
+        },
+        this.playedLevel.level,
+      ),
     );
     this.infoTarget.set(null);
     this.sound.play(result.reason === 'complete' ? 'win' : 'end');
@@ -516,26 +601,47 @@ export abstract class GamePage<G extends PlayableGame> implements LeaveGuarded {
     this.pulseUnits([target]);
   }
 
-  /** Sends the camera to the places (the main shape of each). Never moves on its own at a hit. */
-  protected focusOn(targets: Target[]): void {
+  /**
+   * Sends the camera to the places (the main shape of each). Never moves on its own at a hit.
+   * `manual` is for what the player asked for: the "Off" camera setting still lets it through.
+   */
+  protected focusOn(targets: Target[], manual = false): void {
     this.mapState.flyTo(
       targets.map((t) => (t.unitIds.includes(t.id) ? t.id : t.unitIds[0])).filter(Boolean),
+      manual,
     );
   }
 
   /** A click on an item of a list: the info card, and the camera goes to the place. */
   protected pick(target: Target): void {
     this.showInfo(target);
-    this.focusOn([target]);
+    this.focusOn([target], true);
   }
 
   protected closeInfo(): void {
     this.infoTarget.set(null);
+    this.outOfPlayCard.set(null);
     this.mapState.select(null);
   }
 
+  /** A place of the game that is not asked, built like a target so the info card can show it. */
+  private notAskedTarget(unitId: string): Target | null {
+    const place = this.geo.place(unitId) ?? this.geo.states().find((state) => state.id === unitId);
+    if (!place) return null;
+    const group = isState(place) ? place.region : place.continent;
+    return { id: place.id, place, group, unitIds: [unitId], tiny: false };
+  }
+
+  /** The name of a map area that is no place of the game: a territory, or one of the unplaced. */
+  private areaName(id: string): LocalizedText | undefined {
+    return (
+      this.geo.place(id)?.name ??
+      this.geo.nonTargets()?.unplaced.find((area) => area.id === id)?.name
+    );
+  }
+
   protected onEscape(): void {
-    if (this.infoTarget()) this.closeInfo();
+    if (this.infoTarget() || this.outOfPlayCard()) this.closeInfo();
     else if (this.game()?.status() === 'playing') this.pause();
   }
 }

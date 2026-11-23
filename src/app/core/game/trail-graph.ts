@@ -1,4 +1,6 @@
 // Paths over the land borders, for the Trail game and for deciding where it can be played.
+import { pairKey } from '../data/proximity';
+import type { TrailForbidden, TrailLevel } from '../settings.service';
 
 export type Graph = Record<string, string[]>;
 
@@ -9,24 +11,33 @@ export const MAX_STEPS = 8;
 export interface TrailPuzzle {
   origin: string;
   destination: string;
-  /** Hard level: the place the trail may not go through. */
-  forbidden: string | null;
-  /** Steps of the shortest trail (avoiding `forbidden`, if there is one). */
+  /** Places the trail may not go through (0 to 3). */
+  forbidden: string[];
+  /** Steps of the shortest trail (avoiding every forbidden place). */
   steps: number;
   /** One of the shortest trails, origin to destination, to show at the end. */
   path: string[];
-  /** Guesses the player has: normal = steps + 4, hard = steps + 2. */
+  /** Guesses the player has: steps + 2 on the hard level, steps + 4 on the others. */
   guesses: number;
 }
 
+export const trailGuesses = (steps: number, level: TrailLevel): number =>
+  steps + (level === 'hard' ? 2 : 4);
+
+const NONE: ReadonlySet<string> = new Set();
+
 /** Steps from `from` to every place it can reach, never entering `banned`. */
-export function distances(graph: Graph, from: string, banned?: string): Map<string, number> {
+export function distances(
+  graph: Graph,
+  from: string,
+  banned: ReadonlySet<string> = NONE,
+): Map<string, number> {
   const result = new Map([[from, 0]]);
   const queue = [from];
   // The queue grows while it is walked: for-of keeps going until it is empty.
   for (const place of queue) {
     for (const next of graph[place] ?? []) {
-      if (next === banned || result.has(next)) continue;
+      if (banned.has(next) || result.has(next)) continue;
       result.set(next, (result.get(place) ?? 0) + 1);
       queue.push(next);
     }
@@ -34,12 +45,12 @@ export function distances(graph: Graph, from: string, banned?: string): Map<stri
   return result;
 }
 
-/** One shortest path, or null when the two places are not connected by land. */
+/** One shortest path, or null when the two places are not connected. */
 export function shortestPath(
   graph: Graph,
   from: string,
   to: string,
-  banned?: string,
+  banned: ReadonlySet<string> = NONE,
 ): string[] | null {
   const before = new Map<string, string>();
   const seen = new Set([from]);
@@ -48,7 +59,7 @@ export function shortestPath(
   for (const place of queue) {
     if (place === to) break;
     for (const next of graph[place] ?? []) {
-      if (next === banned || seen.has(next)) continue;
+      if (banned.has(next) || seen.has(next)) continue;
       seen.add(next);
       before.set(next, place);
       queue.push(next);
@@ -69,75 +80,174 @@ const shuffled = <T>(items: T[], random: () => number): T[] => {
   return result;
 };
 
-/** Every pair of places (each pair once) joined by a shortest path of 3 to 8 steps. */
-function* pairs(ids: string[], graph: Graph): Generator<[string, string, number]> {
-  const known = new Set(ids);
-  for (const origin of ids) {
-    if (!graph[origin]?.length) continue;
-    for (const [other, steps] of distances(graph, origin)) {
-      if (origin < other && known.has(other) && steps >= MIN_STEPS && steps <= MAX_STEPS) {
-        yield [origin, other, steps];
-      }
-    }
+/** The places 3 to 8 steps from `origin` (by the shortest path) among the chosen ones. */
+function destinationsOf(origin: string, known: ReadonlySet<string>, graph: Graph): string[] {
+  if (!graph[origin]?.length) return [];
+  return [...distances(graph, origin)]
+    .filter(([id, steps]) => known.has(id) && steps >= MIN_STEPS && steps <= MAX_STEPS)
+    .map(([id]) => id);
+}
+
+/** The places of each step of the shortest paths between two places, ends included. */
+function shortestLayers(
+  graph: Graph,
+  origin: string,
+  destination: string,
+  banned: ReadonlySet<string>,
+): string[][] {
+  const fromOrigin = distances(graph, origin, banned);
+  const fromDestination = distances(graph, destination, banned);
+  const steps = fromOrigin.get(destination) ?? -1;
+  const layers: string[][] = Array.from({ length: steps + 1 }, () => []);
+  for (const [id, step] of fromOrigin) {
+    if (step + (fromDestination.get(id) ?? Infinity) === steps) layers[step].push(id);
   }
+  return layers;
 }
 
 /**
- * Builds the puzzle for a pair. The hard level also needs a forbidden place: one that lies on
- * some shortest trail but can be avoided (another trail exists without it).
+ * Builds the puzzle for a pair with up to `wanted` forbidden places, picked one by one: each lies
+ * on some shortest trail left by the ones before it, and a trail around all of them remains. Null
+ * when forbidden places are wanted and none is possible.
  */
 function puzzleFor(
   graph: Graph,
   origin: string,
   destination: string,
-  steps: number,
-  hard: boolean,
+  level: TrailLevel,
+  wanted: number,
   random: () => number,
 ): TrailPuzzle | null {
-  if (!hard) {
-    const path = shortestPath(graph, origin, destination) as string[];
-    return { origin, destination, forbidden: null, steps, path, guesses: steps + 4 };
+  const forbidden = new Set<string>();
+  while (forbidden.size < wanted) {
+    const between = shortestLayers(graph, origin, destination, forbidden).slice(1, -1).flat();
+    const next = shuffled(between, random).find((id) =>
+      shortestPath(graph, origin, destination, new Set([...forbidden, id])),
+    );
+    if (!next) break;
+    forbidden.add(next);
   }
-  const fromOrigin = distances(graph, origin);
-  const fromDestination = distances(graph, destination);
-  const onShortest = [...fromOrigin.keys()].filter(
-    (id) =>
-      id !== origin &&
-      id !== destination &&
-      fromOrigin.get(id)! + (fromDestination.get(id) ?? Infinity) === steps,
-  );
-  for (const forbidden of shuffled(onShortest, random)) {
-    // No cap on the way around: a long detour (even past MAX_STEPS) is intended.
-    const path = shortestPath(graph, origin, destination, forbidden);
-    if (path) {
-      const around = path.length - 1;
-      return { origin, destination, forbidden, steps: around, path, guesses: around + 2 };
-    }
-  }
-  return null;
+  if (wanted > 0 && forbidden.size === 0) return null;
+  // No cap on the way around: a long detour (even past MAX_STEPS) is intended.
+  const path = shortestPath(graph, origin, destination, forbidden) as string[];
+  const steps = path.length - 1;
+  const guesses = trailGuesses(steps, level);
+  return { origin, destination, forbidden: [...forbidden], steps, path, guesses };
 }
 
-/** How many valid pairs there are among `ids`, counting only up to `atLeast`. */
-export function countPuzzles(ids: string[], graph: Graph, hard: boolean, atLeast: number): number {
+/**
+ * How many valid pairs there are among `ids`, counting only up to `atLeast`; with `forbidding`,
+ * only those where some place can be forbidden.
+ */
+export function countPuzzles(
+  ids: string[],
+  graph: Graph,
+  forbidding: boolean,
+  atLeast: number,
+): number {
+  const known = new Set(ids);
   let count = 0;
-  for (const [origin, destination, steps] of pairs(ids, graph)) {
-    if (puzzleFor(graph, origin, destination, steps, hard, () => 0.5)) count++;
-    if (count >= atLeast) break;
+  for (const origin of ids) {
+    for (const destination of destinationsOf(origin, known, graph)) {
+      if (origin > destination) continue; // each pair once
+      const wanted = forbidding ? 1 : 0;
+      if (puzzleFor(graph, origin, destination, 'normal', wanted, () => 0.5)) count++;
+      if (count >= atLeast) return count;
+    }
   }
   return count;
 }
 
-/** A random puzzle between two of the `ids`, or null when there is none. */
+/** What the last games of a map were, so the next one is different. */
+export interface TrailHistory {
+  /** Last pairs played, newest first (see `pairKey`). */
+  pairs: string[];
+  /** Central places the last game could not avoid. */
+  centrals: string[];
+}
+
+export const NO_HISTORY: TrailHistory = { pairs: [], centrals: [] };
+const HISTORY_PAIRS = 15;
+/** Share of the places, those with most borders, that count as central. */
+const CENTRAL_SHARE = 0.1;
+/** Draws before accepting a pair through the same central place as the last game. */
+const CENTRAL_TRIES = 20;
+
+/** The central places that lie on every shortest path of a puzzle. */
+export function unavoidableCentrals(graph: Graph, puzzle: TrailPuzzle): string[] {
+  const places = Object.keys(graph)
+    .filter((id) => graph[id].length > 0)
+    .sort((a, b) => graph[b].length - graph[a].length);
+  const central = new Set(places.slice(0, Math.ceil(places.length * CENTRAL_SHARE)));
+  const { origin, destination, forbidden } = puzzle;
+  // Alone in its layer = on every shortest path.
+  return shortestLayers(graph, origin, destination, new Set(forbidden))
+    .filter((layer) => layer.length === 1 && central.has(layer[0]))
+    .flat();
+}
+
+/** The history after a new game. */
+export function nextHistory(
+  history: TrailHistory,
+  graph: Graph,
+  puzzle: TrailPuzzle,
+): TrailHistory {
+  const key = pairKey(puzzle.origin, puzzle.destination);
+  return {
+    pairs: [key, ...history.pairs.filter((pair) => pair !== key)].slice(0, HISTORY_PAIRS),
+    centrals: unavoidableCentrals(graph, puzzle),
+  };
+}
+
+/** How many places a game forbids: 1 in about one game in three, or 1 to 3 (3 is the rarest). */
+export function drawForbiddenCount(mode: TrailForbidden, random: () => number): number {
+  if (mode === 'none') return 0;
+  const draw = random();
+  if (mode === 'sometimes') return draw < 1 / 3 ? 1 : 0;
+  return draw < 0.4 ? 1 : draw < 0.8 ? 2 : 3;
+}
+
+export interface PuzzleOptions {
+  level: TrailLevel;
+  forbidden: TrailForbidden;
+  history?: TrailHistory;
+  random?: () => number;
+}
+
+/**
+ * A random puzzle between two of the `ids`, or null when there is none. Every origin with a valid
+ * pair is as likely, then every destination of it, so a big land mass is not favored. Pairs played
+ * lately are avoided while there is another, and so is a pair that cannot avoid the same central
+ * place as the last game.
+ */
 export function findPuzzle(
   ids: string[],
   graph: Graph,
-  hard: boolean,
-  random: () => number = Math.random,
+  { level, forbidden, history = NO_HISTORY, random = Math.random }: PuzzleOptions,
 ): TrailPuzzle | null {
-  for (const [a, b, steps] of shuffled([...pairs(ids, graph)], random)) {
-    const [origin, destination] = random() < 0.5 ? [a, b] : [b, a];
-    const puzzle = puzzleFor(graph, origin, destination, steps, hard, random);
-    if (puzzle) return puzzle;
+  const known = new Set(ids);
+  const wanted = drawForbiddenCount(forbidden, random);
+
+  const draw = (avoid: ReadonlySet<string>): TrailPuzzle | null => {
+    for (const origin of shuffled(ids, random)) {
+      for (const destination of shuffled(destinationsOf(origin, known, graph), random)) {
+        if (avoid.has(pairKey(origin, destination))) continue;
+        const puzzle = puzzleFor(graph, origin, destination, level, wanted, random);
+        if (puzzle) return puzzle;
+      }
+    }
+    return null;
+  };
+
+  for (const avoid of [new Set(history.pairs), NONE]) {
+    const first = draw(avoid);
+    let puzzle = first;
+    for (let tries = 0; puzzle && tries < CENTRAL_TRIES; tries++) {
+      const centrals = unavoidableCentrals(graph, puzzle);
+      if (!centrals.some((id) => history.centrals.includes(id))) return puzzle;
+      puzzle = draw(avoid);
+    }
+    if (first) return first;
   }
   return null;
 }
@@ -147,18 +257,18 @@ export function findPuzzle(
 /**
  * How good a guess is, worked out from the guesses of the whole game (never from those left, so
  * it never changes while playing): on a shortest path, on a trail that still fits the guesses
- * (a detour), or of no use (too far, an island, the forbidden place).
+ * (a detour), or of no use (too far, an island, a forbidden place).
  */
 export type TrailColor = 'near' | 'detour' | 'far';
 
-/** Steps from the origin and from the destination, never through the forbidden place. */
+/** Steps from the origin and from the destination, never through a forbidden place. */
 export interface TrailDistances {
   fromOrigin: Map<string, number>;
   fromDestination: Map<string, number>;
 }
 
 export function trailDistances(graph: Graph, puzzle: TrailPuzzle): TrailDistances {
-  const banned = puzzle.forbidden ?? undefined;
+  const banned = new Set(puzzle.forbidden);
   return {
     fromOrigin: distances(graph, puzzle.origin, banned),
     fromDestination: distances(graph, puzzle.destination, banned),
@@ -173,14 +283,35 @@ export function trailColor(
 ): TrailColor {
   const a = d.fromOrigin.get(id);
   const b = d.fromDestination.get(id);
-  if (id === puzzle.forbidden || a === undefined || b === undefined) return 'far';
+  if (puzzle.forbidden.includes(id) || a === undefined || b === undefined) return 'far';
   if (a + b === puzzle.steps) return 'near';
   // No trail through it can be shorter than a + b borders (a + b - 1 places between the ends).
   if (a + b - 1 > puzzle.guesses) return 'far';
   // The two halves may share places (a dead end like Andorra): a trail never repeats one.
   const { origin, destination, forbidden } = puzzle;
-  const length = shortestTrailThrough(graph, origin, destination, id, forbidden ?? undefined);
+  const length = shortestTrailThrough(graph, origin, destination, id, new Set(forbidden));
   return length !== null && length - 1 <= puzzle.guesses ? 'detour' : 'far';
+}
+
+/**
+ * The color of a link between two places (a sea crossing), by the same rule as a place's: as if
+ * there were a place halfway.
+ */
+export function linkColor(graph: Graph, puzzle: TrailPuzzle, a: string, b: string): TrailColor {
+  const { origin, destination, forbidden } = puzzle;
+  const half = pairKey(a, b);
+  const length = shortestTrailThrough(
+    { ...graph, [half]: [a, b] },
+    origin,
+    destination,
+    half,
+    new Set(forbidden),
+  );
+  if (length === null) return 'far';
+  // The halfway place made the trail one step longer.
+  const steps = length - 1;
+  if (steps === puzzle.steps) return 'near';
+  return steps - 1 <= puzzle.guesses ? 'detour' : 'far';
 }
 
 /**
@@ -194,7 +325,7 @@ export function shortestTrailThrough(
   origin: string,
   destination: string,
   via: string,
-  banned?: string,
+  banned: ReadonlySet<string> = NONE,
 ): number | null {
   const ids = [...new Set([...Object.keys(graph), origin, destination, via])];
   const index = new Map(ids.map((id, i) => [id, i]));
@@ -218,16 +349,16 @@ export function shortestTrailThrough(
     }
   };
   for (const id of ids) {
-    if (id === banned || id === via) continue;
+    if (banned.has(id) || id === via) continue;
     link(placeIn(id), placeOut(id), 0);
     // A route ends at the origin or at the destination: it never goes on from there.
     if (id === origin || id === destination) {
       link(placeOut(id), sink, 0);
       continue;
     }
-    for (const next of graph[id] ?? []) if (next !== banned) link(placeOut(id), placeIn(next), 1);
+    for (const next of graph[id] ?? []) if (!banned.has(next)) link(placeOut(id), placeIn(next), 1);
   }
-  for (const next of graph[via] ?? []) if (next !== banned) link(placeOut(via), placeIn(next), 1);
+  for (const next of graph[via] ?? []) if (!banned.has(next)) link(placeOut(via), placeIn(next), 1);
 
   // Two cheapest augmenting paths (Bellman-Ford with a queue: the reverse edges cost less than 0).
   let total = 0;
@@ -265,7 +396,7 @@ export function shortestTrailThrough(
 /** The borders among some places only (the guesses plus the origin and the destination). */
 function within(graph: Graph, puzzle: TrailPuzzle, chosen: readonly string[]): Graph {
   const allowed = new Set([puzzle.origin, puzzle.destination, ...chosen]);
-  if (puzzle.forbidden) allowed.delete(puzzle.forbidden);
+  for (const id of puzzle.forbidden) allowed.delete(id);
   return Object.fromEntries(
     [...allowed].map((id) => [id, (graph[id] ?? []).filter((next) => allowed.has(next))]),
   );

@@ -8,6 +8,8 @@ import { ClickGameId } from '../../core/games';
 import { GameFrameComponent } from '../../shared/game-frame/game-frame.component';
 import { FlagCardComponent } from '../../shared/flag/flag-card.component';
 import { InfoBoxComponent } from '../../shared/info-box/info-box.component';
+import { OutOfPlayCardComponent } from '../../shared/out-of-play/out-of-play-card.component';
+import { OutOfPlayKeyComponent } from '../../shared/out-of-play/out-of-play-key.component';
 import { TargetListComponent } from '../../shared/target-list/target-list.component';
 import { FEEDBACK_ICON, GamePage, NewGameOptions } from '../game-page';
 
@@ -20,7 +22,14 @@ const CLUES: Record<ClickGameId, ClueKind> = {
 /** Click games: the clue is in the top bar and the player clicks the right place on the map. */
 @Component({
   selector: 'app-click-game-page',
-  imports: [GameFrameComponent, TargetListComponent, InfoBoxComponent, FlagCardComponent],
+  imports: [
+    GameFrameComponent,
+    TargetListComponent,
+    InfoBoxComponent,
+    FlagCardComponent,
+    OutOfPlayCardComponent,
+    OutOfPlayKeyComponent,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '(window:pagehide)': 'save()',
@@ -84,22 +93,24 @@ const CLUES: Record<ClickGameId, ClueKind> = {
           } @else {
             <p class="text-ink-muted">{{ i18n.t('click.noMore') }}</p>
           }
-          <p class="bar-line h-5 truncate font-sans text-xs md:text-sm" aria-live="polite">
+          <p class="bar-line bar-feedback truncate font-sans" aria-live="polite">
             @if (feedback(); as f) {
               <span class="font-medium">{{ icon[f.kind] }} {{ f.text }}</span>
             }
           </p>
         </div>
 
-        <app-target-list
-          end
-          [targets]="g.targets"
-          [found]="g.found()"
-          mode="countries"
-          [layer]="layer"
-          [reveal]="true"
-          (picked)="pick($event)"
-        />
+        <div end>
+          <app-target-list
+            [targets]="g.targets"
+            [found]="g.found()"
+            mode="countries"
+            [layer]="layer"
+            [reveal]="true"
+            (picked)="pick($event)"
+          />
+          <app-out-of-play-key />
+        </div>
       </app-game-frame>
 
       @if (g.clue === 'flag' && g.status() !== 'finished' && g.current(); as asked) {
@@ -110,7 +121,10 @@ const CLUES: Record<ClickGameId, ClueKind> = {
       }
 
       @if (infoPlace(); as place) {
-        <app-info-box [place]="place" (closed)="closeInfo()" />
+        <app-info-box [place]="place" [note]="infoNote()" (closed)="closeInfo()" />
+      }
+      @if (outOfPlayCard(); as card) {
+        <app-out-of-play-card [name]="card.name" [kind]="card.kind" (closed)="closeInfo()" />
       }
     }
   `,

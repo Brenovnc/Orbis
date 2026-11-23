@@ -93,7 +93,13 @@ import { ZoomableFlagComponent } from '../flag/zoomable-flag.component';
         }
       </dl>
 
+      @if (note(); as note) {
+        <p class="mt-3 rounded-lg bg-black/5 px-3 py-2 text-sm font-medium text-ink">{{ note }}</p>
+      }
       @if (statusNote(); as note) {
+        <p class="mt-3 rounded-lg bg-accent-soft px-3 py-2 text-sm text-ink">{{ note }}</p>
+      }
+      @if (targetNote(); as note) {
         <p class="mt-3 rounded-lg bg-accent-soft px-3 py-2 text-sm text-ink">{{ note }}</p>
       }
 
@@ -131,6 +137,8 @@ export class InfoBoxComponent {
   protected readonly i18n = inject(I18nService);
 
   readonly place = input.required<Place>();
+  /** One more line, about the place in this game ("Não é perguntado neste jogo"). */
+  readonly note = input('');
   readonly autoHideMs = input(8000);
   readonly closed = output<void>();
 
@@ -169,6 +177,12 @@ export class InfoBoxComponent {
     const admin = this.territory()?.administeredBy;
     const place = admin ? this.geo.place(admin) : undefined;
     return place ? this.i18n.name(place.name) : undefined;
+  });
+  /** The note about being a target is replaced by `note`, which says it for this game. */
+  protected readonly targetNote = computed(() => {
+    const place = this.place();
+    const note = !this.note() && 'targetNote' in place ? place.targetNote : null;
+    return note ? this.i18n.name(note) : undefined;
   });
   protected readonly statusNote = computed(() => {
     const place = this.place();

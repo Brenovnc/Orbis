@@ -13,13 +13,23 @@ import { Target } from '../../core/game/targets';
 import { TypingGame } from '../../core/game/typing-game';
 import { GameFrameComponent } from '../../shared/game-frame/game-frame.component';
 import { InfoBoxComponent } from '../../shared/info-box/info-box.component';
+import { ListPanelComponent } from '../../shared/list-panel/list-panel.component';
+import { OutOfPlayCardComponent } from '../../shared/out-of-play/out-of-play-card.component';
+import { OutOfPlayKeyComponent } from '../../shared/out-of-play/out-of-play-key.component';
 import { TargetListComponent } from '../../shared/target-list/target-list.component';
 import { FEEDBACK_ICON, GamePage, NewGameOptions } from '../game-page';
 
 /** Typing games: "digitar países" and "digitar capitais" (same rules, different answers). */
 @Component({
   selector: 'app-typing-game-page',
-  imports: [GameFrameComponent, TargetListComponent, InfoBoxComponent],
+  imports: [
+    GameFrameComponent,
+    TargetListComponent,
+    InfoBoxComponent,
+    ListPanelComponent,
+    OutOfPlayCardComponent,
+    OutOfPlayKeyComponent,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '(window:pagehide)': 'save()',
@@ -34,6 +44,7 @@ import { FEEDBACK_ICON, GamePage, NewGameOptions } from '../game-page';
         [result]="g.result()"
         [record]="record()"
         [hasList]="true"
+        [listLabel]="i18n.t(shortListKey())"
         [listOpen]="listOpen()"
         (menu)="goToMenu()"
         (togglePause)="togglePause()"
@@ -62,29 +73,28 @@ import { FEEDBACK_ICON, GamePage, NewGameOptions } from '../game-page';
             (input)="onInput(answer)"
             (keydown.enter)="onEnter(answer)"
           />
-          <p class="bar-line h-5 truncate text-xs md:text-sm" aria-live="polite">
+          <p class="bar-line bar-feedback truncate" aria-live="polite">
             @if (feedback(); as f) {
               <span class="font-sans font-medium">{{ icon[f.kind] }} {{ f.text }}</span>
             }
           </p>
         </div>
 
-        <app-target-list
-          end
-          [targets]="g.targets"
-          [found]="g.found()"
-          [mode]="mode()"
-          [layer]="layer"
-          [reveal]="true"
-          (picked)="pick($event)"
-        />
+        <div end>
+          <app-target-list
+            [targets]="g.targets"
+            [found]="g.found()"
+            [mode]="mode()"
+            [layer]="layer"
+            [reveal]="true"
+            (picked)="pick($event)"
+          />
+          <app-out-of-play-key />
+        </div>
       </app-game-frame>
 
       @if (g.status() === 'playing' && listOpen()) {
-        <aside
-          class="fixed inset-x-0 bottom-0 z-10 h-[46dvh] animate-panel-in overflow-y-auto rounded-t-2xl bg-panel p-3 shadow-panel backdrop-blur-md md:inset-x-auto md:top-36 md:right-3 md:bottom-36 md:h-auto md:w-80 md:rounded-2xl"
-          [attr.aria-label]="i18n.t(listKey())"
-        >
+        <app-list-panel [heading]="i18n.t(listKey())" (closed)="listOpen.set(false)">
           <app-target-list
             [targets]="g.targets"
             [found]="g.found()"
@@ -92,11 +102,14 @@ import { FEEDBACK_ICON, GamePage, NewGameOptions } from '../game-page';
             [layer]="layer"
             (picked)="pick($event)"
           />
-        </aside>
+        </app-list-panel>
       }
 
       @if (infoPlace(); as place) {
-        <app-info-box [place]="place" (closed)="closeInfo()" />
+        <app-info-box [place]="place" [note]="infoNote()" (closed)="closeInfo()" />
+      }
+      @if (outOfPlayCard(); as card) {
+        <app-out-of-play-card [name]="card.name" [kind]="card.kind" (closed)="closeInfo()" />
       }
     }
   `,
@@ -111,6 +124,10 @@ export class TypingGamePage extends GamePage<TypingGame> {
     return this.i18n.t(
       this.layer === 'brazil' ? 'typing.placeholder.states' : 'typing.placeholder.countries',
     );
+  };
+  protected readonly shortListKey = () => {
+    if (this.mode() === 'capitals') return 'frame.listCapitals';
+    return this.layer === 'brazil' ? 'frame.listStates' : 'frame.listCountries';
   };
   protected readonly listKey = () => {
     if (this.mode() === 'capitals') return 'typing.listCapitals';

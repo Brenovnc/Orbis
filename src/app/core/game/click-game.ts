@@ -209,6 +209,11 @@ export class ClickGame implements PlayableGame {
     };
   }
 
+  /** What a subclass adds to the result. */
+  protected resultExtras(): Partial<GameResult> {
+    return {};
+  }
+
   private removeFromQueue(id: string): void {
     this.queue.update((queue) => queue.filter((queued) => queued !== id));
     this.currentErrors.set(0);
@@ -223,6 +228,7 @@ export class ClickGame implements PlayableGame {
       elapsedMs: this.elapsedMs(),
       reason,
       errors: this.errors(),
+      ...this.resultExtras(),
     });
   }
 }
@@ -236,7 +242,7 @@ function capitalKeys(target: Target): Set<string> {
   );
 }
 
-function shuffle<T>(items: T[], random: () => number): T[] {
+export function shuffle<T>(items: T[], random: () => number): T[] {
   const result = [...items];
   for (let i = result.length - 1; i > 0; i--) {
     const j = Math.floor(random() * (i + 1));

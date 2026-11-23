@@ -42,14 +42,14 @@ const proximity = buildProximity(outDir, decisions);
 const silhouettes = buildSilhouetteExclusions(outDir);
 writeFileSync(
   join(root, 'scripts', 'data-report.md'),
-  renderReport(world, brazil, proximity.closePairs, silhouettes),
+  renderReport(world, brazil, proximity, silhouettes),
 );
 console.log(
   `Pronto: ${world.countries.length} países, ${world.territories.length} territórios, ${brazil.states.length} UFs.`,
 );
 console.log('Relatório em scripts/data-report.md');
 
-function renderReport(world, brazil, closePairs, silhouettes) {
+function renderReport(world, brazil, proximity, silhouettes) {
   const list = (items) => (items.length ? items.map((i) => `- ${i}`).join('\n') : '- (nenhum)');
   const names = new Map(
     [...world.countries, ...world.territories, ...brazil.states].map((x) => [x.id, x.name.pt]),
@@ -140,6 +140,9 @@ ${list([...amb.placeNames.removed, ...report.brazilAmbiguous.ambiguousNames.remo
 ${list(noSilhouette)}
 
 ## Pares a menos de 10 km que não são vizinhos (candidatos a extraNeighbors em decisions.json)
-${list(closePairs)}
+${list(proximity.closePairs)}
+
+## Travessias da Trilha só pela garantia (nenhum lugar dentro do limite de distância)
+${list(proximity.guaranteed)}
 `;
 }

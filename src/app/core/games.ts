@@ -12,6 +12,9 @@ export interface GameInfo {
   hard?: boolean;
 }
 
+export const isTypingGame = (id: GameId): id is TypingGameId => id.startsWith('digitar');
+export const isClickGame = (id: GameId): id is ClickGameId => id.startsWith('clicar');
+
 /** Capital games can only ask about places that have a capital. */
 export const usesCapitals = (id: GameId): boolean =>
   id === 'digitar-capitais' || id === 'clicar-capital';

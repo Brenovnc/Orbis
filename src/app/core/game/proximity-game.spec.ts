@@ -19,6 +19,7 @@ function game(extra: Partial<ProximityGameConfig> = {}) {
     pool,
     askable: only('BRA'),
     data: world,
+    clues: 'distance-direction',
     tolerance: 1,
     territories: false,
     random: seededRandom(),
@@ -74,6 +75,36 @@ describe('ProximityGame', () => {
     for (const name of ['japão', 'portugal', 'argentina', 'chile']) g.submit(name);
     expect(g.ranked().map((guess) => guess.target.id)).toEqual(['ARG', 'CHL', 'PRT', 'JPN']);
     expect(g.guessed()).toEqual(['JPN', 'PRT', 'ARG', 'CHL']);
+  });
+
+  it('with only the distance the list and the best guess still go by it', () => {
+    const g = game({ clues: 'distance' });
+    for (const name of ['japão', 'chile']) g.submit(name);
+    expect(g.ranked().map((guess) => guess.target.id)).toEqual(['CHL', 'JPN']);
+    expect(g.best()?.target.id).toBe('CHL');
+  });
+
+  it('with only colors the list is still nearest first, even inside one color', () => {
+    const g = game({ clues: 'color' });
+    // All in the same color (heat 5), from farther to nearer.
+    const ids = ['JPN', 'KOR'].sort(
+      (a, b) => distanceKm(world, b, 'BRA') - distanceKm(world, a, 'BRA'),
+    );
+    const first = g.submit(nameOf(ids[0]));
+    const second = g.submit(nameOf(ids[1]));
+    if (first.kind !== 'guess' || second.kind !== 'guess') throw new Error('expected guesses');
+    expect(second.guess.heat).toBe(first.guess.heat);
+    expect(second.closest).toBe(true);
+    expect(g.best()?.target.id).toBe(ids[1]);
+    expect(g.submit('argentina')).toEqual(expect.objectContaining({ closest: true }));
+    expect(g.ranked().map((guess) => guess.target.id)).toEqual(['ARG', ids[1], ids[0]]);
+    expect(g.best()?.target.id).toBe('ARG');
+  });
+
+  it('a saved game keeps its clues, whatever the settings are now', () => {
+    const first = game({ clues: 'color' });
+    first.submit('chile');
+    expect(game({ saved: first.snapshot() }).clues).toBe('color');
   });
 
   it('a repeat or text that is no place costs nothing', () => {
@@ -148,6 +179,7 @@ describe('ProximityGame', () => {
       pool: states,
       askable: states.filter((s) => s.id === 'SP'),
       data: brazilProximityJson as ProximityData,
+      clues: 'distance-direction',
       tolerance: 1,
       territories: false,
       random: seededRandom(),
